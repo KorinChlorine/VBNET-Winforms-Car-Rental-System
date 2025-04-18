@@ -31,7 +31,10 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Panel4 = New System.Windows.Forms.Panel()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,7 +50,8 @@ Partial Class Form1
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.Black
+        Me.Panel2.BackColor = System.Drawing.Color.SlateBlue
+        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Location = New System.Drawing.Point(858, 0)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(10, 744)
@@ -57,6 +61,7 @@ Partial Class Form1
         '
         Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Login3
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.CheckBox1)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
@@ -71,11 +76,11 @@ Partial Class Form1
         '
         Me.TextBox1.BackColor = System.Drawing.Color.White
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Sans Serif Collection", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.Color.SlateBlue
-        Me.TextBox1.Location = New System.Drawing.Point(126, 269)
+        Me.TextBox1.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.TextBox1.Location = New System.Drawing.Point(126, 271)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(400, 47)
+        Me.TextBox1.Size = New System.Drawing.Size(400, 40)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Email"
         '
@@ -83,11 +88,11 @@ Partial Class Form1
         '
         Me.TextBox2.BackColor = System.Drawing.Color.White
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.ForeColor = System.Drawing.Color.SlateBlue
-        Me.TextBox2.Location = New System.Drawing.Point(126, 345)
+        Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.ForeColor = System.Drawing.Color.Black
+        Me.TextBox2.Location = New System.Drawing.Point(126, 350)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(400, 47)
+        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = "Password"
         '
@@ -130,6 +135,26 @@ Partial Class Form1
         Me.Button3.TabIndex = 4
         Me.Button3.UseVisualStyleBackColor = False
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
+        Me.CheckBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.CheckBox1.FlatAppearance.BorderSize = 0
+        Me.CheckBox1.Location = New System.Drawing.Point(213, 432)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox1.TabIndex = 6
+        Me.CheckBox1.UseVisualStyleBackColor = False
+        '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.SlateBlue
+        Me.Panel4.Location = New System.Drawing.Point(28, 693)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(577, 48)
+        Me.Panel4.TabIndex = 4
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -144,6 +169,7 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Login"
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -158,4 +184,6 @@ Partial Class Form1
     Friend WithEvents Button3 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Panel4 As Panel
 End Class
