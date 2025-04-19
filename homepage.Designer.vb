@@ -28,7 +28,7 @@ Partial Class homepage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1121, 641)
         Me.DoubleBuffered = True

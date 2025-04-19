@@ -121,5 +121,8 @@
   <ItemGroup>
     <None Include="Main Menu.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Menu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
