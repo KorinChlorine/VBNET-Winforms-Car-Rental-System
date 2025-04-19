@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class LoginForm
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim f As String = "I:\VB Net\Car Rental System\VBNET Car Rental System\BR86Z; Turbocharged Toyota 86 _ 4K.mp4"
         AxWindowsMediaPlayer1.URL = f
