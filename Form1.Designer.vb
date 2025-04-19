@@ -25,14 +25,14 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -57,6 +57,14 @@ Partial Class Form1
         Me.Panel2.Size = New System.Drawing.Size(10, 744)
         Me.Panel2.TabIndex = 2
         '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.SlateBlue
+        Me.Panel4.Location = New System.Drawing.Point(28, 693)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(577, 48)
+        Me.Panel4.TabIndex = 4
+        '
         'Panel1
         '
         Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Login3
@@ -72,55 +80,17 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(612, 747)
         Me.Panel1.TabIndex = 1
         '
-        'TextBox1
+        'CheckBox1
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.White
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.TextBox1.Location = New System.Drawing.Point(126, 271)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(400, 40)
-        Me.TextBox1.TabIndex = 0
-        Me.TextBox1.Text = "Email"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.White
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.ForeColor = System.Drawing.Color.Black
-        Me.TextBox2.Location = New System.Drawing.Point(126, 350)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
-        Me.TextBox2.TabIndex = 1
-        Me.TextBox2.Text = "Password"
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.Transparent
-        Me.Button1.Location = New System.Drawing.Point(392, 418)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(166, 37)
-        Me.Button1.TabIndex = 2
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Transparent
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.ForeColor = System.Drawing.Color.Transparent
-        Me.Button2.Location = New System.Drawing.Point(422, 551)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(125, 37)
-        Me.Button2.TabIndex = 3
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
+        Me.CheckBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.CheckBox1.FlatAppearance.BorderSize = 0
+        Me.CheckBox1.Location = New System.Drawing.Point(213, 432)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox1.TabIndex = 6
+        Me.CheckBox1.UseVisualStyleBackColor = False
         '
         'Button3
         '
@@ -135,25 +105,55 @@ Partial Class Form1
         Me.Button3.TabIndex = 4
         Me.Button3.UseVisualStyleBackColor = False
         '
-        'CheckBox1
+        'Button2
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
-        Me.CheckBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.CheckBox1.FlatAppearance.BorderSize = 0
-        Me.CheckBox1.Location = New System.Drawing.Point(213, 432)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox1.TabIndex = 6
-        Me.CheckBox1.UseVisualStyleBackColor = False
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.ForeColor = System.Drawing.Color.Transparent
+        Me.Button2.Location = New System.Drawing.Point(422, 551)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(125, 37)
+        Me.Button2.TabIndex = 3
+        Me.Button2.UseVisualStyleBackColor = False
         '
-        'Panel4
+        'Button1
         '
-        Me.Panel4.BackColor = System.Drawing.Color.SlateBlue
-        Me.Panel4.Location = New System.Drawing.Point(28, 693)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(577, 48)
-        Me.Panel4.TabIndex = 4
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.Transparent
+        Me.Button1.Location = New System.Drawing.Point(392, 418)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(166, 37)
+        Me.Button1.TabIndex = 2
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.Color.White
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.ForeColor = System.Drawing.Color.Black
+        Me.TextBox2.Location = New System.Drawing.Point(126, 350)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox2.TabIndex = 1
+        Me.TextBox2.Text = "Password"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.White
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.TextBox1.Location = New System.Drawing.Point(126, 271)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox1.TabIndex = 0
+        Me.TextBox1.Text = "Email"
         '
         'Form1
         '
