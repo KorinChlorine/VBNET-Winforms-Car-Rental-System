@@ -139,7 +139,7 @@ Partial Class LoginForm
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.Black
-        Me.TextBox2.Location = New System.Drawing.Point(116, 372)
+        Me.TextBox2.Location = New System.Drawing.Point(126, 348)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(400, 40)
         Me.TextBox2.TabIndex = 1
