@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -42,7 +42,7 @@ Partial Class Form1
         Me.Button1 = New System.Windows.Forms.Button()
         Me.dtpBirthday = New System.Windows.Forms.DateTimePicker()
         Me.txtRes = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.lblBirthday = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -237,22 +237,22 @@ Partial Class Form1
         Me.txtRes.TabIndex = 21
         Me.txtRes.Text = "Label9"
         '
-        'Label9
+        'lblBirthday
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(557, 461)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(65, 20)
-        Me.Label9.TabIndex = 22
-        Me.Label9.Text = "birthday"
+        Me.lblBirthday.AutoSize = True
+        Me.lblBirthday.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBirthday.Location = New System.Drawing.Point(255, 511)
+        Me.lblBirthday.Name = "lblBirthday"
+        Me.lblBirthday.Size = New System.Drawing.Size(13, 20)
+        Me.lblBirthday.TabIndex = 22
+        Me.lblBirthday.Text = "."
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 594)
-        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.lblBirthday)
         Me.Controls.Add(Me.txtRes)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.rbOthers)
@@ -300,5 +300,5 @@ Partial Class Form1
     Friend WithEvents Button1 As Button
     Friend WithEvents dtpBirthday As DateTimePicker
     Friend WithEvents txtRes As Label
-    Friend WithEvents Label9 As Label
+    Friend WithEvents lblBirthday As Label
 End Class
