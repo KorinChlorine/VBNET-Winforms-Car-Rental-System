@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class customerDetails
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -247,7 +247,7 @@ Partial Class Form1
         Me.lblBirthday.TabIndex = 22
         Me.lblBirthday.Text = "."
         '
-        'Form1
+        'customerDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -273,8 +273,8 @@ Partial Class Form1
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Name = "customerDetails"
+        Me.Text = "customerDetails"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

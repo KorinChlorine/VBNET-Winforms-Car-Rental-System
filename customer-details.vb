@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 
-Public Class Form1
+Public Class customerDetails
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtpBirthday.Format = DateTimePickerFormat.Custom
         dtpBirthday.CustomFormat = " "
@@ -21,8 +21,6 @@ Public Class Form1
        dtpBirthday.CustomFormat = " " OrElse
        String.IsNullOrWhiteSpace(txtboxAddress.Text) OrElse
        String.IsNullOrWhiteSpace(txtboxCarID.Text) Then
-
-
             MessageBox.Show("❗ Please fill out all required fields: Name, Age, Birthday, and Address.",
                             "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
