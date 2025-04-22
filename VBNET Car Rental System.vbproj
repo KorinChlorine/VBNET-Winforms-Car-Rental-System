@@ -73,12 +73,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="homepage.Designer.vb">
-      <DependentUpon>homepage.vb</DependentUpon>
-    </Compile>
-    <Compile Include="homepage.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -94,16 +88,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="rent a car.Designer.vb">
+      <DependentUpon>rent a car.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rent a car.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="homepage.resx">
-      <DependentUpon>homepage.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rent a car.resx">
+      <DependentUpon>rent a car.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Main Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rent a car.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
