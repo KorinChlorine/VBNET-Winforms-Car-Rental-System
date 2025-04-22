@@ -76,7 +76,9 @@
     <Compile Include="management.Designer.vb">
       <DependentUpon>management.vb</DependentUpon>
     </Compile>
-    <Compile Include="management.vb" />
+    <Compile Include="management.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
