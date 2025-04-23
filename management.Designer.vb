@@ -23,10 +23,10 @@ Partial Class Management
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnSubmit = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.btnSubmit = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -44,6 +44,14 @@ Partial Class Management
         Me.GroupBox1.Size = New System.Drawing.Size(257, 562)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
+        '
+        'btnSubmit
+        '
+        Me.btnSubmit.Location = New System.Drawing.Point(6, 19)
+        Me.btnSubmit.Name = "btnSubmit"
+        Me.btnSubmit.Size = New System.Drawing.Size(257, 85)
+        Me.btnSubmit.TabIndex = 1
+        Me.btnSubmit.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -64,14 +72,6 @@ Partial Class Management
         Me.PictureBox1.Size = New System.Drawing.Size(485, 223)
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
-        '
-        'btnSubmit
-        '
-        Me.btnSubmit.Location = New System.Drawing.Point(6, 19)
-        Me.btnSubmit.Name = "btnSubmit"
-        Me.btnSubmit.Size = New System.Drawing.Size(257, 85)
-        Me.btnSubmit.TabIndex = 1
-        Me.btnSubmit.UseVisualStyleBackColor = True
         '
         'Management
         '
