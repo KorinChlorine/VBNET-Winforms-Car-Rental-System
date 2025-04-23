@@ -30,7 +30,7 @@ Partial Class homepage
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1121, 641)
+        Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.DoubleBuffered = True
         Me.Name = "homepage"
         Me.Text = "homepage"
