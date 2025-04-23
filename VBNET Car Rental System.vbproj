@@ -94,6 +94,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RoundedButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="management.resx">
@@ -126,6 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo 1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
