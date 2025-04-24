@@ -7,8 +7,15 @@
 
     Private selectedPanel As Panel = Nothing
     Private selectedImage As Image
+    Private selectedImage2 As Image
 
     Private Sub Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox1.Image = My.Resources.arrow
+        PictureBox2.Image = My.Resources.arrow
+
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
@@ -17,25 +24,14 @@
     End Sub
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
-        Dim openFileDialog As New OpenFileDialog()
-        openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
 
-        If openFileDialog.ShowDialog() = DialogResult.OK Then
-            selectedImage = Image.FromFile(openFileDialog.FileName)
-            Try
-                PictureBox1.Image = selectedImage
-                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-            Catch
-                MessageBox.Show("Invalid Image")
-            End Try
-        End If
     End Sub
 
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
         Dim panelYPosition As Integer = Panel3.Controls.Count * 60
 
         Dim panel1 As New Panel()
-        panel1.Size = New Size(242, 50)
+        panel1.Size = New Size(220, 50)
         panel1.Location = New Point(10, panelYPosition)
         panel1.BackColor = Color.Transparent
         AddHandler panel1.Paint, AddressOf Panel1_Paint
@@ -57,8 +53,8 @@
 
         Dim newLabel As New Label()
         newLabel.Text = RichTextBox3.Text
-        newLabel.Size = New Size(159, 44)
-        newLabel.Location = New Point(90, 3)
+        newLabel.Size = New Size(220, 50)
+        newLabel.Location = New Point(40, 0)
         newLabel.BackColor = Color.White
         newLabel.TextAlign = ContentAlignment.MiddleCenter
         panel1.Controls.Add(newLabel)
@@ -69,8 +65,16 @@
     End Sub
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
+        If selectedPanel IsNot Nothing Then
+            ' Revert the previously selected panel's color to white
+            selectedPanel.BackColor = Color.White
+        End If
+
+        ' Set the new selected panel and change its color
         selectedPanel = CType(sender, Panel)
+        selectedPanel.BackColor = Color.DarkSlateBlue
     End Sub
+
 
     Private Sub RoundedButton4_Click(sender As Object, e As EventArgs) Handles RoundedButton4.Click
         If selectedPanel IsNot Nothing Then
@@ -110,9 +114,54 @@
     End Sub
 
     Private Sub RoundedButton5_Click(sender As Object, e As EventArgs) Handles RoundedButton5.Click
+        PictureBox1.Image = Nothing
         selectedImage = Nothing
         RichTextBox3.Text = ""
         RichTextBox2.Text = ""
         MessageBox.Show("Restarted selected items successfully!")
+        PictureBox1.Image = My.Resources.arrow
+        PictureBox2.Image = My.Resources.arrow
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        Dim openFileDialog As New OpenFileDialog()
+        openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            selectedImage = Image.FromFile(openFileDialog.FileName)
+            Try
+                PictureBox1.Image = selectedImage
+                PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+            Catch
+                MessageBox.Show("Invalid Image")
+            End Try
+        End If
+    End Sub
+
+    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
+
+    End Sub
+
+    Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
+
+    End Sub
+
+    Private Sub RichTextBox10_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox10.TextChanged
+
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Dim openFileDialog As New OpenFileDialog()
+        openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
+
+        If openFileDialog.ShowDialog() = DialogResult.OK Then
+            selectedImage2 = Image.FromFile(openFileDialog.FileName)
+            Try
+                PictureBox2.Image = selectedImage2
+                PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
+            Catch
+                MessageBox.Show("Invalid Image")
+            End Try
+        End If
     End Sub
 End Class
