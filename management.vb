@@ -60,20 +60,44 @@
         panel1.Controls.Add(newLabel)
 
         AddHandler newLabel.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
+        AddHandler newPictureBox.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
+        AddHandler newLabel.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
 
         Panel3.Controls.Add(panel1)
     End Sub
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
+        ' Remove the highlight header from the previously selected panel
         If selectedPanel IsNot Nothing Then
-            ' Revert the previously selected panel's color to white
-            selectedPanel.BackColor = Color.White
+            Dim oldHeader = selectedPanel.Controls.OfType(Of Panel).FirstOrDefault(Function(p) p.Name = "FocusHeader")
+            If oldHeader IsNot Nothing Then
+                selectedPanel.Controls.Remove(oldHeader)
+            End If
         End If
 
-        ' Set the new selected panel and change its color
+        ' Set the new selected panel
         selectedPanel = CType(sender, Panel)
-        selectedPanel.BackColor = Color.DarkSlateBlue
+
+        ' Add the focus header
+        Dim focusHeader As New Panel()
+        focusHeader.Name = "FocusHeader"
+        focusHeader.Size = New Size(selectedPanel.Width, 5)
+        focusHeader.Location = New Point(0, 0)
+        focusHeader.BackColor = Color.MediumSlateBlue
+        focusHeader.BringToFront()
+
+        selectedPanel.Controls.Add(focusHeader)
+
+        ' Bring PictureBox and Label to front (if needed)
+        For Each ctrl As Control In selectedPanel.Controls
+            If TypeOf ctrl Is PictureBox OrElse TypeOf ctrl Is Label Then
+                ctrl.BringToFront()
+            End If
+        Next
     End Sub
+
+
+
 
 
     Private Sub RoundedButton4_Click(sender As Object, e As EventArgs) Handles RoundedButton4.Click
