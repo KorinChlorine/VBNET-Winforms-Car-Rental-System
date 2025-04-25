@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Car.vb" />
     <Compile Include="management.Designer.vb">
       <DependentUpon>management.vb</DependentUpon>
     </Compile>

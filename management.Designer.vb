@@ -52,14 +52,14 @@ Partial Class Management
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.Label14 = New System.Windows.Forms.Label()
+        Me.RichTextBox5 = New System.Windows.Forms.RichTextBox()
+        Me.RichTextBox10 = New System.Windows.Forms.RichTextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton5 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton4 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
-        Me.RichTextBox5 = New System.Windows.Forms.RichTextBox()
-        Me.RichTextBox10 = New System.Windows.Forms.RichTextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -292,9 +292,9 @@ Partial Class Management
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.DarkSlateBlue
-        Me.Label11.Location = New System.Drawing.Point(65, 9)
+        Me.Label11.Location = New System.Drawing.Point(64, 11)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(244, 39)
         Me.Label11.TabIndex = 34
@@ -392,6 +392,38 @@ Partial Class Management
         Me.Label14.TabIndex = 41
         Me.Label14.Text = "Available:"
         '
+        'RichTextBox5
+        '
+        Me.RichTextBox5.BackColor = System.Drawing.Color.White
+        Me.RichTextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox5.Location = New System.Drawing.Point(512, 342)
+        Me.RichTextBox5.Name = "RichTextBox5"
+        Me.RichTextBox5.Size = New System.Drawing.Size(145, 36)
+        Me.RichTextBox5.TabIndex = 42
+        Me.RichTextBox5.Text = ""
+        '
+        'RichTextBox10
+        '
+        Me.RichTextBox10.BackColor = System.Drawing.Color.White
+        Me.RichTextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox10.Location = New System.Drawing.Point(663, 342)
+        Me.RichTextBox10.Name = "RichTextBox10"
+        Me.RichTextBox10.Size = New System.Drawing.Size(143, 36)
+        Me.RichTextBox10.TabIndex = 43
+        Me.RichTextBox10.Text = ""
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.GhostWhite
+        Me.Label15.Location = New System.Drawing.Point(660, 324)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(44, 16)
+        Me.Label15.TabIndex = 44
+        Me.Label15.Text = "Color"
+        '
         'RoundedButton2
         '
         Me.RoundedButton2.BackColor = System.Drawing.Color.DarkSlateBlue
@@ -462,38 +494,6 @@ Partial Class Management
         Me.RoundedButton1.TabIndex = 3
         Me.RoundedButton1.Text = "Edit"
         Me.RoundedButton1.UseVisualStyleBackColor = False
-        '
-        'RichTextBox5
-        '
-        Me.RichTextBox5.BackColor = System.Drawing.Color.White
-        Me.RichTextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RichTextBox5.Location = New System.Drawing.Point(512, 342)
-        Me.RichTextBox5.Name = "RichTextBox5"
-        Me.RichTextBox5.Size = New System.Drawing.Size(145, 36)
-        Me.RichTextBox5.TabIndex = 42
-        Me.RichTextBox5.Text = ""
-        '
-        'RichTextBox10
-        '
-        Me.RichTextBox10.BackColor = System.Drawing.Color.White
-        Me.RichTextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RichTextBox10.Location = New System.Drawing.Point(663, 342)
-        Me.RichTextBox10.Name = "RichTextBox10"
-        Me.RichTextBox10.Size = New System.Drawing.Size(143, 36)
-        Me.RichTextBox10.TabIndex = 43
-        Me.RichTextBox10.Text = ""
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.GhostWhite
-        Me.Label15.Location = New System.Drawing.Point(660, 324)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(44, 16)
-        Me.Label15.TabIndex = 44
-        Me.Label15.Text = "Color"
         '
         'Management
         '

@@ -1,102 +1,224 @@
-﻿Public Class Management
-    Class Cars
-        Dim Name As String
-        Dim Price As Integer
-        Dim Details As String
-    End Class
+﻿Imports System.Drawing
+
+
+Public Class Management
+    Public Property CarName As String
+    Public Property PrimaryImage As Image
+    Public Property SecondaryImage As Image
+    Public Property CarType As String
+    Public Property Capacity As String
+    Public Property carColor As String
+    Public Property BriefDetails As String
+    Public Property Details As String
+    Public Property CarID As String
+    Public Property BodyNumber As String
+    Public Property PlateNumber As String
+    Public Property DailyPrice As String
+    Public Property IsAvailable As Boolean
+
+    Private Sub Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        PictureBox1.Image = My.Resources.arrow
+        PictureBox2.Image = My.Resources.arrow
+        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
+        RadioButton1.Checked = True
+
+    End Sub
+
+    Private Shared outerArray As New List(Of Object())()
+    Public Sub New()
+        InitializeComponent()
+        Restart()
+    End Sub
+    Private Sub ClearForm()
+        RichTextBox3.Clear()
+        RichTextBox6.Clear()
+        RichTextBox5.Clear()
+        RichTextBox10.Clear()
+        RichTextBox1.Clear()
+        RichTextBox2.Clear()
+        RichTextBox4.Clear()
+        RichTextBox7.Clear()
+        RichTextBox9.Clear()
+        RichTextBox8.Clear()
+        PictureBox1.Image = My.Resources.arrow
+        PictureBox2.Image = My.Resources.arrow
+        RadioButton1.Checked = False
+        RadioButton2.Checked = False
+
+    End Sub
+    Public Sub Restart()
+        CarName = ""
+        PrimaryImage = Nothing
+        SecondaryImage = Nothing
+        CarType = ""
+        Capacity = ""
+        carColor = ""
+        BriefDetails = ""
+        Details = ""
+        CarID = ""
+        BodyNumber = ""
+        PlateNumber = ""
+        DailyPrice = ""
+        IsAvailable = False
+
+    End Sub
+    Public Sub LoadFromForm()
+        CarName = RichTextBox3.Text
+        PrimaryImage = PictureBox1.Image
+        SecondaryImage = PictureBox2.Image
+        CarType = RichTextBox6.Text
+        Capacity = RichTextBox5.Text
+        carColor = RichTextBox10.Text
+        BriefDetails = RichTextBox1.Text
+        Details = RichTextBox2.Text
+        CarID = RichTextBox4.Text
+        BodyNumber = RichTextBox7.Text
+        PlateNumber = RichTextBox9.Text
+        DailyPrice = RichTextBox8.Text
+        IsAvailable = RadioButton1.Checked
+    End Sub
+
+    Public Sub SaveToForm()
+        RichTextBox3.Text = CarName
+        PictureBox1.Image = PrimaryImage
+        PictureBox2.Image = SecondaryImage
+        RichTextBox6.Text = CarType
+        RichTextBox5.Text = Capacity
+        RichTextBox10.Text = carColor
+        RichTextBox1.Text = BriefDetails
+        RichTextBox2.Text = Details
+        RichTextBox4.Text = CarID
+        RichTextBox7.Text = BodyNumber
+        RichTextBox9.Text = PlateNumber
+        RichTextBox8.Text = DailyPrice
+        RadioButton1.Checked = IsAvailable
+        RadioButton2.Checked = Not IsAvailable
+    End Sub
+
 
     Private selectedPanel As Panel = Nothing
     Private selectedImage As Image
     Private selectedImage2 As Image
 
-    Private Sub Management_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox2.SizeMode = PictureBoxSizeMode.StretchImage
-        PictureBox1.Image = My.Resources.arrow
-        PictureBox2.Image = My.Resources.arrow
 
-
-    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
 
-    Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
-
-    End Sub
-
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
-        Dim panelYPosition As Integer = Panel3.Controls.Count * 60
+        If selectedPanel IsNot Nothing Then
+            Dim previousOverlay = selectedPanel.Controls.OfType(Of Panel).FirstOrDefault(Function(p) p.Tag?.ToString() = "Overlay")
+            If previousOverlay IsNot Nothing Then selectedPanel.Controls.Remove(previousOverlay)
 
-        Dim panel1 As New Panel()
-        panel1.Size = New Size(220, 50)
-        panel1.Location = New Point(10, panelYPosition)
-        panel1.BackColor = Color.Transparent
-        AddHandler panel1.Paint, AddressOf Panel1_Paint
+            Dim previousSelectedLabel = selectedPanel.Controls.OfType(Of Label).FirstOrDefault(Function(lbl) lbl.Tag?.ToString() = "SelectedLabel")
+            If previousSelectedLabel IsNot Nothing Then selectedPanel.Controls.Remove(previousSelectedLabel)
+        End If
 
         If String.IsNullOrWhiteSpace(RichTextBox3.Text) OrElse selectedImage Is Nothing Then
             MessageBox.Show("Please select an image and provide a name before adding a panel.")
             Return
         End If
 
+        Dim panelYPosition As Integer = Panel3.Controls.Count * 60
+        Dim panel1 As New Panel With {
+        .Size = New Size(220, 50),
+        .Location = New Point(10, panelYPosition),
+        .BackColor = Color.Transparent
+    }
         AddHandler panel1.Click, AddressOf Panel_Click
+        AddHandler panel1.Paint, AddressOf Panel1_Paint
 
-        Dim newPictureBox As New PictureBox()
-        newPictureBox.Size = New Size(85, 50)
-        newPictureBox.Image = selectedImage
-        newPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
+        Dim newPictureBox As New PictureBox With {
+        .Size = New Size(85, 50),
+        .Image = selectedImage,
+        .SizeMode = PictureBoxSizeMode.StretchImage
+    }
         panel1.Controls.Add(newPictureBox)
+        AddHandler newPictureBox.Click, Sub(s, eArgs) Panel_Click(panel1, New EventArgs())
 
-        AddHandler newPictureBox.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
-
-        Dim newLabel As New Label()
-        newLabel.Text = RichTextBox3.Text
-        newLabel.Size = New Size(220, 50)
-        newLabel.Location = New Point(40, 0)
-        newLabel.BackColor = Color.White
-        newLabel.TextAlign = ContentAlignment.MiddleCenter
+        Dim newLabel As New Label With {
+        .Text = RichTextBox3.Text.Trim(),
+        .Size = New Size(220, 50),
+        .Location = New Point(40, 0),
+        .BackColor = Color.White,
+        .TextAlign = ContentAlignment.MiddleCenter,
+        .Tag = "MainLabel"
+    }
         panel1.Controls.Add(newLabel)
+        AddHandler newLabel.Click, Sub(s, eArgs) Panel_Click(panel1, New EventArgs())
 
-        AddHandler newLabel.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
-        AddHandler newPictureBox.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
-        AddHandler newLabel.Click, Sub(s, eArgs) Panel_Click(panel1, eArgs)
+        Dim propertiesArray As Object() = {
+        RichTextBox3.Text, selectedImage, selectedImage2, RichTextBox6.Text, RichTextBox5.Text,
+        RichTextBox10.Text, RichTextBox1.Text, RichTextBox2.Text, RichTextBox4.Text,
+        RichTextBox7.Text, RichTextBox9.Text, RichTextBox8.Text, RadioButton1.Checked
+    }
+
+        outerArray.Add(propertiesArray)
+
+        panel1.Tag = propertiesArray
 
         Panel3.Controls.Add(panel1)
+
+        Panel_Click(panel1, New EventArgs())
     End Sub
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
-        ' Remove the highlight header from the previously selected panel
-        If selectedPanel IsNot Nothing Then
-            Dim oldHeader = selectedPanel.Controls.OfType(Of Panel).FirstOrDefault(Function(p) p.Name = "FocusHeader")
-            If oldHeader IsNot Nothing Then
-                selectedPanel.Controls.Remove(oldHeader)
-            End If
+        Dim clickedPanel As Panel = CType(sender, Panel)
+        If selectedPanel IsNot Nothing AndAlso selectedPanel IsNot clickedPanel Then
+            Dim previousOverlay = selectedPanel.Controls.OfType(Of Panel).FirstOrDefault(Function(p) p.Tag?.ToString() = "Overlay")
+            If previousOverlay IsNot Nothing Then selectedPanel.Controls.Remove(previousOverlay)
+
+            Dim previousSelectedLabel = selectedPanel.Controls.OfType(Of Label).FirstOrDefault(Function(lbl) lbl.Tag?.ToString() = "SelectedLabel")
+            If previousSelectedLabel IsNot Nothing Then selectedPanel.Controls.Remove(previousSelectedLabel)
         End If
 
-        ' Set the new selected panel
-        selectedPanel = CType(sender, Panel)
+        selectedPanel = clickedPanel
+        Dim carData As Object() = TryCast(selectedPanel.Tag, Object())
+        Dim overlay As New Panel With {
+        .Size = selectedPanel.Size,
+        .Location = New Point(0, 0),
+        .BackColor = Color.FromArgb(100, Color.LightBlue),
+        .Tag = "Overlay"
+    }
+        selectedPanel.Controls.Add(overlay)
+        overlay.BringToFront()
 
-        ' Add the focus header
-        Dim focusHeader As New Panel()
-        focusHeader.Name = "FocusHeader"
-        focusHeader.Size = New Size(selectedPanel.Width, 5)
-        focusHeader.Location = New Point(0, 0)
-        focusHeader.BackColor = Color.MediumSlateBlue
-        focusHeader.BringToFront()
+        Dim selectedLabel As New Label With {
+        .Text = (carData(0)?.ToString()),
+        .AutoSize = False,
+        .Size = selectedPanel.Size,
+        .TextAlign = ContentAlignment.MiddleCenter,
+        .ForeColor = Color.White,
+        .Font = New Font("Arial", 12, FontStyle.Bold),
+        .BackColor = Color.SlateBlue,
+        .Tag = "SelectedLabel"
+    }
+        selectedPanel.Controls.Add(selectedLabel)
+        selectedLabel.BringToFront()
 
-        selectedPanel.Controls.Add(focusHeader)
+        If carData Is Nothing Then
+            MessageBox.Show("No panel data found.")
+            Return
+        End If
 
-        ' Bring PictureBox and Label to front (if needed)
-        For Each ctrl As Control In selectedPanel.Controls
-            If TypeOf ctrl Is PictureBox OrElse TypeOf ctrl Is Label Then
-                ctrl.BringToFront()
-            End If
-        Next
+        RichTextBox3.Text = carData(0)?.ToString()
+        PictureBox1.Image = TryCast(carData(1), Image)
+        PictureBox2.Image = TryCast(carData(2), Image)
+        RichTextBox6.Text = carData(3)?.ToString()
+        RichTextBox5.Text = carData(4)?.ToString()
+        RichTextBox10.Text = carData(5)?.ToString()
+        RichTextBox1.Text = carData(6)?.ToString()
+        RichTextBox2.Text = carData(7)?.ToString()
+        RichTextBox4.Text = carData(8)?.ToString()
+        RichTextBox7.Text = carData(9)?.ToString()
+        RichTextBox9.Text = carData(10)?.ToString()
+        RichTextBox8.Text = carData(11)?.ToString()
+        RadioButton1.Checked = Convert.ToBoolean(carData(12))
     End Sub
-
-
 
 
 
@@ -113,8 +235,10 @@
                         Dim panel As Panel = CType(control, Panel)
                         panel.Location = New Point(panel.Location.X, currentYPosition)
                         currentYPosition += panel.Height + 10
+                        panel.Invalidate()
                     End If
                 Next
+
             End If
         Else
             MessageBox.Show("No panel selected for deletion.")
@@ -137,14 +261,10 @@
         panel.Region = New Region(path)
     End Sub
 
+
     Private Sub RoundedButton5_Click(sender As Object, e As EventArgs) Handles RoundedButton5.Click
-        PictureBox1.Image = Nothing
-        selectedImage = Nothing
-        RichTextBox3.Text = ""
-        RichTextBox2.Text = ""
-        MessageBox.Show("Restarted selected items successfully!")
-        PictureBox1.Image = My.Resources.arrow
-        PictureBox2.Image = My.Resources.arrow
+        ClearForm()
+
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -161,19 +281,6 @@
             End Try
         End If
     End Sub
-
-    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
-
-    End Sub
-
-    Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
-
-    End Sub
-
-    Private Sub RichTextBox10_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox10.TextChanged
-
-    End Sub
-
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Dim openFileDialog As New OpenFileDialog()
         openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif"
@@ -188,4 +295,55 @@
             End Try
         End If
     End Sub
+
+    Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
+        If selectedPanel Is Nothing Then
+            MessageBox.Show("No panel selected for editing.")
+            Return
+        End If
+
+        Dim storedCarProperties As Object() = TryCast(selectedPanel.Tag, Object())
+        If storedCarProperties Is Nothing Then
+            MessageBox.Show("No data found for the selected panel.")
+            Return
+        End If
+
+        storedCarProperties(0) = RichTextBox3.Text
+        storedCarProperties(1) = PictureBox1.Image
+        storedCarProperties(2) = PictureBox2.Image
+        storedCarProperties(3) = RichTextBox6.Text
+        storedCarProperties(4) = RichTextBox5.Text
+        storedCarProperties(5) = RichTextBox10.Text
+        storedCarProperties(6) = RichTextBox1.Text
+        storedCarProperties(7) = RichTextBox2.Text
+        storedCarProperties(8) = RichTextBox4.Text
+        storedCarProperties(9) = RichTextBox7.Text
+        storedCarProperties(10) = RichTextBox9.Text
+        storedCarProperties(11) = RichTextBox8.Text
+        storedCarProperties(12) = RadioButton1.Checked
+
+        Dim nameLabel = selectedPanel.Controls.OfType(Of Label).FirstOrDefault(Function(lbl) lbl.Tag?.ToString() = "MainLabel")
+        If nameLabel IsNot Nothing Then
+            nameLabel.Text = RichTextBox3.Text
+        End If
+
+        Dim pictureBox = selectedPanel.Controls.OfType(Of PictureBox).FirstOrDefault()
+        If pictureBox IsNot Nothing Then
+            pictureBox.Image = PictureBox1.Image
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage
+        End If
+
+        MessageBox.Show("Panel updated successfully!")
+    End Sub
+
+    Private Sub SyncTagsWithOuterArray()
+        For i As Integer = 0 To Panel3.Controls.Count - 1
+            Dim p As Panel = TryCast(Panel3.Controls(i), Panel)
+            If p IsNot Nothing AndAlso i < outerArray.Count Then
+                p.Tag = outerArray(i)
+            End If
+        Next
+    End Sub
+
+
 End Class
