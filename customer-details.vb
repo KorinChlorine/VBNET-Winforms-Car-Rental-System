@@ -15,7 +15,7 @@ Public Class Form1
     Private Sub txtboxCarID_TextChanged(sender As Object, e As EventArgs) Handles txtboxCarID.TextChanged
 
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnConfChan.Click
         If String.IsNullOrWhiteSpace(txtboxName.Text) OrElse
        String.IsNullOrWhiteSpace(txtboxAge.Text) OrElse
        dtpBirthday.CustomFormat = " " OrElse
