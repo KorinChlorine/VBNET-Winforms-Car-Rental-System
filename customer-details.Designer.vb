@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class customer_details
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(customer_details))
         Me.txtboxName = New System.Windows.Forms.TextBox()
         Me.txtboxAge = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -212,7 +212,7 @@ Partial Class Form1
         Me.btnChanCredent.Text = "Change Credentials"
         Me.btnChanCredent.UseVisualStyleBackColor = True
         '
-        'Form1
+        'customer_details
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -238,8 +238,8 @@ Partial Class Form1
         Me.Controls.Add(Me.txtboxAge)
         Me.Controls.Add(Me.txtboxName)
         Me.DoubleBuffered = True
-        Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Name = "customer_details"
+        Me.Text = "customer-details"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

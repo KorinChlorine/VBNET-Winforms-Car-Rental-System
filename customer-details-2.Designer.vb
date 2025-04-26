@@ -83,7 +83,7 @@ Partial Class customer_details_2
         Me.Controls.Add(Me.btnConfChanges)
         Me.DoubleBuffered = True
         Me.Name = "customer_details_2"
-        Me.Text = "customer_details_2"
+        Me.Text = "customer-details-2"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
