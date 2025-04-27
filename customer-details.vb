@@ -38,7 +38,7 @@ Public Class customer_details
         txtboxName.Text = txtboxName.Text
         txtboxAge.Text = txtboxAge.Text
         '     "Birthday: " & lblBirthday.Text & vbCrLf &
-        '     "Gender: " & selectedGender & vbCrLf &
+        '    "Gender: " & selectedGender & vbCrLf &
         txtboxAddress.Text = txtboxAddress.Text
         '     "Car ID: " & txtboxCarID.Text & vbCrLf &
         '    "Days remaining: " & txtboxDays.Text & vbCrLf &
