@@ -82,13 +82,17 @@
     <Compile Include="Car.vb" />
     <Compile Include="management.Designer.vb">
       <DependentUpon>management.vb</DependentUpon>
+    </Compile>
+    <Compile Include="management.vb" />
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="management.vb">
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoundedButton.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -104,9 +108,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="RoundedButton.vb">
-      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -136,21 +137,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Main Menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Main Menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Management.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\undo 1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="AxWMPLib">
       <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -171,7 +157,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Login.png" />
+    <None Include="Resources\Main Menu.png" />
+    <None Include="Resources\Management.png" />
+    <None Include="Resources\undo 1.png" />
+    <None Include="Resources\arrow.png" />
+    <None Include="Main Menu.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
