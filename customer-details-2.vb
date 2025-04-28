@@ -8,12 +8,13 @@ Public Class customer_details_2
         newEmail = txtNewEmail.Text
         newPassword = txtNewPass.Text
         confPassword = txtConfPass.Text
-        Me.Close()
+
         customer_details.Show()
+        Me.Close()
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        Me.Close()
         customer_details.Show()
+        Me.Close()
     End Sub
 End Class

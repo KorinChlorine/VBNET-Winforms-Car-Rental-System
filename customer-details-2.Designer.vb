@@ -32,41 +32,59 @@ Partial Class customer_details_2
         '
         'btnConfChanges
         '
-        Me.btnConfChanges.Location = New System.Drawing.Point(65, 385)
+        Me.btnConfChanges.BackColor = System.Drawing.Color.Transparent
+        Me.btnConfChanges.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnConfChanges.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btnConfChanges.FlatAppearance.BorderSize = 0
+        Me.btnConfChanges.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnConfChanges.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnConfChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfChanges.Location = New System.Drawing.Point(67, 506)
         Me.btnConfChanges.Name = "btnConfChanges"
-        Me.btnConfChanges.Size = New System.Drawing.Size(256, 23)
+        Me.btnConfChanges.Size = New System.Drawing.Size(366, 51)
         Me.btnConfChanges.TabIndex = 0
-        Me.btnConfChanges.Text = "Confirm Changes"
-        Me.btnConfChanges.UseVisualStyleBackColor = True
+        Me.btnConfChanges.UseVisualStyleBackColor = False
         '
         'btnBack
         '
-        Me.btnBack.Location = New System.Drawing.Point(284, 26)
+        Me.btnBack.BackColor = System.Drawing.Color.Transparent
+        Me.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.White
+        Me.btnBack.FlatAppearance.BorderSize = 0
+        Me.btnBack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBack.Location = New System.Drawing.Point(374, 34)
         Me.btnBack.Name = "btnBack"
-        Me.btnBack.Size = New System.Drawing.Size(56, 23)
+        Me.btnBack.Size = New System.Drawing.Size(84, 37)
         Me.btnBack.TabIndex = 1
-        Me.btnBack.Text = "Back"
-        Me.btnBack.UseVisualStyleBackColor = True
+        Me.btnBack.UseVisualStyleBackColor = False
         '
         'txtNewEmail
         '
-        Me.txtNewEmail.Location = New System.Drawing.Point(103, 94)
+        Me.txtNewEmail.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtNewEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNewEmail.Location = New System.Drawing.Point(140, 116)
         Me.txtNewEmail.Name = "txtNewEmail"
-        Me.txtNewEmail.Size = New System.Drawing.Size(237, 20)
+        Me.txtNewEmail.Size = New System.Drawing.Size(305, 33)
         Me.txtNewEmail.TabIndex = 2
         '
         'txtNewPass
         '
-        Me.txtNewPass.Location = New System.Drawing.Point(103, 143)
+        Me.txtNewPass.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtNewPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!)
+        Me.txtNewPass.Location = New System.Drawing.Point(140, 183)
         Me.txtNewPass.Name = "txtNewPass"
-        Me.txtNewPass.Size = New System.Drawing.Size(237, 20)
+        Me.txtNewPass.Size = New System.Drawing.Size(305, 33)
         Me.txtNewPass.TabIndex = 3
         '
         'txtConfPass
         '
-        Me.txtConfPass.Location = New System.Drawing.Point(103, 194)
+        Me.txtConfPass.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtConfPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!)
+        Me.txtConfPass.Location = New System.Drawing.Point(140, 250)
         Me.txtConfPass.Name = "txtConfPass"
-        Me.txtConfPass.Size = New System.Drawing.Size(237, 20)
+        Me.txtConfPass.Size = New System.Drawing.Size(305, 33)
         Me.txtConfPass.TabIndex = 4
         '
         'customer_details_2
@@ -75,7 +93,7 @@ Partial Class customer_details_2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ClientSize = New System.Drawing.Size(371, 450)
+        Me.ClientSize = New System.Drawing.Size(495, 588)
         Me.Controls.Add(Me.txtConfPass)
         Me.Controls.Add(Me.txtNewPass)
         Me.Controls.Add(Me.txtNewEmail)

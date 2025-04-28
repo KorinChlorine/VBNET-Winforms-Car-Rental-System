@@ -36,8 +36,6 @@ Partial Class customer_details
         Me.rbOthers = New System.Windows.Forms.RadioButton()
         Me.btnConfChan = New System.Windows.Forms.Button()
         Me.dtpBirthday = New System.Windows.Forms.DateTimePicker()
-        Me.txtRes = New System.Windows.Forms.Label()
-        Me.lblBirthday = New System.Windows.Forms.Label()
         Me.btnReturn = New System.Windows.Forms.Button()
         Me.btnVerifyRecords = New System.Windows.Forms.Button()
         Me.btnChanCredent = New System.Windows.Forms.Button()
@@ -45,18 +43,20 @@ Partial Class customer_details
         '
         'txtboxName
         '
-        Me.txtboxName.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtboxName.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtboxName.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtboxName.Location = New System.Drawing.Point(132, 117)
         Me.txtboxName.Name = "txtboxName"
-        Me.txtboxName.Size = New System.Drawing.Size(320, 29)
+        Me.txtboxName.Size = New System.Drawing.Size(320, 28)
         Me.txtboxName.TabIndex = 3
         '
         'txtboxAge
         '
-        Me.txtboxAge.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtboxAge.Location = New System.Drawing.Point(132, 183)
+        Me.txtboxAge.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtboxAge.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtboxAge.Location = New System.Drawing.Point(132, 179)
         Me.txtboxAge.Name = "txtboxAge"
-        Me.txtboxAge.Size = New System.Drawing.Size(320, 29)
+        Me.txtboxAge.Size = New System.Drawing.Size(320, 28)
         Me.txtboxAge.TabIndex = 4
         '
         'Label5
@@ -81,10 +81,11 @@ Partial Class customer_details
         '
         'txtboxAddress
         '
-        Me.txtboxAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtboxAddress.Location = New System.Drawing.Point(132, 252)
+        Me.txtboxAddress.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtboxAddress.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtboxAddress.Location = New System.Drawing.Point(132, 240)
         Me.txtboxAddress.Name = "txtboxAddress"
-        Me.txtboxAddress.Size = New System.Drawing.Size(320, 29)
+        Me.txtboxAddress.Size = New System.Drawing.Size(320, 28)
         Me.txtboxAddress.TabIndex = 11
         '
         'txtboxCarID
@@ -114,103 +115,111 @@ Partial Class customer_details
         'rbMale
         '
         Me.rbMale.AutoSize = True
+        Me.rbMale.BackColor = System.Drawing.Color.Transparent
         Me.rbMale.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbMale.Location = New System.Drawing.Point(131, 314)
+        Me.rbMale.ForeColor = System.Drawing.Color.White
+        Me.rbMale.Location = New System.Drawing.Point(132, 360)
         Me.rbMale.Name = "rbMale"
         Me.rbMale.Size = New System.Drawing.Size(61, 24)
         Me.rbMale.TabIndex = 17
         Me.rbMale.TabStop = True
         Me.rbMale.Text = "Male"
-        Me.rbMale.UseVisualStyleBackColor = True
+        Me.rbMale.UseVisualStyleBackColor = False
         '
         'rbFemale
         '
         Me.rbFemale.AutoSize = True
+        Me.rbFemale.BackColor = System.Drawing.Color.Transparent
         Me.rbFemale.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbFemale.Location = New System.Drawing.Point(198, 314)
+        Me.rbFemale.ForeColor = System.Drawing.Color.White
+        Me.rbFemale.Location = New System.Drawing.Point(199, 360)
         Me.rbFemale.Name = "rbFemale"
         Me.rbFemale.Size = New System.Drawing.Size(80, 24)
         Me.rbFemale.TabIndex = 18
         Me.rbFemale.TabStop = True
         Me.rbFemale.Text = "Female"
-        Me.rbFemale.UseVisualStyleBackColor = True
+        Me.rbFemale.UseVisualStyleBackColor = False
         '
         'rbOthers
         '
         Me.rbOthers.AutoSize = True
+        Me.rbOthers.BackColor = System.Drawing.Color.Transparent
         Me.rbOthers.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rbOthers.Location = New System.Drawing.Point(284, 314)
+        Me.rbOthers.ForeColor = System.Drawing.Color.White
+        Me.rbOthers.Location = New System.Drawing.Point(284, 360)
         Me.rbOthers.Name = "rbOthers"
         Me.rbOthers.Size = New System.Drawing.Size(195, 24)
         Me.rbOthers.TabIndex = 19
         Me.rbOthers.TabStop = True
         Me.rbOthers.Text = "Prefer not to say/Others"
-        Me.rbOthers.UseVisualStyleBackColor = True
+        Me.rbOthers.UseVisualStyleBackColor = False
         '
         'btnConfChan
         '
+        Me.btnConfChan.BackColor = System.Drawing.Color.Transparent
+        Me.btnConfChan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnConfChan.FlatAppearance.BorderSize = 0
+        Me.btnConfChan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnConfChan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnConfChan.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfChan.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnConfChan.Location = New System.Drawing.Point(77, 513)
+        Me.btnConfChan.Location = New System.Drawing.Point(73, 526)
         Me.btnConfChan.Name = "btnConfChan"
-        Me.btnConfChan.Size = New System.Drawing.Size(333, 37)
+        Me.btnConfChan.Size = New System.Drawing.Size(350, 37)
         Me.btnConfChan.TabIndex = 20
-        Me.btnConfChan.Text = "Confirm Changes"
-        Me.btnConfChan.UseVisualStyleBackColor = True
+        Me.btnConfChan.UseVisualStyleBackColor = False
         '
         'dtpBirthday
         '
+        Me.dtpBirthday.CalendarMonthBackground = System.Drawing.Color.Transparent
         Me.dtpBirthday.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpBirthday.Location = New System.Drawing.Point(-6, 565)
+        Me.dtpBirthday.Location = New System.Drawing.Point(132, 298)
         Me.dtpBirthday.Name = "dtpBirthday"
-        Me.dtpBirthday.Size = New System.Drawing.Size(158, 29)
+        Me.dtpBirthday.Size = New System.Drawing.Size(320, 29)
         Me.dtpBirthday.TabIndex = 16
-        '
-        'txtRes
-        '
-        Me.txtRes.AutoSize = True
-        Me.txtRes.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRes.Location = New System.Drawing.Point(2, 530)
-        Me.txtRes.Name = "txtRes"
-        Me.txtRes.Size = New System.Drawing.Size(57, 20)
-        Me.txtRes.TabIndex = 21
-        Me.txtRes.Text = "Label9"
-        '
-        'lblBirthday
-        '
-        Me.lblBirthday.AutoSize = True
-        Me.lblBirthday.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBirthday.Location = New System.Drawing.Point(12, 510)
-        Me.lblBirthday.Name = "lblBirthday"
-        Me.lblBirthday.Size = New System.Drawing.Size(13, 20)
-        Me.lblBirthday.TabIndex = 22
-        Me.lblBirthday.Text = "."
         '
         'btnReturn
         '
-        Me.btnReturn.Location = New System.Drawing.Point(377, 53)
+        Me.btnReturn.BackColor = System.Drawing.Color.Transparent
+        Me.btnReturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnReturn.FlatAppearance.BorderSize = 0
+        Me.btnReturn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnReturn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnReturn.Location = New System.Drawing.Point(378, 39)
         Me.btnReturn.Name = "btnReturn"
-        Me.btnReturn.Size = New System.Drawing.Size(75, 23)
+        Me.btnReturn.Size = New System.Drawing.Size(74, 26)
         Me.btnReturn.TabIndex = 23
-        Me.btnReturn.Text = "Return"
-        Me.btnReturn.UseVisualStyleBackColor = True
+        Me.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnReturn.UseVisualStyleBackColor = False
         '
         'btnVerifyRecords
         '
-        Me.btnVerifyRecords.Location = New System.Drawing.Point(107, 367)
+        Me.btnVerifyRecords.BackColor = System.Drawing.Color.Transparent
+        Me.btnVerifyRecords.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnVerifyRecords.FlatAppearance.BorderSize = 0
+        Me.btnVerifyRecords.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnVerifyRecords.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnVerifyRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnVerifyRecords.Location = New System.Drawing.Point(107, 423)
         Me.btnVerifyRecords.Name = "btnVerifyRecords"
-        Me.btnVerifyRecords.Size = New System.Drawing.Size(277, 23)
+        Me.btnVerifyRecords.Size = New System.Drawing.Size(275, 46)
         Me.btnVerifyRecords.TabIndex = 24
-        Me.btnVerifyRecords.Text = "Verify Records"
-        Me.btnVerifyRecords.UseVisualStyleBackColor = True
+        Me.btnVerifyRecords.UseVisualStyleBackColor = False
         '
         'btnChanCredent
         '
-        Me.btnChanCredent.Location = New System.Drawing.Point(162, 435)
+        Me.btnChanCredent.BackColor = System.Drawing.Color.Transparent
+        Me.btnChanCredent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnChanCredent.FlatAppearance.BorderSize = 0
+        Me.btnChanCredent.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnChanCredent.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnChanCredent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnChanCredent.Location = New System.Drawing.Point(163, 469)
         Me.btnChanCredent.Name = "btnChanCredent"
-        Me.btnChanCredent.Size = New System.Drawing.Size(163, 23)
+        Me.btnChanCredent.Size = New System.Drawing.Size(167, 38)
         Me.btnChanCredent.TabIndex = 25
-        Me.btnChanCredent.Text = "Change Credentials"
-        Me.btnChanCredent.UseVisualStyleBackColor = True
+        Me.btnChanCredent.UseVisualStyleBackColor = False
         '
         'customer_details
         '
@@ -222,8 +231,6 @@ Partial Class customer_details
         Me.Controls.Add(Me.btnChanCredent)
         Me.Controls.Add(Me.btnVerifyRecords)
         Me.Controls.Add(Me.btnReturn)
-        Me.Controls.Add(Me.lblBirthday)
-        Me.Controls.Add(Me.txtRes)
         Me.Controls.Add(Me.btnConfChan)
         Me.Controls.Add(Me.rbOthers)
         Me.Controls.Add(Me.rbFemale)
@@ -257,8 +264,6 @@ Partial Class customer_details
     Friend WithEvents rbOthers As RadioButton
     Friend WithEvents btnConfChan As Button
     Friend WithEvents dtpBirthday As DateTimePicker
-    Friend WithEvents txtRes As Label
-    Friend WithEvents lblBirthday As Label
     Friend WithEvents btnReturn As Button
     Friend WithEvents btnVerifyRecords As Button
     Friend WithEvents btnChanCredent As Button
