@@ -132,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.vb" />
+    <Compile Include="homeForm.Designer.vb">
+      <DependentUpon>homeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="homeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="management.Designer.vb">
       <DependentUpon>management.vb</DependentUpon>
     </Compile>
@@ -171,6 +177,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="homeForm.resx">
+      <DependentUpon>homeForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="management.resx">
       <DependentUpon>management.vb</DependentUpon>
     </EmbeddedResource>
