@@ -83,9 +83,7 @@
     <Compile Include="management.Designer.vb">
       <DependentUpon>management.vb</DependentUpon>
     </Compile>
-    <Compile Include="management.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="management.vb" />
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
