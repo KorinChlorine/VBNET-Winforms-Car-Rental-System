@@ -111,6 +111,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="rent a car.Designer.vb">
+      <DependentUpon>rent a car.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rent a car.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="management.resx">
@@ -124,6 +130,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rent a car.resx">
+      <DependentUpon>rent a car.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +173,12 @@
     <None Include="Resources\undo 1.png" />
     <None Include="Resources\arrow.png" />
     <None Include="Main Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rent a car.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
