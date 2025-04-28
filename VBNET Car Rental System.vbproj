@@ -79,9 +79,13 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Car.vb" />
+    <Compile Include="management.Designer.vb">
+      <DependentUpon>management.vb</DependentUpon>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="management.vb">
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
       <SubType>Form</SubType>
@@ -101,8 +105,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RoundedButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="management.resx">
+      <DependentUpon>management.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +134,21 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Main Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxWMPLib">
