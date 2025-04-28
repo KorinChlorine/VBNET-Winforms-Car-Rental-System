@@ -45,7 +45,7 @@ Partial Class customer_details
         '
         Me.txtboxName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtboxName.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtboxName.Location = New System.Drawing.Point(132, 117)
+        Me.txtboxName.Location = New System.Drawing.Point(132, 120)
         Me.txtboxName.Name = "txtboxName"
         Me.txtboxName.Size = New System.Drawing.Size(320, 28)
         Me.txtboxName.TabIndex = 3
@@ -148,10 +148,10 @@ Partial Class customer_details
         Me.rbOthers.ForeColor = System.Drawing.Color.White
         Me.rbOthers.Location = New System.Drawing.Point(284, 360)
         Me.rbOthers.Name = "rbOthers"
-        Me.rbOthers.Size = New System.Drawing.Size(195, 24)
+        Me.rbOthers.Size = New System.Drawing.Size(75, 24)
         Me.rbOthers.TabIndex = 19
         Me.rbOthers.TabStop = True
-        Me.rbOthers.Text = "Prefer not to say/Others"
+        Me.rbOthers.Text = "Others"
         Me.rbOthers.UseVisualStyleBackColor = False
         '
         'btnConfChan
@@ -172,6 +172,9 @@ Partial Class customer_details
         'dtpBirthday
         '
         Me.dtpBirthday.CalendarMonthBackground = System.Drawing.Color.Transparent
+        Me.dtpBirthday.CalendarTitleBackColor = System.Drawing.Color.Transparent
+        Me.dtpBirthday.CalendarTitleForeColor = System.Drawing.Color.Transparent
+        Me.dtpBirthday.CalendarTrailingForeColor = System.Drawing.Color.Transparent
         Me.dtpBirthday.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpBirthday.Location = New System.Drawing.Point(132, 298)
         Me.dtpBirthday.Name = "dtpBirthday"

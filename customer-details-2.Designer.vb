@@ -39,9 +39,9 @@ Partial Class customer_details_2
         Me.btnConfChanges.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.btnConfChanges.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.btnConfChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConfChanges.Location = New System.Drawing.Point(67, 506)
+        Me.btnConfChanges.Location = New System.Drawing.Point(73, 514)
         Me.btnConfChanges.Name = "btnConfChanges"
-        Me.btnConfChanges.Size = New System.Drawing.Size(366, 51)
+        Me.btnConfChanges.Size = New System.Drawing.Size(346, 44)
         Me.btnConfChanges.TabIndex = 0
         Me.btnConfChanges.UseVisualStyleBackColor = False
         '
@@ -64,7 +64,7 @@ Partial Class customer_details_2
         '
         Me.txtNewEmail.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNewEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewEmail.Location = New System.Drawing.Point(140, 116)
+        Me.txtNewEmail.Location = New System.Drawing.Point(140, 118)
         Me.txtNewEmail.Name = "txtNewEmail"
         Me.txtNewEmail.Size = New System.Drawing.Size(305, 33)
         Me.txtNewEmail.TabIndex = 2
@@ -73,7 +73,7 @@ Partial Class customer_details_2
         '
         Me.txtNewPass.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtNewPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!)
-        Me.txtNewPass.Location = New System.Drawing.Point(140, 183)
+        Me.txtNewPass.Location = New System.Drawing.Point(140, 184)
         Me.txtNewPass.Name = "txtNewPass"
         Me.txtNewPass.Size = New System.Drawing.Size(305, 33)
         Me.txtNewPass.TabIndex = 3
@@ -82,7 +82,7 @@ Partial Class customer_details_2
         '
         Me.txtConfPass.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtConfPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!)
-        Me.txtConfPass.Location = New System.Drawing.Point(140, 250)
+        Me.txtConfPass.Location = New System.Drawing.Point(140, 254)
         Me.txtConfPass.Name = "txtConfPass"
         Me.txtConfPass.Size = New System.Drawing.Size(305, 33)
         Me.txtConfPass.TabIndex = 4
@@ -93,7 +93,7 @@ Partial Class customer_details_2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ClientSize = New System.Drawing.Size(495, 588)
+        Me.ClientSize = New System.Drawing.Size(491, 594)
         Me.Controls.Add(Me.txtConfPass)
         Me.Controls.Add(Me.txtNewPass)
         Me.Controls.Add(Me.txtNewEmail)
