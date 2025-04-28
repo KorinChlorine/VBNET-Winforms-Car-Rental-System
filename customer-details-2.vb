@@ -10,7 +10,8 @@ Public Class customer_details_2
         confPassword = txtConfPass.Text
 
         customer_details.Show()
-        '  Me.Close()
+        Me.Close()
+
     End Sub
 
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
