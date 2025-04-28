@@ -28,11 +28,16 @@ Partial Class LoginForm
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel2.SuspendLayout()
@@ -59,18 +64,97 @@ Partial Class LoginForm
         '
         'Panel1
         '
-        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Login
+        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Register1
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.TextBox4)
+        Me.Panel1.Controls.Add(Me.TextBox2)
+        Me.Panel1.Controls.Add(Me.Button5)
+        Me.Panel1.Controls.Add(Me.Button4)
+        Me.Panel1.Controls.Add(Me.TextBox5)
+        Me.Panel1.Controls.Add(Me.TextBox3)
         Me.Panel1.Controls.Add(Me.CheckBox1)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Location = New System.Drawing.Point(864, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(612, 747)
         Me.Panel1.TabIndex = 1
+        '
+        'TextBox4
+        '
+        Me.TextBox4.BackColor = System.Drawing.Color.White
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox4.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox4.ForeColor = System.Drawing.Color.Black
+        Me.TextBox4.Location = New System.Drawing.Point(125, 340)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox4.TabIndex = 12
+        Me.TextBox4.Text = "Password"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.Color.White
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.ForeColor = System.Drawing.Color.Black
+        Me.TextBox2.Location = New System.Drawing.Point(126, 349)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox2.TabIndex = 1
+        Me.TextBox2.Text = "Password"
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.Transparent
+        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ForeColor = System.Drawing.Color.Transparent
+        Me.Button5.Location = New System.Drawing.Point(422, 562)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(125, 37)
+        Me.Button5.TabIndex = 11
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.Transparent
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.ForeColor = System.Drawing.Color.Transparent
+        Me.Button4.Location = New System.Drawing.Point(62, 484)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(496, 50)
+        Me.Button4.TabIndex = 10
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'TextBox5
+        '
+        Me.TextBox5.BackColor = System.Drawing.Color.White
+        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox5.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.TextBox5.Location = New System.Drawing.Point(123, 411)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox5.TabIndex = 9
+        Me.TextBox5.Text = "Confirm Password"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.BackColor = System.Drawing.Color.White
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox3.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.TextBox3.Location = New System.Drawing.Point(126, 268)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox3.TabIndex = 7
+        Me.TextBox3.Text = "Email"
         '
         'CheckBox1
         '
@@ -123,18 +207,6 @@ Partial Class LoginForm
         Me.Button1.TabIndex = 2
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.White
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.ForeColor = System.Drawing.Color.Black
-        Me.TextBox2.Location = New System.Drawing.Point(126, 348)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
-        Me.TextBox2.TabIndex = 1
-        Me.TextBox2.Text = "Password"
-        '
         'TextBox1
         '
         Me.TextBox1.BackColor = System.Drawing.Color.White
@@ -182,10 +254,15 @@ Partial Class LoginForm
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Panel4 As Panel
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Button4 As Button
+    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Button5 As Button
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBox4 As TextBox
 End Class
