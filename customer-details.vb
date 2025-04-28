@@ -1,6 +1,10 @@
 ﻿Imports MySql.Data.MySqlClient
 
+<<<<<<< HEAD
 Public Class customer_details
+=======
+Public Class customerDetails
+>>>>>>> 4612a8ba9e8ba7b0c405d65bf1314e8184e4b0d2
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtpBirthday.Format = DateTimePickerFormat.Custom
         dtpBirthday.CustomFormat = " "
@@ -18,10 +22,17 @@ Public Class customer_details
         If String.IsNullOrWhiteSpace(txtboxName.Text) OrElse
        String.IsNullOrWhiteSpace(txtboxAge.Text) OrElse
        dtpBirthday.CustomFormat = " " OrElse
+<<<<<< <HEAD
        String.IsNullOrWhiteSpace(txtboxAddress.Text) Then
             MessageBox.Show("❗ Please fill out all required fields: Name, Age, Birthday, Address.",
                         "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
+=======
+       String.IsNullOrWhiteSpace(txtboxAddress.Text) OrElse
+       String.IsNullOrWhiteSpace(txtboxCarID.Text) Then
+            MessageBox.Show("❗ Please fill out all required fields: Name, Age, Birthday, and Address.",
+                            "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+>>>>>>> 4612a8ba9e8ba7b0c405d65bf1314e8184e4b0d2
+           Exit Sub
         End If
 
 
