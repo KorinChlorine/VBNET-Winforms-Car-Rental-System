@@ -21,12 +21,12 @@ Public Class customer_details
        String.IsNullOrWhiteSpace(txtboxAge.Text) OrElse
        dtpBirthday.CustomFormat = " " OrElse
        String.IsNullOrWhiteSpace(txtboxAddress.Text) OrElse
-       String.IsNullOrWhiteSpace(txtboxAddress.Text) Then
+         String.IsNullOrWhiteSpace(txtboxAddress.Text) Then
 
             MessageBox.Show("❗ Please fill out all required fields: Name, Age, Birthday, and Address.",
                             "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
-           Exit Sub
+            Exit Sub
         End If
 
 
