@@ -55,6 +55,7 @@ Partial Class Management
         Me.RichTextBox5 = New System.Windows.Forms.RichTextBox()
         Me.RichTextBox10 = New System.Windows.Forms.RichTextBox()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton5 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton4 = New VBNET_Car_Rental_System.RoundedButton()
@@ -290,15 +291,18 @@ Partial Class Management
         '
         'Label11
         '
-        Me.Label11.AutoSize = True
+        Me.Label11.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.DarkSlateBlue
         Me.Label11.Location = New System.Drawing.Point(64, 11)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(244, 39)
+        Me.Label11.Size = New System.Drawing.Size(244, 38)
         Me.Label11.TabIndex = 34
         Me.Label11.Text = "Non-Premium"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'RichTextBox8
         '
@@ -424,6 +428,18 @@ Partial Class Management
         Me.Label15.TabIndex = 44
         Me.Label15.Text = "Color"
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(1073, 37)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(149, 44)
+        Me.Button1.TabIndex = 45
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'RoundedButton2
         '
         Me.RoundedButton2.BackColor = System.Drawing.Color.DarkSlateBlue
@@ -502,6 +518,7 @@ Partial Class Management
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.RichTextBox10)
         Me.Controls.Add(Me.RichTextBox5)
@@ -542,7 +559,6 @@ Partial Class Management
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -587,4 +603,5 @@ Partial Class Management
     Friend WithEvents RichTextBox5 As RichTextBox
     Friend WithEvents RichTextBox10 As RichTextBox
     Friend WithEvents Label15 As Label
+    Friend WithEvents Button1 As Button
 End Class

@@ -34,6 +34,12 @@ Public Class LoginForm
             conn.Close()
         End Try
     End Sub
+    Private Sub LoginForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        AxWindowsMediaPlayer1.settings.setMode("loop", True)
+        If AxWindowsMediaPlayer1.playState <> WMPLib.WMPPlayState.wmppsPlaying Then
+            AxWindowsMediaPlayer1.Ctlcontrols.play()
+        End If
+    End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Panel1.BackgroundImage = My.Resources.Register1
@@ -52,6 +58,21 @@ Public Class LoginForm
         ' Login
         Dim emailLogin As String = TextBox1.Text
         Dim passLogin As String = TextBox2.Text
+
+        'admin access
+        If (TextBox1.Text = "admin") And (TextBox2.Text = "admin") Then
+            AxWindowsMediaPlayer1.Ctlcontrols.stop()
+            Me.Hide()
+            Management.Show()
+            Return
+        End If
+
+        If (TextBox1.Text = "test") And (TextBox2.Text = "test") Then
+            AxWindowsMediaPlayer1.Ctlcontrols.stop()
+            Me.Hide()
+            homeForm.Show()
+            Return
+        End If
 
         Try
             ' Existing MySQL login code
@@ -88,6 +109,8 @@ Public Class LoginForm
                 MessageBox.Show("Wrong Email/Password, Please Try Again!")
             End If
         End Try
+
+
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click

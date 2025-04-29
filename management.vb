@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports AxWMPLib
 
 
 Public Class Management
@@ -110,6 +111,15 @@ Public Class Management
     End Sub
 
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
+        Dim priceInd = RichTextBox8.Text
+        priceInd.Cast(Of Int64)()
+        If priceInd >= 10000 Then
+            Label11.Text = "Premium"
+        Else
+            Label11.Text = "Non-Premium"
+        End If
+
+
         If selectedPanel IsNot Nothing Then
             Dim previousOverlay = selectedPanel.Controls.OfType(Of Panel).FirstOrDefault(Function(p) p.Tag?.ToString() = "Overlay")
             If previousOverlay IsNot Nothing Then selectedPanel.Controls.Remove(previousOverlay)
@@ -218,6 +228,18 @@ Public Class Management
         RichTextBox9.Text = carData(10)?.ToString()
         RichTextBox8.Text = carData(11)?.ToString()
         RadioButton1.Checked = Convert.ToBoolean(carData(12))
+
+        ' Added code to determine Premium or Non-Premium
+        Dim priceInd As Int64
+        If Int64.TryParse(RichTextBox8.Text, priceInd) Then
+            If priceInd >= 10000 Then
+                Label11.Text = "Premium"
+            Else
+                Label11.Text = "Non-Premium"
+            End If
+        Else
+            Label11.Text = "Invalid Price"
+        End If
     End Sub
 
 
@@ -343,6 +365,77 @@ Public Class Management
                 p.Tag = outerArray(i)
             End If
         Next
+    End Sub
+
+    Private Sub RichTextBox8_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox8.TextChanged
+
+    End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        GlobalData.GlobalOuterArray = New List(Of Object())(outerArray)
+        GlobalData.PremiumCarsArray = outerArray.Where(Function(car)
+                                                           Dim price As Int64
+                                                           If Int64.TryParse(car(11)?.ToString(), price) Then
+                                                               Return price >= 10000
+                                                           End If
+                                                           Return False
+                                                       End Function).ToList()
+        Me.Hide()
+        LoginForm.Show()
+    End Sub
+
+    Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
+        Dim random As New Random()
+
+        ' Generate random car name
+        RichTextBox3.Text = "Car " & random.Next(1, 1000)
+
+        ' Generate random car type
+        Dim carTypes As String() = {"Sedan", "SUV", "Hatchback", "Convertible", "Truck"}
+        RichTextBox6.Text = carTypes(random.Next(carTypes.Length))
+
+        ' Generate random capacity
+        RichTextBox5.Text = random.Next(2, 8).ToString() & " Seats"
+
+        ' Generate random car color
+        Dim carColors As String() = {"Red", "Blue", "Black", "White", "Silver", "Green"}
+        RichTextBox10.Text = carColors(random.Next(carColors.Length))
+
+        ' Generate random brief details
+        RichTextBox1.Text = "This is a " & RichTextBox6.Text & " with " & RichTextBox5.Text & " capacity."
+
+        ' Generate random detailed description
+        RichTextBox2.Text = "The " & RichTextBox3.Text & " is a " & RichTextBox6.Text & " available in " & RichTextBox10.Text & " color. It is perfect for your needs."
+
+        ' Generate random car ID
+        RichTextBox4.Text = "ID-" & random.Next(1000, 9999)
+
+        ' Generate random body number
+        RichTextBox7.Text = "BN-" & random.Next(10000, 99999)
+
+        ' Generate random plate number
+        RichTextBox9.Text = "PLT-" & random.Next(1000, 9999)
+
+        ' Generate random daily price
+        RichTextBox8.Text = random.Next(5000, 15000).ToString()
+        If Convert.ToInt32(RichTextBox8.Text) >= 10000 Then
+            Label11.Text = "Premium"
+        Else
+            Label11.Text = "Non-Premium"
+        End If
+
+        Dim isAvailable As Boolean = random.Next(0, 2) = 1
+        RadioButton1.Checked = isAvailable
+        RadioButton2.Checked = Not isAvailable
+        If Not RadioButton1.Checked AndAlso Not RadioButton2.Checked Then
+            RadioButton1.Checked = True
+        End If
+
+        selectedImage = My.Resources.PLACEHOLDER_Car
+        PictureBox1.Image = My.Resources.PLACEHOLDER_Car
+        PictureBox2.Image = My.Resources.PLACEHOLDER_Car
+
+        MessageBox.Show("Random details have been filled!")
     End Sub
 
 

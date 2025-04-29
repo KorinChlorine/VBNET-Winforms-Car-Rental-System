@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.vb" />
+    <Compile Include="GlobalData.vb" />
     <Compile Include="homeForm.Designer.vb">
       <DependentUpon>homeForm.vb</DependentUpon>
     </Compile>
@@ -247,6 +248,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Register1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PLACEHOLDER Car.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
