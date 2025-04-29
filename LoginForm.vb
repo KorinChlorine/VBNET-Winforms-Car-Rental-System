@@ -69,7 +69,7 @@ Public Class LoginForm
                     If result IsNot Nothing Then
                         AxWindowsMediaPlayer1.Ctlcontrols.stop()
                         Me.Hide()
-                        'homePage.Show()
+                        homeForm.Show()
                     Else
                         MessageBox.Show("Wrong Email/Password, Please Try Again!")
                     End If
@@ -83,7 +83,7 @@ Public Class LoginForm
             If user IsNot Nothing Then
                 AxWindowsMediaPlayer1.Ctlcontrols.stop()
                 Me.Hide()
-                'homePage.Show()
+                homeForm.Show()
             Else
                 MessageBox.Show("Wrong Email/Password, Please Try Again!")
             End If
@@ -139,5 +139,9 @@ Public Class LoginForm
         Button3.Visible = True
         Button4.Visible = False
         CheckBox1.Visible = True
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

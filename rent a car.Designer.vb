@@ -30,9 +30,10 @@ Partial Class rent_a_car
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Rent_a_Car
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1121, 641)
+        Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.DoubleBuffered = True
         Me.Name = "rent_a_car"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "rent_a_car"
         Me.ResumeLayout(False)
 

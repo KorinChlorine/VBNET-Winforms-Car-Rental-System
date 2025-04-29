@@ -241,6 +241,7 @@ Partial Class LoginForm
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "LoginForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         Me.Panel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)

@@ -23,6 +23,8 @@ Partial Class homeForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -37,6 +39,30 @@ Partial Class homeForm
         Me.Button1.TabIndex = 0
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(12, 118)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(73, 47)
+        Me.Button2.TabIndex = 1
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Transparent
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(1000, 12)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(262, 153)
+        Me.Button3.TabIndex = 2
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'homeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -44,13 +70,18 @@ Partial Class homeForm
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.DoubleBuffered = True
         Me.Name = "homeForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "homeForm"
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class
