@@ -2,7 +2,11 @@
 
 
 Public Class customer_details
-
+    Public Property customerName As List(Of String) = New List(Of String)
+    Public Property customerAge As List(Of Integer) = New List(Of Integer)
+    Public Property customerAddress As List(Of String) = New List(Of String)
+    Public Property customerBday As List(Of String) = New List(Of String)
+    Public Property customerGender As List(Of String) = New List(Of String)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dtpBirthday.Format = DateTimePickerFormat.Custom
         dtpBirthday.CustomFormat = " "
@@ -18,14 +22,13 @@ Public Class customer_details
 
         ' Validate Required Fields
         If String.IsNullOrWhiteSpace(txtboxName.Text) OrElse
-       String.IsNullOrWhiteSpace(txtboxAge.Text) OrElse
-       dtpBirthday.CustomFormat = " " OrElse
-       String.IsNullOrWhiteSpace(txtboxAddress.Text) OrElse
-         String.IsNullOrWhiteSpace(txtboxAddress.Text) Then
+           String.IsNullOrWhiteSpace(txtboxAge.Text) OrElse
+           dtpBirthday.CustomFormat = " " OrElse
+           String.IsNullOrWhiteSpace(txtboxAddress.Text) OrElse
+           String.IsNullOrWhiteSpace(txtboxAddress.Text) Then
 
             MessageBox.Show("❗ Please fill out all required fields: Name, Age, Birthday, and Address.",
-                            "Missing Info", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-
+                            "Missing Info!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         End If
 
@@ -41,15 +44,15 @@ Public Class customer_details
         If rbMale.Checked Then
             rbMale.Text = "Male"
             rbFemale.Text = "Female"
-            rbOthers.Text = "Other/Prefer not to say"
+            rbOthers.Text = "Others"
         ElseIf rbFemale.Checked Then
             rbMale.Text = "Male"
             rbFemale.Text = "Female"
-            rbOthers.Text = "Other/Prefer not to say"
+            rbOthers.Text = "Others"
         ElseIf rbOthers.Checked Then
             rbMale.Text = "Male"
             rbFemale.Text = "Female"
-            rbOthers.Text = "Other/Prefer not to say"
+            rbOthers.Text = "Others"
         End If
 
     End Sub
@@ -57,15 +60,15 @@ Public Class customer_details
 
 
     Private Sub btnVerifyRecords_Click(sender As Object, e As EventArgs) Handles btnVerifyRecords.Click
-        ''Dim changeInfo As New customer_details_2
+        'Dim changeInfo As New customer_details_2
         'customer_details_2.newEmail = txtboxName.Text
-        'Customer_details_2.Show() ''
+        'Customer_details_2.Show() '
         Me.Hide()
     End Sub
 
-    Private Sub btnChanCredent_Click(sender As Object, e As EventArgs) Handles btnChanCredent.Click
-        Dim changeInfo As New customer_details_2
-        customer_details_2.newEmail = txtboxName.Text
+    Private Sub btnChangeCredentials_Click(sender As Object, e As EventArgs) Handles btnChanCredent.Click
+
+
         customer_details_2.Show()
         Me.Hide()
     End Sub
