@@ -39,6 +39,7 @@ Partial Class customer_details
         Me.btnReturn = New System.Windows.Forms.Button()
         Me.btnVerifyRecords = New System.Windows.Forms.Button()
         Me.btnChanCredent = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'txtboxName
@@ -176,9 +177,9 @@ Partial Class customer_details
         Me.dtpBirthday.CalendarTitleForeColor = System.Drawing.Color.Transparent
         Me.dtpBirthday.CalendarTrailingForeColor = System.Drawing.Color.Transparent
         Me.dtpBirthday.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpBirthday.Location = New System.Drawing.Point(132, 298)
+        Me.dtpBirthday.Location = New System.Drawing.Point(140, 298)
         Me.dtpBirthday.Name = "dtpBirthday"
-        Me.dtpBirthday.Size = New System.Drawing.Size(320, 29)
+        Me.dtpBirthday.Size = New System.Drawing.Size(304, 29)
         Me.dtpBirthday.TabIndex = 16
         '
         'btnReturn
@@ -224,6 +225,14 @@ Partial Class customer_details
         Me.btnChanCredent.TabIndex = 25
         Me.btnChanCredent.UseVisualStyleBackColor = False
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(12, 12)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(479, 95)
+        Me.ListBox1.TabIndex = 26
+        '
         'customer_details
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -231,6 +240,7 @@ Partial Class customer_details
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ClientSize = New System.Drawing.Size(491, 594)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.btnChanCredent)
         Me.Controls.Add(Me.btnVerifyRecords)
         Me.Controls.Add(Me.btnReturn)
@@ -270,4 +280,5 @@ Partial Class customer_details
     Friend WithEvents btnReturn As Button
     Friend WithEvents btnVerifyRecords As Button
     Friend WithEvents btnChanCredent As Button
+    Friend WithEvents ListBox1 As ListBox
 End Class

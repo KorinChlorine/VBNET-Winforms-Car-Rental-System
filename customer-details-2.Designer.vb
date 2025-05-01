@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class customer_details_2
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class customer_details_2
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(customer_details_2))
         Me.btnConfChanges = New System.Windows.Forms.Button()
@@ -28,6 +28,8 @@ Partial Class customer_details_2
         Me.txtNewEmail = New System.Windows.Forms.TextBox()
         Me.txtNewPass = New System.Windows.Forms.TextBox()
         Me.txtConfPass = New System.Windows.Forms.TextBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.btnTogglePass = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnConfChanges
@@ -87,6 +89,23 @@ Partial Class customer_details_2
         Me.txtConfPass.Size = New System.Drawing.Size(305, 33)
         Me.txtConfPass.TabIndex = 4
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(109, 340)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(279, 108)
+        Me.ListBox1.TabIndex = 5
+        '
+        'btnTogglePass
+        '
+        Me.btnTogglePass.Location = New System.Drawing.Point(184, 454)
+        Me.btnTogglePass.Name = "btnTogglePass"
+        Me.btnTogglePass.Size = New System.Drawing.Size(137, 23)
+        Me.btnTogglePass.TabIndex = 6
+        Me.btnTogglePass.Text = "Show/Hide Password"
+        Me.btnTogglePass.UseVisualStyleBackColor = True
+        '
         'customer_details_2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -94,6 +113,8 @@ Partial Class customer_details_2
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ClientSize = New System.Drawing.Size(491, 594)
+        Me.Controls.Add(Me.btnTogglePass)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.txtConfPass)
         Me.Controls.Add(Me.txtNewPass)
         Me.Controls.Add(Me.txtNewEmail)
@@ -112,4 +133,6 @@ Partial Class customer_details_2
     Friend WithEvents txtNewEmail As TextBox
     Friend WithEvents txtNewPass As TextBox
     Friend WithEvents txtConfPass As TextBox
+    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents btnTogglePass As Button
 End Class
