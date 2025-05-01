@@ -83,16 +83,6 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Main_Menu() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Main Menu", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
         Friend ReadOnly Property Main_Menu1() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Main Menu1", resourceCulture)
@@ -146,6 +136,16 @@ Namespace My.Resources
         Friend ReadOnly Property Rent_a_Car() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Rent_a_Car", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property Rent_a_Car_View() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("Rent a Car View", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
