@@ -64,7 +64,7 @@ Partial Class LoginForm
         '
         'Panel1
         '
-        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Register1
+        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Register1
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel1.Controls.Add(Me.TextBox4)
         Me.Panel1.Controls.Add(Me.TextBox2)

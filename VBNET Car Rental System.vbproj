@@ -235,7 +235,6 @@
     <None Include="Resources\Management.png" />
     <None Include="Resources\undo 1.png" />
     <None Include="Resources\arrow.png" />
-    <None Include="Main Menu.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rent a car.bmp" />
@@ -251,6 +250,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PLACEHOLDER Car.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car View.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -22,15 +22,25 @@ Partial Class rent_a_car
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.AutoScroll = True
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(135, 118)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1085, 517)
+        Me.FlowLayoutPanel1.TabIndex = 0
         '
         'rent_a_car
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Rent_a_Car
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Rent_a_Car_View
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.DoubleBuffered = True
         Me.Name = "rent_a_car"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -38,4 +48,6 @@ Partial Class rent_a_car
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class
