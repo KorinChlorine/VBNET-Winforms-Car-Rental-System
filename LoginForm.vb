@@ -55,11 +55,9 @@ Public Class LoginForm
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        ' Login
         Dim emailLogin As String = TextBox1.Text
         Dim passLogin As String = TextBox2.Text
 
-        'admin access
         If (TextBox1.Text = "admin") And (TextBox2.Text = "admin") Then
             AxWindowsMediaPlayer1.Ctlcontrols.stop()
             Me.Hide()
@@ -75,7 +73,7 @@ Public Class LoginForm
         End If
 
         Try
-            ' Existing MySQL login code
+
             Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
             Dim query As String = "SELECT email FROM `user info` WHERE email = @Email AND password = @Password"
 
@@ -99,7 +97,7 @@ Public Class LoginForm
                 End Using
             End Using
         Catch ex As Exception
-            ' Fallback to array login
+
             Dim user = users.FirstOrDefault(Function(u) u.Item1 = emailLogin AndAlso u.Item2 = passLogin)
             If user IsNot Nothing Then
                 AxWindowsMediaPlayer1.Ctlcontrols.stop()
@@ -121,7 +119,7 @@ Public Class LoginForm
 
         If passRegister = confirmPass Then
             Try
-                ' Existing MySQL registration code
+
                 Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
                 Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
 
@@ -138,7 +136,7 @@ Public Class LoginForm
                     End Using
                 End Using
             Catch ex As Exception
-                ' Fallback to array registration
+
                 If users.Any(Function(u) u.Item1 = emailRegister) Then
                     MessageBox.Show("User already exists!")
                 Else
