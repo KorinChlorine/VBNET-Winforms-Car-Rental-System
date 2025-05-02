@@ -15,54 +15,78 @@
         For Each car In GlobalData.GlobalOuterArray
             ' Create a new panel for the car
             Dim carPanel As New Panel With {
-                .Size = New Size(180, 220), ' Increased horizontal size
-                .BackColor = Color.LightGray,
-                .Margin = New Padding(8) ' Reduced margin for tighter spacing
-            }
+            .Size = New Size(190, 220), ' Increased horizontal size
+            .BackColor = Color.DarkSlateBlue,
+            .Margin = New Padding(12) ' Reduced margin for tighter spacing
+        }
             AddHandler carPanel.Paint, AddressOf Panel_Paint ' Add Paint event for rounded corners
 
             ' Add a Label for the "Premium" tag (if applicable)
+            Dim isPremium As Boolean = False
+
+            ' Check if the car is premium based on the daily price or other criteria
+            Dim dailyPrice As Decimal
+            If Decimal.TryParse(car(11)?.ToString(), dailyPrice) Then
+                isPremium = dailyPrice >= 10000 ' Example: Premium if daily price is 10,000 or more
+            End If
+
             Dim premiumLabel As New Label With {
-                .Text = If(Convert.ToBoolean(car(12)), "PREMIUM", ""), ' Check if the car is premium
-                .Size = New Size(50, 15),
-                .Location = New Point(5, 5),
-                .BackColor = Color.Transparent,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 7, FontStyle.Bold)
-            }
+            .Text = If(isPremium, "PREMIUM", ""), ' Set "PREMIUM" only if the car is premium
+            .Size = New Size(55, 15),
+            .Location = New Point(5, 5),
+            .BackColor = Color.Transparent,
+            .ForeColor = Color.White,
+            .Font = New Font("Arial", 7, FontStyle.Bold)
+        }
             carPanel.Controls.Add(premiumLabel)
 
             ' Add a PictureBox for the car image
             Dim carPictureBox As New PictureBox With {
-                .Size = New Size(160, 130), ' Adjusted size to fit larger panel
-                .Location = New Point(10, 25),
-                .Image = TryCast(car(1), Image), ' PrimaryImage
-                .SizeMode = PictureBoxSizeMode.StretchImage,
-                .BackColor = Color.Black
-            }
+            .Size = New Size(170, 130), ' Adjusted size to fit larger panel
+            .Location = New Point(10, 25),
+            .Image = TryCast(car(1), Image), ' PrimaryImage
+            .SizeMode = PictureBoxSizeMode.StretchImage,
+            .BackColor = Color.Black
+        }
             carPanel.Controls.Add(carPictureBox)
+
+            ' Check if the car is not available and add a "NOT AVAILABLE" label
+            Dim isAvailable As Boolean = Convert.ToBoolean(car(12))
+            If Not isAvailable Then
+                Dim notAvailableLabel As New Label With {
+                .Text = "NOT AVAILABLE",
+                .Size = New Size(carPictureBox.Width, 30),
+                .Location = New Point(0, (carPictureBox.Height \ 2) - 15), ' Center vertically
+                .BackColor = Color.FromArgb(150, Color.Black), ' Semi-transparent background
+                .ForeColor = Color.Red,
+                .Font = New Font("Arial", 10, FontStyle.Bold),
+                .TextAlign = ContentAlignment.MiddleCenter
+            }
+                carPictureBox.Controls.Add(notAvailableLabel)
+                carPictureBox.Controls.SetChildIndex(notAvailableLabel, 0) ' Ensure label is on top
+            End If
 
             ' Add a Label for the car name
             Dim carNameLabel As New Label With {
-                .Text = car(0)?.ToString(), ' CarName
-                .AutoSize = True, ' Allow the label to expand for long text
-                .Location = New Point(10, 160),
-                .BackColor = Color.Transparent,
-                .ForeColor = Color.Black,
-                .Font = New Font("Arial", 9, FontStyle.Bold)
-            }
+            .Text = car(0)?.ToString(), ' CarName
+            .AutoSize = True, ' Allow the label to expand for long text
+            .Location = New Point(10, 160),
+            .BackColor = Color.Transparent,
+            .ForeColor = Color.White,
+            .Font = New Font("Arial", 9, FontStyle.Bold)
+        }
             carPanel.Controls.Add(carNameLabel)
 
             ' Add a Label for the car price
             Dim carPriceLabel As New Label With {
-                .Text = "P" & car(11)?.ToString() & "/day", ' DailyPrice
-                .Size = New Size(160, 20),
-                .Location = New Point(10, 185),
-                .BackColor = Color.Transparent,
-                .ForeColor = Color.Black,
-                .Font = New Font("Arial", 9, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleRight
-            }
+            .Text = "P" & car(11)?.ToString() & "/day", ' DailyPrice
+            .Size = New Size(160, 20),
+            .Location = New Point(10, 185),
+            .BackColor = Color.Transparent,
+            .ForeColor = Color.White,
+            .Font = New Font("Arial", 9, FontStyle.Bold),
+            .TextAlign = ContentAlignment.MiddleRight
+        }
             carPanel.Controls.Add(carPriceLabel)
 
             ' Check if the car name is too long and enable scrolling
@@ -74,6 +98,7 @@
             FlowLayoutPanel1.Controls.Add(carPanel)
         Next
     End Sub
+
 
     ' Method to enable horizontal scrolling for a label
     Private Sub EnableScrolling(label As Label, parentPanel As Panel)
@@ -103,7 +128,7 @@
         Dim path As New Drawing2D.GraphicsPath()
 
         ' Define the corner radius for slightly rounded corners
-        Dim cornerRadius As Integer = 10 ' Reduced roundness for subtle effect
+        Dim cornerRadius As Integer = 20 ' Reduced roundness for subtle effect
         path.AddArc(rect.X, rect.Y, cornerRadius, cornerRadius, 180, 90)
         path.AddArc(rect.Right - cornerRadius, rect.Y, cornerRadius, cornerRadius, 270, 90)
         path.AddArc(rect.Right - cornerRadius, rect.Bottom - cornerRadius, cornerRadius, cornerRadius, 0, 90)
@@ -112,6 +137,10 @@
 
         ' Apply the rounded region to the panel
         panel.Region = New Region(path)
+    End Sub
+
+    Private Sub FlowLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles FlowLayoutPanel1.Paint
+
     End Sub
 End Class
 

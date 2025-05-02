@@ -228,6 +228,7 @@ Public Class Management
         RichTextBox9.Text = carData(10)?.ToString()
         RichTextBox8.Text = carData(11)?.ToString()
         RadioButton1.Checked = Convert.ToBoolean(carData(12))
+        RadioButton2.Checked = Not RadioButton1.Checked
 
         ' Added code to determine Premium or Non-Premium
         Dim priceInd As Int64
@@ -427,11 +428,9 @@ Public Class Management
         Dim isAvailable As Boolean = random.Next(0, 2) = 1
         RadioButton1.Checked = isAvailable
         RadioButton2.Checked = Not isAvailable
-        If Not RadioButton1.Checked AndAlso Not RadioButton2.Checked Then
-            RadioButton1.Checked = True
-        End If
 
         selectedImage = My.Resources.PLACEHOLDER_Car
+        selectedImage2 = My.Resources.PLACEHOLDER_Car
         PictureBox1.Image = My.Resources.PLACEHOLDER_Car
         PictureBox2.Image = My.Resources.PLACEHOLDER_Car
 

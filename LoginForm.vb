@@ -119,7 +119,7 @@ Public Class LoginForm
 
         If passRegister = confirmPass Then
             Try
-
+                ' Existing MySQL registration code
                 Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
                 Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
 
@@ -132,15 +132,28 @@ Public Class LoginForm
                         cmd.ExecuteNonQuery()
                         con.Close()
 
+                        ' Add the registered user to GlobalData
+                        If GlobalData.RegisteredUsers Is Nothing Then
+                            GlobalData.RegisteredUsers = New List(Of Tuple(Of String, String))()
+                        End If
+                        GlobalData.RegisteredUsers.Add(Tuple.Create(emailRegister, passRegister))
+
                         MessageBox.Show("Registration successful!")
                     End Using
                 End Using
             Catch ex As Exception
-
+                ' Fallback to array registration
                 If users.Any(Function(u) u.Item1 = emailRegister) Then
                     MessageBox.Show("User already exists!")
                 Else
                     users.Add(Tuple.Create(emailRegister, passRegister))
+
+                    ' Add the registered user to GlobalData
+                    If GlobalData.RegisteredUsers Is Nothing Then
+                        GlobalData.RegisteredUsers = New List(Of Tuple(Of String, String))()
+                    End If
+                    GlobalData.RegisteredUsers.Add(Tuple.Create(emailRegister, passRegister))
+
                     MessageBox.Show("Registration successful!")
                 End If
             End Try
@@ -148,6 +161,7 @@ Public Class LoginForm
             MessageBox.Show("Passwords do not match!")
         End If
     End Sub
+
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Panel1.BackgroundImage = My.Resources.Login

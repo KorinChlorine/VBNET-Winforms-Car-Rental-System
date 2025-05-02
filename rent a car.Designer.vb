@@ -28,9 +28,11 @@ Partial Class rent_a_car
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.AutoScroll = True
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(135, 118)
+        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.FlowLayoutPanel1.ForeColor = System.Drawing.Color.MediumSlateBlue
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(129, 118)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1085, 517)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1091, 517)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
         'rent_a_car
