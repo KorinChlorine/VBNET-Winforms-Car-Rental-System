@@ -17,14 +17,14 @@
             Dim carPanel As New Panel With {
             .Size = New Size(190, 220), ' Increased horizontal size
             .BackColor = Color.DarkSlateBlue,
-            .Margin = New Padding(12) ' Reduced margin for tighter spacing
+            .Margin = New Padding(12), ' Reduced margin for tighter spacing
+            .Tag = car ' Store the car data in the panel's Tag property
         }
+            AddHandler carPanel.Click, AddressOf CarPanel_Click ' Add Click event handler
             AddHandler carPanel.Paint, AddressOf Panel_Paint ' Add Paint event for rounded corners
 
             ' Add a Label for the "Premium" tag (if applicable)
             Dim isPremium As Boolean = False
-
-            ' Check if the car is premium based on the daily price or other criteria
             Dim dailyPrice As Decimal
             If Decimal.TryParse(car(11)?.ToString(), dailyPrice) Then
                 isPremium = dailyPrice >= 10000 ' Example: Premium if daily price is 10,000 or more
@@ -50,22 +50,6 @@
         }
             carPanel.Controls.Add(carPictureBox)
 
-            ' Check if the car is not available and add a "NOT AVAILABLE" label
-            Dim isAvailable As Boolean = Convert.ToBoolean(car(12))
-            If Not isAvailable Then
-                Dim notAvailableLabel As New Label With {
-                .Text = "NOT AVAILABLE",
-                .Size = New Size(carPictureBox.Width, 30),
-                .Location = New Point(0, (carPictureBox.Height \ 2) - 15), ' Center vertically
-                .BackColor = Color.FromArgb(150, Color.Black), ' Semi-transparent background
-                .ForeColor = Color.Red,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
-                carPictureBox.Controls.Add(notAvailableLabel)
-                carPictureBox.Controls.SetChildIndex(notAvailableLabel, 0) ' Ensure label is on top
-            End If
-
             ' Add a Label for the car name
             Dim carNameLabel As New Label With {
             .Text = car(0)?.ToString(), ' CarName
@@ -89,14 +73,22 @@
         }
             carPanel.Controls.Add(carPriceLabel)
 
-            ' Check if the car name is too long and enable scrolling
-            If TextRenderer.MeasureText(carNameLabel.Text, carNameLabel.Font).Width > carNameLabel.Width Then
-                EnableScrolling(carNameLabel, carPanel)
-            End If
-
             ' Add the car panel to FlowLayoutPanel1
             FlowLayoutPanel1.Controls.Add(carPanel)
         Next
+    End Sub
+
+    Private Sub CarPanel_Click(sender As Object, e As EventArgs)
+        Dim selectedPanel As Panel = CType(sender, Panel)
+        Dim selectedCar As Object() = CType(selectedPanel.Tag, Object()) ' Retrieve the car data from the Tag property
+
+        ' Pass the selected car data to rent a car2
+        Dim rentCar2Form As New rent_a_car2()
+        rentCar2Form.SelectedCar = selectedCar ' Assuming rent_a_car2 has a SelectedCar property
+        rentCar2Form.Show()
+
+        ' Hide the current form
+        Me.Hide()
     End Sub
 
 

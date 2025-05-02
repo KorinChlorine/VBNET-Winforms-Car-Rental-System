@@ -132,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.vb" />
+    <Compile Include="rent a car2.Designer.vb">
+      <DependentUpon>rent a car2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rent a car2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ViewCars.Designer.vb">
       <DependentUpon>ViewCars.vb</DependentUpon>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="rent a car.resx">
       <DependentUpon>rent a car.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rent a car2.resx">
+      <DependentUpon>rent a car2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RentalDetails.resx">
       <DependentUpon>RentalDetails.vb</DependentUpon>
