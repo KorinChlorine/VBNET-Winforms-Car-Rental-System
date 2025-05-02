@@ -132,6 +132,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.vb" />
+    <Compile Include="ViewCars.Designer.vb">
+      <DependentUpon>ViewCars.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCars.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="History.Designer.vb">
+      <DependentUpon>History.vb</DependentUpon>
+    </Compile>
+    <Compile Include="History.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Billing.Designer.vb">
+      <DependentUpon>Billing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Billing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RentalDetails.Designer.vb">
+      <DependentUpon>RentalDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RentalDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GlobalData.vb" />
     <Compile Include="homeForm.Designer.vb">
       <DependentUpon>homeForm.vb</DependentUpon>
@@ -178,6 +202,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Billing.resx">
+      <DependentUpon>Billing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="History.resx">
+      <DependentUpon>History.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="homeForm.resx">
       <DependentUpon>homeForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="rent a car.resx">
       <DependentUpon>rent a car.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RentalDetails.resx">
+      <DependentUpon>RentalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewCars.resx">
+      <DependentUpon>ViewCars.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +289,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Rent a Car View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental Details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View Car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental HIstory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billing.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
