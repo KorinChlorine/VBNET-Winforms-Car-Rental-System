@@ -72,15 +72,15 @@ Public Class rent_a_car2
                 .AutoSize = False,
                 .Size = New Size(PictureBox1.Width, 30), ' Match the width of the PictureBox
                 .BackColor = Color.Red,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
+            .ForeColor = Color.White,
+            .Font = New Font("Arial", 10, FontStyle.Bold),
+            .TextAlign = ContentAlignment.MiddleCenter
+        }
+                carPanel.Controls.Add(carNameLabel)
 
-                ' Center the label on the PictureBox
-                notAvailableLabel.Location = New Point(
-            )
-
+        ' Add a PictureBox for the car image
+        Dim carPictureBox As New PictureBox With {
+            .Size = New Size(170, 130),
                 ' Add the label to the PictureBox
                 PictureBox1.Controls.Add(notAvailableLabel)
                 notAvailableLabel.BringToFront()
@@ -237,17 +237,22 @@ Public Class rent_a_car2
     Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
         UpdateButtonStyles(RoundedButton2)
         ' Add logic for data
-    End Sub
+        .Image = TryCast(car(1), Image), ' PrimaryImage
+            ' Add a PictureBox for the car image
+            Dim carPictureBox As New PictureBox With {
+                .Size = New Size(170, 130),
+                .Location = New Point(10, 40),
+                .Image = TryCast(car(1), Image), ' PrimaryImage
+                .SizeMode = PictureBoxSizeMode.StretchImage,
+                .BackColor = Color.Black
+            }
+        carPanel.Controls.Add(carPictureBox)
+    Private Sub CarPanel_Click(sender As Object, e As EventArgs)
+        Dim selectedPanel As Panel = CType(sender, Panel)
+        Dim selectedCar As Object() = CType(selectedPanel.Tag, Object()) ' Retrieve the car data from the Tag property
 
-    ' Event handler for RoundedButton1
-    Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
-        UpdateButtonStyles(RoundedButton1)
-        Label1.Text = SelectedCar(7)?.ToString()
-        PictureBox1.Image = TryCast(SelectedCar(2), Image)
-    End Sub
-
-    Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
-
+        ' Display the selected car details (or perform any other action)
+        MessageBox.Show("Selected Car: " & selectedCar(0)?.ToString())
     End Sub
 
 End Class
