@@ -58,18 +58,16 @@ Public Class rent_a_car2
             Label1.TextAlign = ContentAlignment.MiddleCenter
             Label3.Text = SelectedCar(0)?.ToString()
 
-            If 
-            Label8.Text = 
-
             ' Check if the car is unavailable
-                Dim isAvailable As Boolean = False
-                If SelectedCar.Length > 12 Then
-                    Boolean.TryParse(SelectedCar(12)?.ToString(), isAvailable)
-                End If
+            Dim isAvailable As Boolean = False
 
-                ' Add "NOT AVAILABLE" label if the car is unavailable
-                If Not isAvailable Then
-                    Dim notAvailableLabel As New Label With {
+            If SelectedCar.Length > 12 Then
+                Boolean.TryParse(SelectedCar(12)?.ToString(), isAvailable)
+            End If
+
+            ' Add "NOT AVAILABLE" label if the car is unavailable
+            If Not isAvailable Then
+                Dim notAvailableLabel As New Label With {
                 .Text = "NOT AVAILABLE",
                 .AutoSize = False,
                 .Size = New Size(PictureBox1.Width, 30), ' Match the width of the PictureBox
@@ -79,26 +77,26 @@ Public Class rent_a_car2
                 .TextAlign = ContentAlignment.MiddleCenter
             }
 
-                    ' Center the label on the PictureBox
-                    notAvailableLabel.Location = New Point(
-                (PictureBox1.Width - notAvailableLabel.Width) \ 2,
-                (PictureBox1.Height - notAvailableLabel.Height) \ 2
+                ' Center the label on the PictureBox
+                notAvailableLabel.Location = New Point(
             )
 
-                    ' Add the label to the PictureBox
-                    PictureBox1.Controls.Add(notAvailableLabel)
-                    notAvailableLabel.BringToFront()
-                End If
-
-                ' Enable or disable RoundedButton5 based on availability and radio button state
-                UpdateRoundedButton5State(isAvailable)
+                ' Add the label to the PictureBox
+                PictureBox1.Controls.Add(notAvailableLabel)
+                notAvailableLabel.BringToFront()
             End If
+
+            ' Enable or disable RoundedButton5 based on availability and radio button state
+            UpdateRoundedButton5State(isAvailable)
+        End If
+
     End Sub
 
 
 
     Private Sub UpdateRoundedButton5State(isAvailable As Boolean)
         ' Enable RoundedButton5 only if the car is available and a radio button is selected
+
         If isAvailable AndAlso (RadioButton1.Checked) Then
             RadioButton1.Checked = True
             RadioButton2.Checked = False
@@ -116,6 +114,7 @@ Public Class rent_a_car2
             RoundedButton5.BackColor = Color.White
             RoundedButton5.ForeColor = Color.DarkSlateBlue
             RoundedButton5.Font = New Font("League Spartan", 30, FontStyle.Bold)
+
         Else
             RoundedButton5.Enabled = False
             RoundedButton5.Text = "NOT AVAILABLE" ' Text when unavailable
@@ -230,10 +229,8 @@ Public Class rent_a_car2
     ' Event handler for RoundedButton3
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
         UpdateButtonStyles(RoundedButton3)
+
         Label1.Text = "Price per day: "
-
-
-
     End Sub
 
     ' Event handler for RoundedButton2
@@ -252,4 +249,5 @@ Public Class rent_a_car2
     Private Sub Label8_Click(sender As Object, e As EventArgs) Handles Label8.Click
 
     End Sub
+
 End Class
