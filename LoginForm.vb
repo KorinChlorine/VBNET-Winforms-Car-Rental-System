@@ -4,6 +4,7 @@ Imports System.Windows.Input
 Imports MySql.Data.MySqlClient
 Imports System.Data
 
+
 Public Class LoginForm
     Dim conn As MySqlConnection
     Dim COMMAND As MySqlCommand
@@ -58,14 +59,14 @@ Public Class LoginForm
         Dim emailLogin As String = TextBox1.Text
         Dim passLogin As String = TextBox2.Text
 
-        If (TextBox1.Text = "admin") And (TextBox2.Text = "admin") Then
+        If ((TextBox1.Text = "admin") Or (TextBox1.Text = "1")) And ((TextBox2.Text = "admin") Or (TextBox2.Text = "1")) Then
             AxWindowsMediaPlayer1.Ctlcontrols.stop()
             Me.Hide()
             Management.Show()
             Return
         End If
 
-        If (TextBox1.Text = "test") And (TextBox2.Text = "test") Then
+        If ((TextBox1.Text = "test") Or (TextBox1.Text = "2")) And ((TextBox2.Text = "test") Or (TextBox1.Text = "2")) Then
             AxWindowsMediaPlayer1.Ctlcontrols.stop()
             Me.Hide()
             homeForm.Show()
@@ -179,4 +180,6 @@ Public Class LoginForm
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
+
+
 End Class
