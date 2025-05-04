@@ -42,6 +42,7 @@ Partial Class rent_a_car2
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.RoundedButton5 = New VBNET_Car_Rental_System.RoundedButton()
@@ -281,6 +282,13 @@ Partial Class rent_a_car2
         Me.GroupBox2.TabIndex = 26
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Rent"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(116, 34)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(97, 20)
+        Me.TextBox1.TabIndex = 0
         '
         'Label7
         '
