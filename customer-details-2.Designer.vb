@@ -22,7 +22,6 @@ Partial Class customer_details_2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(customer_details_2))
         Me.btnConfChanges = New System.Windows.Forms.Button()
         Me.btnBack = New System.Windows.Forms.Button()
         Me.txtNewEmail = New System.Windows.Forms.TextBox()
@@ -110,7 +109,7 @@ Partial Class customer_details_2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Customer_Deets__2_
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ClientSize = New System.Drawing.Size(491, 594)
         Me.Controls.Add(Me.btnTogglePass)
