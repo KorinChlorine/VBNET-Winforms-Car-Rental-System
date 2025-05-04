@@ -1,12 +1,15 @@
 ﻿Imports System.Text.RegularExpressions
 
 Public Class customer_details_2
-    Private Function IsValidPassword(password As String) As Boolean
 
+    Public Property mainForm As customer_details 'To link this form to the customer_details esp the database
+
+    Private Function IsValidPassword(password As String) As Boolean
+        'Combination of all possible passwords of user
         ' ^                 : start of string
         ' (?=.*[A-Za-z])   : at least one letter
         ' (?=.*\d)         : at least one digit
-        ' (?=.*[@$!%*?&])  : at least one special character (add more if needed)
+        ' (?=.*[@$!%*?&])  : at least one special character
         ' .{8,}            : minimum 8 characters
         ' $                : end of string
 

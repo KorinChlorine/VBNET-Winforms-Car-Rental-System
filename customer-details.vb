@@ -84,10 +84,11 @@ Public Class customer_details
         Me.Close()
     End Sub
 
+    'Link this form to customer_details_2 to change credentials (temporary)
     Private Sub btnChangeCredentials_Click(sender As Object, e As EventArgs) Handles btnChanCredent.Click
-
-
-        customer_details_2.Show()
+        Dim credentialsForm As New customer_details_2()
+        credentialsForm.mainForm = Me
+        credentialsForm.Show()
         Me.Hide()
     End Sub
 
