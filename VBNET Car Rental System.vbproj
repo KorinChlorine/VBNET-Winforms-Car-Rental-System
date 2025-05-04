@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{79439345-3429-4C83-899A-D7AA61D9DA00}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>VBNET_Car_Rental_System.My.MyApplication</StartupObject>
+    <StartupObject>VBNET_Car_Rental_System.LoginForm</StartupObject>
     <RootNamespace>VBNET_Car_Rental_System</RootNamespace>
     <AssemblyName>VBNET Car Rental System</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -69,6 +69,8 @@
     <Reference Include="MySql.Data, Version=9.3.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.9.3.0\lib\net48\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -102,11 +104,15 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="ZstdSharp, Version=0.8.5.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
       <HintPath>packages\ZstdSharp.Port.0.8.5\lib\net462\ZstdSharp.dll</HintPath>
     </Reference>
@@ -125,23 +131,61 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="customer-details-2.Designer.vb">
-      <DependentUpon>customer-details-2.vb</DependentUpon>
+    <Compile Include="Car.vb" />
+    <Compile Include="rent a car2.Designer.vb">
+      <DependentUpon>rent a car2.vb</DependentUpon>
     </Compile>
-    <Compile Include="customer-details-2.vb">
+    <Compile Include="rent a car2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="customer-details.Designer.vb">
-      <DependentUpon>customer-details.vb</DependentUpon>
+    <Compile Include="ViewCars.Designer.vb">
+      <DependentUpon>ViewCars.vb</DependentUpon>
     </Compile>
-    <Compile Include="customer-details.vb">
+    <Compile Include="ViewCars.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="History.Designer.vb">
+      <DependentUpon>History.vb</DependentUpon>
+    </Compile>
+    <Compile Include="History.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Billing.Designer.vb">
+      <DependentUpon>Billing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Billing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RentalDetails.Designer.vb">
+      <DependentUpon>RentalDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="RentalDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalData.vb" />
+    <Compile Include="homeForm.Designer.vb">
+      <DependentUpon>homeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="homeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="management.Designer.vb">
+      <DependentUpon>management.vb</DependentUpon>
+    </Compile>
+    <Compile Include="management.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoundedButton.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="My Project\Application.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -152,25 +196,51 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="rent a car.Designer.vb">
+      <DependentUpon>rent a car.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rent a car.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="customer-details-2.resx">
-      <DependentUpon>customer-details-2.vb</DependentUpon>
+    <EmbeddedResource Include="Billing.resx">
+      <DependentUpon>Billing.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="customer-details.resx">
-      <DependentUpon>customer-details.vb</DependentUpon>
+    <EmbeddedResource Include="History.resx">
+      <DependentUpon>History.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="homeForm.resx">
+      <DependentUpon>homeForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="management.resx">
+      <DependentUpon>management.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rent a car.resx">
+      <DependentUpon>rent a car.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rent a car2.resx">
+      <DependentUpon>rent a car2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RentalDetails.resx">
+      <DependentUpon>RentalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewCars.resx">
+      <DependentUpon>ViewCars.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
-      <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,16 +248,72 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Login.png" />
+    <None Include="Resources\Main Menu.png" />
+    <None Include="Resources\Management.png" />
+    <None Include="Resources\undo 1.png" />
+    <None Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Customer Deets %281%29.png" />
+    <None Include="Resources\rent a car.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Customer Deets %282%29.png" />
+    <None Include="Resources\Rent a Car.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Customer Deets.png" />
+    <None Include="Resources\Register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Register1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PLACEHOLDER Car.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental Details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View Car.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental HIstory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo 5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\toyota vios.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
