@@ -22,7 +22,6 @@ Partial Class customer_details
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(customer_details))
         Me.txtboxName = New System.Windows.Forms.TextBox()
         Me.txtboxAge = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -39,13 +38,14 @@ Partial Class customer_details
         Me.btnReturn = New System.Windows.Forms.Button()
         Me.btnVerifyRecords = New System.Windows.Forms.Button()
         Me.btnChanCredent = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'txtboxName
         '
         Me.txtboxName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtboxName.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtboxName.Location = New System.Drawing.Point(132, 117)
+        Me.txtboxName.Location = New System.Drawing.Point(132, 120)
         Me.txtboxName.Name = "txtboxName"
         Me.txtboxName.Size = New System.Drawing.Size(320, 28)
         Me.txtboxName.TabIndex = 3
@@ -148,10 +148,10 @@ Partial Class customer_details
         Me.rbOthers.ForeColor = System.Drawing.Color.White
         Me.rbOthers.Location = New System.Drawing.Point(284, 360)
         Me.rbOthers.Name = "rbOthers"
-        Me.rbOthers.Size = New System.Drawing.Size(195, 24)
+        Me.rbOthers.Size = New System.Drawing.Size(75, 24)
         Me.rbOthers.TabIndex = 19
         Me.rbOthers.TabStop = True
-        Me.rbOthers.Text = "Prefer not to say/Others"
+        Me.rbOthers.Text = "Others"
         Me.rbOthers.UseVisualStyleBackColor = False
         '
         'btnConfChan
@@ -172,10 +172,13 @@ Partial Class customer_details
         'dtpBirthday
         '
         Me.dtpBirthday.CalendarMonthBackground = System.Drawing.Color.Transparent
+        Me.dtpBirthday.CalendarTitleBackColor = System.Drawing.Color.Transparent
+        Me.dtpBirthday.CalendarTitleForeColor = System.Drawing.Color.Transparent
+        Me.dtpBirthday.CalendarTrailingForeColor = System.Drawing.Color.Transparent
         Me.dtpBirthday.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpBirthday.Location = New System.Drawing.Point(132, 298)
+        Me.dtpBirthday.Location = New System.Drawing.Point(140, 298)
         Me.dtpBirthday.Name = "dtpBirthday"
-        Me.dtpBirthday.Size = New System.Drawing.Size(320, 29)
+        Me.dtpBirthday.Size = New System.Drawing.Size(304, 29)
         Me.dtpBirthday.TabIndex = 16
         '
         'btnReturn
@@ -221,13 +224,22 @@ Partial Class customer_details
         Me.btnChanCredent.TabIndex = 25
         Me.btnChanCredent.UseVisualStyleBackColor = False
         '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.Location = New System.Drawing.Point(21, 19)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(479, 95)
+        Me.ListBox1.TabIndex = 26
+        '
         'customer_details
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Customer_Deets__1_
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ClientSize = New System.Drawing.Size(491, 594)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.btnChanCredent)
         Me.Controls.Add(Me.btnVerifyRecords)
         Me.Controls.Add(Me.btnReturn)
@@ -267,4 +279,5 @@ Partial Class customer_details
     Friend WithEvents btnReturn As Button
     Friend WithEvents btnVerifyRecords As Button
     Friend WithEvents btnChanCredent As Button
+    Friend WithEvents ListBox1 As ListBox
 End Class
