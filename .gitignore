@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/My Project/Application.Designer.vb
+/Form1.Designer.vb
+/Form1.vb
