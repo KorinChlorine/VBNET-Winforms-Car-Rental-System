@@ -8,7 +8,6 @@ Imports System.Data
 Public Class LoginForm
     Dim conn As MySqlConnection
     Dim COMMAND As MySqlCommand
-    Dim users As New List(Of Tuple(Of String, String)) ' Email, Password for fallback
 
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AxWindowsMediaPlayer1.URL = Path.Combine(Application.StartupPath, "video.mp4")
@@ -34,7 +33,14 @@ Public Class LoginForm
             MsgBox(ex.Message)
             conn.Close()
         End Try
+
+        ' Add default users if none exist
+        If GlobalData.RegisteredUsers.Count = 0 Then
+            GlobalData.RegisterUser("admin", "admin")
+            GlobalData.RegisterUser("test", "test")
+        End If
     End Sub
+
     Private Sub LoginForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         AxWindowsMediaPlayer1.settings.setMode("loop", True)
         If AxWindowsMediaPlayer1.playState <> WMPLib.WMPPlayState.wmppsPlaying Then
@@ -59,22 +65,28 @@ Public Class LoginForm
         Dim emailLogin As String = TextBox1.Text
         Dim passLogin As String = TextBox2.Text
 
-        If ((TextBox1.Text = "admin") Or (TextBox1.Text = "1")) And ((TextBox2.Text = "admin") Or (TextBox2.Text = "1")) Then
+        ' Admin login bypass
+        If ((emailLogin = "admin") Or (emailLogin = "1")) And ((passLogin = "admin") Or (passLogin = "1")) Then
             AxWindowsMediaPlayer1.Ctlcontrols.stop()
+            GlobalData.LoginUser(emailLogin, passLogin)
+            GlobalData.UserRole = "admin"
             Me.Hide()
             Management.Show()
             Return
         End If
 
-        If ((TextBox1.Text = "test") Or (TextBox1.Text = "2")) And ((TextBox2.Text = "test") Or (TextBox1.Text = "2")) Then
+        ' Test login bypass
+        If ((emailLogin = "test") Or (emailLogin = "2")) And ((passLogin = "test") Or (passLogin = "2")) Then
             AxWindowsMediaPlayer1.Ctlcontrols.stop()
+            GlobalData.LoginUser(emailLogin, passLogin)
+            GlobalData.UserRole = "user"
             Me.Hide()
             homeForm.Show()
             Return
         End If
 
         Try
-
+            ' Try to log in using database
             Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
             Dim query As String = "SELECT email FROM `user info` WHERE email = @Email AND password = @Password"
 
@@ -88,28 +100,36 @@ Public Class LoginForm
 
                     If result IsNot Nothing Then
                         AxWindowsMediaPlayer1.Ctlcontrols.stop()
+                        GlobalData.LoginUser(emailLogin, passLogin)
+                        GlobalData.UserRole = "user"
                         Me.Hide()
                         homeForm.Show()
                     Else
-                        MessageBox.Show("Wrong Email/Password, Please Try Again!")
+                        ' Try to log in using GlobalData
+                        If GlobalData.LoginUser(emailLogin, passLogin) Then
+                            AxWindowsMediaPlayer1.Ctlcontrols.stop()
+                            GlobalData.UserRole = "user"
+                            Me.Hide()
+                            homeForm.Show()
+                        Else
+                            MessageBox.Show("Wrong Email/Password, Please Try Again!")
+                        End If
                     End If
 
                     con.Close()
                 End Using
             End Using
         Catch ex As Exception
-
-            Dim user = users.FirstOrDefault(Function(u) u.Item1 = emailLogin AndAlso u.Item2 = passLogin)
-            If user IsNot Nothing Then
+            ' If database connection fails, try using GlobalData
+            If GlobalData.LoginUser(emailLogin, passLogin) Then
                 AxWindowsMediaPlayer1.Ctlcontrols.stop()
+                GlobalData.UserRole = "user"
                 Me.Hide()
                 homeForm.Show()
             Else
                 MessageBox.Show("Wrong Email/Password, Please Try Again!")
             End If
         End Try
-
-
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -118,9 +138,16 @@ Public Class LoginForm
         Dim passRegister As String = TextBox4.Text
         Dim confirmPass As String = TextBox5.Text
 
+
         If passRegister = confirmPass Then
             Try
-                ' Existing MySQL registration code
+                ' Check if user already exists in GlobalData
+                If GlobalData.IsUserRegistered(emailRegister) Then
+                    MessageBox.Show("User already exists!")
+                    Return
+                End If
+
+                ' Try registering in database
                 Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
                 Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
 
@@ -133,36 +160,25 @@ Public Class LoginForm
                         cmd.ExecuteNonQuery()
                         con.Close()
 
-                        ' Add the registered user to GlobalData
-                        If GlobalData.RegisteredUsers Is Nothing Then
-                            GlobalData.RegisteredUsers = New List(Of Tuple(Of String, String))()
-                        End If
-                        GlobalData.RegisteredUsers.Add(Tuple.Create(emailRegister, passRegister))
-
+                        ' Also register in GlobalData
+                        GlobalData.RegisterUser(emailRegister, passRegister)
+                        GlobalData.UsersList.Add(New Object() {emailRegister, passRegister})
                         MessageBox.Show("Registration successful!")
                     End Using
                 End Using
             Catch ex As Exception
-                ' Fallback to array registration
-                If users.Any(Function(u) u.Item1 = emailRegister) Then
-                    MessageBox.Show("User already exists!")
-                Else
-                    users.Add(Tuple.Create(emailRegister, passRegister))
-
-                    ' Add the registered user to GlobalData
-                    If GlobalData.RegisteredUsers Is Nothing Then
-                        GlobalData.RegisteredUsers = New List(Of Tuple(Of String, String))()
-                    End If
-                    GlobalData.RegisteredUsers.Add(Tuple.Create(emailRegister, passRegister))
-
+                ' If database fails, just register in GlobalData
+                If GlobalData.RegisterUser(emailRegister, passRegister) Then
+                    GlobalData.UsersList.Add(New Object() {emailRegister, passRegister})
                     MessageBox.Show("Registration successful!")
+                Else
+                    MessageBox.Show("User already exists!")
                 End If
             End Try
         Else
             MessageBox.Show("Passwords do not match!")
         End If
     End Sub
-
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Panel1.BackgroundImage = My.Resources.Login
@@ -180,6 +196,4 @@ Public Class LoginForm
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
-
-
 End Class

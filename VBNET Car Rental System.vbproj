@@ -144,6 +144,12 @@
     <Compile Include="customerDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="customerDetailsCredentials.Designer.vb">
+      <DependentUpon>customerDetailsCredentials.vb</DependentUpon>
+    </Compile>
+    <Compile Include="customerDetailsCredentials.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="rent a car2.Designer.vb">
       <DependentUpon>rent a car2.vb</DependentUpon>
     </Compile>
@@ -231,6 +237,9 @@
     <EmbeddedResource Include="customerDetails.resx">
       <DependentUpon>customerDetails.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="customerDetailsCredentials.resx">
+      <DependentUpon>customerDetailsCredentials.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.vb</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentalDetails.resx">
       <DependentUpon>RentalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement.resx">
+      <DependentUpon>UserManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewCars.resx">
       <DependentUpon>ViewCars.vb</DependentUpon>
@@ -356,6 +368,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Customer Deets1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Customer Deets2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Users.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
