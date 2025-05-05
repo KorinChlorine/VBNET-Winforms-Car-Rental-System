@@ -465,5 +465,13 @@ Public Class Management
         MessageBox.Show("Random details have been filled!")
     End Sub
 
+    Private Sub SaveChanges()
+        ' Update the shared data structure
+        GlobalData.GlobalOuterArray = New List(Of Object())(outerArray)
+
+        ' Notify all forms about the data change
+        GlobalData.NotifyDataChanged()
+    End Sub
+
 
 End Class
