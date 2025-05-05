@@ -34,9 +34,7 @@ Partial Class homeForm
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -47,7 +45,7 @@ Partial Class homeForm
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Location = New System.Drawing.Point(114, 92)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(595, 249)
+        Me.Button1.Size = New System.Drawing.Size(609, 281)
         Me.Button1.TabIndex = 0
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -163,23 +161,11 @@ Partial Class homeForm
         Me.Button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button10.FlatAppearance.BorderSize = 0
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(114, 360)
+        Me.Button10.Location = New System.Drawing.Point(114, 390)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(358, 56)
+        Me.Button10.Size = New System.Drawing.Size(362, 73)
         Me.Button10.TabIndex = 10
         Me.Button10.UseVisualStyleBackColor = False
-        '
-        'Button11
-        '
-        Me.Button11.BackColor = System.Drawing.Color.Transparent
-        Me.Button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button11.FlatAppearance.BorderSize = 0
-        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Location = New System.Drawing.Point(114, 435)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(358, 56)
-        Me.Button11.TabIndex = 11
-        Me.Button11.UseVisualStyleBackColor = False
         '
         'Button12
         '
@@ -187,34 +173,20 @@ Partial Class homeForm
         Me.Button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button12.FlatAppearance.BorderSize = 0
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Location = New System.Drawing.Point(496, 360)
+        Me.Button12.Location = New System.Drawing.Point(492, 390)
         Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(213, 56)
+        Me.Button12.Size = New System.Drawing.Size(221, 73)
         Me.Button12.TabIndex = 12
         Me.Button12.UseVisualStyleBackColor = False
-        '
-        'Button13
-        '
-        Me.Button13.BackColor = System.Drawing.Color.Transparent
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button13.Location = New System.Drawing.Point(496, 435)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(213, 56)
-        Me.Button13.TabIndex = 13
-        Me.Button13.UseVisualStyleBackColor = False
         '
         'homeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu1
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu3
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.Button13)
         Me.Controls.Add(Me.Button12)
-        Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
@@ -246,7 +218,5 @@ Partial Class homeForm
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button
-    Friend WithEvents Button11 As Button
     Friend WithEvents Button12 As Button
-    Friend WithEvents Button13 As Button
 End Class

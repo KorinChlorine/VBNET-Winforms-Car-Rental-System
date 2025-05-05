@@ -132,10 +132,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.vb" />
+    <Compile Include="CarsManagement.Designer.vb">
+      <DependentUpon>CarsManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CarsManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="rent a car2.Designer.vb">
       <DependentUpon>rent a car2.vb</DependentUpon>
     </Compile>
     <Compile Include="rent a car2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement.Designer.vb">
+      <DependentUpon>UserManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ViewCars.Designer.vb">
@@ -206,6 +218,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Billing.resx">
       <DependentUpon>Billing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarsManagement.resx">
+      <DependentUpon>CarsManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.vb</DependentUpon>
@@ -314,6 +329,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\toyota vios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Menu1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Menu3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Cars.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -174,6 +174,13 @@ Public Class Management
         Panel3.Controls.Add(panel1)
 
         Panel_Click(panel1, New EventArgs())
+
+        ' Add to GlobalData.CarsList
+        GlobalData.CarsList.Add(propertiesArray)
+        GlobalData.NotifyDataChanged() ' Notify other forms about the change
+
+        MessageBox.Show("Car added successfully!")
+        ClearForm()
     End Sub
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
@@ -473,5 +480,8 @@ Public Class Management
         GlobalData.NotifyDataChanged()
     End Sub
 
-
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Hide()
+        CarsManagement.Show()
+    End Sub
 End Class

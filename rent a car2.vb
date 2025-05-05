@@ -32,35 +32,49 @@ Public Class rent_a_car2
 
     Private Sub PopulateForm()
         If SelectedCar IsNot Nothing Then
+            ' Determine if the car is PREMIUM
+            Dim dailyPrice As Decimal
+            Dim isPremium As Boolean = Decimal.TryParse(SelectedCar(11)?.ToString(), dailyPrice) AndAlso dailyPrice >= 10000
+
+            ' Update Label8.Text with PREMIUM status and price per day
+            Label8.Text = If(isPremium, "PREMIUM", "STANDARD") & $" - Price per day: P{dailyPrice:N2}"
+
+            ' Set the car image
             PictureBox1.Image = TryCast(SelectedCar(1), Image)
             PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+
+            ' Set the car details
             Label1.Text = SelectedCar(6)?.ToString()
             Label1.TextAlign = ContentAlignment.MiddleCenter
             Label3.Text = SelectedCar(0)?.ToString()
 
+            ' Check if the car is unavailable
             Dim isAvailable As Boolean = False
             If SelectedCar.Length > 12 Then
                 Boolean.TryParse(SelectedCar(12)?.ToString(), isAvailable)
             End If
 
+            ' Add "NOT AVAILABLE" label if the car is unavailable
             If Not isAvailable Then
                 Dim notAvailableLabel As New Label With {
-                    .Text = "NOT AVAILABLE",
-                    .AutoSize = False,
-                    .Size = New Size(PictureBox1.Width, 30),
-                    .BackColor = Color.Red,
-                    .ForeColor = Color.White,
-                    .Font = New Font("Arial", 10, FontStyle.Bold),
-                    .TextAlign = ContentAlignment.MiddleCenter
-                }
+                .Text = "NOT AVAILABLE",
+                .AutoSize = False,
+                .Size = New Size(PictureBox1.Width, 30),
+                .BackColor = Color.Red,
+                .ForeColor = Color.White,
+                .Font = New Font("Arial", 10, FontStyle.Bold),
+                .TextAlign = ContentAlignment.MiddleCenter
+            }
                 notAvailableLabel.Location = New Point(0, PictureBox1.Height - notAvailableLabel.Height)
                 PictureBox1.Controls.Add(notAvailableLabel)
                 notAvailableLabel.BringToFront()
             End If
 
+            ' Enable or disable RoundedButton5 based on availability and radio button state
             UpdateRoundedButton5State(isAvailable)
         End If
     End Sub
+
 
     Private Sub UpdateRoundedButton5State(isAvailable As Boolean)
         If isAvailable AndAlso RadioButton1.Checked Then
@@ -163,23 +177,82 @@ Public Class rent_a_car2
 
     Private Sub RoundedButton4_Click(sender As Object, e As EventArgs) Handles RoundedButton4.Click
         UpdateButtonStyles(RoundedButton4)
+        Label1.Font = New Font(Label1.Font.FontFamily, 14)
         Label1.Text = SelectedCar(6)?.ToString()
         Label2.Text = "Brief Description"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
+        Label1.TextAlign = ContentAlignment.MiddleCenter
     End Sub
 
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
         UpdateButtonStyles(RoundedButton3)
-        Label1.Text = "Price per day: "
+        Label2.Text = "Pricing"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
+        Label1.Font = New Font(Label1.Font.FontFamily, 20)
+        Label1.TextAlign = ContentAlignment.MiddleCenter
+        Dim dailyPrice As Decimal
+        If Not Decimal.TryParse(SelectedCar(11)?.ToString(), dailyPrice) Then
+            Label1.Text = "Invalid daily price"
+            Return
+        End If
+
+        Dim numberOfDays As Integer
+
+        If RadioButton1.Checked Then
+            Dim selectedStartDate As DateTime = startBook.Value
+            Dim selectedEndDate As DateTime = endBook.Value
+            numberOfDays = (selectedEndDate - selectedStartDate).Days
+
+            If numberOfDays <= 0 Then
+                Label1.Text = "Invalid booking duration"
+                Return
+            End If
+        ElseIf RadioButton2.Checked Then
+            If Not Integer.TryParse(TextBox1.Text, numberOfDays) OrElse numberOfDays <= 0 Then
+                Label1.Text = "Invalid number of days"
+                Return
+            End If
+        Else
+            Label1.Text = "Please select a booking or rent option"
+            Return
+        End If
+
+        Dim totalPrice As Decimal = dailyPrice * numberOfDays
+        Label1.Text = $"The total price for {numberOfDays} days is P{totalPrice:N2}"
     End Sub
+
 
     Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
         UpdateButtonStyles(RoundedButton2)
+        Label2.Text = "Specifications"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
+        Label1.Font = New Font(Label1.Font.FontFamily, 18)
+        Label1.TextAlign = ContentAlignment.MiddleLeft
+        If SelectedCar IsNot Nothing Then
+            Dim specifications As String = $"Car Name: {SelectedCar(0)?.ToString()}" & Environment.NewLine &
+                                       $"Car Type: {SelectedCar(3)?.ToString()}" & Environment.NewLine &
+                                       $"Capacity: {SelectedCar(4)?.ToString()}" & Environment.NewLine &
+                                       $"Color: {SelectedCar(5)?.ToString()}" & Environment.NewLine &
+                                       $"Car ID: {SelectedCar(8)?.ToString()}" & Environment.NewLine &
+                                       $"Body Number: {SelectedCar(9)?.ToString()}" & Environment.NewLine &
+                                       $"Plate Number: {SelectedCar(10)?.ToString()}" & Environment.NewLine &
+                                       $"Daily Price: P{SelectedCar(11)?.ToString()}" & Environment.NewLine &
+                                       $"Availability: {(If(Convert.ToBoolean(SelectedCar(12)), "Available", "Not Available"))}"
+            Label1.Text = specifications
+        Else
+            Label1.Text = "No car selected."
+        End If
     End Sub
+
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
         UpdateButtonStyles(RoundedButton1)
+        Label2.Text = "Background"
+        Label2.TextAlign = ContentAlignment.MiddleCenter
         Label1.Text = SelectedCar(7)?.ToString()
+        Label1.TextAlign = ContentAlignment.MiddleLeft
         PictureBox1.Image = TryCast(SelectedCar(2), Image)
+        Label1.Font = New Font(Label1.Font.FontFamily, 12)
     End Sub
 
     Private Sub RoundedButton5_Click(sender As Object, e As EventArgs) Handles RoundedButton5.Click
@@ -187,33 +260,97 @@ Public Class rent_a_car2
         Dim selectedEndDate As DateTime = endBook.Value
         Dim differenceInDays As Integer = (selectedEndDate - selectedStartDate).Days
 
-        If selectedStartDate > selectedEndDate Then
-            MessageBox.Show("Start date cannot be later than the end date.", "Invalid Dates")
-            Return
-        End If
-
-        Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar(11))
-        Dim totalPrice As Decimal = dailyPrice * differenceInDays
-
+        ' Handle booking logic when RadioButton1 is checked
         If RadioButton1.Checked Then
+            If selectedStartDate > selectedEndDate Then
+                MessageBox.Show("Start date cannot be later than the end date.", "Invalid Dates")
+                Return
+            End If
+
+            If selectedStartDate = selectedEndDate Then
+                MessageBox.Show("Start date cannot be equal to the end date.", "Invalid Dates")
+                Return
+            End If
+
+            Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar(11))
+            Dim totalPrice As Decimal = dailyPrice * differenceInDays
+
+            ' Store booking information
+            StoreCarTransaction("BOOK", differenceInDays, totalPrice, selectedStartDate, selectedEndDate)
+
             MessageBox.Show($"Car booked successfully! Duration: {differenceInDays} days. Total Price: {totalPrice:C}", "Booking Confirmation")
             SelectedCar(12) = False
             UpdateRoundedButton5State(False)
 
             Dim notAvailableLabel As New Label With {
-                .Text = "NOT AVAILABLE",
-                .AutoSize = False,
-                .Size = New Size(PictureBox1.Width, 30),
-                .BackColor = Color.Red,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
+            .Text = "NOT AVAILABLE",
+            .AutoSize = False,
+            .Size = New Size(PictureBox1.Width, 30),
+            .BackColor = Color.Red,
+            .ForeColor = Color.White,
+            .Font = New Font("Arial", 10, FontStyle.Bold),
+            .TextAlign = ContentAlignment.MiddleCenter
+        }
+            notAvailableLabel.Location = New Point(0, PictureBox1.Height - notAvailableLabel.Height)
+            PictureBox1.Controls.Add(notAvailableLabel)
+            notAvailableLabel.BringToFront()
+        End If
+
+        ' Handle renting logic when RadioButton2 is checked
+        If RadioButton2.Checked Then
+            ' Validate the number of days in TextBox1
+            Dim numberOfDays As Integer
+            If Not Integer.TryParse(TextBox1.Text, numberOfDays) OrElse numberOfDays <= 0 Then
+                MessageBox.Show("Please enter a valid number of days.", "Invalid Input")
+                Return
+            End If
+
+            ' Calculate the total price
+            Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar(11))
+            Dim totalPrice As Decimal = dailyPrice * numberOfDays
+
+            ' Store rental information
+            StoreCarTransaction("RENT", numberOfDays, totalPrice)
+
+            ' Display a confirmation message
+            MessageBox.Show($"Car rented successfully! Duration: {numberOfDays} days. Total Price: {totalPrice:C}", "Rental Confirmation")
+
+            ' Mark the car as unavailable
+            SelectedCar(12) = False
+            UpdateRoundedButton5State(False)
+
+            ' Add a "NOT AVAILABLE" label to the PictureBox
+            Dim notAvailableLabel As New Label With {
+            .Text = "NOT AVAILABLE",
+            .AutoSize = False,
+            .Size = New Size(PictureBox1.Width, 30),
+            .BackColor = Color.Red,
+            .ForeColor = Color.White,
+            .Font = New Font("Arial", 10, FontStyle.Bold),
+            .TextAlign = ContentAlignment.MiddleCenter
+        }
             notAvailableLabel.Location = New Point(0, PictureBox1.Height - notAvailableLabel.Height)
             PictureBox1.Controls.Add(notAvailableLabel)
             notAvailableLabel.BringToFront()
         End If
     End Sub
+
+    Private Sub StoreCarTransaction(transactionType As String, duration As Integer, totalPrice As Decimal, Optional startDate As DateTime = Nothing, Optional endDate As DateTime = Nothing)
+        Dim carDetails As New Dictionary(Of String, Object) From {
+        {"TransactionType", transactionType},
+        {"CarName", SelectedCar(0)?.ToString()},
+        {"CarID", SelectedCar(8)?.ToString()},
+        {"Duration", duration},
+        {"TotalPrice", totalPrice},
+        {"StartDate", If(startDate = DateTime.MinValue, Nothing, startDate)},
+        {"EndDate", If(endDate = DateTime.MinValue, Nothing, endDate)}
+    }
+
+        ' Add the car details to a global list
+        GlobalData.AddTransaction(carDetails)
+    End Sub
+
+
 
     Private Sub UpdateCarDetails()
         SelectedCar(0) = "Updated Car Name"

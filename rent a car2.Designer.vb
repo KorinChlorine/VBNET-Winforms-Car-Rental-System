@@ -42,16 +42,15 @@ Partial Class rent_a_car2
         Me.Label6 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.RoundedButton5 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton4 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label8 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -87,7 +86,7 @@ Partial Class rent_a_car2
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("League Spartan", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(1019, 111)
+        Me.Label2.Location = New System.Drawing.Point(881, 117)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(113, 28)
         Me.Label2.TabIndex = 3
@@ -100,7 +99,7 @@ Partial Class rent_a_car2
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("League Spartan Black", 25.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(435, 111)
+        Me.Label3.Location = New System.Drawing.Point(435, 117)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(79, 50)
         Me.Label3.TabIndex = 4
@@ -283,13 +282,6 @@ Partial Class rent_a_car2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Rent"
         '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(116, 34)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(97, 20)
-        Me.TextBox1.TabIndex = 0
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -308,6 +300,29 @@ Partial Class rent_a_car2
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(97, 20)
         Me.TextBox1.TabIndex = 0
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.Transparent
+        Me.Panel3.Controls.Add(Me.RadioButton1)
+        Me.Panel3.Controls.Add(Me.RadioButton2)
+        Me.Panel3.Location = New System.Drawing.Point(442, 592)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(476, 40)
+        Me.Panel3.TabIndex = 27
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("League Spartan Medium", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.White
+        Me.Label8.Location = New System.Drawing.Point(442, 413)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(137, 30)
+        Me.Label8.TabIndex = 28
+        Me.Label8.Text = "Price/Premium"
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'RoundedButton5
         '
@@ -378,29 +393,6 @@ Partial Class rent_a_car2
         Me.RoundedButton1.TabIndex = 6
         Me.RoundedButton1.Text = "Background"
         Me.RoundedButton1.UseVisualStyleBackColor = False
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.Transparent
-        Me.Panel3.Controls.Add(Me.RadioButton1)
-        Me.Panel3.Controls.Add(Me.RadioButton2)
-        Me.Panel3.Location = New System.Drawing.Point(442, 592)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(476, 40)
-        Me.Panel3.TabIndex = 27
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("League Spartan Medium", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(439, 408)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(137, 30)
-        Me.Label8.TabIndex = 28
-        Me.Label8.Text = "Price/Premium"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'rent_a_car2
         '
