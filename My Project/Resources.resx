@@ -130,6 +130,9 @@
   <data name="undo 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\undo 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="video" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>"..\BR86Z; Turbocharged Toyota 86 _ 4K.mp4";System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Management" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -142,26 +145,26 @@
   <data name="Main Menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Main Menu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Main Menu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Main Menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="PLACEHOLDER_Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PLACEHOLDER Car.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Register1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Register1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Main Menu3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Main Menu3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Logo 5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo 5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Management Cars" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Management Cars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rental Details" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rental Details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Main Menu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Main Menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo 5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo 5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="video" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>"..\BR86Z; Turbocharged Toyota 86 _ 4K.mp4";System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Main Menu3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Main Menu3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Management1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,7 +184,7 @@
   <data name="Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Management Cars" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Management Cars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Management Cars1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Management Cars1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
