@@ -7,6 +7,7 @@
 
     Private Sub LoadUsers()
         Panel1.Controls.Clear()
+        Panel1.AutoScroll = True ' Enable AutoScroll
 
         Dim titles As String() = {"Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Car Rented", "Start Date", "End Date"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
@@ -20,14 +21,14 @@
         ' Header row
         For i As Integer = 0 To titles.Length - 1
             Dim titleLabel As New Label With {
-                .Text = titles(i),
-                .Size = New Size(columnWidth, rowHeight),
-                .Location = New Point(padding + (i * columnWidth), padding),
-                .Font = titleFont,
-                .BackColor = Color.LightGray,
-                .TextAlign = ContentAlignment.MiddleCenter,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
+            .Text = titles(i),
+            .Size = New Size(columnWidth, rowHeight),
+            .Location = New Point(padding + (i * columnWidth), padding),
+            .Font = titleFont,
+            .BackColor = Color.LightGray,
+            .TextAlign = ContentAlignment.MiddleCenter,
+            .BorderStyle = BorderStyle.FixedSingle
+        }
             Panel1.Controls.Add(titleLabel)
         Next
 
@@ -38,19 +39,23 @@
                 Dim detailText As String = GetUserDetail(userData, i)
 
                 Dim detailLabel As New Label With {
-                    .Text = detailText,
-                    .Size = New Size(columnWidth, rowHeight),
-                    .Location = New Point(padding + (i * columnWidth), currentY),
-                    .Font = detailFont,
-                    .BackColor = Color.White,
-                    .TextAlign = ContentAlignment.MiddleCenter,
-                    .BorderStyle = BorderStyle.FixedSingle
-                }
+                .Text = detailText,
+                .Size = New Size(columnWidth, rowHeight),
+                .Location = New Point(padding + (i * columnWidth), currentY),
+                .Font = detailFont,
+                .BackColor = Color.White,
+                .TextAlign = ContentAlignment.MiddleCenter,
+                .BorderStyle = BorderStyle.FixedSingle
+            }
                 Panel1.Controls.Add(detailLabel)
             Next
             currentY += rowHeight
         Next
+
+        ' Update AutoScrollMinSize to ensure scrollbars appear
+        Panel1.AutoScrollMinSize = New Size(0, currentY)
     End Sub
+
     Private Function GetUserDetail(userData As Object(), index As Integer) As String
         If index >= userData.Length Then
             Return "N/A" ' or ""
@@ -88,5 +93,9 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
         CarsManagement.Show()
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

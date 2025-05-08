@@ -47,6 +47,17 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Test\</OutputPath>
+    <DocumentationFile>VBNET Car Rental System.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
@@ -154,6 +165,12 @@
       <DependentUpon>rent a car2.vb</DependentUpon>
     </Compile>
     <Compile Include="rent a car2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Survey.Designer.vb">
+      <DependentUpon>Survey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Survey.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserManagement.Designer.vb">
@@ -266,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RentalDetails.resx">
       <DependentUpon>RentalDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Survey.resx">
+      <DependentUpon>Survey.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagement.resx">
       <DependentUpon>UserManagement.vb</DependentUpon>
@@ -380,6 +400,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\billing new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Survey.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
