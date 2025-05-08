@@ -64,7 +64,7 @@ Partial Class LoginForm
         '
         'Panel1
         '
-        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Register1
+        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Register1
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel1.Controls.Add(Me.TextBox4)
         Me.Panel1.Controls.Add(Me.TextBox2)
@@ -90,7 +90,7 @@ Partial Class LoginForm
         Me.TextBox4.ForeColor = System.Drawing.Color.Black
         Me.TextBox4.Location = New System.Drawing.Point(125, 340)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox4.Size = New System.Drawing.Size(400, 43)
         Me.TextBox4.TabIndex = 12
         Me.TextBox4.Text = "Password"
         '
@@ -102,7 +102,7 @@ Partial Class LoginForm
         Me.TextBox2.ForeColor = System.Drawing.Color.Black
         Me.TextBox2.Location = New System.Drawing.Point(126, 349)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox2.Size = New System.Drawing.Size(400, 43)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = "Password"
         '
@@ -140,7 +140,7 @@ Partial Class LoginForm
         Me.TextBox5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.TextBox5.Location = New System.Drawing.Point(123, 411)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox5.Size = New System.Drawing.Size(400, 43)
         Me.TextBox5.TabIndex = 9
         Me.TextBox5.Text = "Confirm Password"
         '
@@ -152,7 +152,7 @@ Partial Class LoginForm
         Me.TextBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.TextBox3.Location = New System.Drawing.Point(126, 268)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox3.Size = New System.Drawing.Size(400, 43)
         Me.TextBox3.TabIndex = 7
         Me.TextBox3.Text = "Email"
         '
@@ -215,7 +215,7 @@ Partial Class LoginForm
         Me.TextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.TextBox1.Location = New System.Drawing.Point(126, 271)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(400, 40)
+        Me.TextBox1.Size = New System.Drawing.Size(400, 43)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Email"
         '

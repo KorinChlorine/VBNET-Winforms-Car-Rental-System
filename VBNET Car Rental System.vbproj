@@ -375,5 +375,11 @@
   <ItemGroup>
     <None Include="Resources\Management Users.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billing1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\billing new.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

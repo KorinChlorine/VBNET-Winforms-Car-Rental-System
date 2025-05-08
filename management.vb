@@ -111,14 +111,18 @@ Public Class Management
     End Sub
 
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
-        Dim priceInd = RichTextBox8.Text
-        priceInd.Cast(Of Int64)()
-        If priceInd >= 10000 Then
-            Label11.Text = "Premium"
-        Else
-            Label11.Text = "Non-Premium"
-        End If
-
+        Try
+            Dim priceInd = RichTextBox8.Text
+            priceInd.Cast(Of Int64)()
+            If priceInd >= 10000 Then
+                Label11.Text = "Premium"
+            Else
+                Label11.Text = "Non-Premium"
+            End If
+        Catch
+            MessageBox.Show("Fill up missing details!", "Notice")
+            Return
+        End Try
 
         If selectedPanel IsNot Nothing Then
             Dim previousOverlay = selectedPanel.Controls.OfType(Of Panel).FirstOrDefault(Function(p) p.Tag?.ToString() = "Overlay")
@@ -179,8 +183,6 @@ Public Class Management
         GlobalData.CarsList.Add(propertiesArray)
         GlobalData.NotifyDataChanged() ' Notify other forms about the change
 
-        MessageBox.Show("Car added successfully!")
-        ClearForm()
     End Sub
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
@@ -221,49 +223,53 @@ Public Class Management
             MessageBox.Show("No panel data found.")
             Return
         End If
+        Try
+            ' Set the car name in RichTextBox3
+            RichTextBox3.Text = carData(0)?.ToString()
 
-        ' Set the car name in RichTextBox3
-        RichTextBox3.Text = carData(0)?.ToString()
+            ' Set the primary image in PictureBox1
+            PictureBox1.Image = TryCast(carData(1), Image)
 
-        ' Set the primary image in PictureBox1
-        PictureBox1.Image = TryCast(carData(1), Image)
+            ' Set the secondary image in PictureBox2
+            PictureBox2.Image = TryCast(carData(2), Image)
 
-        ' Set the secondary image in PictureBox2
-        PictureBox2.Image = TryCast(carData(2), Image)
+            ' Set the car type in RichTextBox6
+            RichTextBox6.Text = carData(3)?.ToString()
 
-        ' Set the car type in RichTextBox6
-        RichTextBox6.Text = carData(3)?.ToString()
+            ' Set the car capacity in RichTextBox5
+            RichTextBox5.Text = carData(4)?.ToString()
 
-        ' Set the car capacity in RichTextBox5
-        RichTextBox5.Text = carData(4)?.ToString()
+            ' Set the car color in RichTextBox10
+            RichTextBox10.Text = carData(5)?.ToString()
 
-        ' Set the car color in RichTextBox10
-        RichTextBox10.Text = carData(5)?.ToString()
+            ' Set the brief details in RichTextBox1
+            RichTextBox1.Text = carData(6)?.ToString()
 
-        ' Set the brief details in RichTextBox1
-        RichTextBox1.Text = carData(6)?.ToString()
+            ' Set the detailed description in RichTextBox2
+            RichTextBox2.Text = carData(7)?.ToString()
 
-        ' Set the detailed description in RichTextBox2
-        RichTextBox2.Text = carData(7)?.ToString()
+            ' Set the car ID in RichTextBox4
+            RichTextBox4.Text = carData(8)?.ToString()
 
-        ' Set the car ID in RichTextBox4
-        RichTextBox4.Text = carData(8)?.ToString()
+            ' Set the body number in RichTextBox7
+            RichTextBox7.Text = carData(9)?.ToString()
 
-        ' Set the body number in RichTextBox7
-        RichTextBox7.Text = carData(9)?.ToString()
+            ' Set the plate number in RichTextBox9
+            RichTextBox9.Text = carData(10)?.ToString()
 
-        ' Set the plate number in RichTextBox9
-        RichTextBox9.Text = carData(10)?.ToString()
+            ' Set the daily price in RichTextBox8
+            RichTextBox8.Text = carData(11)?.ToString()
 
-        ' Set the daily price in RichTextBox8
-        RichTextBox8.Text = carData(11)?.ToString()
+            ' Set the availability status in RadioButton1 (True for available)
+            RadioButton1.Checked = Convert.ToBoolean(carData(12))
 
-        ' Set the availability status in RadioButton1 (True for available)
-        RadioButton1.Checked = Convert.ToBoolean(carData(12))
+            ' Set the opposite availability status in RadioButton2 (False for unavailable)
+            RadioButton2.Checked = Not RadioButton1.Checked
 
-        ' Set the opposite availability status in RadioButton2 (False for unavailable)
-        RadioButton2.Checked = Not RadioButton1.Checked
-
+        Catch
+            MessageBox.Show("Fill up missing details!")
+            Return
+        End Try
 
         ' Added code to determine Premium or Non-Premium
         Dim priceInd As Int64
@@ -282,26 +288,45 @@ Public Class Management
 
     Private Sub RoundedButton4_Click(sender As Object, e As EventArgs) Handles RoundedButton4.Click
         If selectedPanel IsNot Nothing Then
-            Dim result = MessageBox.Show($"Do you want to delete the selected panel with text '{selectedPanel.Controls.OfType(Of Label).FirstOrDefault()?.Text}'?", "Delete Panel", MessageBoxButtons.YesNo)
+            Dim result = MessageBox.Show($"Do you want to delete the selected car with name '{selectedPanel.Controls.OfType(Of Label).FirstOrDefault()?.Text}'?", "Delete Car", MessageBoxButtons.YesNo)
             If result = DialogResult.Yes Then
-                Panel3.Controls.Remove(selectedPanel)
-                selectedPanel = Nothing
+                Try
+                    ' Remove the selected panel from the UI
+                    Panel3.Controls.Remove(selectedPanel)
 
-                Dim currentYPosition As Integer = 0
-                For Each control As Control In Panel3.Controls
-                    If TypeOf control Is Panel Then
-                        Dim panel As Panel = CType(control, Panel)
-                        panel.Location = New Point(panel.Location.X, currentYPosition)
-                        currentYPosition += panel.Height + 10
-                        panel.Invalidate()
+                    ' Remove the car data from the shared data structure
+                    Dim carData As Object() = TryCast(selectedPanel.Tag, Object())
+                    If carData IsNot Nothing Then
+                        GlobalData.CarsList.Remove(carData)
                     End If
-                Next
 
+                    ' Notify other forms about the change
+                    GlobalData.NotifyDataChanged()
+
+                    ' Reset the selected panel
+                    selectedPanel = Nothing
+
+                    ' Reorganize the remaining panels
+                    Dim currentYPosition As Integer = 0
+                    For Each control As Control In Panel3.Controls
+                        If TypeOf control Is Panel Then
+                            Dim panel As Panel = CType(control, Panel)
+                            panel.Location = New Point(panel.Location.X, currentYPosition)
+                            currentYPosition += panel.Height + 10
+                            panel.Invalidate()
+                        End If
+                    Next
+
+                    MessageBox.Show("Car deleted successfully!")
+                Catch ex As Exception
+                    MessageBox.Show($"Error deleting car: {ex.Message}")
+                End Try
             End If
         Else
-            MessageBox.Show("No panel selected for deletion.")
+            MessageBox.Show("No car selected for deletion.")
         End If
     End Sub
+
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
         Dim panel As Panel = CType(sender, Panel)

@@ -1,16 +1,12 @@
 ﻿Public Class UserManagement
     Private Sub UserManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         LoadUsers()
         AddHandler GlobalData.DataChanged, AddressOf LoadUsers
     End Sub
 
     Private Sub LoadUsers()
         Panel1.Controls.Clear()
-
-        If GlobalData.UsersList Is Nothing OrElse GlobalData.UsersList.Count = 0 Then
-            MessageBox.Show("No user data available to display.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
 
         Dim titles As String() = {"Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Car Rented", "Start Date", "End Date"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
@@ -80,6 +76,8 @@
             Return "Error"
         End Try
     End Function
+
+
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

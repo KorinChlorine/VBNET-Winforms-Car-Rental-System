@@ -138,7 +138,6 @@ Public Class LoginForm
         Dim passRegister As String = TextBox4.Text
         Dim confirmPass As String = TextBox5.Text
 
-
         If passRegister = confirmPass Then
             Try
                 ' Check if user already exists in GlobalData
@@ -162,14 +161,16 @@ Public Class LoginForm
 
                         ' Also register in GlobalData
                         GlobalData.RegisterUser(emailRegister, passRegister)
-                        GlobalData.UsersList.Add(New Object() {emailRegister, passRegister})
+                        ' Ensure password is stored in userData(6)
+                        GlobalData.UsersList.Add(New Object() {"N/A", "N/A", "N/A", "N/A", "N/A", emailRegister, passRegister})
                         MessageBox.Show("Registration successful!")
                     End Using
                 End Using
             Catch ex As Exception
                 ' If database fails, just register in GlobalData
                 If GlobalData.RegisterUser(emailRegister, passRegister) Then
-                    GlobalData.UsersList.Add(New Object() {emailRegister, passRegister})
+                    ' Ensure password is stored in userData(6)
+                    GlobalData.UsersList.Add(New Object() {"N/A", "N/A", "N/A", "N/A", "N/A", emailRegister, passRegister})
                     MessageBox.Show("Registration successful!")
                 Else
                     MessageBox.Show("User already exists!")
@@ -180,11 +181,12 @@ Public Class LoginForm
         End If
     End Sub
 
+
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Panel1.BackgroundImage = My.Resources.Login
         Button5.Visible = False
         TextBox3.Visible = False
-        TextBox4.Visible = False
+        TextBox4.Visible = False  'password
         TextBox1.Visible = True
         TextBox2.Visible = True
         TextBox5.Visible = False
@@ -194,6 +196,10 @@ Public Class LoginForm
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub AxWindowsMediaPlayer1_Enter(sender As Object, e As EventArgs) Handles AxWindowsMediaPlayer1.Enter
 
     End Sub
 End Class
