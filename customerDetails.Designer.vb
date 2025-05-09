@@ -43,7 +43,7 @@ Partial Class customerDetails
         Me.TextBox1.Font = New System.Drawing.Font("Sans Serif Collection", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(138, 120)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(318, 27)
+        Me.TextBox1.Size = New System.Drawing.Size(318, 29)
         Me.TextBox1.TabIndex = 0
         '
         'TextBox2
@@ -52,7 +52,7 @@ Partial Class customerDetails
         Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.Location = New System.Drawing.Point(138, 181)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(318, 27)
+        Me.TextBox2.Size = New System.Drawing.Size(318, 29)
         Me.TextBox2.TabIndex = 1
         '
         'TextBox3
@@ -61,7 +61,7 @@ Partial Class customerDetails
         Me.TextBox3.Font = New System.Drawing.Font("Sans Serif Collection", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox3.Location = New System.Drawing.Point(138, 242)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(318, 27)
+        Me.TextBox3.Size = New System.Drawing.Size(318, 29)
         Me.TextBox3.TabIndex = 2
         '
         'DateTimePicker1

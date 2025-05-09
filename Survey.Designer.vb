@@ -52,6 +52,8 @@ Partial Class Survey
         Me.surveyQ5btn5 = New System.Windows.Forms.RadioButton()
         Me.surveyQ5btn2 = New System.Windows.Forms.RadioButton()
         Me.surveyQ5btn1 = New System.Windows.Forms.RadioButton()
+        Me.ButtonSubmit = New System.Windows.Forms.Button()
+        Me.ButtonBack = New System.Windows.Forms.Button()
         Me.surveyQ1.SuspendLayout()
         Me.surveyQ2.SuspendLayout()
         Me.surveyQ3.SuspendLayout()
@@ -409,6 +411,26 @@ Partial Class Survey
         Me.surveyQ5btn1.Text = "1"
         Me.surveyQ5btn1.UseVisualStyleBackColor = True
         '
+        'ButtonSubmit
+        '
+        Me.ButtonSubmit.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonSubmit.Location = New System.Drawing.Point(74, 529)
+        Me.ButtonSubmit.Name = "ButtonSubmit"
+        Me.ButtonSubmit.Size = New System.Drawing.Size(345, 43)
+        Me.ButtonSubmit.TabIndex = 2
+        Me.ButtonSubmit.UseVisualStyleBackColor = False
+        '
+        'ButtonBack
+        '
+        Me.ButtonBack.BackColor = System.Drawing.Color.Transparent
+        Me.ButtonBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ButtonBack.Location = New System.Drawing.Point(380, 36)
+        Me.ButtonBack.Name = "ButtonBack"
+        Me.ButtonBack.Size = New System.Drawing.Size(86, 34)
+        Me.ButtonBack.TabIndex = 3
+        Me.ButtonBack.UseVisualStyleBackColor = False
+        '
         'Survey
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -416,6 +438,8 @@ Partial Class Survey
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Survey
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(499, 601)
+        Me.Controls.Add(Me.ButtonBack)
+        Me.Controls.Add(Me.ButtonSubmit)
         Me.Controls.Add(Me.surveyQ5)
         Me.Controls.Add(Me.surveyQ4)
         Me.Controls.Add(Me.surveyQ3)
@@ -468,4 +492,6 @@ Partial Class Survey
     Friend WithEvents surveyQ5btn5 As RadioButton
     Friend WithEvents surveyQ5btn2 As RadioButton
     Friend WithEvents surveyQ5btn1 As RadioButton
+    Friend WithEvents ButtonSubmit As Button
+    Friend WithEvents ButtonBack As Button
 End Class
