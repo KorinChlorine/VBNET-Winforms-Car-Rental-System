@@ -270,7 +270,7 @@
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -403,6 +403,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Survey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NEWRegister.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NEWLogin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -27,7 +27,11 @@ Partial Class LoginForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -39,10 +43,9 @@ Partial Class LoginForm
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -62,10 +65,23 @@ Partial Class LoginForm
         Me.Panel4.Size = New System.Drawing.Size(577, 48)
         Me.Panel4.TabIndex = 4
         '
+        'AxWindowsMediaPlayer1
+        '
+        Me.AxWindowsMediaPlayer1.CausesValidation = False
+        Me.AxWindowsMediaPlayer1.Enabled = True
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(-307, -80)
+        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
+        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(1479, 921)
+        Me.AxWindowsMediaPlayer1.TabIndex = 0
+        '
         'Panel1
         '
-        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Register1
+        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWRegister
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.Button7)
+        Me.Panel1.Controls.Add(Me.Button6)
+        Me.Panel1.Controls.Add(Me.Panel5)
         Me.Panel1.Controls.Add(Me.TextBox4)
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.Button5)
@@ -82,6 +98,40 @@ Partial Class LoginForm
         Me.Panel1.Size = New System.Drawing.Size(612, 747)
         Me.Panel1.TabIndex = 1
         '
+        'Button7
+        '
+        Me.Button7.BackColor = System.Drawing.Color.Transparent
+        Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button7.FlatAppearance.BorderSize = 0
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.ForeColor = System.Drawing.Color.Transparent
+        Me.Button7.Location = New System.Drawing.Point(588, 3)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(18, 25)
+        Me.Button7.TabIndex = 15
+        Me.Button7.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.Transparent
+        Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.ForeColor = System.Drawing.Color.Transparent
+        Me.Button6.Location = New System.Drawing.Point(564, 3)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(18, 25)
+        Me.Button6.TabIndex = 14
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.Transparent
+        Me.Panel5.Location = New System.Drawing.Point(-865, 0)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1412, 28)
+        Me.Panel5.TabIndex = 13
+        '
         'TextBox4
         '
         Me.TextBox4.BackColor = System.Drawing.Color.White
@@ -90,7 +140,7 @@ Partial Class LoginForm
         Me.TextBox4.ForeColor = System.Drawing.Color.Black
         Me.TextBox4.Location = New System.Drawing.Point(125, 340)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(400, 43)
+        Me.TextBox4.Size = New System.Drawing.Size(400, 40)
         Me.TextBox4.TabIndex = 12
         Me.TextBox4.Text = "Password"
         '
@@ -102,7 +152,7 @@ Partial Class LoginForm
         Me.TextBox2.ForeColor = System.Drawing.Color.Black
         Me.TextBox2.Location = New System.Drawing.Point(126, 349)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(400, 43)
+        Me.TextBox2.Size = New System.Drawing.Size(400, 40)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = "Password"
         '
@@ -140,7 +190,7 @@ Partial Class LoginForm
         Me.TextBox5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.TextBox5.Location = New System.Drawing.Point(123, 411)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(400, 43)
+        Me.TextBox5.Size = New System.Drawing.Size(400, 40)
         Me.TextBox5.TabIndex = 9
         Me.TextBox5.Text = "Confirm Password"
         '
@@ -152,7 +202,7 @@ Partial Class LoginForm
         Me.TextBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.TextBox3.Location = New System.Drawing.Point(126, 268)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(400, 43)
+        Me.TextBox3.Size = New System.Drawing.Size(400, 40)
         Me.TextBox3.TabIndex = 7
         Me.TextBox3.Text = "Email"
         '
@@ -215,19 +265,9 @@ Partial Class LoginForm
         Me.TextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.TextBox1.Location = New System.Drawing.Point(126, 271)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(400, 43)
+        Me.TextBox1.Size = New System.Drawing.Size(400, 40)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Email"
-        '
-        'AxWindowsMediaPlayer1
-        '
-        Me.AxWindowsMediaPlayer1.CausesValidation = False
-        Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(-307, -80)
-        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
-        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(1479, 921)
-        Me.AxWindowsMediaPlayer1.TabIndex = 0
         '
         'LoginForm
         '
@@ -235,18 +275,22 @@ Partial Class LoginForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1476, 743)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.AxWindowsMediaPlayer1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "LoginForm"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         Me.Panel2.ResumeLayout(False)
+        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -266,4 +310,7 @@ Partial Class LoginForm
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Button7 As Button
+    Friend WithEvents Button6 As Button
 End Class

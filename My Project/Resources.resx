@@ -205,4 +205,10 @@
   <data name="Survey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Survey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="NEWLogin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NEWLogin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NEWRegister" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NEWRegister.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

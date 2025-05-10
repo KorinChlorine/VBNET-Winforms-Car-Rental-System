@@ -1,15 +1,49 @@
 ﻿Imports System.IO
+Imports MySql.Data.MySqlClient
 
 Public Class LoginForm
 
-
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        Me.FormBorderStyle = FormBorderStyle.None
+
+
+
+        ' Show login elements
+        Panel1.BackgroundImage = My.Resources.NEWLogin
+        TextBox1.Visible = True  ' Login Email
+        TextBox2.Visible = True  ' Login Password
+        Button3.Visible = True   ' Login Button
+        CheckBox1.Visible = True ' Show Password
+
+        ' Hide register elements
+        TextBox3.Visible = False ' Register Email
+        TextBox4.Visible = False ' Register Password
+        TextBox5.Visible = False ' Confirm Password
+        Button4.Visible = False  ' Register Submit
+        Button5.Visible = False  ' Back to Login
+
         'Play video
         AxWindowsMediaPlayer1.URL = Path.Combine(Application.StartupPath, "video.mp4")
         AxWindowsMediaPlayer1.settings.setMode("loop", True)
         AxWindowsMediaPlayer1.Ctlcontrols.play()
 
+        TextBox1.Text = "Enter Email"
+        TextBox1.ForeColor = Color.Gray
+
+        TextBox3.Text = "Enter Email"
+        TextBox3.ForeColor = Color.Gray
+
+        TextBox5.Text = "Confirm Password"
+        TextBox5.ForeColor = Color.Gray
+
+        TextBox2.Text = "Enter Password"
+        TextBox2.ForeColor = Color.Gray
+
+        TextBox4.Text = "Enter Password"
+        TextBox4.ForeColor = Color.Gray
     End Sub
+
 
     Private Sub LoginForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         AxWindowsMediaPlayer1.settings.setMode("loop", True)
@@ -19,7 +53,7 @@ Public Class LoginForm
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Panel1.BackgroundImage = My.Resources.Register1
+        Panel1.BackgroundImage = My.Resources.NEWRegister
         TextBox1.Visible = False
         TextBox2.Visible = False
         TextBox3.Visible = True
@@ -153,7 +187,7 @@ Public Class LoginForm
 
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Panel1.BackgroundImage = My.Resources.Login
+        Panel1.BackgroundImage = My.Resources.NEWLogin
         Button5.Visible = False
         TextBox3.Visible = False
         TextBox4.Visible = False  'password
@@ -163,6 +197,22 @@ Public Class LoginForm
         Button3.Visible = True
         Button4.Visible = False
         CheckBox1.Visible = True
+
+        If CheckBox1.Checked = False Then
+            TextBox2.PasswordChar = Char.MinValue
+            TextBox1.Text = "Enter Email"
+            TextBox1.ForeColor = Color.Gray
+            TextBox2.Text = "Enter Password"
+            TextBox2.ForeColor = Color.Gray
+        End If
+        TextBox5.PasswordChar = Char.MinValue
+        TextBox4.PasswordChar = Char.MinValue
+        TextBox4.Text = "Enter Password"
+        TextBox4.ForeColor = Color.Gray
+        TextBox3.Text = "Enter Email"
+        TextBox3.ForeColor = Color.Gray
+        TextBox5.Text = "Confirm Password"
+        TextBox5.ForeColor = Color.Gray
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
@@ -171,5 +221,113 @@ Public Class LoginForm
 
     Private Sub AxWindowsMediaPlayer1_Enter(sender As Object, e As EventArgs) Handles AxWindowsMediaPlayer1.Enter
 
+    End Sub
+
+    ' Variables to track dragging
+    Private isDragging As Boolean = False
+    Private dragStartPoint As Point
+
+    Private Sub Panel5_MouseDown(sender As Object, e As MouseEventArgs) Handles Panel5.MouseDown
+        If e.Button = MouseButtons.Left Then
+            isDragging = True
+            dragStartPoint = New Point(e.X, e.Y)
+        End If
+    End Sub
+
+    Private Sub Panel5_MouseMove(sender As Object, e As MouseEventArgs) Handles Panel5.MouseMove
+        If isDragging Then
+            Dim currentScreenPos As Point = PointToScreen(e.Location)
+            Me.Location = New Point(currentScreenPos.X - dragStartPoint.X, currentScreenPos.Y - dragStartPoint.Y)
+        End If
+    End Sub
+
+    Private Sub Panel5_MouseUp(sender As Object, e As MouseEventArgs) Handles Panel5.MouseUp
+        isDragging = False
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Close()
+    End Sub
+
+    ' Handle the click event to clear placeholder text when the user clicks on the textbox
+    Private Sub TextBox1_Click(sender As Object, e As EventArgs) Handles TextBox1.Click
+        If TextBox1.Text = "Enter Email" Then
+            TextBox1.Text = ""
+            TextBox1.ForeColor = Color.Black  ' Set text color to black for user input
+        End If
+    End Sub
+
+    Private Sub TextBox2_Click(sender As Object, e As EventArgs) Handles TextBox2.Click
+        If TextBox2.Text = "Enter Password" Then
+            TextBox2.Text = ""
+            TextBox2.ForeColor = Color.Black  ' Set text color to black for user input
+            TextBox2.PasswordChar = "*"c  ' Show asterisks for password input
+        End If
+    End Sub
+
+    Private Sub TextBox3_Click(sender As Object, e As EventArgs) Handles TextBox3.Click
+        If TextBox3.Text = "Enter Email" Then
+            TextBox3.Text = ""
+            TextBox3.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub TextBox4_Click(sender As Object, e As EventArgs) Handles TextBox4.Click
+        If TextBox4.Text = "Enter Password" Then
+            TextBox4.Text = ""
+            TextBox4.ForeColor = Color.Black
+            TextBox4.PasswordChar = "*"c
+        End If
+    End Sub
+
+    Private Sub TextBox5_Click(sender As Object, e As EventArgs) Handles TextBox5.Click
+        If TextBox5.Text = "Confirm Password" Then
+            TextBox5.Text = ""
+            TextBox5.ForeColor = Color.Black
+            TextBox5.PasswordChar = "*"c
+        End If
+    End Sub
+
+    ' Handle the leave event to restore the placeholder text if the textbox is empty
+    Private Sub TextBox1_Leave(sender As Object, e As EventArgs) Handles TextBox1.Leave
+        If TextBox1.Text = "" Then
+            TextBox1.Text = "Enter Email"
+            TextBox1.ForeColor = Color.Gray  ' Set text color back to gray for placeholder
+        End If
+    End Sub
+
+    Private Sub TextBox2_Leave(sender As Object, e As EventArgs) Handles TextBox2.Leave
+        If TextBox2.Text = "" Then
+            TextBox2.Text = "Enter Password"
+            TextBox2.ForeColor = Color.Gray  ' Set text color back to gray for placeholder
+            TextBox2.PasswordChar = Char.MinValue ' Show plain text when placeholder is active
+        End If
+    End Sub
+
+    Private Sub TextBox3_Leave(sender As Object, e As EventArgs) Handles TextBox3.Leave
+        If TextBox3.Text = "" Then
+            TextBox3.Text = "Enter Email"
+            TextBox3.ForeColor = Color.Gray
+        End If
+    End Sub
+
+    Private Sub TextBox4_Leave(sender As Object, e As EventArgs) Handles TextBox4.Leave
+        If TextBox4.Text = "" Then
+            TextBox4.Text = "Enter Password"
+            TextBox4.ForeColor = Color.Gray
+            TextBox4.PasswordChar = Char.MinValue
+        End If
+    End Sub
+
+    Private Sub TextBox5_Leave(sender As Object, e As EventArgs) Handles TextBox5.Leave
+        If TextBox5.Text = "" Then
+            TextBox5.Text = "Confirm Password"
+            TextBox5.ForeColor = Color.Gray
+            TextBox5.PasswordChar = Char.MinValue
+        End If
     End Sub
 End Class
