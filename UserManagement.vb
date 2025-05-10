@@ -1,16 +1,13 @@
 ﻿Public Class UserManagement
     Private Sub UserManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         LoadUsers()
         AddHandler GlobalData.DataChanged, AddressOf LoadUsers
     End Sub
 
     Private Sub LoadUsers()
         Panel1.Controls.Clear()
-
-        If GlobalData.UsersList Is Nothing OrElse GlobalData.UsersList.Count = 0 Then
-            MessageBox.Show("No user data available to display.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
+        Panel1.AutoScroll = True ' Enable AutoScroll
 
         Dim titles As String() = {"Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Car Rented", "Start Date", "End Date"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
@@ -24,14 +21,14 @@
         ' Header row
         For i As Integer = 0 To titles.Length - 1
             Dim titleLabel As New Label With {
-                .Text = titles(i),
-                .Size = New Size(columnWidth, rowHeight),
-                .Location = New Point(padding + (i * columnWidth), padding),
-                .Font = titleFont,
-                .BackColor = Color.LightGray,
-                .TextAlign = ContentAlignment.MiddleCenter,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
+            .Text = titles(i),
+            .Size = New Size(columnWidth, rowHeight),
+            .Location = New Point(padding + (i * columnWidth), padding),
+            .Font = titleFont,
+            .BackColor = Color.LightGray,
+            .TextAlign = ContentAlignment.MiddleCenter,
+            .BorderStyle = BorderStyle.FixedSingle
+        }
             Panel1.Controls.Add(titleLabel)
         Next
 
@@ -42,19 +39,23 @@
                 Dim detailText As String = GetUserDetail(userData, i)
 
                 Dim detailLabel As New Label With {
-                    .Text = detailText,
-                    .Size = New Size(columnWidth, rowHeight),
-                    .Location = New Point(padding + (i * columnWidth), currentY),
-                    .Font = detailFont,
-                    .BackColor = Color.White,
-                    .TextAlign = ContentAlignment.MiddleCenter,
-                    .BorderStyle = BorderStyle.FixedSingle
-                }
+                .Text = detailText,
+                .Size = New Size(columnWidth, rowHeight),
+                .Location = New Point(padding + (i * columnWidth), currentY),
+                .Font = detailFont,
+                .BackColor = Color.White,
+                .TextAlign = ContentAlignment.MiddleCenter,
+                .BorderStyle = BorderStyle.FixedSingle
+            }
                 Panel1.Controls.Add(detailLabel)
             Next
             currentY += rowHeight
         Next
+
+        ' Update AutoScrollMinSize to ensure scrollbars appear
+        Panel1.AutoScrollMinSize = New Size(0, currentY)
     End Sub
+
     Private Function GetUserDetail(userData As Object(), index As Integer) As String
         If index >= userData.Length Then
             Return "N/A" ' or ""
@@ -82,6 +83,8 @@
     End Function
 
 
+
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
         Management.Show()
@@ -90,5 +93,9 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
         CarsManagement.Show()
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

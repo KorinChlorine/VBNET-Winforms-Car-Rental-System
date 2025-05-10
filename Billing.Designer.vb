@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Billing
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,18 @@ Partial Class Billing
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.btnCredit = New System.Windows.Forms.RadioButton()
+        Me.btnBank = New System.Windows.Forms.RadioButton()
+        Me.btnDigitalWallets = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'Button9
@@ -37,20 +46,166 @@ Partial Class Billing
         Me.Button9.TabIndex = 10
         Me.Button9.UseVisualStyleBackColor = False
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.Transparent
+        Me.Button1.Location = New System.Drawing.Point(12, 60)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(64, 39)
+        Me.Button1.TabIndex = 11
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(12, 117)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(64, 52)
+        Me.Button2.TabIndex = 12
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Transparent
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(12, 175)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(64, 41)
+        Me.Button3.TabIndex = 13
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(12, 232)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(64, 40)
+        Me.Button4.TabIndex = 14
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.Transparent
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.Button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Location = New System.Drawing.Point(12, 292)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(64, 47)
+        Me.Button5.TabIndex = 15
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.Transparent
+        Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.Button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Location = New System.Drawing.Point(12, 513)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(64, 53)
+        Me.Button6.TabIndex = 16
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'btnCredit
+        '
+        Me.btnCredit.AutoSize = True
+        Me.btnCredit.BackColor = System.Drawing.Color.Transparent
+        Me.btnCredit.FlatAppearance.BorderSize = 0
+        Me.btnCredit.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.btnCredit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnCredit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnCredit.Location = New System.Drawing.Point(126, 259)
+        Me.btnCredit.Name = "btnCredit"
+        Me.btnCredit.Size = New System.Drawing.Size(14, 13)
+        Me.btnCredit.TabIndex = 17
+        Me.btnCredit.TabStop = True
+        Me.btnCredit.UseVisualStyleBackColor = False
+        '
+        'btnBank
+        '
+        Me.btnBank.AutoSize = True
+        Me.btnBank.BackColor = System.Drawing.Color.Transparent
+        Me.btnBank.FlatAppearance.BorderSize = 0
+        Me.btnBank.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.btnBank.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnBank.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnBank.Location = New System.Drawing.Point(126, 346)
+        Me.btnBank.Name = "btnBank"
+        Me.btnBank.Size = New System.Drawing.Size(14, 13)
+        Me.btnBank.TabIndex = 18
+        Me.btnBank.TabStop = True
+        Me.btnBank.UseVisualStyleBackColor = False
+        '
+        'btnDigitalWallets
+        '
+        Me.btnDigitalWallets.AutoSize = True
+        Me.btnDigitalWallets.BackColor = System.Drawing.Color.Transparent
+        Me.btnDigitalWallets.FlatAppearance.BorderSize = 0
+        Me.btnDigitalWallets.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.btnDigitalWallets.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.btnDigitalWallets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.btnDigitalWallets.Location = New System.Drawing.Point(126, 441)
+        Me.btnDigitalWallets.Name = "btnDigitalWallets"
+        Me.btnDigitalWallets.Size = New System.Drawing.Size(14, 13)
+        Me.btnDigitalWallets.TabIndex = 19
+        Me.btnDigitalWallets.TabStop = True
+        Me.btnDigitalWallets.UseVisualStyleBackColor = False
+        '
         'Billing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.billing_new
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1126, 661)
+        Me.Controls.Add(Me.btnDigitalWallets)
+        Me.Controls.Add(Me.btnBank)
+        Me.Controls.Add(Me.btnCredit)
+        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button9)
         Me.DoubleBuffered = True
         Me.Name = "Billing"
         Me.Text = "Billing"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Button9 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
+    Friend WithEvents btnCredit As RadioButton
+    Friend WithEvents btnBank As RadioButton
+    Friend WithEvents btnDigitalWallets As RadioButton
 End Class

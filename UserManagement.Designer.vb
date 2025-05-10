@@ -31,11 +31,13 @@ Partial Class UserManagement
         '
         'Panel1
         '
+        Me.Panel1.AutoScroll = True
+        Me.Panel1.AutoSize = True
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(40, 114)
+        Me.Panel1.Location = New System.Drawing.Point(44, 114)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1181, 518)
+        Me.Panel1.Size = New System.Drawing.Size(1177, 518)
         Me.Panel1.TabIndex = 1
         '
         'Label1
@@ -88,6 +90,7 @@ Partial Class UserManagement
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
