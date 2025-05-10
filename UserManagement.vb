@@ -6,37 +6,40 @@
 
     Private Sub LoadUsers()
         FlowLayoutPanel1.Controls.Clear()
-        FlowLayoutPanel2.Controls.Clear()
 
-        Dim titles As String() = {"Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Car Rented", "Start Date", "End Date"}
+        ' Updated titles array with new headers
+        Dim titles As String() = {"Index", "Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Car ID", "Car Name", "Start Date", "End Date", "Date Returned", "Current Wallet"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
-        Dim padding As Integer = 10
-        Dim totalWidth As Integer = FlowLayoutPanel2.Width - 20 ' For scrollbar margin
-        Dim columnWidth As Integer = totalWidth \ titles.Length
         Dim rowHeight As Integer = 30
+        Dim totalWidth As Integer = FlowLayoutPanel1.Width - 1
+        Dim columnWidth As Integer = totalWidth \ titles.Length
 
         ' === HEADER ROW ===
         Dim headerPanel As New Panel With {
             .Height = rowHeight,
             .Width = totalWidth,
-            .BackColor = Color.LightGray
+            .BackColor = Color.White,
+            .Margin = New Padding(0)
         }
 
         For i As Integer = 0 To titles.Length - 1
             Dim label As New Label With {
                 .Text = titles(i),
                 .Font = titleFont,
+                .ForeColor = Color.Black,
                 .Size = New Size(columnWidth, rowHeight),
                 .TextAlign = ContentAlignment.MiddleCenter,
                 .BorderStyle = BorderStyle.FixedSingle,
-                .Location = New Point(i * columnWidth, 0)
+                .BackColor = Color.White,
+                .Location = New Point(i * columnWidth, 0),
+                .Margin = New Padding(0)
             }
             headerPanel.Controls.Add(label)
         Next
 
-        FlowLayoutPanel2.Controls.Add(headerPanel)
+        FlowLayoutPanel1.Controls.Add(headerPanel)
 
         ' === USER DATA ROWS ===
         If GlobalData.UsersList.Count = 0 Then
@@ -46,30 +49,54 @@
                 .Font = detailFont,
                 .BackColor = Color.LightYellow,
                 .TextAlign = ContentAlignment.MiddleCenter,
-                .BorderStyle = BorderStyle.FixedSingle
+                .BorderStyle = BorderStyle.FixedSingle,
+                .MinimumSize = New Size(100, rowHeight),
+                .AutoSize = False
             }
             FlowLayoutPanel1.Controls.Add(noDataLabel)
         Else
+            Dim index As Integer = 1
             For Each userData As Object() In GlobalData.UsersList
                 Dim rowPanel As New Panel With {
                     .Height = rowHeight,
                     .Width = totalWidth,
-                    .BackColor = Color.White
+                    .BackColor = Color.Transparent,
+                    .Margin = New Padding(0),
+                    .ForeColor = Color.White
                 }
 
-                For i As Integer = 0 To titles.Length - 1
-                    Dim detailLabel As New Label With {
+                ' Add index column
+                Dim indexLabel As New Label With {
+                    .Text = index.ToString(),
+                    .Font = detailFont,
+                    .ForeColor = Color.White,
+                    .Size = New Size(columnWidth, rowHeight),
+                    .TextAlign = ContentAlignment.MiddleCenter,
+                    .BorderStyle = BorderStyle.FixedSingle,
+                    .BackColor = Color.Transparent,
+                    .Location = New Point(0, 0),
+                    .Margin = New Padding(0)
+                }
+                rowPanel.Controls.Add(indexLabel)
+
+                ' Add other user details
+                For i As Integer = 0 To titles.Length - 2 ' Skip the index column
+                    Dim label As New Label With {
                         .Text = GetUserDetail(userData, i),
                         .Font = detailFont,
+                        .ForeColor = Color.White,
                         .Size = New Size(columnWidth, rowHeight),
                         .TextAlign = ContentAlignment.MiddleCenter,
                         .BorderStyle = BorderStyle.FixedSingle,
-                        .Location = New Point(i * columnWidth, 0)
+                        .BackColor = Color.Transparent,
+                        .Location = New Point((i + 1) * columnWidth, 0), ' Shift by 1 for the index column
+                        .Margin = New Padding(0)
                     }
-                    rowPanel.Controls.Add(detailLabel)
+                    rowPanel.Controls.Add(label)
                 Next
 
                 FlowLayoutPanel1.Controls.Add(rowPanel)
+                index += 1
             Next
         End If
     End Sub
@@ -89,10 +116,14 @@
                 Case 5 : Return If(userData(5)?.ToString(), "")
                 Case 6 : Return If(userData(6)?.ToString(), "•••••")
                 Case 7 : Return If(Convert.ToBoolean(userData(7)), "✓", "✗")
-                Case 8 : Return If(Convert.ToBoolean(userData(8)), "Booked", "Free")
+                Case 8 : Return If(Convert.ToBoolean(userData(8)), "Rented", "Free")
                 Case 9 : Return If(userData(9)?.ToString(), "")
-                Case 10 : Return If(userData(10) IsNot Nothing AndAlso Not String.IsNullOrEmpty(userData(10).ToString()), Convert.ToDateTime(userData(10)).ToShortDateString(), "")
+                Case 10 : Return If(userData(10)?.ToString(), "") ' Car Name - You'll need to fetch this from car data
                 Case 11 : Return If(userData(11) IsNot Nothing AndAlso Not String.IsNullOrEmpty(userData(11).ToString()), Convert.ToDateTime(userData(11)).ToShortDateString(), "")
+                Case 12 : Return If(userData(12) IsNot Nothing AndAlso Not String.IsNullOrEmpty(userData(12).ToString()), Convert.ToDateTime(userData(12)).ToShortDateString(), "")
+                ' New fields for Date Returned and Current Wallet
+                Case 13 : Return If(userData(13) IsNot Nothing, Convert.ToDateTime(userData(13)).ToShortDateString(), "")
+                Case 14 : Return If(userData(14) IsNot Nothing, userData(14).ToString(), "0")
                 Case Else : Return ""
             End Select
         Catch ex As Exception

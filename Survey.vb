@@ -1,4 +1,5 @@
 ﻿Public Class Survey
+    Dim userData(11) As Object
     Private Sub Survey_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Assign values to radio buttons using the Tag property
         ' Question 1
@@ -88,9 +89,19 @@
         Dim maxScore As Integer = 5 * 5 ' 5 questions, each with a max score of 5
         Dim percentage As Double = (totalScore / maxScore) * 100
 
-        ' Display the appropriate message
         If percentage >= 60 Then
             MessageBox.Show("You are allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Dim currentUserIndex As Integer = 0 ' Or wherever your current user is
+            If currentUserIndex < GlobalData.UsersList.Count Then
+                Dim userData As Object() = GlobalData.UsersList(currentUserIndex)
+                userData(7) = GlobalData.IsGoodRecord
+                GlobalData.UsersList(currentUserIndex) = userData
+                GlobalData.NotifyDataChanged()
+            Else
+                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+
         Else
             MessageBox.Show("You are not allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If

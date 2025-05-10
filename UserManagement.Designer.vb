@@ -24,7 +24,6 @@ Partial Class UserManagement
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
@@ -52,24 +51,14 @@ Partial Class UserManagement
         Me.Button2.TabIndex = 50
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'FlowLayoutPanel2
-        '
-        Me.FlowLayoutPanel2.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(12, 89)
-        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(1240, 44)
-        Me.FlowLayoutPanel2.TabIndex = 52
-        Me.FlowLayoutPanel2.WrapContents = False
-        '
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 131)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(38, 96)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1240, 514)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1187, 549)
         Me.FlowLayoutPanel1.TabIndex = 51
         Me.FlowLayoutPanel1.WrapContents = False
         '
@@ -77,10 +66,9 @@ Partial Class UserManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementUsers
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementUsers1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.FlowLayoutPanel2)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -93,6 +81,5 @@ Partial Class UserManagement
     End Sub
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
-    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class

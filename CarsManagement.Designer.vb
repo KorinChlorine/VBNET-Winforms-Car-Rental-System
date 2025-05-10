@@ -25,7 +25,6 @@ Partial Class CarsManagement
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
         '
         'Button2
@@ -57,30 +56,19 @@ Partial Class CarsManagement
         Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 130)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(46, 94)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1240, 514)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1172, 550)
         Me.FlowLayoutPanel1.TabIndex = 49
         Me.FlowLayoutPanel1.WrapContents = False
-        '
-        'FlowLayoutPanel2
-        '
-        Me.FlowLayoutPanel2.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(12, 88)
-        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(1240, 44)
-        Me.FlowLayoutPanel2.TabIndex = 50
-        Me.FlowLayoutPanel2.WrapContents = False
         '
         'CarsManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementCars
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementCars1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.FlowLayoutPanel2)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button2)
@@ -94,5 +82,4 @@ Partial Class CarsManagement
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
 End Class

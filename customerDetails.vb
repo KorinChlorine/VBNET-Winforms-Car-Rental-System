@@ -10,9 +10,7 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Save customer details before proceeding to Survey
-        SaveCustomerDetails()
-        Me.Close()
+        Me.Hide()
         Survey.Show()
     End Sub
 

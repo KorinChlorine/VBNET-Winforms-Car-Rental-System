@@ -10,11 +10,21 @@
 
 
     ' New properties for user session management
+    Public UserFullName As String = ""
     Public CurrentUserEmail As String = ""
     Public CurrentUserPassword As String = ""
+    Public Age As Integer
+    Public Address As String = ""
+    Public Birthday As Date = Date.Today
+    Public Gender As String = ""
+    Public IsGoodRecord As Boolean = True
+    Public IsBooked As Boolean = False
+    Public CarRented As String = ""
+    Public RentalStartDate As Date? = Nothing
+    Public RentalEndDate As Date? = Nothing
     Public IsLoggedIn As Boolean = False
     Public UserRole As String = ""
-    Public UserFullName As String = ""
+
 
     ' Existing methods from your code
     Public Sub NotifyDataChanged()
