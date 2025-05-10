@@ -31,7 +31,6 @@ Partial Class LoginForm
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -43,6 +42,7 @@ Partial Class LoginForm
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -79,9 +79,9 @@ Partial Class LoginForm
         '
         Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWRegister
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.Panel5)
         Me.Panel1.Controls.Add(Me.Button7)
         Me.Panel1.Controls.Add(Me.Button6)
-        Me.Panel1.Controls.Add(Me.Panel5)
         Me.Panel1.Controls.Add(Me.TextBox4)
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.Button5)
@@ -123,14 +123,6 @@ Partial Class LoginForm
         Me.Button6.Size = New System.Drawing.Size(18, 25)
         Me.Button6.TabIndex = 14
         Me.Button6.UseVisualStyleBackColor = False
-        '
-        'Panel5
-        '
-        Me.Panel5.BackColor = System.Drawing.Color.Transparent
-        Me.Panel5.Location = New System.Drawing.Point(-865, 0)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1412, 28)
-        Me.Panel5.TabIndex = 13
         '
         'TextBox4
         '
@@ -269,6 +261,14 @@ Partial Class LoginForm
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Email"
         '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.Transparent
+        Me.Panel5.Location = New System.Drawing.Point(-872, 0)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1419, 28)
+        Me.Panel5.TabIndex = 13
+        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -310,7 +310,7 @@ Partial Class LoginForm
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents Panel5 As Panel
     Friend WithEvents Button7 As Button
     Friend WithEvents Button6 As Button
+    Friend WithEvents Panel5 As Panel
 End Class
