@@ -30,7 +30,6 @@ Partial Class homeForm
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -67,9 +66,9 @@ Partial Class homeForm
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(1000, 12)
+        Me.Button3.Location = New System.Drawing.Point(1000, 32)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(262, 153)
+        Me.Button3.Size = New System.Drawing.Size(262, 133)
         Me.Button3.TabIndex = 2
         Me.Button3.UseVisualStyleBackColor = False
         '
@@ -119,25 +118,13 @@ Partial Class homeForm
         Me.Button6.TabIndex = 6
         Me.Button6.UseVisualStyleBackColor = False
         '
-        'Button7
-        '
-        Me.Button7.BackColor = System.Drawing.Color.Transparent
-        Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button7.FlatAppearance.BorderSize = 0
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(12, 307)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(73, 47)
-        Me.Button7.TabIndex = 7
-        Me.Button7.UseVisualStyleBackColor = False
-        '
         'Button8
         '
         Me.Button8.BackColor = System.Drawing.Color.Transparent
         Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(12, 360)
+        Me.Button8.Location = New System.Drawing.Point(12, 288)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(73, 47)
         Me.Button8.TabIndex = 8
@@ -183,14 +170,13 @@ Partial Class homeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Main_Menu3
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWHomePage
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.Controls.Add(Me.Button12)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
@@ -214,7 +200,6 @@ Partial Class homeForm
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
-    Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button

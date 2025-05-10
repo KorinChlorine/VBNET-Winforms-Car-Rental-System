@@ -192,6 +192,7 @@ Partial Class Billing
         Me.Controls.Add(Me.Button9)
         Me.DoubleBuffered = True
         Me.Name = "Billing"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Billing"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -81,6 +81,8 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
         Me.Hide()
         rent_a_car.Show()
 
@@ -94,7 +96,6 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Me.Close()
         customerDetails.Show()
     End Sub
 
@@ -134,7 +135,7 @@
         History.Show()
     End Sub
 
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+    Private Sub Button7_Click(sender As Object, e As EventArgs)
         Me.Hide()
         ViewCars.Show()
     End Sub

@@ -5,58 +5,67 @@
     End Sub
 
     Private Sub LoadCars()
-        ' Clear existing controls in Panel1
-        Panel1.Controls.Clear()
+        FlowLayoutPanel1.Controls.Clear()
+        FlowLayoutPanel2.Controls.Clear() ' Clear previous headers
 
-        ' Debug: Check if GlobalData.CarsList has data
         If GlobalData.CarsList Is Nothing OrElse GlobalData.CarsList.Count = 0 Then
             MessageBox.Show("No car data available to display.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Define the titles for the car details
         Dim titles As String() = {"Car Name", "Car ID", "Car Type", "Capacity", "Color", "Daily Price", "Availability", "Body Number", "Plate Number", "Premium"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
-        ' Define padding to prevent labels from touching the borders
-        Dim padding As Integer = 10
-        Dim totalWidth As Integer = Panel1.Width - (2 * padding) ' Adjust for left and right padding
-        Dim columnWidth As Integer = totalWidth \ titles.Length
-        Dim rowHeight As Integer = 30
+        ' Calculate column width based on FlowLayoutPanel2
+        Dim columnWidth As Integer = (FlowLayoutPanel2.Width - 20) \ titles.Length
 
-        ' Create title labels
+        ' Add header to FlowLayoutPanel2
+        Dim headerPanel As New Panel With {
+        .Height = 30,
+        .Width = FlowLayoutPanel2.Width - 20,
+        .BackColor = Color.LightGray
+    }
+
         For i As Integer = 0 To titles.Length - 1
-            Dim titleLabel As New Label With {
+            Dim label As New Label With {
             .Text = titles(i),
-            .Size = New Size(columnWidth, rowHeight),
-            .Location = New Point(padding + (i * columnWidth), padding),
             .Font = titleFont,
-            .BackColor = Color.LightGray,
+            .Size = New Size(columnWidth, 30),
             .TextAlign = ContentAlignment.MiddleCenter,
-            .BorderStyle = BorderStyle.FixedSingle
+            .BorderStyle = BorderStyle.FixedSingle,
+            .Location = New Point(i * columnWidth, 0)
         }
-            Panel1.Controls.Add(titleLabel)
+            headerPanel.Controls.Add(label)
         Next
 
-        ' Create labels for each car's details
-        Dim currentY As Integer = rowHeight + padding
+        FlowLayoutPanel2.Controls.Add(headerPanel)
+
+        ' Create one row per car in FlowLayoutPanel1
         For Each carData As Object() In GlobalData.CarsList
+            Dim rowPanel As New Panel With {
+            .Height = 30,
+            .Width = FlowLayoutPanel1.Width - 20,
+            .BackColor = Color.White
+        }
+
             For i As Integer = 0 To titles.Length - 1
-                Dim detailLabel As New Label With {
+                Dim label As New Label With {
                 .Text = GetCarDetail(carData, i),
-                .Size = New Size(columnWidth, rowHeight),
-                .Location = New Point(padding + (i * columnWidth), currentY),
                 .Font = detailFont,
-                .BackColor = Color.White,
+                .Size = New Size(columnWidth, 30),
                 .TextAlign = ContentAlignment.MiddleCenter,
-                .BorderStyle = BorderStyle.FixedSingle
+                .BorderStyle = BorderStyle.FixedSingle,
+                .Location = New Point(i * columnWidth, 0)
             }
-                Panel1.Controls.Add(detailLabel)
+                rowPanel.Controls.Add(label)
             Next
-            currentY += rowHeight
+
+            FlowLayoutPanel1.Controls.Add(rowPanel)
         Next
     End Sub
+
+
 
 
     Private Function GetCarDetail(carData As Object(), index As Integer) As String

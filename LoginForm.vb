@@ -138,51 +138,60 @@ Public Class LoginForm
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ' Register
-        Dim emailRegister As String = TextBox3.Text
-        Dim passRegister As String = TextBox4.Text
-        Dim confirmPass As String = TextBox5.Text
+        Dim result As DialogResult = MessageBox.Show("Are you at least 18 years old?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-        If passRegister = confirmPass Then
-            Try
-                ' Check if user already exists in GlobalData
-                If GlobalData.IsUserRegistered(emailRegister) Then
-                    MessageBox.Show("User already exists!")
-                    Return
-                End If
+        If result = DialogResult.Yes Then
+            ' User clicked Yes
+            Dim emailRegister As String = TextBox3.Text
+            Dim passRegister As String = TextBox4.Text
+            Dim confirmPass As String = TextBox5.Text
 
-                ' Try registering in database
-                Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
-                Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
+            If passRegister = confirmPass Then
+                Try
+                    ' Check if user already exists in GlobalData
+                    If GlobalData.IsUserRegistered(emailRegister) Then
+                        MessageBox.Show("User already exists!")
+                        Return
+                    End If
 
-                Using con As New MySqlConnection(connectionString)
-                    Using cmd As New MySqlCommand(query, con)
-                        cmd.Parameters.AddWithValue("@Email", emailRegister)
-                        cmd.Parameters.AddWithValue("@Password", passRegister)
+                    ' Try registering in database
+                    Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
+                    Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
 
-                        con.Open()
-                        cmd.ExecuteNonQuery()
-                        con.Close()
+                    Using con As New MySqlConnection(connectionString)
+                        Using cmd As New MySqlCommand(query, con)
+                            cmd.Parameters.AddWithValue("@Email", emailRegister)
+                            cmd.Parameters.AddWithValue("@Password", passRegister)
 
-                        ' Also register in GlobalData
-                        GlobalData.RegisterUser(emailRegister, passRegister)
-                        ' Ensure password is stored in userData(6)
-                        GlobalData.UsersList.Add(New Object() {"N/A", "N/A", "N/A", "N/A", "N/A", emailRegister, passRegister})
-                        MessageBox.Show("Registration successful!")
+                            con.Open()
+                            cmd.ExecuteNonQuery()
+                            con.Close()
+
+                            ' Also register in GlobalData
+                            GlobalData.RegisterUser(emailRegister, passRegister)
+                            ' Ensure password is stored in userData(6)
+                            MessageBox.Show("Registration successful!")
+                        End Using
                     End Using
-                End Using
-            Catch ex As Exception
-                ' If database fails, just register in GlobalData
-                If GlobalData.RegisterUser(emailRegister, passRegister) Then
-                    ' Ensure password is stored in userData(6)
-                    GlobalData.UsersList.Add(New Object() {"N/A", "N/A", "N/A", "N/A", "N/A", emailRegister, passRegister})
-                    MessageBox.Show("Registration successful!")
-                Else
-                    MessageBox.Show("User already exists!")
-                End If
-            End Try
+                Catch ex As Exception
+                    ' If database fails, just register in GlobalData
+                    If GlobalData.RegisterUser(emailRegister, passRegister) Then
+                        ' Ensure password is stored in userData(6)
+
+                        MessageBox.Show("Registration successful!")
+                    Else
+                        MessageBox.Show("User already exists!")
+                    End If
+                End Try
+            Else
+                MessageBox.Show("Passwords do not match!")
+            End If
         Else
-            MessageBox.Show("Passwords do not match!")
+            ' User clicked No
+            MessageBox.Show("Underage, you cannot rent cars!.")
         End If
+
+
     End Sub
 
 

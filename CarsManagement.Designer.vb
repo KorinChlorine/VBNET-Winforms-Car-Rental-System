@@ -22,30 +22,11 @@ Partial Class CarsManagement
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Panel1.SuspendLayout()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Location = New System.Drawing.Point(41, 119)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1181, 518)
-        Me.Panel1.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(61, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "No cars yet"
         '
         'Button2
         '
@@ -53,7 +34,7 @@ Partial Class CarsManagement
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(1138, 26)
+        Me.Button2.Location = New System.Drawing.Point(1172, 40)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(84, 30)
         Me.Button2.TabIndex = 47
@@ -65,34 +46,53 @@ Partial Class CarsManagement
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(1038, 26)
+        Me.Button1.Location = New System.Drawing.Point(1077, 39)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(84, 30)
         Me.Button1.TabIndex = 48
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.AutoScroll = True
+        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 130)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1240, 514)
+        Me.FlowLayoutPanel1.TabIndex = 49
+        Me.FlowLayoutPanel1.WrapContents = False
+        '
+        'FlowLayoutPanel2
+        '
+        Me.FlowLayoutPanel2.BackColor = System.Drawing.Color.Transparent
+        Me.FlowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(12, 88)
+        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(1240, 44)
+        Me.FlowLayoutPanel2.TabIndex = 50
+        Me.FlowLayoutPanel2.WrapContents = False
+        '
         'CarsManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management_Cars1
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementCars
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.FlowLayoutPanel2)
+        Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
         Me.Name = "CarsManagement"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "CarsManagement"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Button2 As Button
-    Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
 End Class

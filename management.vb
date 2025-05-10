@@ -132,11 +132,6 @@ Public Class Management
             If previousSelectedLabel IsNot Nothing Then selectedPanel.Controls.Remove(previousSelectedLabel)
         End If
 
-        If String.IsNullOrWhiteSpace(RichTextBox3.Text) OrElse selectedImage Is Nothing Then
-            MessageBox.Show("Please select an image and provide a name before adding a panel.")
-            Return
-        End If
-
         Dim panelYPosition As Integer = Panel3.Controls.Count * 60
         Dim panel1 As New Panel With {
         .Size = New Size(220, 50),
@@ -416,7 +411,7 @@ Public Class Management
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage
         End If
 
-        MessageBox.Show("Panel updated successfully!")
+        MessageBox.Show("Details updated successfully!")
     End Sub
 
     Private Sub SyncTagsWithOuterArray()

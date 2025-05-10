@@ -2,39 +2,43 @@
     Private Sub Survey_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Assign values to radio buttons using the Tag property
         ' Question 1
-        surveyQ1btn1.Tag = 1
-        surveyQ1btn2.Tag = 2
-        surveyQ1btn3.Tag = 3
-        surveyQ1btn4.Tag = 4
-        surveyQ1btn5.Tag = 5
+        Try
+            surveyQ1btn1.Tag = 1
+            surveyQ1btn2.Tag = 2
+            surveyQ1btn3.Tag = 3
+            surveyQ1btn4.Tag = 4
+            surveyQ1btn5.Tag = 5
 
-        ' Question 2
-        surveyQ2btn1.Tag = 1
-        surveyQ2btn2.Tag = 2
-        surveyQ2btn3.Tag = 3
-        surveyQ2btn4.Tag = 4
-        surveyQ2btn5.Tag = 5
+            ' Question 2
+            surveyQ2btn1.Tag = 1
+            surveyQ2btn2.Tag = 2
+            surveyQ2btn3.Tag = 3
+            surveyQ2btn4.Tag = 4
+            surveyQ2btn5.Tag = 5
 
-        ' Question 3
-        surveyQ3btn1.Tag = 1
-        surveyQ3btn2.Tag = 2
-        surveyQ3btn3.Tag = 3
-        surveyQ3btn4.Tag = 4
-        surveyQ3btn5.Tag = 5
+            ' Question 3
+            surveyQ3btn1.Tag = 1
+            surveyQ3btn2.Tag = 2
+            surveyQ3btn3.Tag = 3
+            surveyQ3btn4.Tag = 4
+            surveyQ3btn5.Tag = 5
 
-        ' Question 4
-        surveyQ4btn1.Tag = 1
-        surveyQ4btn2.Tag = 2
-        surveyQ4btn3.Tag = 3
-        surveyQ4btn4.Tag = 4
-        surveyQ4btn5.Tag = 5
+            ' Question 4
+            surveyQ4btn1.Tag = 1
+            surveyQ4btn2.Tag = 2
+            surveyQ4btn3.Tag = 3
+            surveyQ4btn4.Tag = 4
+            surveyQ4btn5.Tag = 5
 
-        ' Question 5
-        surveyQ5btn1.Tag = 1
-        surveyQ5btn2.Tag = 2
-        surveyQ5btn3.Tag = 3
-        surveyQ5btn4.Tag = 4
-        surveyQ5btn5.Tag = 5
+            ' Question 5
+            surveyQ5btn1.Tag = 1
+            surveyQ5btn2.Tag = 2
+            surveyQ5btn3.Tag = 3
+            surveyQ5btn4.Tag = 4
+            surveyQ5btn5.Tag = 5
+        Catch
+            Return
+        End Try
     End Sub
 
     Private Function GetSelectedValue(groupBox As GroupBox) As Integer
@@ -103,4 +107,5 @@
         Me.Close()
         customerDetails.Show()
     End Sub
+
 End Class

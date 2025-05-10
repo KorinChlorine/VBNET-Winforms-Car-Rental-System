@@ -28,13 +28,13 @@
 
     ' New methods for user management
     Public Function LoginUser(email As String, password As String) As Boolean
-        ' Check if user exists in the registered users list
         Dim user = RegisteredUsers.FirstOrDefault(Function(u) u.Item1 = email AndAlso u.Item2 = password)
 
         If user IsNot Nothing Then
             CurrentUserEmail = email
             CurrentUserPassword = password
             IsLoggedIn = True
+            MessageBox.Show(email + ": Logged in successfully!")
             Return True
         Else
             Return False
