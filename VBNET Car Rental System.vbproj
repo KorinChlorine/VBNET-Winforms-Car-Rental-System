@@ -149,6 +149,12 @@
     <Compile Include="CarsManagement.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Custom MessageBox.Designer.vb">
+      <DependentUpon>Custom MessageBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Custom MessageBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="customerDetails.Designer.vb">
       <DependentUpon>customerDetails.vb</DependentUpon>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CarsManagement.resx">
       <DependentUpon>CarsManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom MessageBox.resx">
+      <DependentUpon>Custom MessageBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="customerDetails.resx">
       <DependentUpon>customerDetails.vb</DependentUpon>

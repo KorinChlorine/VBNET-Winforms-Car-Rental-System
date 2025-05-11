@@ -29,6 +29,7 @@ Partial Class LoginForm
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -42,7 +43,6 @@ Partial Class LoginForm
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -97,6 +97,14 @@ Partial Class LoginForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(612, 747)
         Me.Panel1.TabIndex = 1
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.Transparent
+        Me.Panel5.Location = New System.Drawing.Point(-872, 0)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1419, 28)
+        Me.Panel5.TabIndex = 13
         '
         'Button7
         '
@@ -260,14 +268,6 @@ Partial Class LoginForm
         Me.TextBox1.Size = New System.Drawing.Size(400, 40)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Email"
-        '
-        'Panel5
-        '
-        Me.Panel5.BackColor = System.Drawing.Color.Transparent
-        Me.Panel5.Location = New System.Drawing.Point(-872, 0)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1419, 28)
-        Me.Panel5.TabIndex = 13
         '
         'LoginForm
         '

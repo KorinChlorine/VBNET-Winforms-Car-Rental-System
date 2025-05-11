@@ -97,13 +97,20 @@
                 userData(7) = GlobalData.IsGoodRecord
                 GlobalData.UsersList(currentUserIndex) = userData
                 GlobalData.NotifyDataChanged()
+
+                Dim confirm As New customerDetails()
+                confirm.Var = "Allowed"
+                Me.Close()
+                confirm.Show()
             Else
                 MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
-
-
         Else
             MessageBox.Show("You are not allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim confirm As New customerDetails()
+            confirm.Var = "!Allowed"
+            Me.Close()
+            confirm.Show()
         End If
 
         ' Reset the survey after submission

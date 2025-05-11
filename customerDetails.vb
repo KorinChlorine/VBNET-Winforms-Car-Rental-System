@@ -1,4 +1,9 @@
-﻿Public Class customerDetails
+﻿Imports Org.BouncyCastle.Asn1.Cmp
+
+Public Class customerDetails
+
+    Public Var As String
+
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Me.Close()
         homeForm.Show()
@@ -66,6 +71,13 @@
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        SaveCustomerDetails()
+
+        If Var Is Nothing Then
+            MessageBox.Show("Please complete the survey to proceed.", "Survey Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        Else
+            SaveCustomerDetails()
+        End If
+
     End Sub
 End Class

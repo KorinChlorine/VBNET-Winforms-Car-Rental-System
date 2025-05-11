@@ -156,7 +156,7 @@ Partial Class customerDetails
         Me.Panel1.Controls.Add(Me.RadioButton3)
         Me.Panel1.Controls.Add(Me.RadioButton1)
         Me.Panel1.Controls.Add(Me.RadioButton2)
-        Me.Panel1.Location = New System.Drawing.Point(148, 336)
+        Me.Panel1.Location = New System.Drawing.Point(126, 336)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(330, 48)
         Me.Panel1.TabIndex = 10

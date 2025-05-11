@@ -6,9 +6,6 @@ Public Class LoginForm
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Me.FormBorderStyle = FormBorderStyle.None
-
-
-
         ' Show login elements
         Panel1.BackgroundImage = My.Resources.NEWLogin
         TextBox1.Visible = True  ' Login Email
@@ -29,19 +26,19 @@ Public Class LoginForm
         AxWindowsMediaPlayer1.Ctlcontrols.play()
 
         TextBox1.Text = "Enter Email"
-        TextBox1.ForeColor = Color.Gray
+        TextBox1.ForeColor = Color.Black
 
         TextBox3.Text = "Enter Email"
-        TextBox3.ForeColor = Color.Gray
+        TextBox3.ForeColor = Color.Black
 
         TextBox5.Text = "Confirm Password"
-        TextBox5.ForeColor = Color.Gray
+        TextBox5.ForeColor = Color.Black
 
         TextBox2.Text = "Enter Password"
-        TextBox2.ForeColor = Color.Gray
+        TextBox2.ForeColor = Color.Black
 
         TextBox4.Text = "Enter Password"
-        TextBox4.ForeColor = Color.Gray
+        TextBox4.ForeColor = Color.Black
     End Sub
 
 
@@ -210,18 +207,18 @@ Public Class LoginForm
         If CheckBox1.Checked = False Then
             TextBox2.PasswordChar = Char.MinValue
             TextBox1.Text = "Enter Email"
-            TextBox1.ForeColor = Color.Gray
+            TextBox1.ForeColor = Color.Black
             TextBox2.Text = "Enter Password"
-            TextBox2.ForeColor = Color.Gray
+            TextBox2.ForeColor = Color.Black
         End If
         TextBox5.PasswordChar = Char.MinValue
         TextBox4.PasswordChar = Char.MinValue
         TextBox4.Text = "Enter Password"
-        TextBox4.ForeColor = Color.Gray
+        TextBox4.ForeColor = Color.Black
         TextBox3.Text = "Enter Email"
-        TextBox3.ForeColor = Color.Gray
+        TextBox3.ForeColor = Color.Black
         TextBox5.Text = "Confirm Password"
-        TextBox5.ForeColor = Color.Gray
+        TextBox5.ForeColor = Color.Black
     End Sub
 
     Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
@@ -305,14 +302,14 @@ Public Class LoginForm
     Private Sub TextBox1_Leave(sender As Object, e As EventArgs) Handles TextBox1.Leave
         If TextBox1.Text = "" Then
             TextBox1.Text = "Enter Email"
-            TextBox1.ForeColor = Color.Gray  ' Set text color back to gray for placeholder
+            TextBox1.ForeColor = Color.Black  ' Set text color back to gray for placeholder
         End If
     End Sub
 
     Private Sub TextBox2_Leave(sender As Object, e As EventArgs) Handles TextBox2.Leave
         If TextBox2.Text = "" Then
             TextBox2.Text = "Enter Password"
-            TextBox2.ForeColor = Color.Gray  ' Set text color back to gray for placeholder
+            TextBox2.ForeColor = Color.Black ' Set text color back to gray for placeholder
             TextBox2.PasswordChar = Char.MinValue ' Show plain text when placeholder is active
         End If
     End Sub
@@ -320,14 +317,14 @@ Public Class LoginForm
     Private Sub TextBox3_Leave(sender As Object, e As EventArgs) Handles TextBox3.Leave
         If TextBox3.Text = "" Then
             TextBox3.Text = "Enter Email"
-            TextBox3.ForeColor = Color.Gray
+            TextBox3.ForeColor = Color.Black
         End If
     End Sub
 
     Private Sub TextBox4_Leave(sender As Object, e As EventArgs) Handles TextBox4.Leave
         If TextBox4.Text = "" Then
             TextBox4.Text = "Enter Password"
-            TextBox4.ForeColor = Color.Gray
+            TextBox4.ForeColor = Color.Black
             TextBox4.PasswordChar = Char.MinValue
         End If
     End Sub
@@ -335,7 +332,7 @@ Public Class LoginForm
     Private Sub TextBox5_Leave(sender As Object, e As EventArgs) Handles TextBox5.Leave
         If TextBox5.Text = "" Then
             TextBox5.Text = "Confirm Password"
-            TextBox5.ForeColor = Color.Gray
+            TextBox5.ForeColor = Color.Black
             TextBox5.PasswordChar = Char.MinValue
         End If
     End Sub
