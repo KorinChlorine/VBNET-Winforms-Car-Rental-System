@@ -437,5 +437,8 @@
   <ItemGroup>
     <None Include="Resources\NEWManagementCars1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billing2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

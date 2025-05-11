@@ -29,9 +29,6 @@ Partial Class Billing
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.btnCredit = New System.Windows.Forms.RadioButton()
-        Me.btnBank = New System.Windows.Forms.RadioButton()
-        Me.btnDigitalWallets = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'Button9
@@ -128,61 +125,14 @@ Partial Class Billing
         Me.Button6.TabIndex = 16
         Me.Button6.UseVisualStyleBackColor = False
         '
-        'btnCredit
-        '
-        Me.btnCredit.AutoSize = True
-        Me.btnCredit.BackColor = System.Drawing.Color.Transparent
-        Me.btnCredit.FlatAppearance.BorderSize = 0
-        Me.btnCredit.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
-        Me.btnCredit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnCredit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnCredit.Location = New System.Drawing.Point(126, 259)
-        Me.btnCredit.Name = "btnCredit"
-        Me.btnCredit.Size = New System.Drawing.Size(14, 13)
-        Me.btnCredit.TabIndex = 17
-        Me.btnCredit.TabStop = True
-        Me.btnCredit.UseVisualStyleBackColor = False
-        '
-        'btnBank
-        '
-        Me.btnBank.AutoSize = True
-        Me.btnBank.BackColor = System.Drawing.Color.Transparent
-        Me.btnBank.FlatAppearance.BorderSize = 0
-        Me.btnBank.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
-        Me.btnBank.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnBank.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnBank.Location = New System.Drawing.Point(126, 346)
-        Me.btnBank.Name = "btnBank"
-        Me.btnBank.Size = New System.Drawing.Size(14, 13)
-        Me.btnBank.TabIndex = 18
-        Me.btnBank.TabStop = True
-        Me.btnBank.UseVisualStyleBackColor = False
-        '
-        'btnDigitalWallets
-        '
-        Me.btnDigitalWallets.AutoSize = True
-        Me.btnDigitalWallets.BackColor = System.Drawing.Color.Transparent
-        Me.btnDigitalWallets.FlatAppearance.BorderSize = 0
-        Me.btnDigitalWallets.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
-        Me.btnDigitalWallets.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.btnDigitalWallets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.btnDigitalWallets.Location = New System.Drawing.Point(126, 441)
-        Me.btnDigitalWallets.Name = "btnDigitalWallets"
-        Me.btnDigitalWallets.Size = New System.Drawing.Size(14, 13)
-        Me.btnDigitalWallets.TabIndex = 19
-        Me.btnDigitalWallets.TabStop = True
-        Me.btnDigitalWallets.UseVisualStyleBackColor = False
-        '
         'Billing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.billing_new
+        Me.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing2
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1126, 661)
-        Me.Controls.Add(Me.btnDigitalWallets)
-        Me.Controls.Add(Me.btnBank)
-        Me.Controls.Add(Me.btnCredit)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
@@ -195,7 +145,6 @@ Partial Class Billing
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Billing"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -206,7 +155,4 @@ Partial Class Billing
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
-    Friend WithEvents btnCredit As RadioButton
-    Friend WithEvents btnBank As RadioButton
-    Friend WithEvents btnDigitalWallets As RadioButton
 End Class
