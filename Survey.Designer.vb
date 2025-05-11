@@ -70,18 +70,19 @@ Partial Class Survey
         Me.surveyQ1.Controls.Add(Me.surveyQ1btn5)
         Me.surveyQ1.Controls.Add(Me.surveyQ1btn2)
         Me.surveyQ1.Controls.Add(Me.surveyQ1btn1)
-        Me.surveyQ1.Location = New System.Drawing.Point(166, 224)
+        Me.surveyQ1.Location = New System.Drawing.Point(189, 252)
         Me.surveyQ1.Name = "surveyQ1"
-        Me.surveyQ1.Size = New System.Drawing.Size(265, 29)
+        Me.surveyQ1.Size = New System.Drawing.Size(422, 37)
         Me.surveyQ1.TabIndex = 0
         Me.surveyQ1.TabStop = False
         '
         'surveyQ1btn4
         '
         Me.surveyQ1btn4.AutoSize = True
-        Me.surveyQ1btn4.Location = New System.Drawing.Point(173, 11)
+        Me.surveyQ1btn4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ1btn4.Location = New System.Drawing.Point(299, 11)
         Me.surveyQ1btn4.Name = "surveyQ1btn4"
-        Me.surveyQ1btn4.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ1btn4.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ1btn4.TabIndex = 0
         Me.surveyQ1btn4.TabStop = True
         Me.surveyQ1btn4.Text = "4"
@@ -90,9 +91,10 @@ Partial Class Survey
         'surveyQ1btn3
         '
         Me.surveyQ1btn3.AutoSize = True
-        Me.surveyQ1btn3.Location = New System.Drawing.Point(120, 11)
+        Me.surveyQ1btn3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ1btn3.Location = New System.Drawing.Point(203, 11)
         Me.surveyQ1btn3.Name = "surveyQ1btn3"
-        Me.surveyQ1btn3.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ1btn3.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ1btn3.TabIndex = 0
         Me.surveyQ1btn3.TabStop = True
         Me.surveyQ1btn3.Text = "3"
@@ -101,9 +103,10 @@ Partial Class Survey
         'surveyQ1btn5
         '
         Me.surveyQ1btn5.AutoSize = True
-        Me.surveyQ1btn5.Location = New System.Drawing.Point(228, 11)
+        Me.surveyQ1btn5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ1btn5.Location = New System.Drawing.Point(383, 11)
         Me.surveyQ1btn5.Name = "surveyQ1btn5"
-        Me.surveyQ1btn5.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ1btn5.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ1btn5.TabIndex = 0
         Me.surveyQ1btn5.TabStop = True
         Me.surveyQ1btn5.Text = "5"
@@ -112,9 +115,10 @@ Partial Class Survey
         'surveyQ1btn2
         '
         Me.surveyQ1btn2.AutoSize = True
-        Me.surveyQ1btn2.Location = New System.Drawing.Point(57, 11)
+        Me.surveyQ1btn2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ1btn2.Location = New System.Drawing.Point(104, 11)
         Me.surveyQ1btn2.Name = "surveyQ1btn2"
-        Me.surveyQ1btn2.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ1btn2.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ1btn2.TabIndex = 0
         Me.surveyQ1btn2.TabStop = True
         Me.surveyQ1btn2.Text = "2"
@@ -123,9 +127,10 @@ Partial Class Survey
         'surveyQ1btn1
         '
         Me.surveyQ1btn1.AutoSize = True
-        Me.surveyQ1btn1.Location = New System.Drawing.Point(0, 11)
+        Me.surveyQ1btn1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ1btn1.Location = New System.Drawing.Point(13, 11)
         Me.surveyQ1btn1.Name = "surveyQ1btn1"
-        Me.surveyQ1btn1.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ1btn1.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ1btn1.TabIndex = 0
         Me.surveyQ1btn1.TabStop = True
         Me.surveyQ1btn1.Text = "1"
@@ -140,18 +145,19 @@ Partial Class Survey
         Me.surveyQ2.Controls.Add(Me.surveyQ2btn5)
         Me.surveyQ2.Controls.Add(Me.surveyQ2btn2)
         Me.surveyQ2.Controls.Add(Me.surveyQ2btn1)
-        Me.surveyQ2.Location = New System.Drawing.Point(166, 302)
+        Me.surveyQ2.Location = New System.Drawing.Point(189, 342)
         Me.surveyQ2.Name = "surveyQ2"
-        Me.surveyQ2.Size = New System.Drawing.Size(265, 29)
+        Me.surveyQ2.Size = New System.Drawing.Size(422, 39)
         Me.surveyQ2.TabIndex = 1
         Me.surveyQ2.TabStop = False
         '
         'surveyQ2btn4
         '
         Me.surveyQ2btn4.AutoSize = True
-        Me.surveyQ2btn4.Location = New System.Drawing.Point(173, 11)
+        Me.surveyQ2btn4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ2btn4.Location = New System.Drawing.Point(297, 13)
         Me.surveyQ2btn4.Name = "surveyQ2btn4"
-        Me.surveyQ2btn4.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ2btn4.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ2btn4.TabIndex = 0
         Me.surveyQ2btn4.TabStop = True
         Me.surveyQ2btn4.Text = "4"
@@ -160,9 +166,10 @@ Partial Class Survey
         'surveyQ2btn3
         '
         Me.surveyQ2btn3.AutoSize = True
-        Me.surveyQ2btn3.Location = New System.Drawing.Point(120, 11)
+        Me.surveyQ2btn3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ2btn3.Location = New System.Drawing.Point(201, 13)
         Me.surveyQ2btn3.Name = "surveyQ2btn3"
-        Me.surveyQ2btn3.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ2btn3.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ2btn3.TabIndex = 0
         Me.surveyQ2btn3.TabStop = True
         Me.surveyQ2btn3.Text = "3"
@@ -171,9 +178,10 @@ Partial Class Survey
         'surveyQ2btn5
         '
         Me.surveyQ2btn5.AutoSize = True
-        Me.surveyQ2btn5.Location = New System.Drawing.Point(228, 11)
+        Me.surveyQ2btn5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ2btn5.Location = New System.Drawing.Point(383, 13)
         Me.surveyQ2btn5.Name = "surveyQ2btn5"
-        Me.surveyQ2btn5.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ2btn5.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ2btn5.TabIndex = 0
         Me.surveyQ2btn5.TabStop = True
         Me.surveyQ2btn5.Text = "5"
@@ -182,9 +190,10 @@ Partial Class Survey
         'surveyQ2btn2
         '
         Me.surveyQ2btn2.AutoSize = True
-        Me.surveyQ2btn2.Location = New System.Drawing.Point(57, 11)
+        Me.surveyQ2btn2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ2btn2.Location = New System.Drawing.Point(102, 13)
         Me.surveyQ2btn2.Name = "surveyQ2btn2"
-        Me.surveyQ2btn2.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ2btn2.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ2btn2.TabIndex = 0
         Me.surveyQ2btn2.TabStop = True
         Me.surveyQ2btn2.Text = "2"
@@ -193,9 +202,10 @@ Partial Class Survey
         'surveyQ2btn1
         '
         Me.surveyQ2btn1.AutoSize = True
-        Me.surveyQ2btn1.Location = New System.Drawing.Point(0, 11)
+        Me.surveyQ2btn1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ2btn1.Location = New System.Drawing.Point(11, 13)
         Me.surveyQ2btn1.Name = "surveyQ2btn1"
-        Me.surveyQ2btn1.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ2btn1.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ2btn1.TabIndex = 0
         Me.surveyQ2btn1.TabStop = True
         Me.surveyQ2btn1.Text = "1"
@@ -210,18 +220,19 @@ Partial Class Survey
         Me.surveyQ3.Controls.Add(Me.surveyQ3btn5)
         Me.surveyQ3.Controls.Add(Me.surveyQ3btn2)
         Me.surveyQ3.Controls.Add(Me.surveyQ3btn1)
-        Me.surveyQ3.Location = New System.Drawing.Point(166, 380)
+        Me.surveyQ3.Location = New System.Drawing.Point(189, 429)
         Me.surveyQ3.Name = "surveyQ3"
-        Me.surveyQ3.Size = New System.Drawing.Size(265, 29)
+        Me.surveyQ3.Size = New System.Drawing.Size(422, 37)
         Me.surveyQ3.TabIndex = 1
         Me.surveyQ3.TabStop = False
         '
         'surveyQ3btn4
         '
         Me.surveyQ3btn4.AutoSize = True
-        Me.surveyQ3btn4.Location = New System.Drawing.Point(173, 11)
+        Me.surveyQ3btn4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ3btn4.Location = New System.Drawing.Point(297, 11)
         Me.surveyQ3btn4.Name = "surveyQ3btn4"
-        Me.surveyQ3btn4.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ3btn4.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ3btn4.TabIndex = 0
         Me.surveyQ3btn4.TabStop = True
         Me.surveyQ3btn4.Text = "4"
@@ -230,9 +241,10 @@ Partial Class Survey
         'surveyQ3btn3
         '
         Me.surveyQ3btn3.AutoSize = True
-        Me.surveyQ3btn3.Location = New System.Drawing.Point(120, 11)
+        Me.surveyQ3btn3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ3btn3.Location = New System.Drawing.Point(201, 11)
         Me.surveyQ3btn3.Name = "surveyQ3btn3"
-        Me.surveyQ3btn3.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ3btn3.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ3btn3.TabIndex = 0
         Me.surveyQ3btn3.TabStop = True
         Me.surveyQ3btn3.Text = "3"
@@ -241,9 +253,10 @@ Partial Class Survey
         'surveyQ3btn5
         '
         Me.surveyQ3btn5.AutoSize = True
-        Me.surveyQ3btn5.Location = New System.Drawing.Point(228, 11)
+        Me.surveyQ3btn5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ3btn5.Location = New System.Drawing.Point(383, 11)
         Me.surveyQ3btn5.Name = "surveyQ3btn5"
-        Me.surveyQ3btn5.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ3btn5.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ3btn5.TabIndex = 0
         Me.surveyQ3btn5.TabStop = True
         Me.surveyQ3btn5.Text = "5"
@@ -252,9 +265,10 @@ Partial Class Survey
         'surveyQ3btn2
         '
         Me.surveyQ3btn2.AutoSize = True
-        Me.surveyQ3btn2.Location = New System.Drawing.Point(57, 11)
+        Me.surveyQ3btn2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ3btn2.Location = New System.Drawing.Point(102, 11)
         Me.surveyQ3btn2.Name = "surveyQ3btn2"
-        Me.surveyQ3btn2.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ3btn2.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ3btn2.TabIndex = 0
         Me.surveyQ3btn2.TabStop = True
         Me.surveyQ3btn2.Text = "2"
@@ -263,9 +277,10 @@ Partial Class Survey
         'surveyQ3btn1
         '
         Me.surveyQ3btn1.AutoSize = True
-        Me.surveyQ3btn1.Location = New System.Drawing.Point(0, 11)
+        Me.surveyQ3btn1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ3btn1.Location = New System.Drawing.Point(11, 11)
         Me.surveyQ3btn1.Name = "surveyQ3btn1"
-        Me.surveyQ3btn1.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ3btn1.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ3btn1.TabIndex = 0
         Me.surveyQ3btn1.TabStop = True
         Me.surveyQ3btn1.Text = "1"
@@ -280,18 +295,19 @@ Partial Class Survey
         Me.surveyQ4.Controls.Add(Me.surveyQ4btn5)
         Me.surveyQ4.Controls.Add(Me.surveyQ4btn2)
         Me.surveyQ4.Controls.Add(Me.surveyQ4btn1)
-        Me.surveyQ4.Location = New System.Drawing.Point(166, 458)
+        Me.surveyQ4.Location = New System.Drawing.Point(189, 517)
         Me.surveyQ4.Name = "surveyQ4"
-        Me.surveyQ4.Size = New System.Drawing.Size(265, 29)
+        Me.surveyQ4.Size = New System.Drawing.Size(422, 39)
         Me.surveyQ4.TabIndex = 1
         Me.surveyQ4.TabStop = False
         '
         'surveyQ4btn4
         '
         Me.surveyQ4btn4.AutoSize = True
-        Me.surveyQ4btn4.Location = New System.Drawing.Point(173, 11)
+        Me.surveyQ4btn4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ4btn4.Location = New System.Drawing.Point(297, 16)
         Me.surveyQ4btn4.Name = "surveyQ4btn4"
-        Me.surveyQ4btn4.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ4btn4.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ4btn4.TabIndex = 0
         Me.surveyQ4btn4.TabStop = True
         Me.surveyQ4btn4.Text = "4"
@@ -300,9 +316,10 @@ Partial Class Survey
         'surveyQ4btn3
         '
         Me.surveyQ4btn3.AutoSize = True
-        Me.surveyQ4btn3.Location = New System.Drawing.Point(120, 11)
+        Me.surveyQ4btn3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ4btn3.Location = New System.Drawing.Point(201, 16)
         Me.surveyQ4btn3.Name = "surveyQ4btn3"
-        Me.surveyQ4btn3.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ4btn3.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ4btn3.TabIndex = 0
         Me.surveyQ4btn3.TabStop = True
         Me.surveyQ4btn3.Text = "3"
@@ -311,9 +328,10 @@ Partial Class Survey
         'surveyQ4btn5
         '
         Me.surveyQ4btn5.AutoSize = True
-        Me.surveyQ4btn5.Location = New System.Drawing.Point(228, 11)
+        Me.surveyQ4btn5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ4btn5.Location = New System.Drawing.Point(383, 16)
         Me.surveyQ4btn5.Name = "surveyQ4btn5"
-        Me.surveyQ4btn5.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ4btn5.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ4btn5.TabIndex = 0
         Me.surveyQ4btn5.TabStop = True
         Me.surveyQ4btn5.Text = "5"
@@ -322,9 +340,10 @@ Partial Class Survey
         'surveyQ4btn2
         '
         Me.surveyQ4btn2.AutoSize = True
-        Me.surveyQ4btn2.Location = New System.Drawing.Point(57, 11)
+        Me.surveyQ4btn2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ4btn2.Location = New System.Drawing.Point(102, 16)
         Me.surveyQ4btn2.Name = "surveyQ4btn2"
-        Me.surveyQ4btn2.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ4btn2.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ4btn2.TabIndex = 0
         Me.surveyQ4btn2.TabStop = True
         Me.surveyQ4btn2.Text = "2"
@@ -333,9 +352,10 @@ Partial Class Survey
         'surveyQ4btn1
         '
         Me.surveyQ4btn1.AutoSize = True
-        Me.surveyQ4btn1.Location = New System.Drawing.Point(0, 11)
+        Me.surveyQ4btn1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ4btn1.Location = New System.Drawing.Point(11, 16)
         Me.surveyQ4btn1.Name = "surveyQ4btn1"
-        Me.surveyQ4btn1.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ4btn1.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ4btn1.TabIndex = 0
         Me.surveyQ4btn1.TabStop = True
         Me.surveyQ4btn1.Text = "1"
@@ -350,18 +370,19 @@ Partial Class Survey
         Me.surveyQ5.Controls.Add(Me.surveyQ5btn5)
         Me.surveyQ5.Controls.Add(Me.surveyQ5btn2)
         Me.surveyQ5.Controls.Add(Me.surveyQ5btn1)
-        Me.surveyQ5.Location = New System.Drawing.Point(166, 538)
+        Me.surveyQ5.Location = New System.Drawing.Point(188, 606)
         Me.surveyQ5.Name = "surveyQ5"
-        Me.surveyQ5.Size = New System.Drawing.Size(265, 29)
+        Me.surveyQ5.Size = New System.Drawing.Size(423, 37)
         Me.surveyQ5.TabIndex = 1
         Me.surveyQ5.TabStop = False
         '
         'surveyQ5btn4
         '
         Me.surveyQ5btn4.AutoSize = True
-        Me.surveyQ5btn4.Location = New System.Drawing.Point(173, 11)
+        Me.surveyQ5btn4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ5btn4.Location = New System.Drawing.Point(298, 14)
         Me.surveyQ5btn4.Name = "surveyQ5btn4"
-        Me.surveyQ5btn4.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ5btn4.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ5btn4.TabIndex = 0
         Me.surveyQ5btn4.TabStop = True
         Me.surveyQ5btn4.Text = "4"
@@ -370,9 +391,10 @@ Partial Class Survey
         'surveyQ5btn3
         '
         Me.surveyQ5btn3.AutoSize = True
-        Me.surveyQ5btn3.Location = New System.Drawing.Point(120, 11)
+        Me.surveyQ5btn3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ5btn3.Location = New System.Drawing.Point(202, 14)
         Me.surveyQ5btn3.Name = "surveyQ5btn3"
-        Me.surveyQ5btn3.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ5btn3.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ5btn3.TabIndex = 0
         Me.surveyQ5btn3.TabStop = True
         Me.surveyQ5btn3.Text = "3"
@@ -381,9 +403,10 @@ Partial Class Survey
         'surveyQ5btn5
         '
         Me.surveyQ5btn5.AutoSize = True
-        Me.surveyQ5btn5.Location = New System.Drawing.Point(228, 11)
+        Me.surveyQ5btn5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ5btn5.Location = New System.Drawing.Point(384, 14)
         Me.surveyQ5btn5.Name = "surveyQ5btn5"
-        Me.surveyQ5btn5.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ5btn5.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ5btn5.TabIndex = 0
         Me.surveyQ5btn5.TabStop = True
         Me.surveyQ5btn5.Text = "5"
@@ -392,9 +415,10 @@ Partial Class Survey
         'surveyQ5btn2
         '
         Me.surveyQ5btn2.AutoSize = True
-        Me.surveyQ5btn2.Location = New System.Drawing.Point(57, 11)
+        Me.surveyQ5btn2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ5btn2.Location = New System.Drawing.Point(103, 14)
         Me.surveyQ5btn2.Name = "surveyQ5btn2"
-        Me.surveyQ5btn2.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ5btn2.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ5btn2.TabIndex = 0
         Me.surveyQ5btn2.TabStop = True
         Me.surveyQ5btn2.Text = "2"
@@ -403,9 +427,10 @@ Partial Class Survey
         'surveyQ5btn1
         '
         Me.surveyQ5btn1.AutoSize = True
-        Me.surveyQ5btn1.Location = New System.Drawing.Point(0, 11)
+        Me.surveyQ5btn1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.surveyQ5btn1.Location = New System.Drawing.Point(12, 14)
         Me.surveyQ5btn1.Name = "surveyQ5btn1"
-        Me.surveyQ5btn1.Size = New System.Drawing.Size(31, 17)
+        Me.surveyQ5btn1.Size = New System.Drawing.Size(33, 20)
         Me.surveyQ5btn1.TabIndex = 0
         Me.surveyQ5btn1.TabStop = True
         Me.surveyQ5btn1.Text = "1"
@@ -416,9 +441,9 @@ Partial Class Survey
         Me.ButtonSubmit.BackColor = System.Drawing.Color.Transparent
         Me.ButtonSubmit.FlatAppearance.BorderSize = 0
         Me.ButtonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSubmit.Location = New System.Drawing.Point(78, 663)
+        Me.ButtonSubmit.Location = New System.Drawing.Point(113, 757)
         Me.ButtonSubmit.Name = "ButtonSubmit"
-        Me.ButtonSubmit.Size = New System.Drawing.Size(442, 66)
+        Me.ButtonSubmit.Size = New System.Drawing.Size(573, 66)
         Me.ButtonSubmit.TabIndex = 2
         Me.ButtonSubmit.UseVisualStyleBackColor = False
         '
@@ -427,9 +452,9 @@ Partial Class Survey
         Me.ButtonBack.BackColor = System.Drawing.Color.Transparent
         Me.ButtonBack.FlatAppearance.BorderSize = 0
         Me.ButtonBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ButtonBack.Location = New System.Drawing.Point(450, 48)
+        Me.ButtonBack.Location = New System.Drawing.Point(605, 51)
         Me.ButtonBack.Name = "ButtonBack"
-        Me.ButtonBack.Size = New System.Drawing.Size(107, 39)
+        Me.ButtonBack.Size = New System.Drawing.Size(137, 50)
         Me.ButtonBack.TabIndex = 3
         Me.ButtonBack.UseVisualStyleBackColor = False
         '
@@ -439,7 +464,7 @@ Partial Class Survey
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Survey
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(594, 762)
+        Me.ClientSize = New System.Drawing.Size(794, 862)
         Me.Controls.Add(Me.ButtonBack)
         Me.Controls.Add(Me.ButtonSubmit)
         Me.Controls.Add(Me.surveyQ5)
