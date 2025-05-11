@@ -453,7 +453,7 @@
     <None Include="Resources\Confirm Rent.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Corvette CINEMATIC Car Commercial I Blender.mp4" />
+    <None Include="Resources\confirm.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

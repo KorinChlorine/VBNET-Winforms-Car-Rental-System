@@ -24,11 +24,9 @@ Partial Class ConfirmationRent
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ConfirmationRent))
         Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
-        Me.btnConfirmPayment = New VBNET_Car_Rental_System.RoundedButton()
         Me.lblCarName = New System.Windows.Forms.Label()
         Me.lblCarID = New System.Windows.Forms.Label()
         Me.lblRentedStarted = New System.Windows.Forms.Label()
-        Me.btnCancel = New VBNET_Car_Rental_System.RoundedButton()
         Me.lblRentedEnded = New System.Windows.Forms.Label()
         Me.lblDaysToBeRented = New System.Windows.Forms.Label()
         Me.lblTransactionType = New System.Windows.Forms.Label()
@@ -36,10 +34,12 @@ Partial Class ConfirmationRent
         Me.lblPaymentPerDay = New System.Windows.Forms.Label()
         Me.lblTotalPayment = New System.Windows.Forms.Label()
         Me.lblCurrentBalance = New System.Windows.Forms.Label()
-        Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.lblCustomer = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
+        Me.btnCancel = New VBNET_Car_Rental_System.RoundedButton()
+        Me.btnConfirmPayment = New VBNET_Car_Rental_System.RoundedButton()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -54,20 +54,6 @@ Partial Class ConfirmationRent
         Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
         Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(552, 512)
         Me.AxWindowsMediaPlayer1.TabIndex = 0
-        '
-        'btnConfirmPayment
-        '
-        Me.btnConfirmPayment.BackColor = System.Drawing.Color.MediumSlateBlue
-        Me.btnConfirmPayment.FlatAppearance.BorderSize = 0
-        Me.btnConfirmPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnConfirmPayment.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnConfirmPayment.ForeColor = System.Drawing.Color.White
-        Me.btnConfirmPayment.Location = New System.Drawing.Point(420, 382)
-        Me.btnConfirmPayment.Name = "btnConfirmPayment"
-        Me.btnConfirmPayment.Size = New System.Drawing.Size(256, 56)
-        Me.btnConfirmPayment.TabIndex = 1
-        Me.btnConfirmPayment.Text = "Confirm Payment"
-        Me.btnConfirmPayment.UseVisualStyleBackColor = False
         '
         'lblCarName
         '
@@ -104,20 +90,6 @@ Partial Class ConfirmationRent
         Me.lblRentedStarted.Size = New System.Drawing.Size(114, 23)
         Me.lblRentedStarted.TabIndex = 4
         Me.lblRentedStarted.Text = "RentedStarted"
-        '
-        'btnCancel
-        '
-        Me.btnCancel.BackColor = System.Drawing.Color.Crimson
-        Me.btnCancel.FlatAppearance.BorderSize = 0
-        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancel.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(682, 382)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(106, 56)
-        Me.btnCancel.TabIndex = 5
-        Me.btnCancel.Text = "Cancel"
-        Me.btnCancel.UseVisualStyleBackColor = False
         '
         'lblRentedEnded
         '
@@ -161,7 +133,7 @@ Partial Class ConfirmationRent
         Me.Panel1.Controls.Add(Me.lblCarName)
         Me.Panel1.Location = New System.Drawing.Point(16, 77)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(218, 77)
+        Me.Panel1.Size = New System.Drawing.Size(218, 68)
         Me.Panel1.TabIndex = 9
         '
         'lblPaymentPerDay
@@ -200,20 +172,6 @@ Partial Class ConfirmationRent
         Me.lblCurrentBalance.TabIndex = 12
         Me.lblCurrentBalance.Text = "Current Balance"
         '
-        'RoundedButton3
-        '
-        Me.RoundedButton3.BackColor = System.Drawing.Color.White
-        Me.RoundedButton3.FlatAppearance.BorderSize = 0
-        Me.RoundedButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RoundedButton3.Font = New System.Drawing.Font("League Spartan ExtraBold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RoundedButton3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.RoundedButton3.Location = New System.Drawing.Point(27, 382)
-        Me.RoundedButton3.Name = "RoundedButton3"
-        Me.RoundedButton3.Size = New System.Drawing.Size(207, 35)
-        Me.RoundedButton3.TabIndex = 13
-        Me.RoundedButton3.Text = "Go to Billing"
-        Me.RoundedButton3.UseVisualStyleBackColor = False
-        '
         'lblCustomer
         '
         Me.lblCustomer.AutoSize = True
@@ -238,7 +196,6 @@ Partial Class ConfirmationRent
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Logo_5
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Location = New System.Drawing.Point(682, 12)
         Me.PictureBox1.Name = "PictureBox1"
@@ -246,11 +203,52 @@ Partial Class ConfirmationRent
         Me.PictureBox1.TabIndex = 16
         Me.PictureBox1.TabStop = False
         '
+        'RoundedButton3
+        '
+        Me.RoundedButton3.BackColor = System.Drawing.Color.White
+        Me.RoundedButton3.FlatAppearance.BorderSize = 0
+        Me.RoundedButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RoundedButton3.Font = New System.Drawing.Font("League Spartan ExtraBold", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RoundedButton3.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.RoundedButton3.Location = New System.Drawing.Point(28, 383)
+        Me.RoundedButton3.Name = "RoundedButton3"
+        Me.RoundedButton3.Size = New System.Drawing.Size(207, 35)
+        Me.RoundedButton3.TabIndex = 13
+        Me.RoundedButton3.Text = "Go to Billing"
+        Me.RoundedButton3.UseVisualStyleBackColor = False
+        '
+        'btnCancel
+        '
+        Me.btnCancel.BackColor = System.Drawing.Color.Crimson
+        Me.btnCancel.FlatAppearance.BorderSize = 0
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancel.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.ForeColor = System.Drawing.Color.White
+        Me.btnCancel.Location = New System.Drawing.Point(683, 383)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(106, 56)
+        Me.btnCancel.TabIndex = 5
+        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.UseVisualStyleBackColor = False
+        '
+        'btnConfirmPayment
+        '
+        Me.btnConfirmPayment.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.btnConfirmPayment.FlatAppearance.BorderSize = 0
+        Me.btnConfirmPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfirmPayment.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConfirmPayment.ForeColor = System.Drawing.Color.White
+        Me.btnConfirmPayment.Location = New System.Drawing.Point(421, 383)
+        Me.btnConfirmPayment.Name = "btnConfirmPayment"
+        Me.btnConfirmPayment.Size = New System.Drawing.Size(256, 56)
+        Me.btnConfirmPayment.TabIndex = 1
+        Me.btnConfirmPayment.Text = "Confirm Payment"
+        Me.btnConfirmPayment.UseVisualStyleBackColor = False
+        '
         'ConfirmationRent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Confirm_Rent
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.ControlBox = False
         Me.Controls.Add(Me.PictureBox1)

@@ -15,6 +15,7 @@ Public Class customerDetails
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        SaveCustomerDetails()
         Me.Hide()
         Survey.Show()
     End Sub
@@ -60,7 +61,7 @@ Public Class customerDetails
         userData(5) = GlobalData.CurrentUserEmail ' Email
         userData(6) = GlobalData.CurrentUserPassword ' Password
         userData(7) = True ' Good Record
-        userData(8) = False ' Status
+        userData(8) = "N/A" ' Status
         userData(9) = "" ' Car ID
         userData(10) = "" ' Car Name
         userData(11) = Nothing ' Start Date
@@ -83,8 +84,8 @@ Public Class customerDetails
         If Var Is Nothing Then
             MessageBox.Show("Please complete the survey to proceed.", "Survey Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
-        Else
-            SaveCustomerDetails()
+            'Else
+            'SaveCustomerDetails()
         End If
 
     End Sub
