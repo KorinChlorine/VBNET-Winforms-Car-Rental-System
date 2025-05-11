@@ -22,6 +22,12 @@ Public Class customerDetails
     Private Sub customerDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DateTimePicker1.Value = Date.Today ' Assuming you have a DateTimePicker for birthday
         MessageBox.Show(GlobalData.CurrentUserEmail)
+
+        TextBox1.Text = GlobalData.UserFullName
+        TextBox2.Text = GlobalData.Age.ToString()
+        TextBox3.Text = GlobalData.Address
+        DateAndTime.DateString = GlobalData.Birthday
+
     End Sub
 
     Private Sub SaveCustomerDetails()
@@ -46,20 +52,23 @@ Public Class customerDetails
             gender = "Female"
         End If
 
-        ' Create user data array
-        Dim userData(11) As Object
+        Dim userData(14) As Object ' 0 to 14
         userData(0) = TextBox1.Text.Trim() ' Name
         userData(1) = age ' Age
         userData(2) = TextBox3.Text.Trim() ' Address
-        userData(3) = DateTimePicker1.Value.ToShortDateString() ' Birthday (assuming DateTimePicker1 exists)
+        userData(3) = DateTimePicker1.Value.ToShortDateString() ' Birthday
         userData(4) = gender ' Gender
-        userData(5) = GlobalData.CurrentUserEmail ' Email from logged in user
-        userData(6) = GlobalData.CurrentUserPassword ' Password from logged in user
-        userData(7) = Nothing ' Good Record (default to true for new customers)
-        userData(8) = False ' Status (not booked by default)
-        userData(9) = "" ' No car rented yet
-        userData(10) = Nothing ' No start date yet
-        userData(11) = Nothing ' No end date yet
+        userData(5) = GlobalData.CurrentUserEmail ' Email
+        userData(6) = GlobalData.CurrentUserPassword ' Password
+        userData(7) = True ' Good Record
+        userData(8) = False ' Status
+        userData(9) = "" ' Car ID
+        userData(10) = "" ' Car Name
+        userData(11) = Nothing ' Start Date
+        userData(12) = Nothing ' End Date
+        userData(13) = Nothing ' Date Returned
+        userData(14) = GlobalData.Wallet ' Current Wallet
+
 
         ' Add to global users list
         GlobalData.UsersList.Add(userData)

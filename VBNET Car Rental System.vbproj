@@ -149,6 +149,12 @@
     <Compile Include="CarsManagement.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ConfirmationRent.Designer.vb">
+      <DependentUpon>ConfirmationRent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmationRent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Custom MessageBox.Designer.vb">
       <DependentUpon>Custom MessageBox.vb</DependentUpon>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CarsManagement.resx">
       <DependentUpon>CarsManagement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmationRent.resx">
+      <DependentUpon>ConfirmationRent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom MessageBox.resx">
       <DependentUpon>Custom MessageBox.vb</DependentUpon>
@@ -439,6 +448,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Billing2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Confirm Rent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Corvette CINEMATIC Car Commercial I Blender.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

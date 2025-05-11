@@ -1,5 +1,5 @@
 ﻿Public Module GlobalData
-    ' Existing properties from your code
+    ' Arrays
     Public GlobalOuterArray As New List(Of Object())()
     Public PremiumCarsArray As New List(Of Object())()
     Public RegisteredUsers As New List(Of Tuple(Of String, String))()
@@ -9,7 +9,7 @@
     Public UsersList As New List(Of Object())()
 
 
-    ' New properties for user session management
+    ' Properties for user session management
     Public UserFullName As String = ""
     Public CurrentUserEmail As String = ""
     Public CurrentUserPassword As String = ""
@@ -24,9 +24,10 @@
     Public RentalEndDate As Date? = Nothing
     Public IsLoggedIn As Boolean = False
     Public UserRole As String = ""
+    Public RentedCars As Integer = 0
+    Public Wallet As Double = 0.0
 
 
-    ' Existing methods from your code
     Public Sub NotifyDataChanged()
         RaiseEvent DataChanged()
     End Sub
