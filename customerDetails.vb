@@ -26,7 +26,6 @@ Public Class customerDetails
         TextBox1.Text = GlobalData.UserFullName
         TextBox2.Text = GlobalData.Age.ToString()
         TextBox3.Text = GlobalData.Address
-        DateAndTime.DateString = GlobalData.Birthday
 
     End Sub
 

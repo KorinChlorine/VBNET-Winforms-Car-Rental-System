@@ -15,7 +15,7 @@
     Public CurrentUserPassword As String = ""
     Public Age As Integer
     Public Address As String = ""
-    Public Birthday As Date = Date.Today
+    Public Birthday As Date
     Public Gender As String = ""
     Public IsGoodRecord As Boolean = True
     Public IsBooked As Boolean = False
