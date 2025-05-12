@@ -152,9 +152,7 @@
     <Compile Include="ConfirmationRent.Designer.vb">
       <DependentUpon>ConfirmationRent.vb</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmationRent.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ConfirmationRent.vb" />
     <Compile Include="Custom MessageBox.Designer.vb">
       <DependentUpon>Custom MessageBox.vb</DependentUpon>
     </Compile>
@@ -267,6 +265,12 @@
     <Compile Include="rent a car.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WalletAdd.Designer.vb">
+      <DependentUpon>WalletAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WalletAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Billing.resx">
@@ -325,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ViewCars.resx">
       <DependentUpon>ViewCars.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WalletAdd.resx">
+      <DependentUpon>WalletAdd.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -487,6 +494,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Customer Deets3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

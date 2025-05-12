@@ -15,7 +15,8 @@ Public Class rent_a_car2
     Public Property DailyPrice As Decimal
     Public Property Customer As String
 
-    Public Property SelectedCar As Object()
+    ' Now expects a car dictionary, not an array
+    Public Property SelectedCar As Dictionary(Of String, Object)
     Private SelectedPanel As Panel
     Private WithEvents Timer1 As New Timer()
 
@@ -44,47 +45,40 @@ Public Class rent_a_car2
         If SelectedCar IsNot Nothing Then
             ' Determine if the car is PREMIUM
             Dim dailyPrice As Decimal
-            Dim isPremium As Boolean = Decimal.TryParse(SelectedCar(11)?.ToString(), dailyPrice) AndAlso dailyPrice >= 10000
+            Dim isPremium As Boolean = Decimal.TryParse(SelectedCar("DailyPrice")?.ToString(), dailyPrice) AndAlso dailyPrice >= 10000
 
-            ' Update Label8.Text with PREMIUM status and price per day
             Label8.Text = If(isPremium, "PREMIUM", "STANDARD") & $" - Price per day: P{dailyPrice:N2}"
 
-            ' Set the car image
-            PictureBox1.Image = TryCast(SelectedCar(1), Image)
+            PictureBox1.Image = TryCast(SelectedCar("PrimaryImage"), Image)
             PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
 
-            ' Set the car details
-            Label1.Text = SelectedCar(6)?.ToString()
+            Label1.Text = SelectedCar("BriefDetails")?.ToString()
             Label1.TextAlign = ContentAlignment.MiddleCenter
-            Label3.Text = SelectedCar(0)?.ToString()
+            Label3.Text = SelectedCar("CarName")?.ToString()
 
-            ' Check if the car is unavailable
             Dim isAvailable As Boolean = False
-            If SelectedCar.Length > 12 Then
-                Boolean.TryParse(SelectedCar(12)?.ToString(), isAvailable)
+            If SelectedCar.ContainsKey("IsAvailable") Then
+                Boolean.TryParse(SelectedCar("IsAvailable")?.ToString(), isAvailable)
             End If
 
-            ' Add "NOT AVAILABLE" label if the car is unavailable
             If Not isAvailable Then
                 Dim notAvailableLabel As New Label With {
-                .Text = "NOT AVAILABLE",
-                .AutoSize = False,
-                .Size = New Size(PictureBox1.Width, 30),
-                .BackColor = Color.Red,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
+                    .Text = "NOT AVAILABLE",
+                    .AutoSize = False,
+                    .Size = New Size(PictureBox1.Width, 30),
+                    .BackColor = Color.Red,
+                    .ForeColor = Color.White,
+                    .Font = New Font("Arial", 10, FontStyle.Bold),
+                    .TextAlign = ContentAlignment.MiddleCenter
+                }
                 notAvailableLabel.Location = New Point(0, PictureBox1.Height - notAvailableLabel.Height)
                 PictureBox1.Controls.Add(notAvailableLabel)
                 notAvailableLabel.BringToFront()
             End If
 
-            ' Enable or disable RoundedButton5 based on availability and radio button state
             UpdateRoundedButton5State(isAvailable)
         End If
     End Sub
-
 
     Private Sub UpdateRoundedButton5State(isAvailable As Boolean)
         If isAvailable AndAlso RadioButton1.Checked Then
@@ -158,17 +152,21 @@ Public Class rent_a_car2
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
         Dim isAvailable As Boolean = False
-        If SelectedCar IsNot Nothing AndAlso SelectedCar.Length > 12 Then
-            Boolean.TryParse(SelectedCar(12)?.ToString(), isAvailable)
+        If SelectedCar IsNot Nothing AndAlso SelectedCar.ContainsKey("IsAvailable") Then
+            Boolean.TryParse(SelectedCar("IsAvailable")?.ToString(), isAvailable)
         End If
+        RadioButton1.BackColor = Color.White
+        RadioButton2.BackColor = Color.MediumSlateBlue
         UpdateRoundedButton5State(isAvailable)
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
         Dim isAvailable As Boolean = False
-        If SelectedCar IsNot Nothing AndAlso SelectedCar.Length > 12 Then
-            Boolean.TryParse(SelectedCar(12)?.ToString(), isAvailable)
+        If SelectedCar IsNot Nothing AndAlso SelectedCar.ContainsKey("IsAvailable") Then
+            Boolean.TryParse(SelectedCar("IsAvailable")?.ToString(), isAvailable)
         End If
+        RadioButton2.BackColor = Color.White
+        RadioButton1.BackColor = Color.MediumSlateBlue
         UpdateRoundedButton5State(isAvailable)
     End Sub
 
@@ -186,22 +184,25 @@ Public Class rent_a_car2
     End Sub
 
     Private Sub RoundedButton4_Click(sender As Object, e As EventArgs) Handles RoundedButton4.Click
+
+        PictureBox1.Image = TryCast(SelectedCar("PrimaryImage"), Image)
         UpdateButtonStyles(RoundedButton4)
         Label1.Font = New Font(Label1.Font.FontFamily, 14)
-        Label1.Text = SelectedCar(6)?.ToString()
+        Label1.Text = SelectedCar("BriefDetails")?.ToString()
         Label2.Text = "Brief Description"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         Label1.TextAlign = ContentAlignment.MiddleCenter
     End Sub
 
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
+        PictureBox1.Image = TryCast(SelectedCar("PrimaryImage"), Image)
         UpdateButtonStyles(RoundedButton3)
         Label2.Text = "Pricing"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         Label1.Font = New Font(Label1.Font.FontFamily, 20)
         Label1.TextAlign = ContentAlignment.MiddleCenter
         Dim dailyPrice As Decimal
-        If Not Decimal.TryParse(SelectedCar(11)?.ToString(), dailyPrice) Then
+        If Not Decimal.TryParse(SelectedCar("DailyPrice")?.ToString(), dailyPrice) Then
             Label1.Text = "Invalid daily price"
             Return
         End If
@@ -231,37 +232,36 @@ Public Class rent_a_car2
         Label1.Text = $"The total price for {numberOfDays} days is P{totalPrice:N2}"
     End Sub
 
-
     Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
+        PictureBox1.Image = TryCast(SelectedCar("PrimaryImage"), Image)
         UpdateButtonStyles(RoundedButton2)
         Label2.Text = "Specifications"
         Label2.TextAlign = ContentAlignment.MiddleCenter
         Label1.Font = New Font(Label1.Font.FontFamily, 18)
         Label1.TextAlign = ContentAlignment.MiddleLeft
         If SelectedCar IsNot Nothing Then
-            Dim specifications As String = $"Car Name: {SelectedCar(0)?.ToString()}" & Environment.NewLine &
-                                       $"Car Type: {SelectedCar(3)?.ToString()}" & Environment.NewLine &
-                                       $"Capacity: {SelectedCar(4)?.ToString()}" & Environment.NewLine &
-                                       $"Color: {SelectedCar(5)?.ToString()}" & Environment.NewLine &
-                                       $"Car ID: {SelectedCar(8)?.ToString()}" & Environment.NewLine &
-                                       $"Body Number: {SelectedCar(9)?.ToString()}" & Environment.NewLine &
-                                       $"Plate Number: {SelectedCar(10)?.ToString()}" & Environment.NewLine &
-                                       $"Daily Price: P{SelectedCar(11)?.ToString()}" & Environment.NewLine &
-                                       $"Availability: {(If(Convert.ToBoolean(SelectedCar(12)), "Available", "Not Available"))}"
+            Dim specifications As String = $"Car Name: {SelectedCar("CarName")?.ToString()}" & Environment.NewLine &
+                                           $"Car Type: {SelectedCar("CarType")?.ToString()}" & Environment.NewLine &
+                                           $"Capacity: {SelectedCar("Capacity")?.ToString()}" & Environment.NewLine &
+                                           $"Color: {SelectedCar("Color")?.ToString()}" & Environment.NewLine &
+                                           $"Car ID: {SelectedCar("CarID")?.ToString()}" & Environment.NewLine &
+                                           $"Body Number: {SelectedCar("BodyNumber")?.ToString()}" & Environment.NewLine &
+                                           $"Plate Number: {SelectedCar("PlateNumber")?.ToString()}" & Environment.NewLine &
+                                           $"Daily Price: P{SelectedCar("DailyPrice")?.ToString()}" & Environment.NewLine &
+                                           $"Availability: {(If(Convert.ToBoolean(SelectedCar("IsAvailable")), "Available", "Not Available"))}"
             Label1.Text = specifications
         Else
             Label1.Text = "No car selected."
         End If
     End Sub
 
-
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
         UpdateButtonStyles(RoundedButton1)
         Label2.Text = "Background"
         Label2.TextAlign = ContentAlignment.MiddleCenter
-        Label1.Text = SelectedCar(7)?.ToString()
+        Label1.Text = SelectedCar("Details")?.ToString()
         Label1.TextAlign = ContentAlignment.MiddleLeft
-        PictureBox1.Image = TryCast(SelectedCar(2), Image)
+        PictureBox1.Image = TryCast(SelectedCar("SecondaryImage"), Image)
         Label1.Font = New Font(Label1.Font.FontFamily, 12)
     End Sub
 
@@ -282,13 +282,11 @@ Public Class rent_a_car2
                     Return
                 End If
 
-                Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar(11))
+                Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar("DailyPrice"))
                 Dim totalPrice As Decimal = dailyPrice * differenceInDays
 
-                ' Store booking information
                 StoreCarTransaction("BOOK", differenceInDays, totalPrice, selectedStartDate, selectedEndDate)
 
-                ' Open the Billing form and pass the selected car and transaction details
                 Dim billingForm As New Billing()
                 billingForm.SelectedCar = SelectedCar
                 billingForm.TransactionType = "BOOK"
@@ -304,13 +302,11 @@ Public Class rent_a_car2
                     Return
                 End If
 
-                Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar(11))
+                Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar("DailyPrice"))
                 Dim totalPrice As Decimal = dailyPrice * numberOfDays
 
-                ' Store rental information
                 StoreCarTransaction("RENT", numberOfDays, totalPrice)
 
-                ' Open the Billing form and pass the selected car and transaction details
                 Dim billingForm As New Billing()
                 billingForm.SelectedCar = SelectedCar
                 billingForm.TransactionType = "RENT"
@@ -324,63 +320,34 @@ Public Class rent_a_car2
         End If
     End Sub
 
-
     Private Sub StoreCarTransaction(transactionType As String, duration As Integer, totalPrice As Decimal, Optional startDate As Date? = Nothing, Optional endDate As Date? = Nothing)
         Dim CarId As String = "Unknown ID"
         Try
-            ' Default dates if not provided for RENT option
             If transactionType = "RENT" Then
                 If Not startDate.HasValue Then startDate = DateTime.Now
                 If Not endDate.HasValue Then endDate = DateTime.Now.AddDays(duration)
             End If
 
-            ' Ensure startDate and endDate have values before accessing .Value
             If Not startDate.HasValue OrElse Not endDate.HasValue Then
                 Throw New InvalidOperationException("Start date or end date is not properly initialized.")
             End If
 
-            ' Prepare individual values with null checks
-            Dim carName As String = If(SelectedCar(0)?.ToString(), "Unknown Car")
-            CarId = If(SelectedCar(8)?.ToString(), "Unknown ID")
-            Dim plateNumber As String = If(SelectedCar(10)?.ToString(), "Unknown Plate")
-            Dim bodyNumber As String = If(SelectedCar(9)?.ToString(), "Unknown Body")
-            Dim color As String = If(SelectedCar(5)?.ToString(), "Unknown Color")
-            Dim type As String = If(SelectedCar(3)?.ToString(), "Unknown Type")
-            Dim capacity As String = If(SelectedCar(4)?.ToString(), "Unknown Capacity")
-            Dim dailyPrice As Decimal = If(Decimal.TryParse(SelectedCar(11)?.ToString(), dailyPrice), dailyPrice, 0)
-
-            Dim customerName As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.UserFullName), GlobalData.UserFullName, "Guest")
+            CarId = If(SelectedCar("CarID")?.ToString(), "Unknown ID")
             Dim customerEmail As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.CurrentUserEmail), GlobalData.CurrentUserEmail, "guest@example.com")
-            Dim customerAddress As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.Address), GlobalData.Address, "Unknown Address")
-            Dim customer As String = customerName ' Use customerName as the value for the 'customer' parameter
-
             Dim isBooked As Boolean = (transactionType = "BOOK")
 
-            ' Add the transaction to the GlobalData module
             GlobalData.AddTransaction(
-            carName,
             CarId,
-            plateNumber,
-            bodyNumber,
-            color,
-            type,
-            capacity,
-            dailyPrice,
-            totalPrice,
-            customerName,
             customerEmail,
-            customerAddress,
-            customer,
-            isBooked,
             startDate.Value,
             endDate.Value,
-            Nothing ' dateReturned set to Nothing since car is newly rented
+            totalPrice,
+            If(isBooked, "Booked", "Rented")
         )
         Catch ex As Exception
             MessageBox.Show("Error storing transaction: " & ex.Message, "Transaction Error")
         End Try
 
-        ' Update global state
         If transactionType = "BOOK" Then
             GlobalData.IsBooked = True
             GlobalData.RentalStartDate = startDate
@@ -389,16 +356,14 @@ Public Class rent_a_car2
 
         GlobalData.CarRented = CarId
 
-        ' Mark car as unavailable in CarsList
-        For i As Integer = 0 To GlobalData.CarsList.Count - 1
-            If GlobalData.CarsList(i)(8)?.ToString() = CarId Then
-                GlobalData.CarsList(i)(12) = False ' Assuming index 12 is availability
-                Exit For
-            End If
-        Next
+        If GlobalData.CarsDict.ContainsKey(CarId) Then
+            GlobalData.CarsDict(CarId)("IsAvailable") = False
+        End If
 
         GlobalData.NotifyDataChanged()
     End Sub
 
+    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
 
+    End Sub
 End Class

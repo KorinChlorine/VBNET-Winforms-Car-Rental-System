@@ -1,44 +1,51 @@
-﻿Imports Org.BouncyCastle.Asn1.Cmp
-
-Public Class customerDetails
+﻿Public Class customerDetails
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Me.Close()
         homeForm.Show()
     End Sub
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Validate customer details
         VerifyCustomerDetails()
     End Sub
 
     Private Sub customerDetails_Activated(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Refresh()
-        DateTimePicker1.Value = Date.Today ' Assuming you have a DateTimePicker for birthday
-        MessageBox.Show(GlobalData.CurrentUserEmail)
+        DateTimePicker1.Value = Date.Today
 
-        ' Only populate fields if Var is "!Allowed" or "Allowed"
         If GlobalData.var = "!Allowed" Or GlobalData.var = "Allowed" Then
-            TextBox1.Text = GlobalData.UserFullName
-            TextBox2.Text = GlobalData.Age.ToString()
-            TextBox3.Text = GlobalData.Address
+            PopulateFieldsFromUser()
         End If
     End Sub
 
     Private Sub customerDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DateTimePicker1.Value = Date.Today ' Assuming you have a DateTimePicker for birthday
-        MessageBox.Show(GlobalData.CurrentUserEmail)
+        DateTimePicker1.Value = Date.Today
 
-        ' Only populate fields if Var is "!Allowed" or "Allowed"
         If GlobalData.var = "!Allowed" Or GlobalData.var = "Allowed" Then
-            TextBox1.Text = GlobalData.UserFullName
-            TextBox2.Text = GlobalData.Age.ToString()
-            TextBox3.Text = GlobalData.Address
+            PopulateFieldsFromUser()
         End If
     End Sub
+
+    Private Sub PopulateFieldsFromUser()
+        Dim userDict = GlobalData.GetLoggedInUser()
+        If userDict IsNot Nothing Then
+            TextBox1.Text = If(userDict.ContainsKey("FullName"), userDict("FullName")?.ToString(), "")
+            TextBox2.Text = If(userDict.ContainsKey("Age"), userDict("Age")?.ToString(), "")
+            TextBox3.Text = If(userDict.ContainsKey("Address"), userDict("Address")?.ToString(), "")
+            If userDict.ContainsKey("Birthday") AndAlso userDict("Birthday") IsNot Nothing AndAlso TypeOf userDict("Birthday") Is Date Then
+                DateTimePicker1.Value = CType(userDict("Birthday"), Date)
+            End If
+            If userDict.ContainsKey("Gender") Then
+                Select Case userDict("Gender")?.ToString()
+                    Case "Male" : RadioButton1.Checked = True
+                    Case "Female" : RadioButton2.Checked = True
+                    Case Else : RadioButton3.Checked = True
+                End Select
+            End If
+        End If
+    End Sub
+
     Private Sub VerifyCustomerDetails()
-        ' Validate required fields
         If String.IsNullOrWhiteSpace(TextBox1.Text) Then
             MessageBox.Show("Please enter your name.", "Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -55,7 +62,6 @@ Public Class customerDetails
             Return
         End If
 
-        ' Check if at least one radio button is selected
         Dim gender As String = "Other"
         If RadioButton1.Checked Then
             gender = "Male"
@@ -66,18 +72,15 @@ Public Class customerDetails
             Return
         End If
 
-        ' Validate the birthdate (example: ensure it's not today's date)
         If DateTimePicker1.Value.Date = Date.Today Then
             MessageBox.Show("Birthdate cannot be today's date!", "Incorrect Information", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' If all validations pass, save customer details
         SaveCustomerDetails()
     End Sub
 
     Private Sub SaveCustomerDetails()
-        ' Retrieve gender selection
         Dim gender As String = "Other"
         If RadioButton1.Checked Then
             gender = "Male"
@@ -85,31 +88,38 @@ Public Class customerDetails
             gender = "Female"
         End If
 
-        ' Prepare user data
-        Dim userData(14) As Object ' 0 to 14
-        userData(0) = TextBox1.Text.Trim() ' Name
-        userData(1) = Integer.Parse(TextBox2.Text) ' Age
-        userData(2) = TextBox3.Text.Trim() ' Address
-        userData(3) = DateTimePicker1.Value.ToShortDateString() ' Birthday
-        userData(4) = gender ' Gender
-        userData(5) = GlobalData.CurrentUserEmail ' Email
-        userData(6) = GlobalData.CurrentUserPassword ' Password
-        userData(7) = True ' Good Record
-        userData(8) = "N/A" ' Status
-        userData(9) = "" ' Car ID
-        userData(10) = "" ' Car Name
-        userData(11) = Nothing ' Start Date
-        userData(12) = Nothing ' End Date
-        userData(13) = Nothing ' Date Returned
-        userData(14) = GlobalData.Wallet ' Current Wallet
+        Dim email As String = GlobalData.CurrentUserEmail
+        If String.IsNullOrEmpty(email) Then
+            MessageBox.Show("No user is currently logged in.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
 
-        ' Add to global users list
-        GlobalData.UsersList.Add(userData)
+        ' Prepare user dictionary
+        Dim userDict As New Dictionary(Of String, Object) From {
+            {"Email", email},
+            {"FullName", TextBox1.Text.Trim()},
+            {"Password", GlobalData.CurrentUserPassword},
+            {"Age", Integer.Parse(TextBox2.Text)},
+            {"Address", TextBox3.Text.Trim()},
+            {"Birthday", DateTimePicker1.Value},
+            {"Gender", gender},
+            {"IsGoodRecord", True},
+            {"IsBooked", False},
+            {"Wallet", GlobalData.Wallet},
+            {"UserRole", "user"}
+        }
 
-        ' Notify that data has changed to update any listening forms
+        ' Save or update in UsersDict
+        GlobalData.UsersDict(email) = userDict
+        GlobalData.UserFullName = userDict("FullName").ToString()
+        GlobalData.Age = CInt(userDict("Age"))
+        GlobalData.Address = userDict("Address").ToString()
+        GlobalData.Birthday = CType(userDict("Birthday"), Date)
+        GlobalData.Gender = userDict("Gender").ToString()
+        GlobalData.Wallet = CDbl(userDict("Wallet"))
+
         GlobalData.NotifyDataChanged()
 
-        ' Close the form and show the survey
         Me.Hide()
         Survey.Show()
         MessageBox.Show("Customer details saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)

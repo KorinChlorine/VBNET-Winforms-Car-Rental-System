@@ -1,7 +1,7 @@
 ﻿Public Class homeForm
 
-    Private Sub homeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+    Private Async Sub homeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Check user access
         If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
             Label1.Visible = False
             Label2.Visible = False
@@ -10,14 +10,24 @@
             Label2.Visible = True
             Button3.Visible = False
             Button3.Enabled = False
-            Label1.Text = GlobalData.UserFullName
+
+            ' Ensure UserFullName is displayed
+            If String.IsNullOrEmpty(GlobalData.UserFullName) Then
+                Label1.Text = "Guest"
+            Else
+                Label1.Text = GlobalData.UserFullName
+            End If
         End If
 
+        ' Clear and load recent premium cars
         Panel1.Controls.Clear()
         Dim panelYPosition As Integer = 10
         Dim recentPremiumCars = GlobalData.PremiumCarsArray.Take(5).ToList()
 
-        For Each car In recentPremiumCars
+        For Each carId In recentPremiumCars
+            If Not GlobalData.CarsDict.ContainsKey(carId) Then Continue For
+            Dim carDict = GlobalData.CarsDict(carId)
+
             Dim carPanel As New Panel With {
                 .Size = New Size(240, 65),
                 .Location = New Point(10, panelYPosition),
@@ -27,14 +37,20 @@
             Dim carPictureBox As New PictureBox With {
                 .Size = New Size(60, 60),
                 .Location = New Point(5, 4),
-                .Image = TryCast(car(1), Image),
                 .SizeMode = PictureBoxSizeMode.StretchImage
             }
+
+            ' Load image asynchronously
+            Dim carImage = Await Task.Run(Function() TryCast(carDict("PrimaryImage"), Image))
+            If carImage IsNot Nothing Then
+                carPictureBox.Image = carImage
+            End If
+
             AddHandler carPictureBox.Paint, AddressOf PictureBox_Paint
             carPanel.Controls.Add(carPictureBox)
 
             Dim carLabel As New Label With {
-                .Text = car(0)?.ToString(),
+                .Text = carDict("CarName").ToString(),
                 .Size = New Size(150, 25),
                 .Location = New Point(75, 5),
                 .BackColor = Color.Transparent,
@@ -45,7 +61,7 @@
             carPanel.Controls.Add(carLabel)
 
             Dim carPriceLabel As New Label With {
-                .Text = "Price per day: " & car(11)?.ToString(),
+                .Text = "Price per day: " & carDict("DailyPrice").ToString(),
                 .Size = New Size(150, 25),
                 .Location = New Point(75, 35),
                 .BackColor = Color.Transparent,
@@ -60,7 +76,10 @@
             Panel1.Controls.Add(carPanel)
             panelYPosition += carPanel.Height + 15
         Next
+
     End Sub
+
+
 
     Private Sub PictureBox_Paint(sender As Object, e As PaintEventArgs)
         Dim pictureBox As PictureBox = CType(sender, PictureBox)
@@ -90,6 +109,7 @@
 
     Private Sub Button4_Click(sender As Object, e As EventArgs)
         Me.Close()
+        GlobalData.LogoutUser()
         LoginForm.Show()
     End Sub
 
@@ -168,5 +188,12 @@
 
     Private Sub RoundedPanel1_Paint(sender As Object, e As PaintEventArgs) Handles RoundedPanel1.Paint
 
+    End Sub
+
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        GlobalData.LogoutUser()
+        GlobalData.var = ""
+        Me.Close()
+        LoginForm.Show()
     End Sub
 End Class

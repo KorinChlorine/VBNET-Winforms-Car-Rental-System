@@ -202,14 +202,15 @@ Partial Class rent_a_car2
         '
         'RadioButton1
         '
+        Me.RadioButton1.Appearance = System.Windows.Forms.Appearance.Button
         Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton1.BackColor = System.Drawing.Color.SlateBlue
         Me.RadioButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.RadioButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButton1.ForeColor = System.Drawing.Color.White
         Me.RadioButton1.Location = New System.Drawing.Point(41, 2)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(136, 28)
+        Me.RadioButton1.Size = New System.Drawing.Size(129, 34)
         Me.RadioButton1.TabIndex = 21
         Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "Book for later"
@@ -217,14 +218,15 @@ Partial Class rent_a_car2
         '
         'RadioButton2
         '
+        Me.RadioButton2.Appearance = System.Windows.Forms.Appearance.Button
         Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.BackColor = System.Drawing.Color.Transparent
+        Me.RadioButton2.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RadioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.RadioButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButton2.ForeColor = System.Drawing.Color.White
         Me.RadioButton2.Location = New System.Drawing.Point(307, 2)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(107, 28)
+        Me.RadioButton2.Size = New System.Drawing.Size(100, 34)
         Me.RadioButton2.TabIndex = 22
         Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "Rent now"

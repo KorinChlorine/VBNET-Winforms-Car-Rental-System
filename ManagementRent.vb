@@ -7,13 +7,12 @@
     Private Sub LoadTransactions()
         FlowLayoutPanel1.Controls.Clear()
 
-        ' Updated titles array to include new fields
-        Dim titles As String() = {"Index", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price", "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Name", "Customer Email", "Customer Address"}
+        Dim titles As String() = {"Rent ID", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price", "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Name", "Customer Email", "Customer Address"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
         Dim rowHeight As Integer = 30
-        Dim totalWidth As Integer = FlowLayoutPanel1.Width - 25 ' Adjust for scrollbar
+        Dim totalWidth As Integer = FlowLayoutPanel1.Width - 25
         Dim columnWidth As Integer = totalWidth \ titles.Length
 
         ' === HEADER ROW ===
@@ -29,11 +28,11 @@
             Dim label As New Label With {
                 .Text = titles(i),
                 .Font = titleFont,
-                .ForeColor = Color.White,
+                .ForeColor = Color.Black,
                 .Size = New Size(columnWidth, rowHeight),
                 .TextAlign = ContentAlignment.MiddleCenter,
                 .BorderStyle = BorderStyle.FixedSingle,
-                .BackColor = Color.DarkSlateBlue,
+                .BackColor = Color.White,
                 .Location = New Point(i * columnWidth, 0),
                 .Margin = New Padding(0)
             }
@@ -43,7 +42,7 @@
         FlowLayoutPanel1.Controls.Add(headerPanel)
 
         ' === DATA ROWS ===
-        If GlobalData.Transactions.Count = 0 Then
+        If GlobalData.TransactionsDict.Count = 0 Then
             Dim noDataLabel As New Label With {
                 .Text = "No rental transactions found.",
                 .Size = New Size(totalWidth, rowHeight),
@@ -55,7 +54,7 @@
             }
             FlowLayoutPanel1.Controls.Add(noDataLabel)
         Else
-            For Each t As Dictionary(Of String, Object) In GlobalData.Transactions
+            For Each t As Dictionary(Of String, Object) In GlobalData.TransactionsDict.Values
                 Dim rowPanel As New Panel With {
                     .Height = rowHeight,
                     .Width = totalWidth,
@@ -64,10 +63,8 @@
                     .Margin = New Padding(0, 0, 0, 0)
                 }
 
-                ' Determine status text based on IsBooked and DateReturned
-                Dim statusText As String = "Rented" ' Default status
-
-                ' Safely check if keys exist before accessing
+                ' Determine status text
+                Dim statusText As String = "Rented"
                 If t.ContainsKey("Status") AndAlso t("Status") IsNot Nothing Then
                     statusText = t("Status").ToString()
                 ElseIf t.ContainsKey("IsBooked") AndAlso t("IsBooked") IsNot Nothing Then
@@ -75,19 +72,13 @@
                         statusText = "Booked"
                     End If
                 End If
-
-                ' If the car has been returned, override the status
-                If t.ContainsKey("DateReturned") AndAlso
-                   t("DateReturned") IsNot Nothing AndAlso
-                   TypeOf t("DateReturned") Is Date Then
+                If t.ContainsKey("DateReturned") AndAlso t("DateReturned") IsNot Nothing AndAlso TypeOf t("DateReturned") Is Date Then
                     statusText = "Returned"
                 End If
 
-                ' Updated values array to include new fields
                 Dim values As String() = New String(15) {}
-
                 Try
-                    values(0) = SafeStr(t, "Index")
+                    values(0) = SafeStr(t, "TransactionID")
                     values(1) = SafeStr(t, "CarID")
                     values(2) = SafeStr(t, "PlateNumber")
                     values(3) = SafeStr(t, "BodyNumber")
@@ -104,13 +95,11 @@
                     values(14) = SafeStr(t, "CustomerEmail")
                     values(15) = SafeStr(t, "CustomerAddress")
                 Catch
-                    ' Handle missing fields gracefully
                     For i As Integer = 0 To values.Length - 1
                         If values(i) Is Nothing Then values(i) = "N/A"
                     Next
                 End Try
 
-                ' Add each cell to the row
                 For i As Integer = 0 To values.Length - 1
                     Dim label As New Label With {
                         .Text = values(i),
@@ -134,7 +123,7 @@
                         .BackColor = Color.Green,
                         .ForeColor = Color.White,
                         .FlatStyle = FlatStyle.Flat,
-                        .Tag = t("Index")
+                        .Tag = t("TransactionID")
                     }
                     AddHandler returnButton.Click, AddressOf ReturnCar_Click
                     returnButton.Location = New Point(totalWidth - 70, 4)
@@ -149,25 +138,24 @@
     Private Sub ReturnCar_Click(sender As Object, e As EventArgs)
         Try
             Dim button = DirectCast(sender, Button)
-            Dim indexValue As Integer = 0
+            Dim transactionID As Integer = 0
 
-            ' Safely handle the tag conversion
             If button.Tag IsNot Nothing Then
-                If Not Integer.TryParse(button.Tag.ToString(), indexValue) Then
-                    MessageBox.Show("Error: Invalid transaction index.", "Error")
+                If Not Integer.TryParse(button.Tag.ToString(), transactionID) Then
+                    MessageBox.Show("Error: Invalid transaction ID.", "Error")
                     Return
                 End If
             Else
-                MessageBox.Show("Error: Missing transaction index.", "Error")
+                MessageBox.Show("Error: Missing transaction ID.", "Error")
                 Return
             End If
 
             If MessageBox.Show("Are you sure you want to mark this car as returned?", "Confirm Return",
                               MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
 
-                If GlobalData.ReturnCar(indexValue) Then
+                If GlobalData.ReturnCar(transactionID) Then
                     MessageBox.Show("Car marked as returned successfully.", "Success")
-                    LoadTransactions() ' Refresh the display
+                    LoadTransactions()
                 Else
                     MessageBox.Show("Failed to mark car as returned.", "Error")
                 End If
@@ -189,7 +177,6 @@
             If TypeOf dict(key) Is Date Then
                 Return CType(dict(key), Date).ToShortDateString()
             ElseIf dict(key).ToString() <> "" Then
-                ' Try to parse as date if it's a string
                 Dim result As Date
                 If Date.TryParse(dict(key).ToString(), result) Then
                     Return result.ToShortDateString()
@@ -217,5 +204,9 @@
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
         Management.Show()
+    End Sub
+
+    Private Sub FlowLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles FlowLayoutPanel1.Paint
+
     End Sub
 End Class

@@ -28,15 +28,17 @@ Public Class TransparentButton
         ' Notify the user
         MessageBox.Show("You have been logged out successfully.", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        ' Close all forms except the login form
-        For Each form As Form In Application.OpenForms.OfType(Of Form).ToList()
-            If Not TypeOf form Is LoginForm Then
-                form.Close()
-            End If
+        ' Close all forms except the current one
+        Dim formsToClose = Application.OpenForms.Cast(Of Form)().Where(Function(f) Not TypeOf f Is LoginForm).ToList()
+        For Each form As Form In formsToClose
+            form.Close()
         Next
 
-        ' Show the login form
-        Dim loginForm As New LoginForm()
-        loginForm.Show()
+        ' Reopen the login form if it's not already open
+        Dim loginForm = Application.OpenForms.OfType(Of LoginForm)().FirstOrDefault()
+        If loginForm Is Nothing Then
+            loginForm = New LoginForm()
+            loginForm.Show()
+        End If
     End Sub
 End Class

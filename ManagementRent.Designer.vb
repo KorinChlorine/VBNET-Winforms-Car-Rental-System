@@ -66,6 +66,7 @@ Partial Class ManagementRent
         '
         'FlowLayoutPanel1
         '
+        Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(40, 92)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"

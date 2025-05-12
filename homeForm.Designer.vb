@@ -36,7 +36,7 @@ Partial Class homeForm
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.RoundedPanel1 = New VBNET_Car_Rental_System.RoundedPanel()
-        Me.TransparentButton1 = New VBNET_Car_Rental_System.TransparentButton()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -195,19 +195,17 @@ Partial Class homeForm
         Me.RoundedPanel1.Size = New System.Drawing.Size(299, 136)
         Me.RoundedPanel1.TabIndex = 15
         '
-        'TransparentButton1
+        'Button4
         '
-        Me.TransparentButton1.BackColor = System.Drawing.Color.Transparent
-        Me.TransparentButton1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.TransparentButton1.FlatAppearance.BorderSize = 0
-        Me.TransparentButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.TransparentButton1.ForeColor = System.Drawing.Color.Black
-        Me.TransparentButton1.Location = New System.Drawing.Point(12, 590)
-        Me.TransparentButton1.Name = "TransparentButton1"
-        Me.TransparentButton1.Size = New System.Drawing.Size(75, 47)
-        Me.TransparentButton1.TabIndex = 16
-        Me.TransparentButton1.Text = "TransparentButton1"
-        Me.TransparentButton1.UseVisualStyleBackColor = False
+        Me.Button4.BackColor = System.Drawing.Color.Transparent
+        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(12, 584)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(73, 47)
+        Me.Button4.TabIndex = 16
+        Me.Button4.UseVisualStyleBackColor = False
         '
         'homeForm
         '
@@ -216,7 +214,7 @@ Partial Class homeForm
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWHomePage
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.TransparentButton1)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.RoundedPanel1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label2)
@@ -233,7 +231,6 @@ Partial Class homeForm
         Me.DoubleBuffered = True
         Me.Name = "homeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "homeForm"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -253,5 +250,5 @@ Partial Class homeForm
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents RoundedPanel1 As RoundedPanel
-    Friend WithEvents TransparentButton1 As TransparentButton
+    Friend WithEvents Button4 As Button
 End Class

@@ -22,61 +22,66 @@
     Public Sub RefreshUI()
         FlowLayoutPanel1.Controls.Clear()
 
-        For Each car In GlobalData.GlobalOuterArray
-            If car Is Nothing OrElse car.Length < 13 Then Continue For
+        For Each carDict As Dictionary(Of String, Object) In GlobalData.CarsDict.Values
+            ' Defensive: check for required fields
+            If carDict Is Nothing OrElse Not carDict.ContainsKey("CarID") Then Continue For
 
             Dim carPanel As New Panel With {
-            .Size = New Size(190, 220),
-            .BackColor = Color.DarkSlateBlue,
-            .Margin = New Padding(10),
-            .Tag = car
-        }
+                .Size = New Size(190, 220),
+                .BackColor = Color.DarkSlateBlue,
+                .Margin = New Padding(10),
+                .Tag = carDict
+            }
             AddHandler carPanel.Click, AddressOf CarPanel_Click
             AddHandler carPanel.Paint, AddressOf Panel_Paint
+
             Dim carPictureBox As New PictureBox With {
-            .Size = New Size(170, 130),
-            .Location = New Point(10, 30),
-            .Image = TryCast(car(1), Image),
-            .SizeMode = PictureBoxSizeMode.StretchImage
-        }
+                .Size = New Size(170, 130),
+                .Location = New Point(10, 30),
+                .Image = TryCast(carDict("PrimaryImage"), Image),
+                .SizeMode = PictureBoxSizeMode.StretchImage
+            }
             AddHandler carPictureBox.Click, Sub(picSender, picE) CarPanel_Click(carPanel, picE)
             carPanel.Controls.Add(carPictureBox)
 
-            Dim isAvailable As Boolean = car(12)?.ToString().ToLower() = "true"
+            Dim isAvailable As Boolean = False
+            If carDict.ContainsKey("IsAvailable") Then
+                Boolean.TryParse(carDict("IsAvailable")?.ToString(), isAvailable)
+            End If
             If Not isAvailable Then
                 Dim notAvailableLabel As New Label With {
-                .Text = "NOT AVAILABLE",
-                .Size = New Size(carPictureBox.Width, 30),
-                .BackColor = Color.Red,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
+                    .Text = "NOT AVAILABLE",
+                    .Size = New Size(carPictureBox.Width, 30),
+                    .BackColor = Color.Red,
+                    .ForeColor = Color.White,
+                    .Font = New Font("Arial", 10, FontStyle.Bold),
+                    .TextAlign = ContentAlignment.MiddleCenter
+                }
                 notAvailableLabel.Location = New Point(0, carPictureBox.Height - notAvailableLabel.Height)
                 carPictureBox.Controls.Add(notAvailableLabel)
                 notAvailableLabel.BringToFront()
             End If
 
             Dim carNameLabel As New Label With {
-            .Text = car(0)?.ToString(),
-            .AutoSize = True,
-            .Location = New Point(10, 170),
-            .BackColor = Color.Transparent,
-            .ForeColor = Color.White,
-            .Font = New Font("Arial", 9, FontStyle.Bold)
-        }
+                .Text = carDict("CarName")?.ToString(),
+                .AutoSize = True,
+                .Location = New Point(10, 170),
+                .BackColor = Color.Transparent,
+                .ForeColor = Color.White,
+                .Font = New Font("Arial", 9, FontStyle.Bold)
+            }
             AddHandler carNameLabel.Click, Sub(lblSender, lblE) CarPanel_Click(carPanel, lblE)
             carPanel.Controls.Add(carNameLabel)
 
             Dim carPriceLabel As New Label With {
-            .Text = "P" & car(11)?.ToString() & "/day",
-            .Size = New Size(160, 20),
-            .Location = New Point(10, 190),
-            .BackColor = Color.Transparent,
-            .ForeColor = Color.White,
-            .Font = New Font("Arial", 9, FontStyle.Bold),
-            .TextAlign = ContentAlignment.MiddleRight
-        }
+                .Text = "P" & carDict("DailyPrice")?.ToString() & "/day",
+                .Size = New Size(160, 20),
+                .Location = New Point(10, 190),
+                .BackColor = Color.Transparent,
+                .ForeColor = Color.White,
+                .Font = New Font("Arial", 9, FontStyle.Bold),
+                .TextAlign = ContentAlignment.MiddleRight
+            }
             AddHandler carPriceLabel.Click, Sub(lblSender, lblE) CarPanel_Click(carPanel, lblE)
             carPanel.Controls.Add(carPriceLabel)
 
@@ -84,29 +89,28 @@
 
             Dim isPremium As Boolean = False
             Dim dailyPrice As Decimal
-            If Decimal.TryParse(car(11)?.ToString(), dailyPrice) Then
+            If carDict.ContainsKey("DailyPrice") AndAlso Decimal.TryParse(carDict("DailyPrice")?.ToString(), dailyPrice) Then
                 isPremium = dailyPrice >= 10000
             End If
 
             If isPremium Then
                 Dim premiumLabel As New Label With {
-                .Text = "PREMIUM",
-                .Size = New Size(170, 20),
-                .Location = New Point(10, 5),
-                .BackColor = Color.Transparent,
-                .ForeColor = Color.Gold,
-                .Font = New Font("Arial", 8, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
+                    .Text = "PREMIUM",
+                    .Size = New Size(170, 20),
+                    .Location = New Point(10, 5),
+                    .BackColor = Color.Transparent,
+                    .ForeColor = Color.Gold,
+                    .Font = New Font("Arial", 8, FontStyle.Bold),
+                    .TextAlign = ContentAlignment.MiddleCenter
+                }
                 carPanel.Controls.Add(premiumLabel)
             End If
         Next
     End Sub
 
-
     Private Sub CarPanel_Click(sender As Object, e As EventArgs)
         Dim selectedPanel As Panel = CType(sender, Panel)
-        Dim selectedCar As Object() = CType(selectedPanel.Tag, Object())
+        Dim selectedCar As Dictionary(Of String, Object) = CType(selectedPanel.Tag, Dictionary(Of String, Object))
 
         Dim rentCarForm As New rent_a_car2()
         rentCarForm.SelectedCar = selectedCar

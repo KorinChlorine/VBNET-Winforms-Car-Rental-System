@@ -7,9 +7,7 @@
     Private Sub LoadUsers()
         FlowLayoutPanel1.Controls.Clear()
 
-        ' Updated titles array with new headers
         Dim titles As String() = {"Index", "Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Current Wallet"}
-
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
@@ -25,7 +23,7 @@
             .Margin = New Padding(0)
         }
 
-        For i As Integer = 0 To 10 ' 0-based index for 11 columns (excluding Index)
+        For i As Integer = 0 To titles.Length - 1
             Dim label As New Label With {
                 .Text = titles(i),
                 .Font = titleFont,
@@ -43,7 +41,7 @@
         FlowLayoutPanel1.Controls.Add(headerPanel)
 
         ' === USER DATA ROWS ===
-        If GlobalData.UsersList.Count = 0 Then
+        If GlobalData.UsersDict.Count = 0 Then
             Dim noDataLabel As New Label With {
                 .Text = "No verified users found. Customers must be verified first.",
                 .Size = New Size(totalWidth, rowHeight),
@@ -57,7 +55,7 @@
             FlowLayoutPanel1.Controls.Add(noDataLabel)
         Else
             Dim index As Integer = 1
-            For Each userData As Object() In GlobalData.UsersList
+            For Each userDict As Dictionary(Of String, Object) In GlobalData.UsersDict.Values
                 Dim rowPanel As New Panel With {
                     .Height = rowHeight,
                     .Width = totalWidth,
@@ -81,16 +79,17 @@
                 rowPanel.Controls.Add(indexLabel)
 
                 ' Add other user details
-                For i As Integer = 0 To titles.Length - 2 ' Skip the index column
+                Dim userDetails As String() = GetUserDetails(userDict)
+                For i As Integer = 0 To userDetails.Length - 1
                     Dim label As New Label With {
-                        .Text = GetUserDetail(userData, i),
+                        .Text = userDetails(i),
                         .Font = detailFont,
                         .ForeColor = Color.White,
                         .Size = New Size(columnWidth, rowHeight),
                         .TextAlign = ContentAlignment.MiddleCenter,
                         .BorderStyle = BorderStyle.FixedSingle,
                         .BackColor = Color.Transparent,
-                        .Location = New Point((i + 1) * columnWidth, 0), ' Shift by 1 for the index column
+                        .Location = New Point((i + 1) * columnWidth, 0),
                         .Margin = New Padding(0)
                     }
                     rowPanel.Controls.Add(label)
@@ -102,29 +101,20 @@
         End If
     End Sub
 
-    Private Function GetUserDetail(userData As Object(), index As Integer) As String
-        If userData Is Nothing OrElse index >= userData.Length Then
-            Return "N/A"
-        End If
-
-        Try
-            Select Case index
-                Case 0 : Return If(userData(0)?.ToString(), "")         ' Name
-                Case 1 : Return If(userData(1)?.ToString(), "")         ' Age
-                Case 2 : Return If(userData(2)?.ToString(), "")         ' Address
-                Case 3 : Return If(userData(3)?.ToString(), "")         ' Birthday
-                Case 4 : Return If(userData(4)?.ToString(), "")         ' Gender
-                Case 5 : Return If(userData(5)?.ToString(), "")         ' Email
-                Case 6 : Return If(userData(6)?.ToString(), "•••••")    ' Password
-                Case 7 : Return If(Convert.ToBoolean(userData(7)), "✓", "✗") ' Good Record
-                Case 8 : Return If(Convert.ToBoolean(userData(8)), "Rented", "Free") ' Status
-                Case 9 : Return If(userData(14) IsNot Nothing, userData(14).ToString(), "0") ' Current Wallet
-                Case Else : Return ""
-            End Select
-
-        Catch ex As Exception
-            Return "Error"
-        End Try
+    Private Function GetUserDetails(userDict As Dictionary(Of String, Object)) As String()
+        ' Order: Name, Age, Address, Birthday, Gender, Email, Password, Good Record, Status, Current Wallet
+        Dim details(10) As String
+        details(0) = If(userDict.ContainsKey("FullName"), userDict("FullName")?.ToString(), "")
+        details(1) = If(userDict.ContainsKey("Age"), userDict("Age")?.ToString(), "")
+        details(2) = If(userDict.ContainsKey("Address"), userDict("Address")?.ToString(), "")
+        details(3) = If(userDict.ContainsKey("Birthday") AndAlso userDict("Birthday") IsNot Nothing AndAlso TypeOf userDict("Birthday") Is Date, CType(userDict("Birthday"), Date).ToShortDateString(), "")
+        details(4) = If(userDict.ContainsKey("Gender"), userDict("Gender")?.ToString(), "")
+        details(5) = If(userDict.ContainsKey("Email"), userDict("Email")?.ToString(), "")
+        details(6) = If(userDict.ContainsKey("Password"), "•••••", "")
+        details(7) = If(userDict.ContainsKey("IsGoodRecord") AndAlso Convert.ToBoolean(userDict("IsGoodRecord")), "✓", "✗")
+        details(8) = If(userDict.ContainsKey("IsBooked") AndAlso Convert.ToBoolean(userDict("IsBooked")), "Rented", "Free")
+        details(9) = If(userDict.ContainsKey("Wallet"), userDict("Wallet")?.ToString(), "0")
+        Return details
     End Function
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -137,9 +127,12 @@
         CarsManagement.Show()
     End Sub
 
-    Public Sub AddNewUser(user As Object())
-        GlobalData.UsersList.Add(user)
-        GlobalData.NotifyDataChanged()
+    ' Add new user to UsersDict
+    Public Sub AddNewUser(userDict As Dictionary(Of String, Object))
+        If userDict.ContainsKey("Email") Then
+            GlobalData.UsersDict(userDict("Email").ToString()) = userDict
+            GlobalData.NotifyDataChanged()
+        End If
     End Sub
 
     Protected Overrides Sub OnFormClosing(e As FormClosingEventArgs)
