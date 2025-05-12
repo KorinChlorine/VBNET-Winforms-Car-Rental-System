@@ -26,7 +26,6 @@ Partial Class homeForm
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -34,6 +33,10 @@ Partial Class homeForm
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.RoundedPanel1 = New VBNET_Car_Rental_System.RoundedPanel()
+        Me.TransparentButton1 = New VBNET_Car_Rental_System.TransparentButton()
         Me.SuspendLayout()
         '
         'Button1
@@ -66,10 +69,13 @@ Partial Class homeForm
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("League Spartan Medium", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.White
         Me.Button3.Location = New System.Drawing.Point(1000, 32)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(262, 133)
         Me.Button3.TabIndex = 2
+        Me.Button3.Text = "CLICK TO ENTER DETAILS"
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Panel1
@@ -81,18 +87,6 @@ Partial Class homeForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(258, 453)
         Me.Panel1.TabIndex = 3
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.Transparent
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(12, 590)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(73, 47)
-        Me.Button4.TabIndex = 4
-        Me.Button4.UseVisualStyleBackColor = False
         '
         'Button5
         '
@@ -166,6 +160,55 @@ Partial Class homeForm
         Me.Button12.TabIndex = 12
         Me.Button12.UseVisualStyleBackColor = False
         '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(1025, 92)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(214, 61)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "Username"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(1026, 71)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(47, 18)
+        Me.Label2.TabIndex = 14
+        Me.Label2.Text = "Hello"
+        '
+        'RoundedPanel1
+        '
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.DarkSlateBlue
+        Me.RoundedPanel1.CornerRadius = 20
+        Me.RoundedPanel1.Location = New System.Drawing.Point(394, 501)
+        Me.RoundedPanel1.Name = "RoundedPanel1"
+        Me.RoundedPanel1.Size = New System.Drawing.Size(299, 136)
+        Me.RoundedPanel1.TabIndex = 15
+        '
+        'TransparentButton1
+        '
+        Me.TransparentButton1.BackColor = System.Drawing.Color.Transparent
+        Me.TransparentButton1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.TransparentButton1.FlatAppearance.BorderSize = 0
+        Me.TransparentButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.TransparentButton1.ForeColor = System.Drawing.Color.Black
+        Me.TransparentButton1.Location = New System.Drawing.Point(12, 590)
+        Me.TransparentButton1.Name = "TransparentButton1"
+        Me.TransparentButton1.Size = New System.Drawing.Size(75, 47)
+        Me.TransparentButton1.TabIndex = 16
+        Me.TransparentButton1.Text = "TransparentButton1"
+        Me.TransparentButton1.UseVisualStyleBackColor = False
+        '
         'homeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -173,15 +216,18 @@ Partial Class homeForm
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWHomePage
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.TransparentButton1)
+        Me.Controls.Add(Me.RoundedPanel1)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button12)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.DoubleBuffered = True
@@ -189,6 +235,7 @@ Partial Class homeForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "homeForm"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -196,7 +243,6 @@ Partial Class homeForm
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button4 As Button
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Button5 As Button
     Friend WithEvents Button6 As Button
@@ -204,4 +250,8 @@ Partial Class homeForm
     Friend WithEvents Button9 As Button
     Friend WithEvents Button10 As Button
     Friend WithEvents Button12 As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents RoundedPanel1 As RoundedPanel
+    Friend WithEvents TransparentButton1 As TransparentButton
 End Class

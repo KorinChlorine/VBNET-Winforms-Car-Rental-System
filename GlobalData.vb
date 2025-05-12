@@ -1,4 +1,6 @@
 ﻿Public Module GlobalData
+
+    Public Property var As String
     ' Arrays
     Public GlobalOuterArray As New List(Of Object())()
     Public PremiumCarsArray As New List(Of Object())()
@@ -173,12 +175,20 @@
             CurrentUserEmail = email
             CurrentUserPassword = password
             IsLoggedIn = True
+
+            ' Retrieve full name from UsersList
+            Dim loggedInUser = UsersList.FirstOrDefault(Function(u) u(0)?.ToString() = email)
+            If loggedInUser IsNot Nothing Then
+                UserFullName = loggedInUser(1)?.ToString() ' Set UserFullName
+            End If
+
             MessageBox.Show(email + ": Logged in successfully!")
             Return True
         Else
             Return False
         End If
     End Function
+
 
     Public Sub LogoutUser()
         CurrentUserEmail = ""
@@ -191,13 +201,15 @@
         Return RegisteredUsers.Any(Function(u) u.Item1 = email)
     End Function
 
-    Public Function RegisterUser(email As String, password As String) As Boolean
+    Public Function RegisterUser(email As String, password As String, fullName As String) As Boolean
         If IsUserRegistered(email) Then
             Return False
         Else
+            ' Add the user to RegisteredUsers and UsersList
             RegisteredUsers.Add(Tuple.Create(email, password))
             NotifyDataChanged() ' Notify listeners that data has changed
             Return True
         End If
     End Function
+
 End Module

@@ -173,6 +173,9 @@
     <Compile Include="customerDetailsCredentials.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LogOutButt.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ManagementRent.Designer.vb">
       <DependentUpon>ManagementRent.vb</DependentUpon>
     </Compile>
@@ -481,6 +484,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Billing4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Customer Deets3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

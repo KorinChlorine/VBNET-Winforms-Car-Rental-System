@@ -165,14 +165,14 @@ Public Class LoginForm
                             con.Close()
 
                             ' Also register in GlobalData
-                            GlobalData.RegisterUser(emailRegister, passRegister)
+                            GlobalData.RegisterUser(emailRegister, passRegister, "")
                             ' Ensure password is stored in userData(6)
                             MessageBox.Show("Registration successful!")
                         End Using
                     End Using
                 Catch ex As Exception
                     ' If database fails, just register in GlobalData
-                    If GlobalData.RegisterUser(emailRegister, passRegister) Then
+                    If GlobalData.RegisterUser(emailRegister, passRegister, "") Then
                         ' Ensure password is stored in userData(6)
 
                         MessageBox.Show("Registration successful!")

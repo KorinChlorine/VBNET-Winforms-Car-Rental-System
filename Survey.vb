@@ -91,34 +91,36 @@
 
         If percentage >= 60 Then
             MessageBox.Show("You are allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            GlobalData.var = "Allowed"
+            homeForm.RefreshUI()
             Dim currentUserIndex As Integer = 0 ' Or wherever your current user is
-            If currentUserIndex < GlobalData.UsersList.Count Then
-                Dim userData As Object() = GlobalData.UsersList(currentUserIndex)
-                userData(7) = GlobalData.IsGoodRecord
-                GlobalData.UsersList(currentUserIndex) = userData
-                GlobalData.NotifyDataChanged()
 
-                Dim confirm As New customerDetails()
-                confirm.Var = "Allowed"
-                Me.Close()
-                confirm.Show()
+            Dim userData As Object() = Nothing
+
+            If currentUserIndex >= 0 AndAlso currentUserIndex < GlobalData.UsersList.Count Then
+                userData = GlobalData.UsersList(currentUserIndex)
             Else
-                MessageBox.Show("User not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Invalid user index. Please ensure the user is logged in and the index is valid.", "Error")
+                Return
             End If
+
+
+            Me.Close()
         Else
             MessageBox.Show("You are not allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Dim confirm As New customerDetails()
-            confirm.Var = "!Allowed"
+            GlobalData.var = "!Allowed"
+            homeForm.RefreshUI()
             Me.Close()
-            confirm.Show()
         End If
 
         ' Reset the survey after submission
         ResetSurvey()
     End Sub
 
+
     Private Sub ButtonSubmit_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
         SubmitSurvey()
+        MessageBox.Show("User Details Saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub ButtonBack_Click(sender As Object, e As EventArgs) Handles ButtonBack.Click

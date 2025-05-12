@@ -1,5 +1,18 @@
 ﻿Public Class homeForm
+
     Private Sub homeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+            Label1.Visible = False
+            Label2.Visible = False
+        Else
+            Label1.Visible = True
+            Label2.Visible = True
+            Button3.Visible = False
+            Button3.Enabled = False
+            Label1.Text = GlobalData.UserFullName
+        End If
+
         Panel1.Controls.Clear()
         Dim panelYPosition As Integer = 10
         Dim recentPremiumCars = GlobalData.PremiumCarsArray.Take(5).ToList()
@@ -75,48 +88,46 @@
         panel.Region = New Region(path)
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Me.Hide()
+    Private Sub Button4_Click(sender As Object, e As EventArgs)
+        Me.Close()
         LoginForm.Show()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-
-        Me.Hide()
-        rent_a_car.Show()
-
-
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+            MessageBox.Show("Complete your profile first!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            Me.Close()
+            rent_a_car.Show()
+        End If
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Me.Hide()
-        rent_a_car.Show()
-
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+            MessageBox.Show("Complete your profile first!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            Me.Close()
+            rent_a_car.Show()
+        End If
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Me.Close()
         customerDetails.Show()
     End Sub
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
-        Me.Hide()
+        Me.Close()
         RentalDetail.Show()
-
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
-        Me.Hide()
+        Me.Close()
         History.Show()
     End Sub
 
-    Private Sub Button11_Click(sender As Object, e As EventArgs) 
-        Me.Hide()
-        ViewCars.Show()
-    End Sub
-
-    Private Sub Button13_Click(sender As Object, e As EventArgs) 
-        Me.Hide()
+    Private Sub Button13_Click(sender As Object, e As EventArgs)
+        Me.Close()
         Billing.Show()
     End Sub
 
@@ -125,23 +136,37 @@
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Me.Hide()
-        RentalDetail.Show()
-
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+            MessageBox.Show("Complete your profile first!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            Me.Close()
+            RentalDetail.Show()
+        End If
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Me.Hide()
-        History.Show()
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs)
-        Me.Hide()
-        ViewCars.Show()
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+            MessageBox.Show("Complete your profile first!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            Me.Close()
+            History.Show()
+        End If
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Me.Hide()
-        Billing.Show()
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+            MessageBox.Show("Complete your profile first!", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            Me.Close()
+            Billing.Show()
+        End If
+    End Sub
+
+    Public Sub RefreshUI()
+        Me.Refresh()
+    End Sub
+
+    Private Sub RoundedPanel1_Paint(sender As Object, e As PaintEventArgs) Handles RoundedPanel1.Paint
+
     End Sub
 End Class

@@ -30,8 +30,6 @@ Partial Class customerDetails
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
@@ -121,35 +119,11 @@ Partial Class customerDetails
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(105, 415)
+        Me.Button1.Location = New System.Drawing.Point(62, 522)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(290, 46)
+        Me.Button1.Size = New System.Drawing.Size(378, 55)
         Me.Button1.TabIndex = 7
         Me.Button1.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Transparent
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(105, 467)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(290, 46)
-        Me.Button2.TabIndex = 8
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Transparent
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(62, 519)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(380, 56)
-        Me.Button3.TabIndex = 9
-        Me.Button3.UseVisualStyleBackColor = False
         '
         'Panel1
         '
@@ -178,12 +152,10 @@ Partial Class customerDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Customer_Deets
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Customer_Deets1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(499, 601)
         Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.TextBox3)
@@ -209,8 +181,6 @@ Partial Class customerDetails
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton3 As RadioButton
     Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Button4 As Button
 End Class
