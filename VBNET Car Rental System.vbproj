@@ -173,11 +173,20 @@
     <Compile Include="customerDetailsCredentials.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ManagementRent.Designer.vb">
+      <DependentUpon>ManagementRent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementRent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="rent a car2.Designer.vb">
       <DependentUpon>rent a car2.vb</DependentUpon>
     </Compile>
     <Compile Include="rent a car2.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoundedPanel.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Survey.Designer.vb">
       <DependentUpon>Survey.vb</DependentUpon>
@@ -286,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementRent.resx">
+      <DependentUpon>ManagementRent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
@@ -454,6 +466,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\confirm.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billing3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Rent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NEWManagementUsers2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NEWManagementCars2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Billing4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

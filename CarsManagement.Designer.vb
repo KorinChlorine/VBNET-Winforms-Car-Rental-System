@@ -25,6 +25,7 @@ Partial Class CarsManagement
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button2
@@ -33,7 +34,7 @@ Partial Class CarsManagement
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(1172, 40)
+        Me.Button2.Location = New System.Drawing.Point(1144, 39)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(84, 30)
         Me.Button2.TabIndex = 47
@@ -45,9 +46,9 @@ Partial Class CarsManagement
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(1077, 39)
+        Me.Button1.Location = New System.Drawing.Point(943, 39)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(84, 30)
+        Me.Button1.Size = New System.Drawing.Size(91, 30)
         Me.Button1.TabIndex = 48
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -62,13 +63,26 @@ Partial Class CarsManagement
         Me.FlowLayoutPanel1.TabIndex = 49
         Me.FlowLayoutPanel1.WrapContents = False
         '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Transparent
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(848, 39)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(89, 30)
+        Me.Button3.TabIndex = 50
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'CarsManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementCars1
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementCars2
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button2)
@@ -82,4 +96,5 @@ Partial Class CarsManagement
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
+    Friend WithEvents Button3 As Button
 End Class

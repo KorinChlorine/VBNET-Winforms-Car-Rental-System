@@ -23,7 +23,6 @@ Partial Class ConfirmationRent
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ConfirmationRent))
-        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.lblCarName = New System.Windows.Forms.Label()
         Me.lblCarID = New System.Windows.Forms.Label()
         Me.lblRentedStarted = New System.Windows.Forms.Label()
@@ -36,24 +35,16 @@ Partial Class ConfirmationRent
         Me.lblCurrentBalance = New System.Windows.Forms.Label()
         Me.lblCustomer = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.btnCancel = New VBNET_Car_Rental_System.RoundedButton()
         Me.btnConfirmPayment = New VBNET_Car_Rental_System.RoundedButton()
-        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'AxWindowsMediaPlayer1
-        '
-        Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(254, -8)
-        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
-        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(552, 512)
-        Me.AxWindowsMediaPlayer1.TabIndex = 0
         '
         'lblCarName
         '
@@ -120,7 +111,7 @@ Partial Class ConfirmationRent
         Me.lblTransactionType.AutoSize = True
         Me.lblTransactionType.BackColor = System.Drawing.Color.Transparent
         Me.lblTransactionType.Font = New System.Drawing.Font("League Spartan ExtraBold", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTransactionType.ForeColor = System.Drawing.Color.MediumSlateBlue
+        Me.lblTransactionType.ForeColor = System.Drawing.Color.Yellow
         Me.lblTransactionType.Location = New System.Drawing.Point(20, 14)
         Me.lblTransactionType.Name = "lblTransactionType"
         Me.lblTransactionType.Size = New System.Drawing.Size(214, 60)
@@ -193,16 +184,6 @@ Partial Class ConfirmationRent
         Me.Panel2.Size = New System.Drawing.Size(200, 62)
         Me.Panel2.TabIndex = 15
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.Location = New System.Drawing.Point(682, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(117, 108)
-        Me.PictureBox1.TabIndex = 16
-        Me.PictureBox1.TabStop = False
-        '
         'RoundedButton3
         '
         Me.RoundedButton3.BackColor = System.Drawing.Color.White
@@ -245,10 +226,31 @@ Partial Class ConfirmationRent
         Me.btnConfirmPayment.Text = "Confirm Payment"
         Me.btnConfirmPayment.UseVisualStyleBackColor = False
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Logo_5
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox1.Location = New System.Drawing.Point(671, 12)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(117, 108)
+        Me.PictureBox1.TabIndex = 16
+        Me.PictureBox1.TabStop = False
+        '
+        'AxWindowsMediaPlayer1
+        '
+        Me.AxWindowsMediaPlayer1.Enabled = True
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(254, -8)
+        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
+        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(552, 512)
+        Me.AxWindowsMediaPlayer1.TabIndex = 0
+        '
         'ConfirmationRent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.DarkSlateBlue
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.ControlBox = False
         Me.Controls.Add(Me.PictureBox1)
@@ -270,12 +272,12 @@ Partial Class ConfirmationRent
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.Text = "ConfirmationRent"
-        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -31,8 +31,41 @@ Partial Class Billing
         Me.Button6 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblUserStatus = New System.Windows.Forms.Label()
+        Me.lblBalance = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lblCustomer = New System.Windows.Forms.Label()
+        Me.lblAddress = New System.Windows.Forms.Label()
+        Me.lblTotalPayment = New System.Windows.Forms.Label()
+        Me.lblPaymentPerDay = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.RoundedPanel1 = New VBNET_Car_Rental_System.RoundedPanel()
+        Me.lblCarName = New System.Windows.Forms.Label()
+        Me.lblDaysToBeRented = New System.Windows.Forms.Label()
+        Me.lblRentedEnded = New System.Windows.Forms.Label()
+        Me.lblRentedStarted = New System.Windows.Forms.Label()
+        Me.MySqlCommand1 = New MySql.Data.MySqlClient.MySqlCommand()
+        Me.lblCarID = New System.Windows.Forms.Label()
+        Me.lblBodyNumber = New System.Windows.Forms.Label()
+        Me.lblEmail = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lblPlateNumber = New System.Windows.Forms.Label()
+        Me.lblColor = New System.Windows.Forms.Label()
+        Me.lblCapacity = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.lblAge = New System.Windows.Forms.Panel()
+        Me.lblType = New System.Windows.Forms.Label()
+        Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
+        Me.Panel2.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.RoundedPanel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.lblAge.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button9
@@ -132,9 +165,9 @@ Partial Class Billing
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(115, 116)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(115, 135)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(215, 343)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(215, 324)
         Me.FlowLayoutPanel1.TabIndex = 17
         '
         'Label1
@@ -149,40 +182,365 @@ Partial Class Billing
         Me.Label1.TabIndex = 18
         Me.Label1.Text = "Wallet Details"
         '
-        'Label2
+        'lblUserStatus
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(111, 526)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 23)
-        Me.Label2.TabIndex = 19
-        Me.Label2.Text = "User Status:"
+        Me.lblUserStatus.AutoSize = True
+        Me.lblUserStatus.BackColor = System.Drawing.Color.Transparent
+        Me.lblUserStatus.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUserStatus.ForeColor = System.Drawing.Color.White
+        Me.lblUserStatus.Location = New System.Drawing.Point(111, 526)
+        Me.lblUserStatus.Name = "lblUserStatus"
+        Me.lblUserStatus.Size = New System.Drawing.Size(96, 23)
+        Me.lblUserStatus.TabIndex = 19
+        Me.lblUserStatus.Text = "User Status:"
         '
-        'Label3
+        'lblBalance
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(111, 563)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(70, 23)
-        Me.Label3.TabIndex = 20
-        Me.Label3.Text = "Balance:"
+        Me.lblBalance.AutoSize = True
+        Me.lblBalance.BackColor = System.Drawing.Color.Transparent
+        Me.lblBalance.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBalance.ForeColor = System.Drawing.Color.White
+        Me.lblBalance.Location = New System.Drawing.Point(111, 563)
+        Me.lblBalance.Name = "lblBalance"
+        Me.lblBalance.Size = New System.Drawing.Size(70, 23)
+        Me.lblBalance.TabIndex = 20
+        Me.lblBalance.Text = "Balance:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(173, 109)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(95, 23)
+        Me.Label4.TabIndex = 22
+        Me.Label4.Text = "Rented Cars"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("League Spartan", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.White
+        Me.Label5.Location = New System.Drawing.Point(374, 598)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(87, 21)
+        Me.Label5.TabIndex = 23
+        Me.Label5.Text = "Bank/Credit"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("League Spartan", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.White
+        Me.Label6.Location = New System.Drawing.Point(523, 598)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(63, 21)
+        Me.Label6.TabIndex = 24
+        Me.Label6.Text = "E-Wallet"
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Controls.Add(Me.lblCustomer)
+        Me.Panel2.Location = New System.Drawing.Point(375, 279)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(368, 34)
+        Me.Panel2.TabIndex = 33
+        '
+        'lblCustomer
+        '
+        Me.lblCustomer.AutoSize = True
+        Me.lblCustomer.BackColor = System.Drawing.Color.Transparent
+        Me.lblCustomer.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCustomer.ForeColor = System.Drawing.Color.White
+        Me.lblCustomer.Location = New System.Drawing.Point(3, 2)
+        Me.lblCustomer.Name = "lblCustomer"
+        Me.lblCustomer.Size = New System.Drawing.Size(94, 28)
+        Me.lblCustomer.TabIndex = 14
+        Me.lblCustomer.Text = "Customer"
+        '
+        'lblAddress
+        '
+        Me.lblAddress.AutoSize = True
+        Me.lblAddress.BackColor = System.Drawing.Color.Transparent
+        Me.lblAddress.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAddress.ForeColor = System.Drawing.Color.White
+        Me.lblAddress.Location = New System.Drawing.Point(3, 1)
+        Me.lblAddress.Name = "lblAddress"
+        Me.lblAddress.Size = New System.Drawing.Size(81, 28)
+        Me.lblAddress.TabIndex = 15
+        Me.lblAddress.Text = "Address"
+        '
+        'lblTotalPayment
+        '
+        Me.lblTotalPayment.AutoSize = True
+        Me.lblTotalPayment.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotalPayment.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalPayment.ForeColor = System.Drawing.Color.White
+        Me.lblTotalPayment.Location = New System.Drawing.Point(376, 211)
+        Me.lblTotalPayment.Name = "lblTotalPayment"
+        Me.lblTotalPayment.Size = New System.Drawing.Size(169, 36)
+        Me.lblTotalPayment.TabIndex = 31
+        Me.lblTotalPayment.Text = "Total Payment"
+        '
+        'lblPaymentPerDay
+        '
+        Me.lblPaymentPerDay.AutoSize = True
+        Me.lblPaymentPerDay.BackColor = System.Drawing.Color.Transparent
+        Me.lblPaymentPerDay.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPaymentPerDay.ForeColor = System.Drawing.Color.White
+        Me.lblPaymentPerDay.Location = New System.Drawing.Point(376, 175)
+        Me.lblPaymentPerDay.Name = "lblPaymentPerDay"
+        Me.lblPaymentPerDay.Size = New System.Drawing.Size(201, 36)
+        Me.lblPaymentPerDay.TabIndex = 30
+        Me.lblPaymentPerDay.Text = "Payment per day"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Panel1.Controls.Add(Me.RoundedPanel1)
+        Me.Panel1.Location = New System.Drawing.Point(365, 101)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(730, 68)
+        Me.Panel1.TabIndex = 29
+        '
+        'RoundedPanel1
+        '
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.DarkSlateBlue
+        Me.RoundedPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RoundedPanel1.Controls.Add(Me.lblCarName)
+        Me.RoundedPanel1.CornerRadius = 20
+        Me.RoundedPanel1.Location = New System.Drawing.Point(7, 3)
+        Me.RoundedPanel1.Name = "RoundedPanel1"
+        Me.RoundedPanel1.Size = New System.Drawing.Size(726, 59)
+        Me.RoundedPanel1.TabIndex = 38
+        '
+        'lblCarName
+        '
+        Me.lblCarName.AutoSize = True
+        Me.lblCarName.BackColor = System.Drawing.Color.Transparent
+        Me.lblCarName.Font = New System.Drawing.Font("League Spartan ExtraBold", 26.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarName.ForeColor = System.Drawing.Color.White
+        Me.lblCarName.Location = New System.Drawing.Point(0, 12)
+        Me.lblCarName.Name = "lblCarName"
+        Me.lblCarName.Size = New System.Drawing.Size(182, 52)
+        Me.lblCarName.TabIndex = 2
+        Me.lblCarName.Text = "Car Name"
+        '
+        'lblDaysToBeRented
+        '
+        Me.lblDaysToBeRented.AutoSize = True
+        Me.lblDaysToBeRented.BackColor = System.Drawing.Color.Transparent
+        Me.lblDaysToBeRented.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDaysToBeRented.ForeColor = System.Drawing.Color.White
+        Me.lblDaysToBeRented.Location = New System.Drawing.Point(757, 239)
+        Me.lblDaysToBeRented.Name = "lblDaysToBeRented"
+        Me.lblDaysToBeRented.Size = New System.Drawing.Size(208, 36)
+        Me.lblDaysToBeRented.TabIndex = 28
+        Me.lblDaysToBeRented.Text = "Days to be rented"
+        '
+        'lblRentedEnded
+        '
+        Me.lblRentedEnded.AutoSize = True
+        Me.lblRentedEnded.BackColor = System.Drawing.Color.Transparent
+        Me.lblRentedEnded.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRentedEnded.ForeColor = System.Drawing.Color.White
+        Me.lblRentedEnded.Location = New System.Drawing.Point(757, 203)
+        Me.lblRentedEnded.Name = "lblRentedEnded"
+        Me.lblRentedEnded.Size = New System.Drawing.Size(158, 36)
+        Me.lblRentedEnded.TabIndex = 27
+        Me.lblRentedEnded.Text = "RentedEnded"
+        '
+        'lblRentedStarted
+        '
+        Me.lblRentedStarted.AutoSize = True
+        Me.lblRentedStarted.BackColor = System.Drawing.Color.Transparent
+        Me.lblRentedStarted.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRentedStarted.ForeColor = System.Drawing.Color.White
+        Me.lblRentedStarted.Location = New System.Drawing.Point(757, 167)
+        Me.lblRentedStarted.Name = "lblRentedStarted"
+        Me.lblRentedStarted.Size = New System.Drawing.Size(173, 36)
+        Me.lblRentedStarted.TabIndex = 26
+        Me.lblRentedStarted.Text = "RentedStarted"
+        '
+        'MySqlCommand1
+        '
+        Me.MySqlCommand1.CacheAge = 0
+        Me.MySqlCommand1.Connection = Nothing
+        Me.MySqlCommand1.EnableCaching = False
+        Me.MySqlCommand1.Transaction = Nothing
+        '
+        'lblCarID
+        '
+        Me.lblCarID.AutoSize = True
+        Me.lblCarID.BackColor = System.Drawing.Color.Transparent
+        Me.lblCarID.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarID.ForeColor = System.Drawing.Color.White
+        Me.lblCarID.Location = New System.Drawing.Point(759, 293)
+        Me.lblCarID.Name = "lblCarID"
+        Me.lblCarID.Size = New System.Drawing.Size(55, 23)
+        Me.lblCarID.TabIndex = 16
+        Me.lblCarID.Text = "Car ID"
+        '
+        'lblBodyNumber
+        '
+        Me.lblBodyNumber.AutoSize = True
+        Me.lblBodyNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblBodyNumber.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBodyNumber.ForeColor = System.Drawing.Color.White
+        Me.lblBodyNumber.Location = New System.Drawing.Point(759, 316)
+        Me.lblBodyNumber.Name = "lblBodyNumber"
+        Me.lblBodyNumber.Size = New System.Drawing.Size(107, 23)
+        Me.lblBodyNumber.TabIndex = 17
+        Me.lblBodyNumber.Text = "Body Number"
+        '
+        'lblEmail
+        '
+        Me.lblEmail.AutoSize = True
+        Me.lblEmail.BackColor = System.Drawing.Color.Transparent
+        Me.lblEmail.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.ForeColor = System.Drawing.Color.White
+        Me.lblEmail.Location = New System.Drawing.Point(3, 3)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(59, 28)
+        Me.lblEmail.TabIndex = 16
+        Me.lblEmail.Text = "Email"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.White
+        Me.Label11.Location = New System.Drawing.Point(3, 5)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(46, 28)
+        Me.Label11.TabIndex = 17
+        Me.Label11.Text = "Age"
+        '
+        'lblPlateNumber
+        '
+        Me.lblPlateNumber.AutoSize = True
+        Me.lblPlateNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblPlateNumber.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlateNumber.ForeColor = System.Drawing.Color.White
+        Me.lblPlateNumber.Location = New System.Drawing.Point(759, 339)
+        Me.lblPlateNumber.Name = "lblPlateNumber"
+        Me.lblPlateNumber.Size = New System.Drawing.Size(108, 23)
+        Me.lblPlateNumber.TabIndex = 34
+        Me.lblPlateNumber.Text = "Plate Number"
+        '
+        'lblColor
+        '
+        Me.lblColor.AutoSize = True
+        Me.lblColor.BackColor = System.Drawing.Color.Transparent
+        Me.lblColor.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblColor.ForeColor = System.Drawing.Color.White
+        Me.lblColor.Location = New System.Drawing.Point(759, 362)
+        Me.lblColor.Name = "lblColor"
+        Me.lblColor.Size = New System.Drawing.Size(47, 23)
+        Me.lblColor.TabIndex = 35
+        Me.lblColor.Text = "Color"
+        '
+        'lblCapacity
+        '
+        Me.lblCapacity.AutoSize = True
+        Me.lblCapacity.BackColor = System.Drawing.Color.Transparent
+        Me.lblCapacity.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCapacity.ForeColor = System.Drawing.Color.White
+        Me.lblCapacity.Location = New System.Drawing.Point(759, 385)
+        Me.lblCapacity.Name = "lblCapacity"
+        Me.lblCapacity.Size = New System.Drawing.Size(73, 23)
+        Me.lblCapacity.TabIndex = 36
+        Me.lblCapacity.Text = "Capacity"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.Transparent
+        Me.Panel3.Controls.Add(Me.lblAddress)
+        Me.Panel3.Location = New System.Drawing.Point(375, 315)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(368, 34)
+        Me.Panel3.TabIndex = 34
+        '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Controls.Add(Me.lblEmail)
+        Me.Panel4.Location = New System.Drawing.Point(375, 349)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(368, 34)
+        Me.Panel4.TabIndex = 35
+        '
+        'lblAge
+        '
+        Me.lblAge.BackColor = System.Drawing.Color.Transparent
+        Me.lblAge.Controls.Add(Me.Label11)
+        Me.lblAge.Location = New System.Drawing.Point(375, 384)
+        Me.lblAge.Name = "lblAge"
+        Me.lblAge.Size = New System.Drawing.Size(368, 34)
+        Me.lblAge.TabIndex = 36
+        '
+        'lblType
+        '
+        Me.lblType.AutoSize = True
+        Me.lblType.BackColor = System.Drawing.Color.Transparent
+        Me.lblType.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblType.ForeColor = System.Drawing.Color.White
+        Me.lblType.Location = New System.Drawing.Point(759, 408)
+        Me.lblType.Name = "lblType"
+        Me.lblType.Size = New System.Drawing.Size(43, 23)
+        Me.lblType.TabIndex = 37
+        Me.lblType.Text = "Type"
+        '
+        'RoundedButton1
+        '
+        Me.RoundedButton1.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RoundedButton1.FlatAppearance.BorderSize = 0
+        Me.RoundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RoundedButton1.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RoundedButton1.ForeColor = System.Drawing.Color.White
+        Me.RoundedButton1.Location = New System.Drawing.Point(892, 501)
+        Me.RoundedButton1.Name = "RoundedButton1"
+        Me.RoundedButton1.Size = New System.Drawing.Size(182, 99)
+        Me.RoundedButton1.TabIndex = 21
+        Me.RoundedButton1.Text = "Confirm"
+        Me.RoundedButton1.UseVisualStyleBackColor = False
         '
         'Billing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing2
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing4
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1126, 661)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.lblType)
+        Me.Controls.Add(Me.lblAge)
+        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.lblCapacity)
+        Me.Controls.Add(Me.lblColor)
+        Me.Controls.Add(Me.lblPlateNumber)
+        Me.Controls.Add(Me.lblBodyNumber)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.lblCarID)
+        Me.Controls.Add(Me.lblTotalPayment)
+        Me.Controls.Add(Me.lblPaymentPerDay)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.lblDaysToBeRented)
+        Me.Controls.Add(Me.lblRentedEnded)
+        Me.Controls.Add(Me.lblRentedStarted)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.RoundedButton1)
+        Me.Controls.Add(Me.lblBalance)
+        Me.Controls.Add(Me.lblUserStatus)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Button6)
@@ -196,6 +554,17 @@ Partial Class Billing
         Me.Name = "Billing"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Billing"
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.RoundedPanel1.ResumeLayout(False)
+        Me.RoundedPanel1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        Me.lblAge.ResumeLayout(False)
+        Me.lblAge.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -210,6 +579,33 @@ Partial Class Billing
     Friend WithEvents Button6 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
+    Friend WithEvents lblUserStatus As Label
+    Friend WithEvents lblBalance As Label
+    Friend WithEvents RoundedButton1 As RoundedButton
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents lblAddress As Label
+    Friend WithEvents lblCustomer As Label
+    Friend WithEvents lblTotalPayment As Label
+    Friend WithEvents lblPaymentPerDay As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblCarName As Label
+    Friend WithEvents lblDaysToBeRented As Label
+    Friend WithEvents lblRentedEnded As Label
+    Friend WithEvents lblRentedStarted As Label
+    Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
+    Friend WithEvents Label11 As Label
+    Friend WithEvents lblEmail As Label
+    Friend WithEvents lblCarID As Label
+    Friend WithEvents lblBodyNumber As Label
+    Friend WithEvents lblPlateNumber As Label
+    Friend WithEvents lblColor As Label
+    Friend WithEvents lblCapacity As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents lblAge As Panel
+    Friend WithEvents lblType As Label
+    Friend WithEvents RoundedPanel1 As RoundedPanel
 End Class

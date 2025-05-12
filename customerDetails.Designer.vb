@@ -66,6 +66,7 @@ Partial Class customerDetails
         '
         'DateTimePicker1
         '
+        Me.DateTimePicker1.CalendarMonthBackground = System.Drawing.Color.White
         Me.DateTimePicker1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DateTimePicker1.Location = New System.Drawing.Point(129, 301)
         Me.DateTimePicker1.Name = "DateTimePicker1"

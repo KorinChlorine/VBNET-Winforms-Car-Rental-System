@@ -5,6 +5,16 @@ Imports System.Xml
 
 Public Class rent_a_car2
 
+    Public Property TransactionType As String
+    Public Property CarName As String
+    Public Property CarID As String
+    Public Property Duration As Integer
+    Public Property TotalPrice As Decimal
+    Public Property StartDate As DateTime?
+    Public Property EndDate As DateTime?
+    Public Property DailyPrice As Decimal
+    Public Property Customer As String
+
     Public Property SelectedCar As Object()
     Private SelectedPanel As Panel
     Private WithEvents Timer1 As New Timer()
@@ -278,70 +288,35 @@ Public Class rent_a_car2
                 ' Store booking information
                 StoreCarTransaction("BOOK", differenceInDays, totalPrice, selectedStartDate, selectedEndDate)
 
-                MessageBox.Show($"Car booked successfully! Duration: {differenceInDays} days. Total Price: ₱{totalPrice:N2}", "Booking Confirmation")
-                SelectedCar(12) = False
-                UpdateRoundedButton5State(False)
-
-                Dim notAvailableLabel As New Label With {
-                .Text = "NOT AVAILABLE",
-                .AutoSize = False,
-                .Size = New Size(PictureBox1.Width, 30),
-                .BackColor = Color.Red,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
-                notAvailableLabel.Location = New Point(0, PictureBox1.Height - notAvailableLabel.Height)
-                PictureBox1.Controls.Add(notAvailableLabel)
-                notAvailableLabel.BringToFront()
-                GlobalData.RentedCars += 1
-
-                ' Create and show confirmation form
-                Dim bookConfirmation As New ConfirmationRent()
-                bookConfirmation.Show()
+                ' Open the Billing form and pass the selected car and transaction details
+                Dim billingForm As New Billing()
+                billingForm.SelectedCar = SelectedCar
+                billingForm.TransactionType = "BOOK"
+                billingForm.StartDate = selectedStartDate
+                billingForm.EndDate = selectedEndDate
+                billingForm.Show()
             End If
 
-            ' Handle renting logic when RadioButton2 is checked
             If RadioButton2.Checked Then ' RENT option selected
-                ' Validate the number of days in TextBox1
                 Dim numberOfDays As Integer
                 If Not Integer.TryParse(TextBox1.Text, numberOfDays) OrElse numberOfDays <= 0 Then
                     MessageBox.Show("Please enter a valid number of days.", "Invalid Input")
                     Return
                 End If
 
-                ' Calculate the total price
                 Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar(11))
                 Dim totalPrice As Decimal = dailyPrice * numberOfDays
 
                 ' Store rental information
                 StoreCarTransaction("RENT", numberOfDays, totalPrice)
 
-                ' Display a confirmation message
-                MessageBox.Show($"Car rented successfully! Duration: {numberOfDays} days. Total Price: ₱{totalPrice:N2}", "Rental Confirmation")
-
-                ' Mark the car as unavailable
-                SelectedCar(12) = False
-                UpdateRoundedButton5State(False)
-
-                ' Add a "NOT AVAILABLE" label to the PictureBox
-                Dim notAvailableLabel As New Label With {
-                .Text = "NOT AVAILABLE",
-                .AutoSize = False,
-                .Size = New Size(PictureBox1.Width, 30),
-                .BackColor = Color.Red,
-                .ForeColor = Color.White,
-                .Font = New Font("Arial", 10, FontStyle.Bold),
-                .TextAlign = ContentAlignment.MiddleCenter
-            }
-                notAvailableLabel.Location = New Point(0, PictureBox1.Height - notAvailableLabel.Height)
-                PictureBox1.Controls.Add(notAvailableLabel)
-                notAvailableLabel.BringToFront()
-                GlobalData.RentedCars += 1
-
-                ' Create and show confirmation form 
-                Dim rentConfirmation As New ConfirmationRent()
-                rentConfirmation.Show()
+                ' Open the Billing form and pass the selected car and transaction details
+                Dim billingForm As New Billing()
+                billingForm.SelectedCar = SelectedCar
+                billingForm.TransactionType = "RENT"
+                billingForm.StartDate = DateTime.Now
+                billingForm.Duration = numberOfDays
+                billingForm.Show()
             End If
         Else
             MessageBox.Show("You have reached the maximum number of rented cars (3).", "Limit Reached")
@@ -349,63 +324,81 @@ Public Class rent_a_car2
         End If
     End Sub
 
-    Private Sub StoreCarTransaction(transactionType As String, duration As Integer, totalPrice As Decimal, Optional startDate As DateTime = Nothing, Optional endDate As DateTime = Nothing)
-        Dim carDetails As New Dictionary(Of String, Object) From {
-        {"TransactionType", transactionType},
-        {"CarName", SelectedCar(0)?.ToString()},
-        {"CarID", SelectedCar(8)?.ToString()},
-        {"Duration", duration},
-        {"TotalPrice", totalPrice},
-        {"DailyPrice", Convert.ToDecimal(SelectedCar(11))},
-        {"TransactionDate", DateTime.Now},
-        {"CarType", SelectedCar(3)?.ToString()},
-        {"CarColor", SelectedCar(5)?.ToString()},
-        {"PlateNumber", SelectedCar(10)?.ToString()}
-    }
 
-        ' Add optional date fields if provided
-        If startDate <> Nothing Then
-            carDetails.Add("StartDate", startDate)
-        End If
+    Private Sub StoreCarTransaction(transactionType As String, duration As Integer, totalPrice As Decimal, Optional startDate As Date? = Nothing, Optional endDate As Date? = Nothing)
+        Dim CarId As String = "Unknown ID"
+        Try
+            ' Default dates if not provided for RENT option
+            If transactionType = "RENT" Then
+                If Not startDate.HasValue Then startDate = DateTime.Now
+                If Not endDate.HasValue Then endDate = DateTime.Now.AddDays(duration)
+            End If
 
-        If endDate <> Nothing Then
-            carDetails.Add("EndDate", endDate)
-        End If
+            ' Ensure startDate and endDate have values before accessing .Value
+            If Not startDate.HasValue OrElse Not endDate.HasValue Then
+                Throw New InvalidOperationException("Start date or end date is not properly initialized.")
+            End If
 
-        ' Add customer details if logged in
-        If GlobalData.IsLoggedIn Then
-            carDetails.Add("CustomerName", GlobalData.UserFullName)
-            carDetails.Add("CustomerEmail", GlobalData.CurrentUserEmail)
-        End If
+            ' Prepare individual values with null checks
+            Dim carName As String = If(SelectedCar(0)?.ToString(), "Unknown Car")
+            CarId = If(SelectedCar(8)?.ToString(), "Unknown ID")
+            Dim plateNumber As String = If(SelectedCar(10)?.ToString(), "Unknown Plate")
+            Dim bodyNumber As String = If(SelectedCar(9)?.ToString(), "Unknown Body")
+            Dim color As String = If(SelectedCar(5)?.ToString(), "Unknown Color")
+            Dim type As String = If(SelectedCar(3)?.ToString(), "Unknown Type")
+            Dim capacity As String = If(SelectedCar(4)?.ToString(), "Unknown Capacity")
+            Dim dailyPrice As Decimal = If(Decimal.TryParse(SelectedCar(11)?.ToString(), dailyPrice), dailyPrice, 0)
 
-        ' Add the car details to GlobalData transactions list
-        GlobalData.AddTransaction(carDetails)
+            Dim customerName As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.UserFullName), GlobalData.UserFullName, "Guest")
+            Dim customerEmail As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.CurrentUserEmail), GlobalData.CurrentUserEmail, "guest@example.com")
+            Dim customerAddress As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.Address), GlobalData.Address, "Unknown Address")
+            Dim customer As String = customerName ' Use customerName as the value for the 'customer' parameter
 
-        ' Update global tracking variables
+            Dim isBooked As Boolean = (transactionType = "BOOK")
+
+            ' Add the transaction to the GlobalData module
+            GlobalData.AddTransaction(
+            carName,
+            CarId,
+            plateNumber,
+            bodyNumber,
+            color,
+            type,
+            capacity,
+            dailyPrice,
+            totalPrice,
+            customerName,
+            customerEmail,
+            customerAddress,
+            customer,
+            isBooked,
+            startDate.Value,
+            endDate.Value,
+            Nothing ' dateReturned set to Nothing since car is newly rented
+        )
+        Catch ex As Exception
+            MessageBox.Show("Error storing transaction: " & ex.Message, "Transaction Error")
+        End Try
+
+        ' Update global state
         If transactionType = "BOOK" Then
             GlobalData.IsBooked = True
             GlobalData.RentalStartDate = startDate
             GlobalData.RentalEndDate = endDate
         End If
 
-        GlobalData.CarRented = SelectedCar(8)?.ToString() ' Store car ID
+        GlobalData.CarRented = CarId
 
-        ' Update the car in the global cars list
+        ' Mark car as unavailable in CarsList
         For i As Integer = 0 To GlobalData.CarsList.Count - 1
-            If GlobalData.CarsList(i)(8)?.ToString() = SelectedCar(8)?.ToString() Then
-                GlobalData.CarsList(i)(12) = False ' Mark car as unavailable
+            If GlobalData.CarsList(i)(8)?.ToString() = CarId Then
+                GlobalData.CarsList(i)(12) = False ' Assuming index 12 is availability
                 Exit For
             End If
         Next
 
-        ' Notify that data has changed
         GlobalData.NotifyDataChanged()
     End Sub
 
-    Private Sub UpdateCarDetails()
-        SelectedCar(0) = "Updated Car Name"
-        SelectedCar(12) = False
-        GlobalData.NotifyDataChanged()
-    End Sub
 
 End Class

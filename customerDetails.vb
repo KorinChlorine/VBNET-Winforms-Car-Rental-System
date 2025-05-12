@@ -2,7 +2,7 @@
 
 Public Class customerDetails
 
-    Public Var As String
+    Public Property Var As String
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         Me.Close()
@@ -81,7 +81,7 @@ Public Class customerDetails
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
-        If Var Is Nothing Then
+        If Var = "!Allowed" Then
             MessageBox.Show("Please complete the survey to proceed.", "Survey Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
             'Else

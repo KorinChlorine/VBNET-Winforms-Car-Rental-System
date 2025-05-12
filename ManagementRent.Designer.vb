@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class UserManagement
+Partial Class ManagementRent
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,11 +22,23 @@ Partial Class UserManagement
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Transparent
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(947, 42)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(91, 30)
+        Me.Button3.TabIndex = 53
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'Button1
         '
@@ -34,10 +46,10 @@ Partial Class UserManagement
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(1051, 40)
+        Me.Button1.Location = New System.Drawing.Point(1044, 42)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(84, 30)
-        Me.Button1.TabIndex = 49
+        Me.Button1.Size = New System.Drawing.Size(91, 30)
+        Me.Button1.TabIndex = 52
         Me.Button1.UseVisualStyleBackColor = False
         '
         'Button2
@@ -46,55 +58,41 @@ Partial Class UserManagement
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(1141, 40)
+        Me.Button2.Location = New System.Drawing.Point(1141, 42)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(84, 30)
-        Me.Button2.TabIndex = 50
+        Me.Button2.TabIndex = 51
         Me.Button2.UseVisualStyleBackColor = False
         '
         'FlowLayoutPanel1
         '
-        Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(38, 96)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(40, 92)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1187, 549)
-        Me.FlowLayoutPanel1.TabIndex = 51
-        Me.FlowLayoutPanel1.WrapContents = False
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1185, 543)
+        Me.FlowLayoutPanel1.TabIndex = 54
         '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Transparent
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(846, 40)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(94, 30)
-        Me.Button3.TabIndex = 52
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'UserManagement
+        'ManagementRent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementUsers2
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management_Rent
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Button2)
         Me.DoubleBuffered = True
-        Me.Name = "UserManagement"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "UserManagement"
+        Me.Name = "ManagementRent"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "ManagementRent"
         Me.ResumeLayout(False)
 
     End Sub
+
+    Friend WithEvents Button3 As Button
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents Button3 As Button
 End Class

@@ -108,11 +108,11 @@ Public Class ConfirmationRent
         Dim paymentAmount As Double = TotalPrice
 
         ' Check if user has enough balance in wallet
-        If walletBalance >= paymentAmount Then
-            ' Deduct payment from wallet
-            GlobalData.Wallet -= paymentAmount
+        'If walletBalance >= paymentAmount Then
+        ' Deduct payment from wallet
+        'balData.Wallet -= paymentAmount
 
-            MessageBox.Show($"Payment of {lblTotalPayment.Text} has been confirmed for {CarName}. Your remaining wallet balance is ₱{GlobalData.Wallet:N2}", "Payment Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show($"Payment of {lblTotalPayment.Text} has been confirmed for {CarName}. Your remaining wallet balance is ₱{GlobalData.Wallet:N2}", "Payment Confirmed", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ' Update GlobalData
             GlobalData.RentedCars += 1
@@ -120,14 +120,14 @@ Public Class ConfirmationRent
 
             ' Close this form
             Me.Close()
-        Else
-            ' Not enough balance
-            MessageBox.Show($"Insufficient funds. Your current wallet balance is ₱{walletBalance:N2}. Please add funds to your wallet.", "Payment Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        ' Else
+        ' Not enough balance
+        ' MessageBox.Show($"Insufficient funds. Your current wallet balance is ₱{walletBalance:N2}. Please add funds to your wallet.", "Payment Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
 
-            ' Optionally open wallet topup form
-            ' Dim topUpForm As New WalletTopUp()
-            ' topUpForm.ShowDialog()
-        End If
+        ' Optionally open wallet topup form
+        ' Dim topUpForm As New WalletTopUp()
+        ' topUpForm.ShowDialog()
+        'End If
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
@@ -163,4 +163,6 @@ Public Class ConfirmationRent
         Billing.Show()
 
     End Sub
+
+
 End Class

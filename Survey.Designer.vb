@@ -474,7 +474,7 @@ Partial Class Survey
         Me.Controls.Add(Me.surveyQ1)
         Me.DoubleBuffered = True
         Me.Name = "Survey"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Survey"
         Me.surveyQ1.ResumeLayout(False)
         Me.surveyQ1.PerformLayout()

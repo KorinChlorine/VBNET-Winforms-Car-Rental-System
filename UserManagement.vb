@@ -8,7 +8,8 @@
         FlowLayoutPanel1.Controls.Clear()
 
         ' Updated titles array with new headers
-        Dim titles As String() = {"Index", "Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Car ID", "Car Name", "Start Date", "End Date", "Date Returned", "Current Wallet"}
+        Dim titles As String() = {"Index", "Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Current Wallet"}
+
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
@@ -24,7 +25,7 @@
             .Margin = New Padding(0)
         }
 
-        For i As Integer = 0 To titles.Length - 1
+        For i As Integer = 0 To 10 ' 0-based index for 11 columns (excluding Index)
             Dim label As New Label With {
                 .Text = titles(i),
                 .Font = titleFont,
@@ -108,24 +109,19 @@
 
         Try
             Select Case index
-                Case 0 : Return If(userData(0)?.ToString(), "")
-                Case 1 : Return If(userData(1)?.ToString(), "")
-                Case 2 : Return If(userData(2)?.ToString(), "")
-                Case 3 : Return If(userData(3)?.ToString(), "")
-                Case 4 : Return If(userData(4)?.ToString(), "")
-                Case 5 : Return If(userData(5)?.ToString(), "")
-                Case 6 : Return If(userData(6)?.ToString(), "•••••")
-                Case 7 : Return If(Convert.ToBoolean(userData(7)), "✓", "✗")
-                Case 8 : Return If(Convert.ToBoolean(userData(8)), "Rented", "Free")
-                Case 9 : Return If(userData(9)?.ToString(), "")
-                Case 10 : Return If(userData(10)?.ToString(), "") ' Car Name - You'll need to fetch this from car data
-                Case 11 : Return If(userData(11) IsNot Nothing AndAlso Not String.IsNullOrEmpty(userData(11).ToString()), Convert.ToDateTime(userData(11)).ToShortDateString(), "")
-                Case 12 : Return If(userData(12) IsNot Nothing AndAlso Not String.IsNullOrEmpty(userData(12).ToString()), Convert.ToDateTime(userData(12)).ToShortDateString(), "")
-                ' New fields for Date Returned and Current Wallet
-                Case 13 : Return If(userData(13) IsNot Nothing, Convert.ToDateTime(userData(13)).ToShortDateString(), "")
-                Case 14 : Return If(userData(14) IsNot Nothing, userData(14).ToString(), "0")
+                Case 0 : Return If(userData(0)?.ToString(), "")         ' Name
+                Case 1 : Return If(userData(1)?.ToString(), "")         ' Age
+                Case 2 : Return If(userData(2)?.ToString(), "")         ' Address
+                Case 3 : Return If(userData(3)?.ToString(), "")         ' Birthday
+                Case 4 : Return If(userData(4)?.ToString(), "")         ' Gender
+                Case 5 : Return If(userData(5)?.ToString(), "")         ' Email
+                Case 6 : Return If(userData(6)?.ToString(), "•••••")    ' Password
+                Case 7 : Return If(Convert.ToBoolean(userData(7)), "✓", "✗") ' Good Record
+                Case 8 : Return If(Convert.ToBoolean(userData(8)), "Rented", "Free") ' Status
+                Case 9 : Return If(userData(14) IsNot Nothing, userData(14).ToString(), "0") ' Current Wallet
                 Case Else : Return ""
             End Select
+
         Catch ex As Exception
             Return "Error"
         End Try
@@ -149,5 +145,10 @@
     Protected Overrides Sub OnFormClosing(e As FormClosingEventArgs)
         RemoveHandler GlobalData.DataChanged, AddressOf LoadUsers
         MyBase.OnFormClosing(e)
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Me.Close()
+        ManagementRent.Show()
     End Sub
 End Class
