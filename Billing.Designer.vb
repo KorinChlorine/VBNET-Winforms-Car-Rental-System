@@ -22,7 +22,6 @@ Partial Class Billing
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Billing))
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -60,18 +59,17 @@ Partial Class Billing
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.lblAge = New System.Windows.Forms.Panel()
         Me.lblType = New System.Windows.Forms.Label()
-        Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
+        Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.RoundedPanel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.lblAge.SuspendLayout()
-        Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button9
@@ -80,7 +78,7 @@ Partial Class Billing
         Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button9.FlatAppearance.BorderSize = 0
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(12, 572)
+        Me.Button9.Location = New System.Drawing.Point(19, 587)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(64, 47)
         Me.Button9.TabIndex = 10
@@ -94,7 +92,7 @@ Partial Class Billing
         Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ForeColor = System.Drawing.Color.Transparent
-        Me.Button1.Location = New System.Drawing.Point(12, 60)
+        Me.Button1.Location = New System.Drawing.Point(20, 63)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(64, 39)
         Me.Button1.TabIndex = 11
@@ -107,7 +105,7 @@ Partial Class Billing
         Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(12, 117)
+        Me.Button2.Location = New System.Drawing.Point(17, 117)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(64, 52)
         Me.Button2.TabIndex = 12
@@ -120,7 +118,7 @@ Partial Class Billing
         Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(12, 175)
+        Me.Button3.Location = New System.Drawing.Point(18, 181)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(64, 41)
         Me.Button3.TabIndex = 13
@@ -134,7 +132,7 @@ Partial Class Billing
         Me.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(12, 232)
+        Me.Button4.Location = New System.Drawing.Point(19, 242)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(64, 40)
         Me.Button4.TabIndex = 14
@@ -148,7 +146,7 @@ Partial Class Billing
         Me.Button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Location = New System.Drawing.Point(12, 292)
+        Me.Button5.Location = New System.Drawing.Point(20, 295)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(64, 47)
         Me.Button5.TabIndex = 15
@@ -162,9 +160,9 @@ Partial Class Billing
         Me.Button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
         Me.Button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(12, 513)
+        Me.Button6.Location = New System.Drawing.Point(19, 526)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(64, 53)
+        Me.Button6.Size = New System.Drawing.Size(64, 50)
         Me.Button6.TabIndex = 16
         Me.Button6.UseVisualStyleBackColor = False
         '
@@ -174,9 +172,9 @@ Partial Class Billing
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(115, 135)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(114, 135)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(215, 324)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(265, 344)
         Me.FlowLayoutPanel1.TabIndex = 17
         '
         'Label1
@@ -185,7 +183,7 @@ Partial Class Billing
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("League Spartan Black", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(125, 473)
+        Me.Label1.Location = New System.Drawing.Point(149, 499)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(187, 40)
         Me.Label1.TabIndex = 18
@@ -197,7 +195,7 @@ Partial Class Billing
         Me.lblUserStatus.BackColor = System.Drawing.Color.Transparent
         Me.lblUserStatus.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUserStatus.ForeColor = System.Drawing.Color.White
-        Me.lblUserStatus.Location = New System.Drawing.Point(111, 526)
+        Me.lblUserStatus.Location = New System.Drawing.Point(135, 552)
         Me.lblUserStatus.Name = "lblUserStatus"
         Me.lblUserStatus.Size = New System.Drawing.Size(96, 23)
         Me.lblUserStatus.TabIndex = 19
@@ -209,7 +207,7 @@ Partial Class Billing
         Me.lblBalance.BackColor = System.Drawing.Color.Transparent
         Me.lblBalance.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBalance.ForeColor = System.Drawing.Color.White
-        Me.lblBalance.Location = New System.Drawing.Point(111, 563)
+        Me.lblBalance.Location = New System.Drawing.Point(135, 589)
         Me.lblBalance.Name = "lblBalance"
         Me.lblBalance.Size = New System.Drawing.Size(70, 23)
         Me.lblBalance.TabIndex = 20
@@ -221,7 +219,7 @@ Partial Class Billing
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("League Spartan", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(173, 109)
+        Me.Label4.Location = New System.Drawing.Point(208, 109)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(95, 23)
         Me.Label4.TabIndex = 22
@@ -233,7 +231,7 @@ Partial Class Billing
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("League Spartan", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(374, 598)
+        Me.Label5.Location = New System.Drawing.Point(427, 611)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(87, 21)
         Me.Label5.TabIndex = 23
@@ -245,7 +243,7 @@ Partial Class Billing
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("League Spartan", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(523, 598)
+        Me.Label6.Location = New System.Drawing.Point(591, 611)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(63, 21)
         Me.Label6.TabIndex = 24
@@ -255,7 +253,7 @@ Partial Class Billing
         '
         Me.Panel2.BackColor = System.Drawing.Color.Transparent
         Me.Panel2.Controls.Add(Me.lblCustomer)
-        Me.Panel2.Location = New System.Drawing.Point(375, 279)
+        Me.Panel2.Location = New System.Drawing.Point(437, 285)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(368, 34)
         Me.Panel2.TabIndex = 33
@@ -290,7 +288,7 @@ Partial Class Billing
         Me.lblTotalPayment.BackColor = System.Drawing.Color.Transparent
         Me.lblTotalPayment.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalPayment.ForeColor = System.Drawing.Color.White
-        Me.lblTotalPayment.Location = New System.Drawing.Point(378, 223)
+        Me.lblTotalPayment.Location = New System.Drawing.Point(440, 229)
         Me.lblTotalPayment.Name = "lblTotalPayment"
         Me.lblTotalPayment.Size = New System.Drawing.Size(133, 28)
         Me.lblTotalPayment.TabIndex = 31
@@ -302,7 +300,7 @@ Partial Class Billing
         Me.lblPaymentPerDay.BackColor = System.Drawing.Color.Transparent
         Me.lblPaymentPerDay.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPaymentPerDay.ForeColor = System.Drawing.Color.White
-        Me.lblPaymentPerDay.Location = New System.Drawing.Point(378, 188)
+        Me.lblPaymentPerDay.Location = New System.Drawing.Point(440, 197)
         Me.lblPaymentPerDay.Name = "lblPaymentPerDay"
         Me.lblPaymentPerDay.Size = New System.Drawing.Size(158, 28)
         Me.lblPaymentPerDay.TabIndex = 30
@@ -312,9 +310,9 @@ Partial Class Billing
         '
         Me.Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Panel1.Controls.Add(Me.RoundedPanel1)
-        Me.Panel1.Location = New System.Drawing.Point(365, 101)
+        Me.Panel1.Location = New System.Drawing.Point(416, 101)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(730, 68)
+        Me.Panel1.Size = New System.Drawing.Size(814, 68)
         Me.Panel1.TabIndex = 29
         '
         'RoundedPanel1
@@ -323,9 +321,9 @@ Partial Class Billing
         Me.RoundedPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.RoundedPanel1.Controls.Add(Me.lblCarName)
         Me.RoundedPanel1.CornerRadius = 20
-        Me.RoundedPanel1.Location = New System.Drawing.Point(7, 3)
+        Me.RoundedPanel1.Location = New System.Drawing.Point(3, 3)
         Me.RoundedPanel1.Name = "RoundedPanel1"
-        Me.RoundedPanel1.Size = New System.Drawing.Size(726, 59)
+        Me.RoundedPanel1.Size = New System.Drawing.Size(811, 59)
         Me.RoundedPanel1.TabIndex = 38
         '
         'lblCarName
@@ -346,7 +344,7 @@ Partial Class Billing
         Me.lblDaysToBeRented.BackColor = System.Drawing.Color.Transparent
         Me.lblDaysToBeRented.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDaysToBeRented.ForeColor = System.Drawing.Color.White
-        Me.lblDaysToBeRented.Location = New System.Drawing.Point(758, 235)
+        Me.lblDaysToBeRented.Location = New System.Drawing.Point(852, 253)
         Me.lblDaysToBeRented.Name = "lblDaysToBeRented"
         Me.lblDaysToBeRented.Size = New System.Drawing.Size(163, 28)
         Me.lblDaysToBeRented.TabIndex = 28
@@ -358,7 +356,7 @@ Partial Class Billing
         Me.lblRentedEnded.BackColor = System.Drawing.Color.Transparent
         Me.lblRentedEnded.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRentedEnded.ForeColor = System.Drawing.Color.White
-        Me.lblRentedEnded.Location = New System.Drawing.Point(758, 206)
+        Me.lblRentedEnded.Location = New System.Drawing.Point(852, 225)
         Me.lblRentedEnded.Name = "lblRentedEnded"
         Me.lblRentedEnded.Size = New System.Drawing.Size(126, 28)
         Me.lblRentedEnded.TabIndex = 27
@@ -370,7 +368,7 @@ Partial Class Billing
         Me.lblRentedStarted.BackColor = System.Drawing.Color.Transparent
         Me.lblRentedStarted.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRentedStarted.ForeColor = System.Drawing.Color.White
-        Me.lblRentedStarted.Location = New System.Drawing.Point(758, 178)
+        Me.lblRentedStarted.Location = New System.Drawing.Point(852, 197)
         Me.lblRentedStarted.Name = "lblRentedStarted"
         Me.lblRentedStarted.Size = New System.Drawing.Size(138, 28)
         Me.lblRentedStarted.TabIndex = 26
@@ -389,7 +387,7 @@ Partial Class Billing
         Me.lblCarID.BackColor = System.Drawing.Color.Transparent
         Me.lblCarID.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCarID.ForeColor = System.Drawing.Color.White
-        Me.lblCarID.Location = New System.Drawing.Point(759, 279)
+        Me.lblCarID.Location = New System.Drawing.Point(853, 298)
         Me.lblCarID.Name = "lblCarID"
         Me.lblCarID.Size = New System.Drawing.Size(55, 23)
         Me.lblCarID.TabIndex = 16
@@ -401,7 +399,7 @@ Partial Class Billing
         Me.lblBodyNumber.BackColor = System.Drawing.Color.Transparent
         Me.lblBodyNumber.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBodyNumber.ForeColor = System.Drawing.Color.White
-        Me.lblBodyNumber.Location = New System.Drawing.Point(759, 302)
+        Me.lblBodyNumber.Location = New System.Drawing.Point(853, 321)
         Me.lblBodyNumber.Name = "lblBodyNumber"
         Me.lblBodyNumber.Size = New System.Drawing.Size(107, 23)
         Me.lblBodyNumber.TabIndex = 17
@@ -437,7 +435,7 @@ Partial Class Billing
         Me.lblPlateNumber.BackColor = System.Drawing.Color.Transparent
         Me.lblPlateNumber.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPlateNumber.ForeColor = System.Drawing.Color.White
-        Me.lblPlateNumber.Location = New System.Drawing.Point(759, 325)
+        Me.lblPlateNumber.Location = New System.Drawing.Point(853, 344)
         Me.lblPlateNumber.Name = "lblPlateNumber"
         Me.lblPlateNumber.Size = New System.Drawing.Size(108, 23)
         Me.lblPlateNumber.TabIndex = 34
@@ -449,7 +447,7 @@ Partial Class Billing
         Me.lblColor.BackColor = System.Drawing.Color.Transparent
         Me.lblColor.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblColor.ForeColor = System.Drawing.Color.White
-        Me.lblColor.Location = New System.Drawing.Point(759, 348)
+        Me.lblColor.Location = New System.Drawing.Point(853, 367)
         Me.lblColor.Name = "lblColor"
         Me.lblColor.Size = New System.Drawing.Size(47, 23)
         Me.lblColor.TabIndex = 35
@@ -461,7 +459,7 @@ Partial Class Billing
         Me.lblCapacity.BackColor = System.Drawing.Color.Transparent
         Me.lblCapacity.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCapacity.ForeColor = System.Drawing.Color.White
-        Me.lblCapacity.Location = New System.Drawing.Point(759, 371)
+        Me.lblCapacity.Location = New System.Drawing.Point(853, 390)
         Me.lblCapacity.Name = "lblCapacity"
         Me.lblCapacity.Size = New System.Drawing.Size(73, 23)
         Me.lblCapacity.TabIndex = 36
@@ -471,7 +469,7 @@ Partial Class Billing
         '
         Me.Panel3.BackColor = System.Drawing.Color.Transparent
         Me.Panel3.Controls.Add(Me.lblAddress)
-        Me.Panel3.Location = New System.Drawing.Point(375, 315)
+        Me.Panel3.Location = New System.Drawing.Point(437, 321)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(368, 34)
         Me.Panel3.TabIndex = 34
@@ -480,7 +478,7 @@ Partial Class Billing
         '
         Me.Panel4.BackColor = System.Drawing.Color.Transparent
         Me.Panel4.Controls.Add(Me.lblEmail)
-        Me.Panel4.Location = New System.Drawing.Point(375, 349)
+        Me.Panel4.Location = New System.Drawing.Point(437, 355)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(368, 34)
         Me.Panel4.TabIndex = 35
@@ -489,7 +487,7 @@ Partial Class Billing
         '
         Me.lblAge.BackColor = System.Drawing.Color.Transparent
         Me.lblAge.Controls.Add(Me.Label11)
-        Me.lblAge.Location = New System.Drawing.Point(375, 384)
+        Me.lblAge.Location = New System.Drawing.Point(437, 390)
         Me.lblAge.Name = "lblAge"
         Me.lblAge.Size = New System.Drawing.Size(368, 34)
         Me.lblAge.TabIndex = 36
@@ -500,45 +498,11 @@ Partial Class Billing
         Me.lblType.BackColor = System.Drawing.Color.Transparent
         Me.lblType.Font = New System.Drawing.Font("League Spartan ExtraBold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblType.ForeColor = System.Drawing.Color.White
-        Me.lblType.Location = New System.Drawing.Point(759, 394)
+        Me.lblType.Location = New System.Drawing.Point(853, 413)
         Me.lblType.Name = "lblType"
         Me.lblType.Size = New System.Drawing.Size(43, 23)
         Me.lblType.TabIndex = 37
         Me.lblType.Text = "Type"
-        '
-        'RoundedButton1
-        '
-        Me.RoundedButton1.BackColor = System.Drawing.Color.MediumSlateBlue
-        Me.RoundedButton1.FlatAppearance.BorderSize = 0
-        Me.RoundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RoundedButton1.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RoundedButton1.ForeColor = System.Drawing.Color.White
-        Me.RoundedButton1.Location = New System.Drawing.Point(892, 501)
-        Me.RoundedButton1.Name = "RoundedButton1"
-        Me.RoundedButton1.Size = New System.Drawing.Size(182, 99)
-        Me.RoundedButton1.TabIndex = 21
-        Me.RoundedButton1.Text = "Confirm"
-        Me.RoundedButton1.UseVisualStyleBackColor = False
-        '
-        'Label2
-        '
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(4, 18)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(237, 115)
-        Me.Label2.TabIndex = 38
-        Me.Label2.Text = resources.GetString("Label2.Text")
-        '
-        'Panel5
-        '
-        Me.Panel5.AutoScroll = True
-        Me.Panel5.BackColor = System.Drawing.Color.Transparent
-        Me.Panel5.Controls.Add(Me.Label2)
-        Me.Panel5.Location = New System.Drawing.Point(620, 479)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(244, 146)
-        Me.Panel5.TabIndex = 39
         '
         'Button7
         '
@@ -546,9 +510,9 @@ Partial Class Billing
         Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(371, 512)
+        Me.Button7.Location = New System.Drawing.Point(418, 526)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(93, 88)
+        Me.Button7.Size = New System.Drawing.Size(93, 87)
         Me.Button7.TabIndex = 40
         Me.Button7.UseVisualStyleBackColor = False
         '
@@ -558,11 +522,53 @@ Partial Class Billing
         Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(503, 513)
+        Me.Button8.Location = New System.Drawing.Point(577, 537)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(101, 88)
+        Me.Button8.Size = New System.Drawing.Size(93, 79)
         Me.Button8.TabIndex = 41
         Me.Button8.UseVisualStyleBackColor = False
+        '
+        'Button10
+        '
+        Me.Button10.BackColor = System.Drawing.Color.Transparent
+        Me.Button10.FlatAppearance.BorderSize = 0
+        Me.Button10.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.Button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button10.Location = New System.Drawing.Point(1156, 50)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(74, 24)
+        Me.Button10.TabIndex = 42
+        Me.Button10.UseVisualStyleBackColor = False
+        '
+        'RoundedButton1
+        '
+        Me.RoundedButton1.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RoundedButton1.FlatAppearance.BorderSize = 0
+        Me.RoundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RoundedButton1.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RoundedButton1.ForeColor = System.Drawing.Color.White
+        Me.RoundedButton1.Location = New System.Drawing.Point(983, 505)
+        Me.RoundedButton1.Name = "RoundedButton1"
+        Me.RoundedButton1.Size = New System.Drawing.Size(225, 126)
+        Me.RoundedButton1.TabIndex = 21
+        Me.RoundedButton1.Text = "Confirm"
+        Me.RoundedButton1.UseVisualStyleBackColor = False
+        '
+        'RoundedButton2
+        '
+        Me.RoundedButton2.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RoundedButton2.FlatAppearance.BorderSize = 0
+        Me.RoundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RoundedButton2.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RoundedButton2.ForeColor = System.Drawing.Color.White
+        Me.RoundedButton2.Location = New System.Drawing.Point(736, 505)
+        Me.RoundedButton2.Name = "RoundedButton2"
+        Me.RoundedButton2.Size = New System.Drawing.Size(225, 126)
+        Me.RoundedButton2.TabIndex = 44
+        Me.RoundedButton2.Text = "Return Car Now"
+        Me.RoundedButton2.UseVisualStyleBackColor = False
         '
         'Billing
         '
@@ -571,10 +577,11 @@ Partial Class Billing
         Me.BackColor = System.Drawing.SystemColors.ControlDark
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing4
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1126, 661)
+        Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.RoundedButton2)
+        Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.lblType)
         Me.Controls.Add(Me.lblAge)
         Me.Controls.Add(Me.Panel4)
@@ -621,7 +628,6 @@ Partial Class Billing
         Me.Panel4.PerformLayout()
         Me.lblAge.ResumeLayout(False)
         Me.lblAge.PerformLayout()
-        Me.Panel5.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -665,8 +671,8 @@ Partial Class Billing
     Friend WithEvents lblAge As Panel
     Friend WithEvents lblType As Label
     Friend WithEvents RoundedPanel1 As RoundedPanel
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Panel5 As Panel
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
+    Friend WithEvents Button10 As Button
+    Friend WithEvents RoundedButton2 As RoundedButton
 End Class

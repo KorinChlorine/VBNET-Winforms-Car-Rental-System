@@ -2,9 +2,11 @@
 
     Private Async Sub homeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Check user access
-        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Then
+        If GlobalData.var = "!Allowed" OrElse GlobalData.var Is Nothing Or GlobalData.IsGoodRecord = False Then
             Label1.Visible = False
             Label2.Visible = False
+            Button3.Visible = True
+            Button3.Enabled = True
         Else
             Label1.Visible = True
             Label2.Visible = True
@@ -191,9 +193,11 @@
     End Sub
 
     Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+        RefreshUI()
         GlobalData.LogoutUser()
-        GlobalData.var = ""
+        GlobalData.HasReturnedCarThisSession = False
         Me.Close()
         LoginForm.Show()
+
     End Sub
 End Class

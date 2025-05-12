@@ -19,6 +19,8 @@
 
     ' Events
     Public Event DataChanged()
+    Public HasReturnedCarThisSession As Boolean = False
+
 
     ' Properties for user session management
     Public UserFullName As String = ""
@@ -72,7 +74,8 @@
                 {"IsGoodRecord", isGoodRecord},
                 {"Wallet", wallet},
                 {"UserRole", userRole},
-                {"SavedBillingPanels", New List(Of Dictionary(Of String, Object))()}
+                {"SavedBillingPanels", New List(Of Dictionary(Of String, Object))()},
+                {"var", var}
             }
             UsersDict.Add(email, userDict)
             NotifyDataChanged()
@@ -84,6 +87,14 @@
     Public Function IsUserRegistered(email As String) As Boolean
         Return UsersDict.ContainsKey(email)
     End Function
+
+    Public Sub SetVarForCurrentUser(value As String)
+        var = value
+        Dim user = GetLoggedInUser()
+        If user IsNot Nothing Then
+            user("var") = value
+        End If
+    End Sub
 
     ' User login
     Public Function LoginUser(email As String, password As String) As Boolean
@@ -104,6 +115,7 @@
             IsBooked = If(userDict.ContainsKey("IsBooked"), CBool(userDict("IsBooked")), False)
             CarRented = If(userDict.ContainsKey("CarRented"), userDict("CarRented")?.ToString(), "")
             RentedCars = If(userDict.ContainsKey("RentedCars"), CInt(userDict("RentedCars")), 0)
+            var = If(userDict.ContainsKey("var"), userDict("var")?.ToString(), Nothing)
 
             ' Ensure SavedBillingPanels exists for old users
             If Not userDict.ContainsKey("SavedBillingPanels") Then
@@ -172,17 +184,47 @@
 
     ' Add a new transaction
     Public Function AddTransaction(carID As String, customerEmail As String, startDate As Date, endDate As Date,
-                                  totalPrice As Double, Optional status As String = "Booked") As Integer
+                              totalPrice As Double, Optional status As String = "Booked") As Integer
         Dim transactionID As Integer = If(TransactionsDict.Count = 0, 1, TransactionsDict.Keys.Max() + 1)
+
+        ' Get car details
+        Dim carDict As Dictionary(Of String, Object) = Nothing
+        If CarsDict.ContainsKey(carID) Then
+            carDict = CarsDict(carID)
+        End If
+
+        ' Get user details
+        Dim userDict As Dictionary(Of String, Object) = Nothing
+        If UsersDict.ContainsKey(customerEmail) Then
+            userDict = UsersDict(customerEmail)
+        End If
+
         Dim transactionDict As New Dictionary(Of String, Object) From {
-            {"TransactionID", transactionID},
-            {"CarID", carID},
-            {"CustomerEmail", customerEmail},
-            {"StartDate", startDate},
-            {"EndDate", endDate},
-            {"TotalPrice", totalPrice},
-            {"Status", status}
-        }
+        {"TransactionID", transactionID},
+        {"CarID", carID},
+        {"CustomerEmail", customerEmail},
+        {"StartDate", startDate},
+        {"EndDate", endDate},
+        {"TotalPrice", totalPrice},
+        {"Status", status}
+    }
+
+        ' Add car details if available
+        If carDict IsNot Nothing Then
+            If carDict.ContainsKey("PlateNumber") Then transactionDict("PlateNumber") = carDict("PlateNumber")
+            If carDict.ContainsKey("BodyNumber") Then transactionDict("BodyNumber") = carDict("BodyNumber")
+            If carDict.ContainsKey("Color") Then transactionDict("Color") = carDict("Color")
+            If carDict.ContainsKey("Type") Then transactionDict("Type") = carDict("Type")
+            If carDict.ContainsKey("Capacity") Then transactionDict("Capacity") = carDict("Capacity")
+            If carDict.ContainsKey("DailyPrice") Then transactionDict("DailyPrice") = carDict("DailyPrice")
+        End If
+
+        ' Add user details if available
+        If userDict IsNot Nothing Then
+            If userDict.ContainsKey("FullName") Then transactionDict("CustomerName") = userDict("FullName")
+            If userDict.ContainsKey("Address") Then transactionDict("CustomerAddress") = userDict("Address")
+        End If
+
         TransactionsDict.Add(transactionID, transactionDict)
         NotifyDataChanged()
         Return transactionID

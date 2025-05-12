@@ -13,36 +13,11 @@
         Me.Refresh()
         DateTimePicker1.Value = Date.Today
 
-        If GlobalData.var = "!Allowed" Or GlobalData.var = "Allowed" Then
-            PopulateFieldsFromUser()
-        End If
     End Sub
 
     Private Sub customerDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DateTimePicker1.Value = Date.Today
 
-        If GlobalData.var = "!Allowed" Or GlobalData.var = "Allowed" Then
-            PopulateFieldsFromUser()
-        End If
-    End Sub
-
-    Private Sub PopulateFieldsFromUser()
-        Dim userDict = GlobalData.GetLoggedInUser()
-        If userDict IsNot Nothing Then
-            TextBox1.Text = If(userDict.ContainsKey("FullName"), userDict("FullName")?.ToString(), "")
-            TextBox2.Text = If(userDict.ContainsKey("Age"), userDict("Age")?.ToString(), "")
-            TextBox3.Text = If(userDict.ContainsKey("Address"), userDict("Address")?.ToString(), "")
-            If userDict.ContainsKey("Birthday") AndAlso userDict("Birthday") IsNot Nothing AndAlso TypeOf userDict("Birthday") Is Date Then
-                DateTimePicker1.Value = CType(userDict("Birthday"), Date)
-            End If
-            If userDict.ContainsKey("Gender") Then
-                Select Case userDict("Gender")?.ToString()
-                    Case "Male" : RadioButton1.Checked = True
-                    Case "Female" : RadioButton2.Checked = True
-                    Case Else : RadioButton3.Checked = True
-                End Select
-            End If
-        End If
     End Sub
 
     Private Sub VerifyCustomerDetails()

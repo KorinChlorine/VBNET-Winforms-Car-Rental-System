@@ -157,6 +157,8 @@ Public Class rent_a_car2
         End If
         RadioButton1.BackColor = Color.White
         RadioButton2.BackColor = Color.MediumSlateBlue
+        RadioButton1.ForeColor = Color.Black
+        RadioButton2.ForeColor = Color.White
         UpdateRoundedButton5State(isAvailable)
     End Sub
 
@@ -167,6 +169,8 @@ Public Class rent_a_car2
         End If
         RadioButton2.BackColor = Color.White
         RadioButton1.BackColor = Color.MediumSlateBlue
+        RadioButton2.ForeColor = Color.Black
+        RadioButton1.ForeColor = Color.White
         UpdateRoundedButton5State(isAvailable)
     End Sub
 

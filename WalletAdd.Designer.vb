@@ -96,9 +96,11 @@ Partial Class WalletAdd
         Me.Controls.Add(Me.RoundedButton1)
         Me.Controls.Add(Me.TextBox1)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "WalletAdd"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "WalletAdd"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -47,6 +47,7 @@
     End Sub
 
     Private Sub SubmitSurvey()
+        customerDetails.Close()
         Dim q1Value As Integer = GetSelectedValue(surveyQ1)
         Dim q2Value As Integer = GetSelectedValue(surveyQ2)
         Dim q3Value As Integer = GetSelectedValue(surveyQ3)
@@ -73,7 +74,7 @@
 
         If percentage >= 60 Then
             MessageBox.Show("You are allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            GlobalData.var = "Allowed"
+            GlobalData.SetVarForCurrentUser("Allowed")
             userDict("IsGoodRecord") = True
             userDict("SurveyScore") = percentage
             homeForm.RefreshUI()
@@ -81,7 +82,7 @@
             Me.Close()
         Else
             MessageBox.Show("You are not allowed to rent a car.", "Survey Result", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            GlobalData.var = "!Allowed"
+            GlobalData.SetVarForCurrentUser("!Allowed")
             userDict("IsGoodRecord") = False
             userDict("SurveyScore") = percentage
             homeForm.RefreshUI()

@@ -4,9 +4,10 @@
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Billing.Refresh()
+        Billing.UpdateBillingDetails()
         Me.Close()
     End Sub
+
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
         Dim amount As Double
@@ -24,5 +25,11 @@
 
         MessageBox.Show($"Successfully added ₱{amount:N2} to your wallet!" & vbCrLf & $"New Balance: ₱{GlobalData.Wallet:N2}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
         TextBox1.Clear()
+        Billing.UpdateBillingDetails()
+
+    End Sub
+
+    Private Sub WalletAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
