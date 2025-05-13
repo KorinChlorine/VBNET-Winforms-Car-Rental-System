@@ -40,6 +40,7 @@
     Public RentedCars As Integer = 0
     Public Wallet As Double = 0.0
 
+
     Public Sub NotifyDataChanged()
         RaiseEvent DataChanged()
     End Sub
@@ -116,6 +117,7 @@
             CarRented = If(userDict.ContainsKey("CarRented"), userDict("CarRented")?.ToString(), "")
             RentedCars = If(userDict.ContainsKey("RentedCars"), CInt(userDict("RentedCars")), 0)
             var = If(userDict.ContainsKey("var"), userDict("var")?.ToString(), Nothing)
+
 
             If userDict.ContainsKey("RentedCarsList") AndAlso userDict("RentedCarsList") IsNot Nothing Then
                 GlobalData.RentedCars = CType(userDict("RentedCarsList"), List(Of Dictionary(Of String, Object))).Count

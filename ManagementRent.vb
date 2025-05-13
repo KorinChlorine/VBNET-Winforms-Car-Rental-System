@@ -214,7 +214,7 @@
         Next
     End Sub
 
-    ' Returns the countdown string for a transaction
+    ' Returns the countdown string for a transaction, including days
     Private Function GetTimeLeftString(t As Dictionary(Of String, Object), statusText As String) As String
         If statusText.ToLower() = "returned" Then
             Return "00:00:00"
@@ -224,11 +224,17 @@
         If t.ContainsKey("EndDate") AndAlso DateTime.TryParse(t("EndDate")?.ToString(), endDate) Then
             Dim remaining As TimeSpan = endDate - DateTime.Now
             If remaining.TotalSeconds > 0 Then
-                Return remaining.ToString("hh\:mm\:ss")
+                ' Format as d:hh:mm:ss, always show at least 2 digits for hours/minutes/seconds
+                Return String.Format("{0}:{1:D2}:{2:D2}:{3:D2}",
+                                 Math.Floor(remaining.TotalDays),
+                                 remaining.Hours,
+                                 remaining.Minutes,
+                                 remaining.Seconds)
             End If
         End If
         Return "00:00:00"
     End Function
+
 
     ' Save admin-edited timer (from the editTimeTextBox)
     Private Sub SaveTimerEdit(transactionId As Integer, newTime As String)

@@ -19,14 +19,6 @@
         End If
         UpdateBillingDetails()
         LoadSavedPanels()
-
-        ' Optionally auto-select the first panel and update buttons
-        If FlowLayoutPanel1.Controls.Count > 0 Then
-            Dim firstPanel = TryCast(FlowLayoutPanel1.Controls(0), Panel)
-            If firstPanel IsNot Nothing Then
-                TransactionPanel_Click(firstPanel, EventArgs.Empty)
-            End If
-        End If
     End Sub
 
     ' No timer stopping here!
@@ -65,6 +57,27 @@
             lblDaysToBeRented.Text = "Days to be Rented: " & rentalDays.ToString()
         Else
             lblCarName.Text = "No car selected"
+        End If
+        ' If this is a new transaction (SelectedCar is set but not in SavedBillingPanels), show a temporary panel
+        If SelectedCar IsNot Nothing AndAlso Not Me.DesignMode Then
+            Dim loggedInUser = GlobalData.GetLoggedInUser()
+            Dim alreadySaved As Boolean = False
+            If loggedInUser IsNot Nothing AndAlso loggedInUser.ContainsKey("SavedBillingPanels") Then
+                Dim savedPanels = CType(loggedInUser("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
+                alreadySaved = savedPanels.Any(Function(p) p.ContainsKey("CarID") AndAlso p("CarID").ToString() = SelectedCar("CarID").ToString())
+            End If
+            If Not alreadySaved Then
+                ' Clear all panels and timers before showing a new temporary panel
+                For Each tmr In panelTimers.Values
+                    tmr.Stop()
+                    tmr.Dispose()
+                Next
+                panelTimers.Clear()
+                FlowLayoutPanel1.Controls.Clear()
+                CreateAndSelectTemporaryPanel()
+                ' Do NOT auto-select the first panel after this
+                Return
+            End If
         End If
 
         lblCustomer.Text = "Customer Name: " & GlobalData.UserFullName
@@ -191,6 +204,7 @@
     End Sub
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
+
         If Not GlobalData.IsLoggedIn Then
             MessageBox.Show("You must be logged in to confirm the transaction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -283,6 +297,13 @@
                 RoundedButton2.ForeColor = Color.White
                 RoundedButton2.BackColor = Color.MediumSlateBlue
 
+                GlobalData.RentedCars += 1
+                Dim user = GlobalData.GetLoggedInUser()
+                If user IsNot Nothing Then
+                    user("RentedCars") = GlobalData.RentedCars
+                End If
+                GlobalData.NotifyDataChanged()
+
             Else
                 MessageBox.Show("Insufficient balance in wallet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
@@ -336,12 +357,14 @@
         End If
 
         If isReturned OrElse GlobalData.HasReturnedCarThisSession Then
+            ' Both buttons disabled
             RoundedButton1.Enabled = False
             RoundedButton1.BackColor = Color.Gray
             RoundedButton2.Enabled = False
             RoundedButton2.BackColor = Color.Gray
             RoundedButton2.ForeColor = Color.Black
         Else
+            ' Only confirm disabled, return enabled
             RoundedButton1.Enabled = False
             RoundedButton1.BackColor = Color.Gray
             RoundedButton2.Enabled = True
@@ -349,6 +372,7 @@
             RoundedButton2.ForeColor = Color.White
         End If
     End Sub
+
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         WalletAdd.Show()
@@ -368,26 +392,30 @@
 
     Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
         If SelectedPanel Is Nothing Then
-            MessageBox.Show("Please select a rental panel to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please select a to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Stop the timer for this panel
+        If GlobalData.RentedCars > 0 Then
+            GlobalData.RentedCars -= 1
+        End If
+        Dim user = GlobalData.GetLoggedInUser()
+        If user IsNot Nothing Then
+            user("RentedCars") = GlobalData.RentedCars
+        End If
+
         If panelTimers.ContainsKey(SelectedPanel) Then
             panelTimers(SelectedPanel).Stop()
             panelTimers(SelectedPanel).Dispose()
             panelTimers.Remove(SelectedPanel)
         End If
 
-        ' Get transaction details from the panel
         Dim details = CType(SelectedPanel.Tag, Dictionary(Of String, Object))
 
-        ' Mark as returned in GlobalData
         MarkCarAsReturned(details)
 
         MessageBox.Show("Rental marked as returned. No refunds will be issued as per company policy.", "Return Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        ' Optionally, update UI to reflect return
         SelectedPanel.BackColor = Color.LightGray
         For Each lbl In SelectedPanel.Controls.OfType(Of Label)()
             lbl.ForeColor = Color.DarkGray
@@ -395,10 +423,74 @@
         Next
         SelectedPanel = Nothing
 
-        ' Disable relevant buttons for the rest of the session
         GlobalData.HasReturnedCarThisSession = True
         DisablePostReturnButtons()
     End Sub
+    Private Sub CreateAndSelectTemporaryPanel()
+        ' Build a dictionary with all relevant details from the current form state
+        Dim tempDetails As New Dictionary(Of String, Object) From {
+        {"CarName", lblCarName.Text},
+        {"PaymentPerDay", lblPaymentPerDay.Text},
+        {"CarID", lblCarID.Text},
+        {"BodyNumber", lblBodyNumber.Text},
+        {"PlateNumber", lblPlateNumber.Text},
+        {"Color", lblColor.Text},
+        {"Capacity", lblCapacity.Text},
+        {"Type", lblType.Text},
+        {"TotalPayment", lblTotalPayment.Text},
+        {"RentedStarted", lblRentedStarted.Text},
+        {"RentedEnded", lblRentedEnded.Text},
+        {"DaysToBeRented", lblDaysToBeRented.Text},
+        {"Customer", lblCustomer.Text},
+        {"Address", lblAddress.Text},
+        {"Email", lblEmail.Text},
+        {"Age", lblAge.Text},
+        {"Status", "Active"}
+    }
+
+        ' Set a temporary return deadline for display
+        Dim panelReturnEndTime As DateTime
+        If TransactionType = "RENT" Then
+            panelReturnEndTime = DateTime.Now.AddDays(Duration)
+        ElseIf TransactionType = "BOOK" AndAlso EndDate.HasValue Then
+            panelReturnEndTime = EndDate.Value
+        Else
+            panelReturnEndTime = DateTime.Now
+        End If
+        tempDetails("ReturnDeadline") = panelReturnEndTime
+
+        ' Remove any previous temporary panel (optional, for clarity)
+        If FlowLayoutPanel1.Controls.Count > 0 Then
+            For i As Integer = FlowLayoutPanel1.Controls.Count - 1 To 0 Step -1
+                Dim pnl = TryCast(FlowLayoutPanel1.Controls(i), Panel)
+                If pnl IsNot Nothing AndAlso pnl.Tag IsNot Nothing Then
+                    Dim tagDict = TryCast(pnl.Tag, Dictionary(Of String, Object))
+                    If tagDict IsNot Nothing AndAlso tagDict.ContainsKey("Status") AndAlso tagDict("Status").ToString() = "Active" Then
+                        FlowLayoutPanel1.Controls.RemoveAt(i)
+                    End If
+                End If
+            Next
+        End If
+
+        ' Create and add the panel
+        CreateTransactionPanel(tempDetails)
+
+        ' Select the newly created panel
+        If FlowLayoutPanel1.Controls.Count > 0 Then
+            Dim lastPanel = TryCast(FlowLayoutPanel1.Controls(FlowLayoutPanel1.Controls.Count - 1), Panel)
+            If lastPanel IsNot Nothing Then
+                TransactionPanel_Click(lastPanel, EventArgs.Empty)
+                ' Ensure confirm button is enabled and styled
+                RoundedButton1.Enabled = True
+                RoundedButton1.BackColor = Color.DarkSlateBlue
+                RoundedButton1.ForeColor = Color.White
+                RoundedButton2.Enabled = False
+                RoundedButton2.BackColor = Color.Gray
+                RoundedButton2.ForeColor = Color.Black
+            End If
+        End If
+    End Sub
+
 
     Private Sub DisablePostReturnButtons()
         RoundedButton1.Enabled = False
