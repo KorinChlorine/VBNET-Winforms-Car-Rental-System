@@ -297,6 +297,7 @@ Public Class rent_a_car2
                 billingForm.StartDate = selectedStartDate
                 billingForm.EndDate = selectedEndDate
                 billingForm.Show()
+                Me.Close()
             End If
 
             If RadioButton2.Checked Then ' RENT option selected
@@ -317,6 +318,7 @@ Public Class rent_a_car2
                 billingForm.StartDate = DateTime.Now
                 billingForm.Duration = numberOfDays
                 billingForm.Show()
+                Me.Close()
             End If
         Else
             MessageBox.Show("You have reached the maximum number of rented cars (3).", "Limit Reached")
@@ -363,7 +365,9 @@ Public Class rent_a_car2
         If GlobalData.CarsDict.ContainsKey(CarId) Then
             GlobalData.CarsDict(CarId)("IsAvailable") = False
         End If
-
+        If GlobalData.IsLoggedIn Then
+            GlobalData.RentedCars += 1
+        End If
         GlobalData.NotifyDataChanged()
     End Sub
 

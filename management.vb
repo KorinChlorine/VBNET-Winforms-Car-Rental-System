@@ -112,7 +112,7 @@ Public Class Management
         Dim panel1 As New Panel With {
             .Size = New Size(220, 50),
             .Location = New Point(10, panelYPosition),
-            .BackColor = Color.Transparent
+            .BackColor = Color.MediumSlateBlue
         }
         AddHandler panel1.Click, AddressOf Panel_Click
         AddHandler panel1.Paint, AddressOf Panel1_Paint
@@ -129,7 +129,8 @@ Public Class Management
             .Text = carDict("CarName")?.ToString(),
             .Size = New Size(220, 50),
             .Location = New Point(40, 0),
-            .BackColor = Color.White,
+            .ForeColor = ForeColor.White,
+            .BackColor = Color.Transparent,
             .TextAlign = ContentAlignment.MiddleCenter,
             .Tag = "MainLabel"
         }
@@ -203,7 +204,7 @@ Public Class Management
         Dim overlay As New Panel With {
             .Size = selectedPanel.Size,
             .Location = New Point(0, 0),
-            .BackColor = Color.FromArgb(100, Color.LightBlue),
+            .BackColor = Color.FromArgb(100, Color.White),
             .Tag = "Overlay"
         }
         selectedPanel.Controls.Add(overlay)
@@ -214,9 +215,9 @@ Public Class Management
             .AutoSize = False,
             .Size = selectedPanel.Size,
             .TextAlign = ContentAlignment.MiddleCenter,
-            .ForeColor = Color.White,
+            .ForeColor = Color.Black,
             .Font = New Font("Arial", 12, FontStyle.Bold),
-            .BackColor = Color.SlateBlue,
+            .BackColor = Color.White,
             .Tag = "SelectedLabel"
         }
         selectedPanel.Controls.Add(selectedLabel)
@@ -346,27 +347,66 @@ Public Class Management
             Return
         End If
 
-        Dim carID As String = RichTextBox4.Text.Trim()
-        If String.IsNullOrEmpty(carID) OrElse Not GlobalData.CarsDict.ContainsKey(carID) Then
+        Dim oldCarID As String = TryCast(selectedPanel.Tag, String)
+        Dim newCarID As String = RichTextBox4.Text.Trim()
+        If String.IsNullOrEmpty(newCarID) Then
+            MessageBox.Show("Car ID cannot be empty.")
+            Return
+        End If
+
+        If String.IsNullOrEmpty(oldCarID) OrElse Not GlobalData.CarsDict.ContainsKey(oldCarID) Then
             MessageBox.Show("No data found for the selected car.")
             Return
         End If
 
-        Dim carDict = GlobalData.CarsDict(carID)
-        carDict("CarName") = RichTextBox3.Text
-        carDict("PrimaryImage") = PictureBox1.Image
-        carDict("SecondaryImage") = PictureBox2.Image
-        carDict("CarType") = RichTextBox6.Text
-        carDict("Capacity") = RichTextBox5.Text
-        carDict("Color") = RichTextBox10.Text
-        carDict("BriefDetails") = RichTextBox1.Text
-        carDict("Details") = RichTextBox2.Text
-        carDict("CarID") = RichTextBox4.Text
-        carDict("BodyNumber") = RichTextBox7.Text
-        carDict("PlateNumber") = RichTextBox9.Text
-        carDict("DailyPrice") = RichTextBox8.Text
-        carDict("IsAvailable") = RadioButton1.Checked
+        ' If CarID changed, update the dictionary key
+        If oldCarID <> newCarID Then
+            If GlobalData.CarsDict.ContainsKey(newCarID) Then
+                MessageBox.Show("A car with this new Car ID already exists.")
+                Return
+            End If
 
+            ' Copy the old dictionary and update CarID
+            Dim carDict = GlobalData.CarsDict(oldCarID)
+            carDict("CarID") = newCarID
+            carDict("CarName") = RichTextBox3.Text
+            carDict("PrimaryImage") = PictureBox1.Image
+            carDict("SecondaryImage") = PictureBox2.Image
+            carDict("CarType") = RichTextBox6.Text
+            carDict("Capacity") = RichTextBox5.Text
+            carDict("Color") = RichTextBox10.Text
+            carDict("BriefDetails") = RichTextBox1.Text
+            carDict("Details") = RichTextBox2.Text
+            carDict("BodyNumber") = RichTextBox7.Text
+            carDict("PlateNumber") = RichTextBox9.Text
+            carDict("DailyPrice") = RichTextBox8.Text
+            carDict("IsAvailable") = RadioButton1.Checked
+
+            ' Remove old key, add new key
+            GlobalData.CarsDict.Remove(oldCarID)
+            GlobalData.CarsDict.Add(newCarID, carDict)
+
+            ' Update the panel's tag to the new CarID
+            selectedPanel.Tag = newCarID
+        Else
+            ' Just update the existing dictionary
+            Dim carDict = GlobalData.CarsDict(oldCarID)
+            carDict("CarName") = RichTextBox3.Text
+            carDict("PrimaryImage") = PictureBox1.Image
+            carDict("SecondaryImage") = PictureBox2.Image
+            carDict("CarType") = RichTextBox6.Text
+            carDict("Capacity") = RichTextBox5.Text
+            carDict("Color") = RichTextBox10.Text
+            carDict("BriefDetails") = RichTextBox1.Text
+            carDict("Details") = RichTextBox2.Text
+            carDict("CarID") = RichTextBox4.Text
+            carDict("BodyNumber") = RichTextBox7.Text
+            carDict("PlateNumber") = RichTextBox9.Text
+            carDict("DailyPrice") = RichTextBox8.Text
+            carDict("IsAvailable") = RadioButton1.Checked
+        End If
+
+        ' Update UI
         Dim nameLabel = selectedPanel.Controls.OfType(Of Label).FirstOrDefault(Function(lbl) lbl.Tag?.ToString() = "MainLabel")
         If nameLabel IsNot Nothing Then
             nameLabel.Text = RichTextBox3.Text
@@ -381,6 +421,7 @@ Public Class Management
         GlobalData.NotifyDataChanged()
         MessageBox.Show("Details updated successfully!")
     End Sub
+
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         ' Update PremiumCarsArray with CarIDs of premium cars

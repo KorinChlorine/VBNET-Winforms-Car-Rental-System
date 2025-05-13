@@ -172,7 +172,7 @@ Partial Class Billing
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(114, 135)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(126, 135)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(265, 344)
         Me.FlowLayoutPanel1.TabIndex = 17
@@ -321,22 +321,22 @@ Partial Class Billing
         Me.RoundedPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.RoundedPanel1.Controls.Add(Me.lblCarName)
         Me.RoundedPanel1.CornerRadius = 20
-        Me.RoundedPanel1.Location = New System.Drawing.Point(3, 3)
+        Me.RoundedPanel1.Location = New System.Drawing.Point(3, 6)
         Me.RoundedPanel1.Name = "RoundedPanel1"
-        Me.RoundedPanel1.Size = New System.Drawing.Size(811, 59)
+        Me.RoundedPanel1.Size = New System.Drawing.Size(811, 56)
         Me.RoundedPanel1.TabIndex = 38
         '
         'lblCarName
         '
-        Me.lblCarName.AutoSize = True
         Me.lblCarName.BackColor = System.Drawing.Color.Transparent
         Me.lblCarName.Font = New System.Drawing.Font("League Spartan ExtraBold", 26.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCarName.ForeColor = System.Drawing.Color.White
-        Me.lblCarName.Location = New System.Drawing.Point(0, 12)
+        Me.lblCarName.Location = New System.Drawing.Point(3, 9)
         Me.lblCarName.Name = "lblCarName"
-        Me.lblCarName.Size = New System.Drawing.Size(182, 52)
+        Me.lblCarName.Size = New System.Drawing.Size(798, 52)
         Me.lblCarName.TabIndex = 2
         Me.lblCarName.Text = "Car Name"
+        Me.lblCarName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'lblDaysToBeRented
         '
@@ -512,7 +512,7 @@ Partial Class Billing
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Location = New System.Drawing.Point(418, 526)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(93, 87)
+        Me.Button7.Size = New System.Drawing.Size(93, 82)
         Me.Button7.TabIndex = 40
         Me.Button7.UseVisualStyleBackColor = False
         '
@@ -524,7 +524,7 @@ Partial Class Billing
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button8.Location = New System.Drawing.Point(577, 537)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(93, 79)
+        Me.Button8.Size = New System.Drawing.Size(93, 71)
         Me.Button8.TabIndex = 41
         Me.Button8.UseVisualStyleBackColor = False
         '
@@ -567,7 +567,7 @@ Partial Class Billing
         Me.RoundedButton2.Name = "RoundedButton2"
         Me.RoundedButton2.Size = New System.Drawing.Size(225, 126)
         Me.RoundedButton2.TabIndex = 44
-        Me.RoundedButton2.Text = "Return Car Now"
+        Me.RoundedButton2.Text = "Return"
         Me.RoundedButton2.UseVisualStyleBackColor = False
         '
         'Billing
@@ -621,7 +621,6 @@ Partial Class Billing
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.RoundedPanel1.ResumeLayout(False)
-        Me.RoundedPanel1.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.Panel4.ResumeLayout(False)

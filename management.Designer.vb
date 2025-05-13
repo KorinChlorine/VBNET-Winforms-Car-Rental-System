@@ -42,8 +42,6 @@ Partial Class Management
         Me.RichTextBox7 = New System.Windows.Forms.RichTextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.RichTextBox4 = New System.Windows.Forms.RichTextBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.RichTextBox8 = New System.Windows.Forms.RichTextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.RichTextBox9 = New System.Windows.Forms.RichTextBox()
@@ -56,17 +54,19 @@ Partial Class Management
         Me.RichTextBox10 = New System.Windows.Forms.RichTextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.RoundedPanel1 = New VBNET_Car_Rental_System.RoundedPanel()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton5 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton4 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.RoundedPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpenFileDialog1
@@ -282,30 +282,6 @@ Partial Class Management
         Me.RichTextBox4.TabIndex = 33
         Me.RichTextBox4.Text = ""
         '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.Label11)
-        Me.Panel1.Location = New System.Drawing.Point(824, 133)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(373, 61)
-        Me.Panel1.TabIndex = 35
-        '
-        'Label11
-        '
-        Me.Label11.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.DarkSlateBlue
-        Me.Label11.Location = New System.Drawing.Point(64, 11)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(244, 38)
-        Me.Label11.TabIndex = 34
-        Me.Label11.Text = "Non-Premium"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'RichTextBox8
         '
         Me.RichTextBox8.BackColor = System.Drawing.Color.White
@@ -442,6 +418,55 @@ Partial Class Management
         Me.Button1.TabIndex = 45
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(961, 37)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(95, 44)
+        Me.Button2.TabIndex = 46
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.Transparent
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(860, 37)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(95, 44)
+        Me.Button3.TabIndex = 47
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'RoundedPanel1
+        '
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.White
+        Me.RoundedPanel1.Controls.Add(Me.Label11)
+        Me.RoundedPanel1.CornerRadius = 20
+        Me.RoundedPanel1.Location = New System.Drawing.Point(824, 133)
+        Me.RoundedPanel1.Name = "RoundedPanel1"
+        Me.RoundedPanel1.Size = New System.Drawing.Size(373, 61)
+        Me.RoundedPanel1.TabIndex = 48
+        '
+        'Label11
+        '
+        Me.Label11.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.DarkSlateBlue
+        Me.Label11.Location = New System.Drawing.Point(65, 10)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(244, 38)
+        Me.Label11.TabIndex = 34
+        Me.Label11.Text = "Non-Premium"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'RoundedButton2
         '
         Me.RoundedButton2.BackColor = System.Drawing.Color.DarkSlateBlue
@@ -513,37 +538,14 @@ Partial Class Management
         Me.RoundedButton1.Text = "Edit"
         Me.RoundedButton1.UseVisualStyleBackColor = False
         '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.Color.Transparent
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(961, 37)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(95, 44)
-        Me.Button2.TabIndex = 46
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.Transparent
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(860, 37)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(95, 44)
-        Me.Button3.TabIndex = 47
-        Me.Button3.UseVisualStyleBackColor = False
-        '
         'Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management1
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management11
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.RoundedPanel1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -556,7 +558,6 @@ Partial Class Management
         Me.Controls.Add(Me.RichTextBox9)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.RichTextBox8)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.RichTextBox4)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.RichTextBox7)
@@ -586,9 +587,9 @@ Partial Class Management
         Me.Text = "management"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.RoundedPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -617,7 +618,6 @@ Partial Class Management
     Friend WithEvents RichTextBox7 As RichTextBox
     Friend WithEvents Label10 As Label
     Friend WithEvents RichTextBox4 As RichTextBox
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents RichTextBox8 As RichTextBox
     Friend WithEvents Label12 As Label
     Friend WithEvents RichTextBox9 As RichTextBox
@@ -634,4 +634,5 @@ Partial Class Management
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
+    Friend WithEvents RoundedPanel1 As RoundedPanel
 End Class

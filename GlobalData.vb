@@ -107,15 +107,21 @@
             UserFullName = userDict("FullName")?.ToString()
             UserRole = userDict("UserRole")?.ToString()
             Wallet = If(userDict.ContainsKey("Wallet"), CDbl(userDict("Wallet")), 0.0)
-            Age = If(userDict.ContainsKey("Age"), CInt(userDict("Age")), 0)
+            Age = If(userDict.ContainsKey("Age"), CInt(userDict("Age")), Nothing)
             Address = If(userDict.ContainsKey("Address"), userDict("Address")?.ToString(), "")
-            Birthday = If(userDict.ContainsKey("Birthday") AndAlso TypeOf userDict("Birthday") Is Date, CType(userDict("Birthday"), Date), Date.MinValue)
+            Birthday = If(userDict.ContainsKey("Birthday") AndAlso TypeOf userDict("Birthday") Is Date, CType(userDict("Birthday"), Date), Nothing)
             Gender = If(userDict.ContainsKey("Gender"), userDict("Gender")?.ToString(), "")
-            IsGoodRecord = If(userDict.ContainsKey("IsGoodRecord"), CBool(userDict("IsGoodRecord")), True)
+            IsGoodRecord = If(userDict.ContainsKey("IsGoodRecord"), CBool(userDict("IsGoodRecord")), Nothing)
             IsBooked = If(userDict.ContainsKey("IsBooked"), CBool(userDict("IsBooked")), False)
             CarRented = If(userDict.ContainsKey("CarRented"), userDict("CarRented")?.ToString(), "")
             RentedCars = If(userDict.ContainsKey("RentedCars"), CInt(userDict("RentedCars")), 0)
             var = If(userDict.ContainsKey("var"), userDict("var")?.ToString(), Nothing)
+
+            If userDict.ContainsKey("RentedCarsList") AndAlso userDict("RentedCarsList") IsNot Nothing Then
+                GlobalData.RentedCars = CType(userDict("RentedCarsList"), List(Of Dictionary(Of String, Object))).Count
+            Else
+                GlobalData.RentedCars = 0
+            End If
 
             ' Ensure SavedBillingPanels exists for old users
             If Not userDict.ContainsKey("SavedBillingPanels") Then

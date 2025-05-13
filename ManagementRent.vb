@@ -72,9 +72,6 @@
                         statusText = "Booked"
                     End If
                 End If
-                If t.ContainsKey("DateReturned") AndAlso t("DateReturned") IsNot Nothing AndAlso TypeOf t("DateReturned") Is Date Then
-                    statusText = "Returned"
-                End If
 
                 Dim values As String() = New String(15) {}
                 Try
@@ -174,17 +171,20 @@
 
     Private Function SafeDate(dict As Dictionary(Of String, Object), key As String) As String
         If dict.ContainsKey(key) AndAlso dict(key) IsNot Nothing Then
-            If TypeOf dict(key) Is Date Then
-                Return CType(dict(key), Date).ToShortDateString()
-            ElseIf dict(key).ToString() <> "" Then
+            Dim val = dict(key)
+            If TypeOf val Is Date Then
+                Return CType(val, Date).ToString("g")
+            ElseIf val.ToString() <> "" Then
                 Dim result As Date
-                If Date.TryParse(dict(key).ToString(), result) Then
-                    Return result.ToShortDateString()
+                If Date.TryParse(val.ToString(), result) Then
+                    Return result.ToString("g")
                 End If
             End If
         End If
         Return "N/A"
     End Function
+
+
 
     Protected Overrides Sub OnFormClosing(e As FormClosingEventArgs)
         RemoveHandler GlobalData.DataChanged, AddressOf LoadTransactions

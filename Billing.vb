@@ -19,12 +19,30 @@
         End If
         UpdateBillingDetails()
         LoadSavedPanels()
+
+        ' Optionally auto-select the first panel and update buttons
+        If FlowLayoutPanel1.Controls.Count > 0 Then
+            Dim firstPanel = TryCast(FlowLayoutPanel1.Controls(0), Panel)
+            If firstPanel IsNot Nothing Then
+                TransactionPanel_Click(firstPanel, EventArgs.Empty)
+            End If
+        End If
+    End Sub
+
+    Protected Overrides Sub OnActivated(e As EventArgs)
+        MyBase.OnActivated(e)
+        ' Stop all timers when form is activated
+        For Each tmr In panelTimers.Values
+            tmr.Stop()
+            tmr.Dispose()
+        Next
+        panelTimers.Clear()
     End Sub
 
 
     Public Sub UpdateBillingDetails()
         If SelectedCar IsNot Nothing Then
-            lblCarName.Text = "Car Name: " + SelectedCar("CarName")?.ToString()
+            lblCarName.Text = SelectedCar("CarName")?.ToString()
             lblPaymentPerDay.Text = $"Payment/day: ₱{Convert.ToDecimal(SelectedCar("DailyPrice")):N2}"
             lblCarID.Text = "Car ID: " + (SelectedCar("CarID")?.ToString())
             lblBodyNumber.Text = "Body Number: " + (SelectedCar("BodyNumber")?.ToString())
@@ -102,10 +120,10 @@
         End If
     End Sub
 
-
-
-
     Private Sub CreateTransactionPanel(transactionDetails As Dictionary(Of String, Object))
+        If Not transactionDetails.ContainsKey("Status") Then
+            transactionDetails("Status") = "Active"
+        End If
         Dim transPanel As New Panel With {
         .Width = 240,
         .Height = 40,
@@ -115,25 +133,21 @@
         .Margin = New Padding(5)
     }
         Dim lbl As New Label With {
-    .Text = transactionDetails("CarName"),
-    .AutoSize = False,
-    .Font = New Font("Segoe UI", 12, FontStyle.Bold),
-    .Size = New Size(transPanel.Width, transPanel.Height),
-    .TextAlign = ContentAlignment.MiddleCenter
-}
+        .Text = transactionDetails("CarName"),
+        .AutoSize = False,
+        .Font = New Font("Segoe UI", 12, FontStyle.Bold),
+        .Size = New Size(transPanel.Width, transPanel.Height),
+        .TextAlign = ContentAlignment.MiddleCenter
+    }
         lbl.Location = New Point(0, 0)
-
 
         transPanel.Controls.Add(lbl)
         transPanel.Tag = transactionDetails
         AddHandler transPanel.Click, AddressOf TransactionPanel_Click
         AddHandler lbl.Click, Sub(s, ev) TransactionPanel_Click(transPanel, ev)
 
-        ' Make the panel round
-        FlowLayoutPanel1.Controls.Add(transPanel)
         transPanel.PerformLayout()
         ApplyRoundedCornersToPanel(transPanel, 20)
-
 
         ' Setup countdown timer for this panel if ReturnDeadline exists
         If transactionDetails.ContainsKey("ReturnDeadline") Then
@@ -141,28 +155,39 @@
             If DateTime.TryParse(transactionDetails("ReturnDeadline").ToString(), deadline) Then
                 Dim tmr As New Timer()
                 tmr.Interval = 1000
+
+                ' Show timer immediately
+                Dim updateLabel As Action = Sub()
+                                                Dim remaining As TimeSpan = deadline - DateTime.Now
+                                                If remaining.TotalSeconds > 0 Then
+                                                    lbl.Text = $"{transactionDetails("CarName")} : {remaining.ToString("hh\:mm\:ss")}"
+                                                Else
+                                                    lbl.Text = $"{transactionDetails("CarName")} : 00:00:00"
+                                                    tmr.Stop()
+                                                    MessageBox.Show($"Rental period for {transactionDetails("CarName")} has ended! Please return the car.", "Time's Up", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                                    ' Mark user as bad record
+                                                    GlobalData.IsGoodRecord = False
+                                                    Dim user = GlobalData.GetLoggedInUser()
+                                                    If user IsNot Nothing Then user("IsGoodRecord") = False
+                                                    GlobalData.NotifyDataChanged()
+                                                End If
+                                            End Sub
+
                 AddHandler tmr.Tick, Sub(sender As Object, e As EventArgs)
-                                         Dim remaining As TimeSpan = deadline - DateTime.Now
-                                         If remaining.TotalSeconds > 0 Then
-                                             lbl.Text = $"{transactionDetails("CarName")} | {remaining.ToString("hh\:mm\:ss")}"
-                                         Else
-                                             lbl.Text = $"{transactionDetails("CarName")} | 00:00:00"
-                                             tmr.Stop()
-                                             MessageBox.Show($"Rental period for {transactionDetails("CarName")} has ended! Please return the car.", "Time's Up", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                             ' Mark user as bad record
-                                             GlobalData.IsGoodRecord = False
-                                             Dim user = GlobalData.GetLoggedInUser()
-                                             If user IsNot Nothing Then user("IsGoodRecord") = False
-                                             GlobalData.NotifyDataChanged()
-                                         End If
+                                         updateLabel()
                                      End Sub
+
                 tmr.Start()
                 panelTimers(transPanel) = tmr
+
+                ' Set label immediately
+                updateLabel()
             End If
         End If
 
         FlowLayoutPanel1.Controls.Add(transPanel)
     End Sub
+
 
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
@@ -300,10 +325,27 @@
         lblEmail.Text = details("Email")
         lblAge.Text = details("Age")
 
-        ' Grey out and disable RoundedButton1
-        RoundedButton1.Enabled = False
-        RoundedButton1.BackColor = Color.Gray
+        ' Check return status
+        Dim isReturned As Boolean = False
+        If details.ContainsKey("Status") AndAlso details("Status") IsNot Nothing Then
+            isReturned = details("Status").ToString().ToLower() = "returned"
+        End If
+
+        If isReturned OrElse GlobalData.HasReturnedCarThisSession Then
+            RoundedButton1.Enabled = False
+            RoundedButton1.BackColor = Color.Gray
+            RoundedButton2.Enabled = False
+            RoundedButton2.BackColor = Color.Gray
+            RoundedButton2.ForeColor = Color.Black
+        Else
+            RoundedButton1.Enabled = False
+            RoundedButton1.BackColor = Color.Gray
+            RoundedButton2.Enabled = True
+            RoundedButton2.BackColor = Color.MediumSlateBlue
+            RoundedButton2.ForeColor = Color.White
+        End If
     End Sub
+
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         WalletAdd.Show()
@@ -380,11 +422,14 @@
             End If
         Next
 
-        ' Remove from user's rented cars list
+        ' Remove from user's rented cars list and update RentedCars count
         Dim user = GlobalData.GetLoggedInUser()
         If user IsNot Nothing AndAlso user.ContainsKey("RentedCarsList") Then
             Dim rentedCars = CType(user("RentedCarsList"), List(Of Dictionary(Of String, Object)))
-            rentedCars.RemoveAll(Function(car) car("CarID").ToString() = carID)
+            Dim removedCount = rentedCars.RemoveAll(Function(car) car("CarID").ToString() = carID)
+            If removedCount > 0 AndAlso GlobalData.RentedCars > 0 Then
+                GlobalData.RentedCars -= 1
+            End If
         End If
 
         ' Optionally, update SavedBillingPanels to reflect return
@@ -401,4 +446,7 @@
         GlobalData.NotifyDataChanged()
     End Sub
 
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+
+    End Sub
 End Class

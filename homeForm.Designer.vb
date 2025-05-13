@@ -37,6 +37,7 @@ Partial Class homeForm
         Me.Label2 = New System.Windows.Forms.Label()
         Me.RoundedPanel1 = New VBNET_Car_Rental_System.RoundedPanel()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.SuspendLayout()
         '
         'Button1
@@ -207,6 +208,14 @@ Partial Class homeForm
         Me.Button4.TabIndex = 16
         Me.Button4.UseVisualStyleBackColor = False
         '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Transparent
+        Me.Panel2.Location = New System.Drawing.Point(-23, -46)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1233, 83)
+        Me.Panel2.TabIndex = 17
+        '
         'homeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -214,6 +223,7 @@ Partial Class homeForm
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWHomePage
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.RoundedPanel1)
         Me.Controls.Add(Me.Button3)
@@ -251,4 +261,5 @@ Partial Class homeForm
     Friend WithEvents Label2 As Label
     Friend WithEvents RoundedPanel1 As RoundedPanel
     Friend WithEvents Button4 As Button
+    Friend WithEvents Panel2 As Panel
 End Class
