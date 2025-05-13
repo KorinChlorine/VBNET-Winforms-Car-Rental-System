@@ -68,16 +68,16 @@ Partial Class ManagementRent
         '
         Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(40, 92)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(2, 99)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1185, 543)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1263, 555)
         Me.FlowLayoutPanel1.TabIndex = 54
         '
         'ManagementRent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management_Rent
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management_Rent1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.Controls.Add(Me.FlowLayoutPanel1)

@@ -57,9 +57,9 @@ Partial Class UserManagement
         Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(38, 96)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 102)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1187, 549)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1264, 555)
         Me.FlowLayoutPanel1.TabIndex = 51
         Me.FlowLayoutPanel1.WrapContents = False
         '
@@ -79,7 +79,7 @@ Partial Class UserManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWManagementUsers2
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management_Users1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.Controls.Add(Me.Button3)

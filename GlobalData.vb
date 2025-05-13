@@ -271,4 +271,64 @@
         Return False
     End Function
 
+    ' Call this to ensure the "test" user is fully set up and 10 cars are generated
+    ' Call this to ensure the "test" user is fully set up and 10 cars are generated
+    Public Sub SetupTestUserAndCars()
+        ' --- Complete test user profile ---
+        Dim email As String = "test"
+        Dim password As String = "test"
+        If Not UsersDict.ContainsKey(email) Then
+            RegisterUser(email, password, "Test User", 25, "123 Test St", #1/1/2000#, "Other", True, 10000, "user")
+        End If
+        Dim user = UsersDict(email)
+        user("FullName") = "Test User"
+        user("Age") = 25
+        user("Address") = "123 Test St"
+        user("Birthday") = #1/1/2000#
+        user("Gender") = "Other"
+        user("IsGoodRecord") = True
+        user("Wallet") = 10000.0
+        user("UserRole") = "user"
+        user("IsBooked") = False
+        user("CarRented") = ""
+        user("RentedCars") = 0
+        user("var") = ""
+        If Not user.ContainsKey("RentedCarsList") Then user("RentedCarsList") = New List(Of Dictionary(Of String, Object))()
+        If Not user.ContainsKey("SavedBillingPanels") Then user("SavedBillingPanels") = New List(Of Dictionary(Of String, Object))()
+
+        ' --- Generate 10 cars if not already present ---
+        For i As Integer = 1 To 10
+            Dim carId As String = $"CAR{i:000}"
+            If Not CarsDict.ContainsKey(carId) Then
+                Dim carDict As New Dictionary(Of String, Object) From {
+                    {"CarID", carId},
+                    {"CarName", $"Test Car {i}"},
+                    {"PlateNumber", $"PLT{i:000}"},
+                    {"BodyNumber", $"BDY{i:000}"},
+                    {"Color", "Red"},
+                    {"Type", "Sedan"},
+                    {"Capacity", 5},
+                    {"DailyPrice", 1000 + i * 100},
+                    {"IsAvailable", True},
+                    {"PrimaryImage", My.Resources.PLACEHOLDER_Car},
+                    {"SecondaryImage", My.Resources.PLACEHOLDER_Car},
+                    {"BriefDetails", $"This is a test car number {i}."},
+                    {"Details", $"Test Car {i} is a demo vehicle for testing purposes."}
+                }
+                CarsDict.Add(carId, carDict)
+            Else
+                ' If car already exists, ensure it has the image keys
+                Dim carDict = CarsDict(carId)
+                If Not carDict.ContainsKey("PrimaryImage") Then carDict("PrimaryImage") = My.Resources.PLACEHOLDER_Car
+                If Not carDict.ContainsKey("SecondaryImage") Then carDict("SecondaryImage") = My.Resources.PLACEHOLDER_Car
+                If Not carDict.ContainsKey("BriefDetails") Then carDict("BriefDetails") = $"This is a test car number {i}."
+                If Not carDict.ContainsKey("Details") Then carDict("Details") = $"Test Car {i} is a demo vehicle for testing purposes."
+            End If
+        Next
+
+        NotifyDataChanged()
+    End Sub
+
+
+
 End Module

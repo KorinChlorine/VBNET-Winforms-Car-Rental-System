@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Main Menu3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Main Menu3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Billing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Billing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -142,17 +139,14 @@
   <data name="Rent_a_Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rent a Car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NEWManagementCars2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NEWManagementCars2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="NEWManagementUsers2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEWManagementUsers2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rent a Car View" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rent a Car View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Rent a Car2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rent a Car2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Rental Details1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rental Details1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo 5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo 5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,17 +163,26 @@
   <data name="Management" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Management Cars2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Management Cars2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Management11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Management11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="View Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\View Car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Main Menu3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Main Menu3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Management Cars1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management Cars1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Management Rent1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Management Rent1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Register" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Register.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rental Details" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rental Details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,20 +196,23 @@
   <data name="PLACEHOLDER_Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PLACEHOLDER Car.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Rental Details1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rental Details1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Billing3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Billing3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NEWManagementUsers1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEWManagementUsers1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Management Cars" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management Cars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="toyota vios" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\toyota vios.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NEWHomePage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NEWHomePage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NEWMain_Menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEWMain_Menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,11 +223,14 @@
   <data name="Main Menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Main Menu1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="View Car" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\View Car.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NEWRegister" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NEWRegister.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NEWHomePage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NEWHomePage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Management11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Management11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Rent a Car2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rent a Car2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Management Users" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Management Users.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,6 +247,9 @@
   <data name="Customer Deets1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Customer Deets3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Rental HIstory1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Rental HIstory1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NEWManagementCars1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEWManagementCars1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -246,9 +258,6 @@
   </data>
   <data name="NEWManagementCars" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NEWManagementCars.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NEWRegister" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NEWRegister.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Rental HIstory" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Rental HIstory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,13 +271,13 @@
   <data name="Billing2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Billing2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BG.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NEWManagementCars2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NEWManagementCars2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Customer Deets2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Customer Deets2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Rental HIstory1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Rental HIstory1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Management Users1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Management Users1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

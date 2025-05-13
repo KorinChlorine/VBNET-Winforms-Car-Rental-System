@@ -510,5 +510,14 @@
   <ItemGroup>
     <None Include="Resources\Rental HIstory1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Cars2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Rent1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Users1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

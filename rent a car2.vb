@@ -49,7 +49,12 @@ Public Class rent_a_car2
 
             Label8.Text = If(isPremium, "PREMIUM", "STANDARD") & $" - Price per day: P{dailyPrice:N2}"
 
-            PictureBox1.Image = TryCast(SelectedCar("PrimaryImage"), Image)
+            If SelectedCar IsNot Nothing AndAlso SelectedCar.ContainsKey("PrimaryImage") Then
+                PictureBox1.Image = TryCast(SelectedCar("PrimaryImage"), Image)
+            Else
+                PictureBox1.Image = Nothing
+            End If
+
             PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
 
             Label1.Text = SelectedCar("BriefDetails")?.ToString()
@@ -270,108 +275,87 @@ Public Class rent_a_car2
     End Sub
 
     Private Sub RoundedButton5_Click(sender As Object, e As EventArgs) Handles RoundedButton5.Click
-        Dim selectedStartDate As DateTime = startBook.Value
-        Dim selectedEndDate As DateTime = endBook.Value
-        Dim differenceInDays As Integer = (selectedEndDate - selectedStartDate).Days
-
-        If GlobalData.RentedCars < 3 Then
-            If RadioButton1.Checked Then ' BOOK option selected
-                If selectedStartDate > selectedEndDate Then
-                    MessageBox.Show("Start date cannot be later than the end date.", "Invalid Dates")
-                    Return
-                End If
-
-                If selectedStartDate = selectedEndDate Then
-                    MessageBox.Show("Start date cannot be equal to the end date.", "Invalid Dates")
-                    Return
-                End If
-
-                Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar("DailyPrice"))
-                Dim totalPrice As Decimal = dailyPrice * differenceInDays
-
-                StoreCarTransaction("BOOK", differenceInDays, totalPrice, selectedStartDate, selectedEndDate)
-
-                Dim billingForm As New Billing()
-                billingForm.SelectedCar = SelectedCar
-                billingForm.TransactionType = "BOOK"
-                billingForm.StartDate = selectedStartDate
-                billingForm.EndDate = selectedEndDate
-                billingForm.Show()
-                Me.Close()
-            End If
-
-            If RadioButton2.Checked Then ' RENT option selected
-                Dim numberOfDays As Integer
-                If Not Integer.TryParse(TextBox1.Text, numberOfDays) OrElse numberOfDays <= 0 Then
-                    MessageBox.Show("Please enter a valid number of days.", "Invalid Input")
-                    Return
-                End If
-
-                Dim dailyPrice As Decimal = Convert.ToDecimal(SelectedCar("DailyPrice"))
-                Dim totalPrice As Decimal = dailyPrice * numberOfDays
-
-                StoreCarTransaction("RENT", numberOfDays, totalPrice)
-
-                Dim billingForm As New Billing()
-                billingForm.SelectedCar = SelectedCar
-                billingForm.TransactionType = "RENT"
-                billingForm.StartDate = DateTime.Now
-                billingForm.Duration = numberOfDays
-                billingForm.Show()
-                Me.Close()
-            End If
-        Else
+        If GlobalData.RentedCars >= 3 Then
             MessageBox.Show("You have reached the maximum number of rented cars (3).", "Limit Reached")
             Return
         End If
-    End Sub
 
-    Private Sub StoreCarTransaction(transactionType As String, duration As Integer, totalPrice As Decimal, Optional startDate As Date? = Nothing, Optional endDate As Date? = Nothing)
-        Dim CarId As String = "Unknown ID"
-        Try
-            If transactionType = "RENT" Then
-                If Not startDate.HasValue Then startDate = DateTime.Now
-                If Not endDate.HasValue Then endDate = DateTime.Now.AddDays(duration)
+        Dim selectedStartDate As DateTime = startBook.Value
+        Dim selectedEndDate As DateTime = endBook.Value
+        Dim numberOfDays As Integer = 0
+        Dim totalPrice As Decimal = 0D
+        Dim dailyPrice As Decimal
+
+        If Not Decimal.TryParse(SelectedCar("DailyPrice")?.ToString(), dailyPrice) Then
+            MessageBox.Show("Invalid daily price.", "Error")
+            Return
+        End If
+
+        If RadioButton1.Checked Then ' BOOK
+            ' Date validation
+            If startBook.Value.Date < DateTime.Now.Date Then
+                MessageBox.Show("Start date cannot be before today.", "Invalid Start Date")
+                Return
+            End If
+            If startBook.Value.Date > endBook.Value.Date Then
+                MessageBox.Show("Start date cannot be after end date.", "Invalid Dates")
+                Return
+            End If
+            If startBook.Value.Date = endBook.Value.Date Then
+                MessageBox.Show("Start date cannot be the same as end date.", "Invalid Dates")
+                Return
             End If
 
-            If Not startDate.HasValue OrElse Not endDate.HasValue Then
-                Throw New InvalidOperationException("Start date or end date is not properly initialized.")
+            If selectedStartDate >= selectedEndDate Then
+                MessageBox.Show("Start date must be before end date.", "Invalid Dates")
+                Return
             End If
 
-            CarId = If(SelectedCar("CarID")?.ToString(), "Unknown ID")
-            Dim customerEmail As String = If(GlobalData.IsLoggedIn AndAlso Not String.IsNullOrEmpty(GlobalData.CurrentUserEmail), GlobalData.CurrentUserEmail, "guest@example.com")
-            Dim isBooked As Boolean = (transactionType = "BOOK")
+            numberOfDays = (selectedEndDate - selectedStartDate).Days
+            totalPrice = dailyPrice * numberOfDays
+            ' Pass all evaluated values to Billing
+            Dim billingForm As New Billing()
+            billingForm.SelectedCar = SelectedCar ' <-- This passes the selected car
+            billingForm.TransactionType = If(RadioButton1.Checked, "BOOK", "RENT")
+            If RadioButton1.Checked Then
+                billingForm.StartDate = selectedStartDate
+                billingForm.EndDate = selectedEndDate
+            Else
+                billingForm.StartDate = DateTime.Now
+                billingForm.EndDate = DateTime.Now.AddDays(numberOfDays)
+            End If
+            billingForm.Duration = numberOfDays
+            billingForm.TotalPrice = totalPrice
+            billingForm.Show()
+            billingForm.StoreCarTransaction(billingForm.TransactionType, numberOfDays, totalPrice, billingForm.StartDate, billingForm.EndDate)
+            Me.Close()
 
-            GlobalData.AddTransaction(
-            CarId,
-            customerEmail,
-            startDate.Value,
-            endDate.Value,
-            totalPrice,
-            If(isBooked, "Booked", "Rented")
-        )
-        Catch ex As Exception
-            MessageBox.Show("Error storing transaction: " & ex.Message, "Transaction Error")
-        End Try
 
-        If transactionType = "BOOK" Then
-            GlobalData.IsBooked = True
-            GlobalData.RentalStartDate = startDate
-            GlobalData.RentalEndDate = endDate
+        ElseIf RadioButton2.Checked Then ' RENT
+            If Not Integer.TryParse(TextBox1.Text, numberOfDays) OrElse numberOfDays <= 0 Then
+                MessageBox.Show("Please enter a valid number of days.", "Invalid Input")
+                Return
+            End If
+            totalPrice = dailyPrice * numberOfDays
+
+            Dim billingForm As New Billing()
+            billingForm.SelectedCar = SelectedCar ' <-- This passes the selected car
+            billingForm.TransactionType = If(RadioButton1.Checked, "BOOK", "RENT")
+            If RadioButton1.Checked Then
+                billingForm.StartDate = selectedStartDate
+                billingForm.EndDate = selectedEndDate
+            Else
+                billingForm.StartDate = DateTime.Now
+                billingForm.EndDate = DateTime.Now.AddDays(numberOfDays)
+            End If
+            billingForm.Duration = numberOfDays
+            billingForm.TotalPrice = totalPrice
+            billingForm.Show()
+            billingForm.StoreCarTransaction(billingForm.TransactionType, numberOfDays, totalPrice, billingForm.StartDate, billingForm.EndDate)
+            Me.Close()
+
+        Else
+            MessageBox.Show("Please select a booking or rent option.", "Error")
         End If
-
-        GlobalData.CarRented = CarId
-
-        If GlobalData.CarsDict.ContainsKey(CarId) Then
-            GlobalData.CarsDict(CarId)("IsAvailable") = False
-        End If
-        If GlobalData.IsLoggedIn Then
-            GlobalData.RentedCars += 1
-        End If
-        GlobalData.NotifyDataChanged()
-    End Sub
-
-    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
-
     End Sub
 End Class

@@ -1,13 +1,28 @@
 ﻿Public Class ManagementRent
+    ' Timer for updating countdowns
+    Private WithEvents countdownTimer As New Timer() With {.Interval = 1000}
+    ' Maps TransactionID to its timer Label
+    Private timerLabels As New Dictionary(Of Integer, Label)
+    ' Maps TransactionID to its editable TextBox
+    Private editTimeTextBoxes As New Dictionary(Of Integer, TextBox)
+
     Private Sub ManagementRent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTransactions()
         AddHandler GlobalData.DataChanged, AddressOf LoadTransactions
+        countdownTimer.Start()
     End Sub
 
     Private Sub LoadTransactions()
         FlowLayoutPanel1.Controls.Clear()
+        timerLabels.Clear()
+        editTimeTextBoxes.Clear()
 
-        Dim titles As String() = {"Rent ID", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price", "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Name", "Customer Email", "Customer Address"}
+        ' Removed "Customer Address", added "Time Left", "Set Time", "Return"
+        Dim titles As String() = {
+            "Rent ID", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price",
+            "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Name", "Customer Email",
+            "Time Left", "Set Time", "Return"
+        }
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
@@ -73,7 +88,7 @@
                     End If
                 End If
 
-                Dim values As String() = New String(15) {}
+                Dim values As String() = New String(18) {} ' 18 columns now
                 Try
                     values(0) = SafeStr(t, "TransactionID")
                     values(1) = SafeStr(t, "CarID")
@@ -90,14 +105,14 @@
                     values(12) = SafeDate(t, "DateReturned")
                     values(13) = SafeStr(t, "CustomerName")
                     values(14) = SafeStr(t, "CustomerEmail")
-                    values(15) = SafeStr(t, "CustomerAddress")
+                    ' 15: Time Left label, 16: Set Time textbox, 17: Return button
                 Catch
                     For i As Integer = 0 To values.Length - 1
                         If values(i) Is Nothing Then values(i) = "N/A"
                     Next
                 End Try
 
-                For i As Integer = 0 To values.Length - 1
+                For i As Integer = 0 To 14 ' up to Customer Email
                     Dim label As New Label With {
                         .Text = values(i),
                         .Font = detailFont,
@@ -112,23 +127,124 @@
                     rowPanel.Controls.Add(label)
                 Next
 
-                ' Add return button for active rentals
-                If statusText <> "Returned" Then
-                    Dim returnButton As New Button With {
-                        .Text = "Return",
-                        .Size = New Size(60, 22),
-                        .BackColor = Color.Green,
-                        .ForeColor = Color.White,
-                        .FlatStyle = FlatStyle.Flat,
-                        .Tag = t("TransactionID")
-                    }
-                    AddHandler returnButton.Click, AddressOf ReturnCar_Click
-                    returnButton.Location = New Point(totalWidth - 70, 4)
-                    rowPanel.Controls.Add(returnButton)
+                ' Add the timer Label (ticking, not editable)
+                Dim timerLabel As New Label With {
+                    .TextAlign = ContentAlignment.MiddleCenter,
+                    .Size = New Size(columnWidth, rowHeight),
+                    .Location = New Point(columnWidth * 15, 0),
+                    .Font = detailFont,
+                    .BackColor = Color.Transparent,
+                    .ForeColor = Color.White,
+                    .BorderStyle = BorderStyle.FixedSingle
+                }
+                Dim transactionId As Integer = 0
+                Integer.TryParse(SafeStr(t, "TransactionID"), transactionId)
+                If transactionId > 0 Then
+                    timerLabels(transactionId) = timerLabel
                 End If
+                timerLabel.Text = GetTimeLeftString(t, statusText)
+                rowPanel.Controls.Add(timerLabel)
+
+                ' Add the editable TextBox (not ticking)
+                Dim editTimeTextBox As New TextBox With {
+                    .ReadOnly = False,
+                    .TextAlign = HorizontalAlignment.Center,
+                    .Size = New Size(columnWidth, rowHeight),
+                    .Location = New Point(columnWidth * 16, 0),
+                    .Font = detailFont,
+                    .BackColor = Color.DarkSlateBlue,
+                    .ForeColor = Color.White,
+                    .BorderStyle = BorderStyle.FixedSingle,
+                    .TabStop = True
+                }
+                If transactionId > 0 Then
+                    editTimeTextBoxes(transactionId) = editTimeTextBox
+                End If
+                editTimeTextBox.Text = GetTimeLeftString(t, statusText)
+                AddHandler editTimeTextBox.Leave, Sub(sender2, e2) SaveTimerEdit(transactionId, editTimeTextBox.Text)
+                AddHandler editTimeTextBox.KeyDown, Sub(sender2, e2)
+                                                        Dim tb = DirectCast(sender2, TextBox)
+                                                        Dim ke = DirectCast(e2, KeyEventArgs)
+                                                        If ke.KeyCode = Keys.Enter Then
+                                                            SaveTimerEdit(transactionId, tb.Text)
+                                                            ke.SuppressKeyPress = True
+                                                        End If
+                                                    End Sub
+                rowPanel.Controls.Add(editTimeTextBox)
+
+                ' Add return button in the last column
+                Dim returnButton As New Button With {
+                    .Text = "Return",
+                    .Size = New Size(columnWidth, rowHeight - 8),
+                    .BackColor = Color.Green,
+                    .ForeColor = Color.White,
+                    .FlatStyle = FlatStyle.Flat,
+                    .Tag = t("TransactionID"),
+                    .Location = New Point(columnWidth * 17, 4)
+                }
+                AddHandler returnButton.Click, AddressOf ReturnCar_Click
+                If statusText = "Returned" Then
+                    returnButton.Enabled = False
+                    returnButton.BackColor = Color.Gray
+                End If
+                rowPanel.Controls.Add(returnButton)
 
                 FlowLayoutPanel1.Controls.Add(rowPanel)
             Next
+        End If
+    End Sub
+
+    ' Timer tick: update all countdowns (labels only)
+    Private Sub countdownTimer_Tick(sender As Object, e As EventArgs) Handles countdownTimer.Tick
+        For Each t As Dictionary(Of String, Object) In GlobalData.TransactionsDict.Values
+            Dim statusText As String = "Rented"
+            If t.ContainsKey("Status") AndAlso t("Status") IsNot Nothing Then
+                statusText = t("Status").ToString()
+            ElseIf t.ContainsKey("IsBooked") AndAlso t("IsBooked") IsNot Nothing Then
+                If Convert.ToBoolean(t("IsBooked")) Then
+                    statusText = "Booked"
+                End If
+            End If
+
+            Dim transactionId As Integer = 0
+            Integer.TryParse(SafeStr(t, "TransactionID"), transactionId)
+            If transactionId > 0 AndAlso timerLabels.ContainsKey(transactionId) Then
+                timerLabels(transactionId).Text = GetTimeLeftString(t, statusText)
+            End If
+        Next
+    End Sub
+
+    ' Returns the countdown string for a transaction
+    Private Function GetTimeLeftString(t As Dictionary(Of String, Object), statusText As String) As String
+        If statusText.ToLower() = "returned" Then
+            Return "00:00:00"
+        End If
+
+        Dim endDate As DateTime
+        If t.ContainsKey("EndDate") AndAlso DateTime.TryParse(t("EndDate")?.ToString(), endDate) Then
+            Dim remaining As TimeSpan = endDate - DateTime.Now
+            If remaining.TotalSeconds > 0 Then
+                Return remaining.ToString("hh\:mm\:ss")
+            End If
+        End If
+        Return "00:00:00"
+    End Function
+
+    ' Save admin-edited timer (from the editTimeTextBox)
+    Private Sub SaveTimerEdit(transactionId As Integer, newTime As String)
+        If Not editTimeTextBoxes.ContainsKey(transactionId) Then Return
+        Dim t = GlobalData.TransactionsDict.Values.FirstOrDefault(Function(x) SafeStr(x, "TransactionID") = transactionId.ToString())
+        If t Is Nothing Then Return
+
+        ' Parse newTime as hh:mm:ss
+        Dim ts As TimeSpan
+        If TimeSpan.TryParse(newTime, ts) Then
+            ' Set EndDate to Now + newTime
+            t("EndDate") = DateTime.Now.Add(ts)
+            GlobalData.NotifyDataChanged()
+        Else
+            MessageBox.Show("Invalid time format. Use hh:mm:ss.", "Invalid Input")
+            editTimeTextBoxes(transactionId).Text = GetTimeLeftString(t, SafeStr(t, "Status"))
         End If
     End Sub
 
@@ -184,10 +300,9 @@
         Return "N/A"
     End Function
 
-
-
     Protected Overrides Sub OnFormClosing(e As FormClosingEventArgs)
         RemoveHandler GlobalData.DataChanged, AddressOf LoadTransactions
+        countdownTimer.Stop()
         MyBase.OnFormClosing(e)
     End Sub
 

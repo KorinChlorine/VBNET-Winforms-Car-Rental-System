@@ -38,7 +38,7 @@
             Dim carPictureBox As New PictureBox With {
                 .Size = New Size(170, 130),
                 .Location = New Point(10, 30),
-                .Image = TryCast(carDict("PrimaryImage"), Image),
+                .Image = If(carDict.ContainsKey("PrimaryImage"), TryCast(carDict("PrimaryImage"), Image), Nothing),
                 .SizeMode = PictureBoxSizeMode.StretchImage
             }
             AddHandler carPictureBox.Click, Sub(picSender, picE) CarPanel_Click(carPanel, picE)

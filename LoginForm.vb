@@ -76,15 +76,16 @@ Public Class LoginForm
             Return
         End If
 
-        ' Test login bypass
         If ((emailLogin = "test") Or (emailLogin = "2")) And ((passLogin = "test") Or (passLogin = "2")) Then
             AxWindowsMediaPlayer1.Ctlcontrols.stop()
+            GlobalData.SetupTestUserAndCars()
             GlobalData.LoginUser(emailLogin, passLogin)
             GlobalData.UserRole = "user"
             Me.Hide()
             homeForm.Show()
             Return
         End If
+
 
         Try
             ' Try to log in using database

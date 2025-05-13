@@ -172,7 +172,7 @@ Partial Class Billing
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(126, 135)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(121, 135)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(265, 344)
         Me.FlowLayoutPanel1.TabIndex = 17
