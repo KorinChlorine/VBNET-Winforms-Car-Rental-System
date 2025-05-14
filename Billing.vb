@@ -19,9 +19,16 @@
         End If
         UpdateBillingDetails()
         LoadSavedPanels()
+
+        lblCustomer.Text = "Customer Name: " & GlobalData.UserFullName
+        lblAddress.Text = "Address: " & GlobalData.Address
+        lblEmail.Text = "Email: " & GlobalData.CurrentUserEmail
+        lblAge.Text = "Age: " & GlobalData.Age.ToString()
+        lblUserStatus.Text = "User Status: " & If(GlobalData.IsLoggedIn, "Logged In", "Guest")
+        lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
     End Sub
 
-    ' No timer stopping here!
+
     Protected Overrides Sub OnActivated(e As EventArgs)
         MyBase.OnActivated(e)
     End Sub
@@ -80,13 +87,6 @@
             End If
         End If
 
-        lblCustomer.Text = "Customer Name: " & GlobalData.UserFullName
-        lblAddress.Text = "Address: " & GlobalData.Address
-        lblEmail.Text = "Email: " & GlobalData.CurrentUserEmail
-        lblAge.Text = "Age: " & GlobalData.Age.ToString()
-        lblUserStatus.Text = "User Status: " & If(GlobalData.IsLoggedIn, "Logged In", "Guest")
-        lblBalance.Text = $"Wallet Balance: ₱{GlobalData.Wallet:N2}"
-
         ' Always enable the confirm button, disable return by default
         RoundedButton1.Enabled = True
         RoundedButton1.BackColor = Color.DarkSlateBlue
@@ -110,10 +110,15 @@
         If loggedInUser IsNot Nothing AndAlso loggedInUser.ContainsKey("SavedBillingPanels") Then
             Dim savedPanels = CType(loggedInUser("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
             For Each transactionDetails In savedPanels
-                CreateTransactionPanel(transactionDetails)
+                ' Only show panels that are not returned
+                If Not transactionDetails.ContainsKey("Status") OrElse
+               Not String.Equals(transactionDetails("Status").ToString(), "Returned", StringComparison.OrdinalIgnoreCase) Then
+                    CreateTransactionPanel(transactionDetails)
+                End If
             Next
         End If
     End Sub
+
 
     Private Sub ApplyRoundedCornersToPanel(panel As Panel, cornerRadius As Integer)
         If panel.Width > 0 AndAlso panel.Height > 0 AndAlso cornerRadius > 0 Then
@@ -217,7 +222,7 @@
             Dim walletBalance As Decimal = GlobalData.Wallet
             If walletBalance >= totalPayment Then
                 GlobalData.Wallet -= totalPayment
-                lblBalance.Text = $"₱{GlobalData.Wallet:N2}"
+                lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
 
                 Dim loggedInUser = GlobalData.GetLoggedInUser()
                 If loggedInUser IsNot Nothing Then
@@ -404,28 +409,33 @@
             user("RentedCars") = GlobalData.RentedCars
         End If
 
+        ' Stop and remove timer for this panel
         If panelTimers.ContainsKey(SelectedPanel) Then
             panelTimers(SelectedPanel).Stop()
             panelTimers(SelectedPanel).Dispose()
             panelTimers.Remove(SelectedPanel)
         End If
 
-        Dim details = CType(SelectedPanel.Tag, Dictionary(Of String, Object))
+        ' Update label to show timer stopped and returned
+        For Each lbl In SelectedPanel.Controls.OfType(Of Label)()
+            lbl.Text = lbl.Text.Split(":"c)(0) & " : 00:00:00 | Returned"
+            lbl.ForeColor = Color.DarkGray
+        Next
 
+        ' Pass data down before removing panel
+        Dim details = CType(SelectedPanel.Tag, Dictionary(Of String, Object))
         MarkCarAsReturned(details)
 
         MessageBox.Show("Rental marked as returned. No refunds will be issued as per company policy.", "Return Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        SelectedPanel.BackColor = Color.LightGray
-        For Each lbl In SelectedPanel.Controls.OfType(Of Label)()
-            lbl.ForeColor = Color.DarkGray
-            lbl.Text &= " | Returned"
-        Next
+        ' Remove the panel from the UI
+        FlowLayoutPanel1.Controls.Remove(SelectedPanel)
         SelectedPanel = Nothing
 
         GlobalData.HasReturnedCarThisSession = True
         DisablePostReturnButtons()
     End Sub
+
     Private Sub CreateAndSelectTemporaryPanel()
         ' Build a dictionary with all relevant details from the current form state
         Dim tempDetails As New Dictionary(Of String, Object) From {
@@ -525,6 +535,14 @@
             End If
         End If
 
+        ' Optionally, remove returned panels from SavedBillingPanels
+        If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
+            Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
+            panels.RemoveAll(Function(panel) panel("CarID").ToString() = carID AndAlso
+        panel.ContainsKey("Status") AndAlso panel("Status").ToString() = "Returned")
+        End If
+
+
         ' Optionally, update SavedBillingPanels to reflect return
         If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
             Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
@@ -538,6 +556,10 @@
 
         GlobalData.NotifyDataChanged()
     End Sub
+
+    Function updateBalance()
+        lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
+    End Function
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
     End Sub

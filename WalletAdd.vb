@@ -26,6 +26,7 @@
         MessageBox.Show($"Successfully added ₱{amount:N2} to your wallet!" & vbCrLf & $"New Balance: ₱{GlobalData.Wallet:N2}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
         TextBox1.Clear()
         Billing.UpdateBillingDetails()
+        Billing.updateBalance()
 
     End Sub
 
