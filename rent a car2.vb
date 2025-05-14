@@ -293,15 +293,19 @@ Public Class rent_a_car2
 
         If RadioButton1.Checked Then ' BOOK
             ' Date validation
-            If startBook.Value.Date < DateTime.Now.Date Then
+            If selectedStartDate.Date < DateTime.Now.Date Then
                 MessageBox.Show("Start date cannot be before today.", "Invalid Start Date")
                 Return
             End If
-            If startBook.Value.Date > endBook.Value.Date Then
+            If selectedStartDate.Date = DateTime.Now.Date Then
+                MessageBox.Show("Start date cannot be today. Please select a future date.", "Invalid Start Date")
+                Return
+            End If
+            If selectedStartDate.Date > selectedEndDate.Date Then
                 MessageBox.Show("Start date cannot be after end date.", "Invalid Dates")
                 Return
             End If
-            If startBook.Value.Date = endBook.Value.Date Then
+            If selectedStartDate.Date = selectedEndDate.Date Then
                 MessageBox.Show("Start date cannot be the same as end date.", "Invalid Dates")
                 Return
             End If
@@ -312,50 +316,52 @@ Public Class rent_a_car2
             End If
 
             numberOfDays = (selectedEndDate - selectedStartDate).Days
+
+            If numberOfDays > 30 Then
+                MessageBox.Show("You cannot book/rent for more than 30 days.", "Rental Limit Exceeded")
+                Return
+            End If
+
             totalPrice = dailyPrice * numberOfDays
             ' Pass all evaluated values to Billing
             Dim billingForm As New Billing()
-            billingForm.SelectedCar = SelectedCar ' <-- This passes the selected car
-            billingForm.TransactionType = If(RadioButton1.Checked, "BOOK", "RENT")
-            If RadioButton1.Checked Then
-                billingForm.StartDate = selectedStartDate
-                billingForm.EndDate = selectedEndDate
-            Else
-                billingForm.StartDate = DateTime.Now
-                billingForm.EndDate = DateTime.Now.AddDays(numberOfDays)
-            End If
+            billingForm.SelectedCar = SelectedCar
+            billingForm.TransactionType = "BOOK"
+            billingForm.StartDate = selectedStartDate
+            billingForm.EndDate = selectedEndDate
             billingForm.Duration = numberOfDays
             billingForm.TotalPrice = totalPrice
             billingForm.Show()
-            billingForm.StoreCarTransaction(billingForm.TransactionType, numberOfDays, totalPrice, billingForm.StartDate, billingForm.EndDate)
+            billingForm.StoreCarTransaction("BOOK", numberOfDays, totalPrice, selectedStartDate, selectedEndDate)
             Me.Close()
-
 
         ElseIf RadioButton2.Checked Then ' RENT
             If Not Integer.TryParse(TextBox1.Text, numberOfDays) OrElse numberOfDays <= 0 Then
                 MessageBox.Show("Please enter a valid number of days.", "Invalid Input")
                 Return
             End If
+
+            If numberOfDays > 30 Then
+                MessageBox.Show("You cannot rent for more than 30 days.", "Rental Limit Exceeded")
+                Return
+            End If
+
             totalPrice = dailyPrice * numberOfDays
 
             Dim billingForm As New Billing()
-            billingForm.SelectedCar = SelectedCar ' <-- This passes the selected car
-            billingForm.TransactionType = If(RadioButton1.Checked, "BOOK", "RENT")
-            If RadioButton1.Checked Then
-                billingForm.StartDate = selectedStartDate
-                billingForm.EndDate = selectedEndDate
-            Else
-                billingForm.StartDate = DateTime.Now
-                billingForm.EndDate = DateTime.Now.AddDays(numberOfDays)
-            End If
+            billingForm.SelectedCar = SelectedCar
+            billingForm.TransactionType = "RENT"
+            billingForm.StartDate = DateTime.Now
+            billingForm.EndDate = DateTime.Now.AddDays(numberOfDays)
             billingForm.Duration = numberOfDays
             billingForm.TotalPrice = totalPrice
             billingForm.Show()
-            billingForm.StoreCarTransaction(billingForm.TransactionType, numberOfDays, totalPrice, billingForm.StartDate, billingForm.EndDate)
+            billingForm.StoreCarTransaction("RENT", numberOfDays, totalPrice, billingForm.StartDate, billingForm.EndDate)
             Me.Close()
 
         Else
             MessageBox.Show("Please select a booking or rent option.", "Error")
         End If
     End Sub
+
 End Class

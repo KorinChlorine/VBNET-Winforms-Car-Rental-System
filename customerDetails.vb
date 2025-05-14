@@ -26,9 +26,21 @@
             Return
         End If
 
+        ' Name should not be a number
+        If IsNumeric(TextBox1.Text.Trim()) Then
+            MessageBox.Show("Name cannot be a number.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         Dim age As Integer
         If Not Integer.TryParse(TextBox2.Text, age) Then
             MessageBox.Show("Age must be a numerical value!", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Decline if age is 18 or lower
+        If age <= 18 Then
+            MessageBox.Show("You must be older than 18 to proceed.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 

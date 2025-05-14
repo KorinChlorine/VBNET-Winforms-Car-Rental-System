@@ -63,8 +63,22 @@ Public Class LoginForm
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Dim emailLogin As String = TextBox1.Text
+        Dim emailLogin As String = TextBox1.Text.Trim()
         Dim passLogin As String = TextBox2.Text
+
+        If String.IsNullOrWhiteSpace(emailLogin) OrElse emailLogin = "Enter Email" OrElse
+           String.IsNullOrWhiteSpace(passLogin) OrElse passLogin = "Enter Password" Then
+            MessageBox.Show("Please enter both email and password.", "Missing Information")
+            Return
+        End If
+
+        ' Only check for @ if not admin/1
+        If Not (emailLogin = "admin" Or emailLogin = "1" Or emailLogin = "test") Then
+            If Not emailLogin.Contains("@") Then
+                MessageBox.Show("Please enter a valid email address!", "Invalid Email")
+                Return
+            End If
+        End If
 
         ' Admin login bypass
         If ((emailLogin = "admin") Or (emailLogin = "1")) And ((passLogin = "admin") Or (passLogin = "1")) Then
@@ -85,7 +99,6 @@ Public Class LoginForm
             homeForm.Show()
             Return
         End If
-
 
         Try
             ' Try to log in using database
@@ -135,61 +148,70 @@ Public Class LoginForm
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        ' Register
-        Dim result As DialogResult = MessageBox.Show("Are you at least 18 years old?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-        If result = DialogResult.Yes Then
-            ' User clicked Yes
-            Dim emailRegister As String = TextBox3.Text
+        Try
+            Dim emailRegister As String = TextBox3.Text.Trim()
             Dim passRegister As String = TextBox4.Text
             Dim confirmPass As String = TextBox5.Text
 
-            If passRegister = confirmPass Then
-                Try
-                    ' Check if user already exists in GlobalData
-                    If GlobalData.IsUserRegistered(emailRegister) Then
-                        MessageBox.Show("User already exists!")
-                        Return
-                    End If
-
-                    ' Try registering in database
-                    Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
-                    Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
-
-                    Using con As New MySqlConnection(connectionString)
-                        Using cmd As New MySqlCommand(query, con)
-                            cmd.Parameters.AddWithValue("@Email", emailRegister)
-                            cmd.Parameters.AddWithValue("@Password", passRegister)
-
-                            con.Open()
-                            cmd.ExecuteNonQuery()
-                            con.Close()
-
-                            ' Also register in GlobalData
-                            GlobalData.RegisterUser(emailRegister, passRegister, "")
-                            ' Ensure password is stored in userData(6)
-                            MessageBox.Show("Registration successful!")
-                        End Using
-                    End Using
-                Catch ex As Exception
-                    ' If database fails, just register in GlobalData
-                    If GlobalData.RegisterUser(emailRegister, passRegister, "") Then
-                        ' Ensure password is stored in userData(6)
-
-                        MessageBox.Show("Registration successful!")
-                    Else
-                        MessageBox.Show("User already exists!")
-                    End If
-                End Try
-            Else
-                MessageBox.Show("Passwords do not match!")
+            ' Validate input first
+            If String.IsNullOrWhiteSpace(emailRegister) OrElse emailRegister = "Enter Email" OrElse
+           String.IsNullOrWhiteSpace(passRegister) OrElse passRegister = "Enter Password" OrElse
+           String.IsNullOrWhiteSpace(confirmPass) OrElse confirmPass = "Confirm Password" Then
+                MessageBox.Show("Please fill in registration form.", "Missing Information")
+                Return
             End If
-        Else
-            ' User clicked No
-            MessageBox.Show("Underage, you cannot rent cars!.")
-        End If
 
+            ' Only check for @ if not admin/1
+            If Not (emailRegister = "admin" Or emailRegister = "1") Then
+                If Not emailRegister.Contains("@") Then
+                    MessageBox.Show("Please enter a valid email address (must contain '@').", "Invalid Email")
+                    Return
+                End If
+            End If
 
+            ' Now ask for age confirmation
+            Dim result As DialogResult = MessageBox.Show("Are you at least 18 years old?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                If passRegister = confirmPass Then
+                    Try
+                        If GlobalData.IsUserRegistered(emailRegister) Then
+                            MessageBox.Show("User already exists!")
+                            Return
+                        End If
+
+                        ' Try registering in database
+                        Dim connectionString As String = "server=127.0.0.1;userid=root;password='';database=user information"
+                        Dim query As String = "INSERT INTO `user info` (email, password) VALUES (@Email, @Password)"
+
+                        Using con As New MySqlConnection(connectionString)
+                            Using cmd As New MySqlCommand(query, con)
+                                cmd.Parameters.AddWithValue("@Email", emailRegister)
+                                cmd.Parameters.AddWithValue("@Password", passRegister)
+
+                                con.Open()
+                                cmd.ExecuteNonQuery()
+                                con.Close()
+
+                                GlobalData.RegisterUser(emailRegister, passRegister, "")
+                                MessageBox.Show("Registration successful!")
+                            End Using
+                        End Using
+                    Catch ex As Exception
+                        If GlobalData.RegisterUser(emailRegister, passRegister, "") Then
+                            MessageBox.Show("Registration successful!")
+                        Else
+                            MessageBox.Show("User already exists!")
+                        End If
+                    End Try
+                Else
+                    MessageBox.Show("Passwords do not match!")
+                End If
+            Else
+                MessageBox.Show("Underage, you cannot rent cars!.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("An error occurred during registration: " & ex.Message)
+        End Try
     End Sub
 
 
@@ -220,10 +242,6 @@ Public Class LoginForm
         TextBox3.ForeColor = Color.Black
         TextBox5.Text = "Confirm Password"
         TextBox5.ForeColor = Color.Black
-    End Sub
-
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
-
     End Sub
 
     Private Sub AxWindowsMediaPlayer1_Enter(sender As Object, e As EventArgs) Handles AxWindowsMediaPlayer1.Enter

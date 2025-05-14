@@ -51,25 +51,24 @@ Partial Class Billing
         Me.lblCarID = New System.Windows.Forms.Label()
         Me.lblBodyNumber = New System.Windows.Forms.Label()
         Me.lblEmail = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lblAge = New System.Windows.Forms.Label()
         Me.lblPlateNumber = New System.Windows.Forms.Label()
         Me.lblColor = New System.Windows.Forms.Label()
         Me.lblCapacity = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.lblAge = New System.Windows.Forms.Panel()
+        Me.paneling = New System.Windows.Forms.Panel()
         Me.lblType = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
-        Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.RoundedPanel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
-        Me.lblAge.SuspendLayout()
+        Me.paneling.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button9
@@ -417,17 +416,17 @@ Partial Class Billing
         Me.lblEmail.TabIndex = 16
         Me.lblEmail.Text = "Email"
         '
-        'Label11
+        'lblAge
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(3, 5)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(46, 28)
-        Me.Label11.TabIndex = 17
-        Me.Label11.Text = "Age"
+        Me.lblAge.AutoSize = True
+        Me.lblAge.BackColor = System.Drawing.Color.Transparent
+        Me.lblAge.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAge.ForeColor = System.Drawing.Color.White
+        Me.lblAge.Location = New System.Drawing.Point(3, 5)
+        Me.lblAge.Name = "lblAge"
+        Me.lblAge.Size = New System.Drawing.Size(46, 28)
+        Me.lblAge.TabIndex = 17
+        Me.lblAge.Text = "Age"
         '
         'lblPlateNumber
         '
@@ -483,14 +482,14 @@ Partial Class Billing
         Me.Panel4.Size = New System.Drawing.Size(368, 34)
         Me.Panel4.TabIndex = 35
         '
-        'lblAge
+        'paneling
         '
-        Me.lblAge.BackColor = System.Drawing.Color.Transparent
-        Me.lblAge.Controls.Add(Me.Label11)
-        Me.lblAge.Location = New System.Drawing.Point(437, 390)
-        Me.lblAge.Name = "lblAge"
-        Me.lblAge.Size = New System.Drawing.Size(368, 34)
-        Me.lblAge.TabIndex = 36
+        Me.paneling.BackColor = System.Drawing.Color.Transparent
+        Me.paneling.Controls.Add(Me.lblAge)
+        Me.paneling.Location = New System.Drawing.Point(437, 390)
+        Me.paneling.Name = "paneling"
+        Me.paneling.Size = New System.Drawing.Size(368, 34)
+        Me.paneling.TabIndex = 36
         '
         'lblType
         '
@@ -556,20 +555,6 @@ Partial Class Billing
         Me.RoundedButton1.Text = "Confirm"
         Me.RoundedButton1.UseVisualStyleBackColor = False
         '
-        'RoundedButton2
-        '
-        Me.RoundedButton2.BackColor = System.Drawing.Color.MediumSlateBlue
-        Me.RoundedButton2.FlatAppearance.BorderSize = 0
-        Me.RoundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RoundedButton2.Font = New System.Drawing.Font("League Spartan ExtraBold", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RoundedButton2.ForeColor = System.Drawing.Color.White
-        Me.RoundedButton2.Location = New System.Drawing.Point(736, 505)
-        Me.RoundedButton2.Name = "RoundedButton2"
-        Me.RoundedButton2.Size = New System.Drawing.Size(225, 126)
-        Me.RoundedButton2.TabIndex = 44
-        Me.RoundedButton2.Text = "Return"
-        Me.RoundedButton2.UseVisualStyleBackColor = False
-        '
         'Billing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -578,12 +563,11 @@ Partial Class Billing
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing4
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.RoundedButton2)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.lblType)
-        Me.Controls.Add(Me.lblAge)
+        Me.Controls.Add(Me.paneling)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.lblCapacity)
@@ -625,8 +609,8 @@ Partial Class Billing
         Me.Panel3.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
-        Me.lblAge.ResumeLayout(False)
-        Me.lblAge.PerformLayout()
+        Me.paneling.ResumeLayout(False)
+        Me.paneling.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -658,7 +642,7 @@ Partial Class Billing
     Friend WithEvents lblRentedEnded As Label
     Friend WithEvents lblRentedStarted As Label
     Friend WithEvents MySqlCommand1 As MySql.Data.MySqlClient.MySqlCommand
-    Friend WithEvents Label11 As Label
+    Friend WithEvents lblAge As Label
     Friend WithEvents lblEmail As Label
     Friend WithEvents lblCarID As Label
     Friend WithEvents lblBodyNumber As Label
@@ -667,11 +651,10 @@ Partial Class Billing
     Friend WithEvents lblCapacity As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents lblAge As Panel
+    Friend WithEvents paneling As Panel
     Friend WithEvents lblType As Label
     Friend WithEvents RoundedPanel1 As RoundedPanel
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button10 As Button
-    Friend WithEvents RoundedButton2 As RoundedButton
 End Class

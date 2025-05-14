@@ -10,24 +10,18 @@
     Private panelTimers As New Dictionary(Of Panel, Timer)()
 
     Private Sub Billing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If GlobalData.HasReturnedCarThisSession Then
-            DisablePostReturnButtons()
-        Else
-            RoundedButton2.ForeColor = Color.Black
-            RoundedButton2.BackColor = Color.Gray
-            RoundedButton2.Enabled = False
-        End If
-        UpdateBillingDetails()
         LoadSavedPanels()
-
+        UpdateBillingDetails()
         lblCustomer.Text = "Customer Name: " & GlobalData.UserFullName
         lblAddress.Text = "Address: " & GlobalData.Address
         lblEmail.Text = "Email: " & GlobalData.CurrentUserEmail
-        lblAge.Text = "Age: " & GlobalData.Age.ToString()
+        paneling.Text = "Age: " & GlobalData.Age.ToString()
         lblUserStatus.Text = "User Status: " & If(GlobalData.IsLoggedIn, "Logged In", "Guest")
         lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
+        lblAge.Text = "Age: " & GlobalData.Age.ToString()
+        lblAge.ForeColor = Color.White
+        updateBalance()
     End Sub
-
 
     Protected Overrides Sub OnActivated(e As EventArgs)
         MyBase.OnActivated(e)
@@ -65,36 +59,11 @@
         Else
             lblCarName.Text = "No car selected"
         End If
-        ' If this is a new transaction (SelectedCar is set but not in SavedBillingPanels), show a temporary panel
-        If SelectedCar IsNot Nothing AndAlso Not Me.DesignMode Then
-            Dim loggedInUser = GlobalData.GetLoggedInUser()
-            Dim alreadySaved As Boolean = False
-            If loggedInUser IsNot Nothing AndAlso loggedInUser.ContainsKey("SavedBillingPanels") Then
-                Dim savedPanels = CType(loggedInUser("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
-                alreadySaved = savedPanels.Any(Function(p) p.ContainsKey("CarID") AndAlso p("CarID").ToString() = SelectedCar("CarID").ToString())
-            End If
-            If Not alreadySaved Then
-                ' Clear all panels and timers before showing a new temporary panel
-                For Each tmr In panelTimers.Values
-                    tmr.Stop()
-                    tmr.Dispose()
-                Next
-                panelTimers.Clear()
-                FlowLayoutPanel1.Controls.Clear()
-                CreateAndSelectTemporaryPanel()
-                ' Do NOT auto-select the first panel after this
-                Return
-            End If
-        End If
 
         ' Always enable the confirm button, disable return by default
         RoundedButton1.Enabled = True
         RoundedButton1.BackColor = Color.DarkSlateBlue
         RoundedButton1.ForeColor = Color.White
-
-        RoundedButton2.Enabled = False
-        RoundedButton2.BackColor = Color.Gray
-        RoundedButton2.ForeColor = Color.Black
     End Sub
 
     Private Sub LoadSavedPanels()
@@ -112,13 +81,12 @@
             For Each transactionDetails In savedPanels
                 ' Only show panels that are not returned
                 If Not transactionDetails.ContainsKey("Status") OrElse
-               Not String.Equals(transactionDetails("Status").ToString(), "Returned", StringComparison.OrdinalIgnoreCase) Then
+                   Not String.Equals(transactionDetails("Status").ToString(), "Returned", StringComparison.OrdinalIgnoreCase) Then
                     CreateTransactionPanel(transactionDetails)
                 End If
             Next
         End If
     End Sub
-
 
     Private Sub ApplyRoundedCornersToPanel(panel As Panel, cornerRadius As Integer)
         If panel.Width > 0 AndAlso panel.Height > 0 AndAlso cornerRadius > 0 Then
@@ -209,7 +177,6 @@
     End Sub
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
-
         If Not GlobalData.IsLoggedIn Then
             MessageBox.Show("You must be logged in to confirm the transaction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -262,7 +229,7 @@
                         {"Customer", lblCustomer.Text},
                         {"Address", lblAddress.Text},
                         {"Email", lblEmail.Text},
-                        {"Age", lblAge.Text}
+                        {"Age", paneling.Text}
                     }
 
                     ' Set the return deadline for the panel
@@ -298,9 +265,6 @@
                 End If
 
                 MessageBox.Show("Payment successful and car data saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                RoundedButton2.Enabled = True
-                RoundedButton2.ForeColor = Color.White
-                RoundedButton2.BackColor = Color.MediumSlateBlue
 
                 GlobalData.RentedCars += 1
                 Dim user = GlobalData.GetLoggedInUser()
@@ -321,6 +285,9 @@
         Dim panel As Panel = TryCast(sender, Panel)
         If panel Is Nothing Then Return
 
+        ' Revert all panels' age label to white
+        lblAge.ForeColor = Color.White
+
         For Each ctrl As Control In FlowLayoutPanel1.Controls
             If TypeOf ctrl Is Panel Then
                 ctrl.BackColor = Color.DarkSlateBlue
@@ -334,6 +301,9 @@
         For Each lbl In panel.Controls.OfType(Of Label)()
             lbl.ForeColor = Color.Black
         Next
+
+        ' Set selected panel's age label to black
+        lblAge.ForeColor = Color.Black
 
         SelectedPanel = panel
 
@@ -353,7 +323,7 @@
         lblCustomer.Text = details("Customer")
         lblAddress.Text = details("Address")
         lblEmail.Text = details("Email")
-        lblAge.Text = details("Age")
+        lblAge.Text = details("Age") ' This should be "Age: XX"
 
         ' Check return status
         Dim isReturned As Boolean = False
@@ -365,19 +335,12 @@
             ' Both buttons disabled
             RoundedButton1.Enabled = False
             RoundedButton1.BackColor = Color.Gray
-            RoundedButton2.Enabled = False
-            RoundedButton2.BackColor = Color.Gray
-            RoundedButton2.ForeColor = Color.Black
         Else
             ' Only confirm disabled, return enabled
             RoundedButton1.Enabled = False
             RoundedButton1.BackColor = Color.Gray
-            RoundedButton2.Enabled = True
-            RoundedButton2.BackColor = Color.MediumSlateBlue
-            RoundedButton2.ForeColor = Color.White
         End If
     End Sub
-
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         WalletAdd.Show()
@@ -395,122 +358,67 @@
         homeForm.Show()
     End Sub
 
-    Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
-        If SelectedPanel Is Nothing Then
-            MessageBox.Show("Please select a to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        If GlobalData.RentedCars > 0 Then
-            GlobalData.RentedCars -= 1
-        End If
-        Dim user = GlobalData.GetLoggedInUser()
-        If user IsNot Nothing Then
-            user("RentedCars") = GlobalData.RentedCars
-        End If
-
-        ' Stop and remove timer for this panel
-        If panelTimers.ContainsKey(SelectedPanel) Then
-            panelTimers(SelectedPanel).Stop()
-            panelTimers(SelectedPanel).Dispose()
-            panelTimers.Remove(SelectedPanel)
-        End If
-
-        ' Update label to show timer stopped and returned
-        For Each lbl In SelectedPanel.Controls.OfType(Of Label)()
-            lbl.Text = lbl.Text.Split(":"c)(0) & " : 00:00:00 | Returned"
-            lbl.ForeColor = Color.DarkGray
-        Next
-
-        ' Pass data down before removing panel
-        Dim details = CType(SelectedPanel.Tag, Dictionary(Of String, Object))
-        MarkCarAsReturned(details)
-
-        MessageBox.Show("Rental marked as returned. No refunds will be issued as per company policy.", "Return Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-        ' Remove the panel from the UI
-        FlowLayoutPanel1.Controls.Remove(SelectedPanel)
-        SelectedPanel = Nothing
-
-        GlobalData.HasReturnedCarThisSession = True
-        DisablePostReturnButtons()
-    End Sub
-
-    Private Sub CreateAndSelectTemporaryPanel()
-        ' Build a dictionary with all relevant details from the current form state
-        Dim tempDetails As New Dictionary(Of String, Object) From {
-        {"CarName", lblCarName.Text},
-        {"PaymentPerDay", lblPaymentPerDay.Text},
-        {"CarID", lblCarID.Text},
-        {"BodyNumber", lblBodyNumber.Text},
-        {"PlateNumber", lblPlateNumber.Text},
-        {"Color", lblColor.Text},
-        {"Capacity", lblCapacity.Text},
-        {"Type", lblType.Text},
-        {"TotalPayment", lblTotalPayment.Text},
-        {"RentedStarted", lblRentedStarted.Text},
-        {"RentedEnded", lblRentedEnded.Text},
-        {"DaysToBeRented", lblDaysToBeRented.Text},
-        {"Customer", lblCustomer.Text},
-        {"Address", lblAddress.Text},
-        {"Email", lblEmail.Text},
-        {"Age", lblAge.Text},
-        {"Status", "Active"}
-    }
-
-        ' Set a temporary return deadline for display
-        Dim panelReturnEndTime As DateTime
-        If TransactionType = "RENT" Then
-            panelReturnEndTime = DateTime.Now.AddDays(Duration)
-        ElseIf TransactionType = "BOOK" AndAlso EndDate.HasValue Then
-            panelReturnEndTime = EndDate.Value
-        Else
-            panelReturnEndTime = DateTime.Now
-        End If
-        tempDetails("ReturnDeadline") = panelReturnEndTime
-
-        ' Remove any previous temporary panel (optional, for clarity)
-        If FlowLayoutPanel1.Controls.Count > 0 Then
-            For i As Integer = FlowLayoutPanel1.Controls.Count - 1 To 0 Step -1
-                Dim pnl = TryCast(FlowLayoutPanel1.Controls(i), Panel)
-                If pnl IsNot Nothing AndAlso pnl.Tag IsNot Nothing Then
-                    Dim tagDict = TryCast(pnl.Tag, Dictionary(Of String, Object))
-                    If tagDict IsNot Nothing AndAlso tagDict.ContainsKey("Status") AndAlso tagDict("Status").ToString() = "Active" Then
-                        FlowLayoutPanel1.Controls.RemoveAt(i)
-                    End If
-                End If
-            Next
-        End If
-
-        ' Create and add the panel
-        CreateTransactionPanel(tempDetails)
-
-        ' Select the newly created panel
-        If FlowLayoutPanel1.Controls.Count > 0 Then
-            Dim lastPanel = TryCast(FlowLayoutPanel1.Controls(FlowLayoutPanel1.Controls.Count - 1), Panel)
-            If lastPanel IsNot Nothing Then
-                TransactionPanel_Click(lastPanel, EventArgs.Empty)
-                ' Ensure confirm button is enabled and styled
-                RoundedButton1.Enabled = True
-                RoundedButton1.BackColor = Color.DarkSlateBlue
-                RoundedButton1.ForeColor = Color.White
-                RoundedButton2.Enabled = False
-                RoundedButton2.BackColor = Color.Gray
-                RoundedButton2.ForeColor = Color.Black
-            End If
-        End If
-    End Sub
-
-
     Private Sub DisablePostReturnButtons()
         RoundedButton1.Enabled = False
         RoundedButton1.BackColor = Color.Gray
-        RoundedButton2.Enabled = False
-        RoundedButton2.BackColor = Color.Gray
         ' Add any other buttons you want to disable here
     End Sub
 
-    Private Sub MarkCarAsReturned(transactionDetails As Dictionary(Of String, Object))
+
+    ' Deletes the currently selected panel from the UI and SavedBillingPanels
+    Public Sub DeleteSelectedPanel()
+        If SelectedPanel Is Nothing Then
+            MessageBox.Show("No panel is selected.", "Delete Panel", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Remove from UI
+        FlowLayoutPanel1.Controls.Remove(SelectedPanel)
+
+        ' Remove from SavedBillingPanels if possible
+        Dim user = GlobalData.GetLoggedInUser()
+        If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
+            Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
+            Dim details = TryCast(SelectedPanel.Tag, Dictionary(Of String, Object))
+            If details IsNot Nothing AndAlso details.ContainsKey("CarID") Then
+                Dim carIdToRemove = details("CarID").ToString()
+                panels.RemoveAll(Function(panel)
+                                     Return panel.ContainsKey("CarID") AndAlso panel("CarID").ToString() = carIdToRemove
+                                 End Function)
+            End If
+        End If
+        MarkCarAsReturned(SelectedPanel.Tag)
+        SelectedPanel = Nothing
+        GlobalData.NotifyDataChanged()
+    End Sub
+
+    ' Selects a car panel by CarID, highlights it, and updates the details display
+    Public Sub SelectCarPanel(carId As String)
+        For Each ctrl As Control In FlowLayoutPanel1.Controls
+            If TypeOf ctrl Is Panel Then
+                Dim panel = DirectCast(ctrl, Panel)
+                Dim details = TryCast(panel.Tag, Dictionary(Of String, Object))
+                If details IsNot Nothing AndAlso details.ContainsKey("CarID") AndAlso details("CarID").ToString() = carId Then
+                    ' Highlight this panel
+                    panel.BackColor = Color.White
+                    For Each lbl In panel.Controls.OfType(Of Label)()
+                        lbl.ForeColor = Color.Black
+                    Next
+                    SelectedPanel = panel
+                    ' Update details display
+                    TransactionPanel_Click(panel, EventArgs.Empty)
+                Else
+                    ' Unhighlight other panels
+                    panel.BackColor = Color.DarkSlateBlue
+                    For Each lbl In panel.Controls.OfType(Of Label)()
+                        lbl.ForeColor = Color.White
+                    Next
+                End If
+            End If
+        Next
+    End Sub
+
+    Public Sub MarkCarAsReturned(transactionDetails As Dictionary(Of String, Object))
         ' Mark car as available
         Dim carID As String = transactionDetails("CarID").ToString()
         If GlobalData.CarsDict.ContainsKey(carID) Then
@@ -535,23 +443,10 @@
             End If
         End If
 
-        ' Optionally, remove returned panels from SavedBillingPanels
+        ' Remove returned panels from SavedBillingPanels
         If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
             Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
-            panels.RemoveAll(Function(panel) panel("CarID").ToString() = carID AndAlso
-        panel.ContainsKey("Status") AndAlso panel("Status").ToString() = "Returned")
-        End If
-
-
-        ' Optionally, update SavedBillingPanels to reflect return
-        If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
-            Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
-            For Each panel In panels
-                If panel("CarID").ToString() = carID Then
-                    panel("Status") = "Returned"
-                    panel("DateReturned") = DateTime.Now
-                End If
-            Next
+            panels.RemoveAll(Function(panel) panel("CarID").ToString() = carID)
         End If
 
         GlobalData.NotifyDataChanged()

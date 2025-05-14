@@ -142,16 +142,18 @@ Public Class Management
     End Sub
 
     Private Sub RoundedButton3_Click(sender As Object, e As EventArgs) Handles RoundedButton3.Click
+        Dim priceInd As Int64
         Try
-            Dim priceInd As Int64
-            If Not Int64.TryParse(RichTextBox8.Text, priceInd) Then Throw New Exception()
+            If Not Int64.TryParse(RichTextBox8.Text, priceInd) Then
+                Throw New Exception("Invalid daily price. Please enter a numeric value.")
+            End If
             If priceInd >= 10000 Then
                 Label11.Text = "Premium"
             Else
                 Label11.Text = "Non-Premium"
             End If
-        Catch
-            MessageBox.Show("Fill up missing details!", "Notice")
+        Catch ex As Exception
+            MessageBox.Show("Daily Price Error: " & ex.Message, "Notice")
             Return
         End Try
 
@@ -162,26 +164,27 @@ Public Class Management
         End If
 
         Dim carDict As New Dictionary(Of String, Object) From {
-            {"CarID", carID},
-            {"CarName", RichTextBox3.Text},
-            {"PrimaryImage", selectedImage},
-            {"SecondaryImage", selectedImage2},
-            {"CarType", RichTextBox6.Text},
-            {"Capacity", RichTextBox5.Text},
-            {"Color", RichTextBox10.Text},
-            {"BriefDetails", RichTextBox1.Text},
-            {"Details", RichTextBox2.Text},
-            {"BodyNumber", RichTextBox7.Text},
-            {"PlateNumber", RichTextBox9.Text},
-            {"DailyPrice", RichTextBox8.Text},
-            {"IsAvailable", RadioButton1.Checked}
-        }
+        {"CarID", carID},
+        {"CarName", RichTextBox3.Text},
+        {"PrimaryImage", selectedImage},
+        {"SecondaryImage", selectedImage2},
+        {"CarType", RichTextBox6.Text},
+        {"Capacity", RichTextBox5.Text},
+        {"Color", RichTextBox10.Text},
+        {"BriefDetails", RichTextBox1.Text},
+        {"Details", RichTextBox2.Text},
+        {"BodyNumber", RichTextBox7.Text},
+        {"PlateNumber", RichTextBox9.Text},
+        {"DailyPrice", RichTextBox8.Text},
+        {"IsAvailable", RadioButton1.Checked}
+    }
 
         GlobalData.CarsDict(carID) = carDict
         GlobalData.NotifyDataChanged()
         AddCarPanelToUI(carDict)
         MessageBox.Show("Car added/updated successfully!")
     End Sub
+
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
         Dim clickedPanel As Panel = CType(sender, Panel)

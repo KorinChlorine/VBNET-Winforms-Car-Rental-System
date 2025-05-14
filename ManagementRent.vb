@@ -17,10 +17,10 @@
         timerLabels.Clear()
         editTimeTextBoxes.Clear()
 
-        ' Removed "Customer Address", added "Time Left", "Set Time", "Return"
+        ' Header row (Customer Name removed)
         Dim titles As String() = {
             "Rent ID", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price",
-            "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Name", "Customer Email",
+            "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Email",
             "Time Left", "Set Time", "Return"
         }
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
@@ -30,7 +30,6 @@
         Dim totalWidth As Integer = FlowLayoutPanel1.Width - 25
         Dim columnWidth As Integer = totalWidth \ titles.Length
 
-        ' === HEADER ROW ===
         Dim headerPanel As New Panel With {
             .Height = rowHeight,
             .Width = totalWidth,
@@ -38,7 +37,6 @@
             .Margin = New Padding(0),
             .ForeColor = Color.Black
         }
-
         For i As Integer = 0 To titles.Length - 1
             Dim label As New Label With {
                 .Text = titles(i),
@@ -53,10 +51,9 @@
             }
             headerPanel.Controls.Add(label)
         Next
-
         FlowLayoutPanel1.Controls.Add(headerPanel)
 
-        ' === DATA ROWS ===
+        ' Data rows
         If GlobalData.TransactionsDict.Count = 0 Then
             Dim noDataLabel As New Label With {
                 .Text = "No rental transactions found.",
@@ -88,7 +85,7 @@
                     End If
                 End If
 
-                Dim values As String() = New String(18) {} ' 18 columns now
+                Dim values As String() = New String(17) {} ' 17 columns now
                 Try
                     values(0) = SafeStr(t, "TransactionID")
                     values(1) = SafeStr(t, "CarID")
@@ -103,16 +100,15 @@
                     values(10) = SafeDate(t, "StartDate")
                     values(11) = SafeDate(t, "EndDate")
                     values(12) = SafeDate(t, "DateReturned")
-                    values(13) = SafeStr(t, "CustomerName")
-                    values(14) = SafeStr(t, "CustomerEmail")
-                    ' 15: Time Left label, 16: Set Time textbox, 17: Return button
+                    values(13) = SafeStr(t, "CustomerEmail")
+                    ' 14: Time Left label, 15: Set Time textbox, 16: Return button
                 Catch
                     For i As Integer = 0 To values.Length - 1
                         If values(i) Is Nothing Then values(i) = "N/A"
                     Next
                 End Try
 
-                For i As Integer = 0 To 14 ' up to Customer Email
+                For i As Integer = 0 To 13 ' up to Customer Email
                     Dim label As New Label With {
                         .Text = values(i),
                         .Font = detailFont,
@@ -127,11 +123,11 @@
                     rowPanel.Controls.Add(label)
                 Next
 
-                ' Add the timer Label (ticking, not editable)
+                ' Timer label
                 Dim timerLabel As New Label With {
                     .TextAlign = ContentAlignment.MiddleCenter,
                     .Size = New Size(columnWidth, rowHeight),
-                    .Location = New Point(columnWidth * 15, 0),
+                    .Location = New Point(columnWidth * 14, 0),
                     .Font = detailFont,
                     .BackColor = Color.Transparent,
                     .ForeColor = Color.White,
@@ -145,54 +141,72 @@
                 timerLabel.Text = GetTimeLeftString(t, statusText)
                 rowPanel.Controls.Add(timerLabel)
 
-                ' Add the editable TextBox (not ticking)
-                Dim editTimeTextBox As New TextBox With {
-                    .ReadOnly = False,
-                    .TextAlign = HorizontalAlignment.Center,
-                    .Size = New Size(columnWidth, rowHeight),
-                    .Location = New Point(columnWidth * 16, 0),
-                    .Font = detailFont,
-                    .BackColor = Color.DarkSlateBlue,
-                    .ForeColor = Color.White,
-                    .BorderStyle = BorderStyle.FixedSingle,
-                    .TabStop = True
-                }
-                If transactionId > 0 Then
-                    editTimeTextBoxes(transactionId) = editTimeTextBox
-                End If
-                editTimeTextBox.Text = GetTimeLeftString(t, statusText)
-                AddHandler editTimeTextBox.Leave, Sub(sender2, e2) SaveTimerEdit(transactionId, editTimeTextBox.Text)
-                AddHandler editTimeTextBox.KeyDown, Sub(sender2, e2)
-                                                        Dim tb = DirectCast(sender2, TextBox)
-                                                        Dim ke = DirectCast(e2, KeyEventArgs)
-                                                        If ke.KeyCode = Keys.Enter Then
-                                                            SaveTimerEdit(transactionId, tb.Text)
-                                                            ke.SuppressKeyPress = True
-                                                        End If
-                                                    End Sub
+                ' Set Time textbox (refactored)
+                Dim editTimeTextBox = CreateSetTimeTextBox(transactionId, statusText, t, columnWidth, detailFont)
+                editTimeTextBox.Location = New Point(columnWidth * 15, 0)
                 rowPanel.Controls.Add(editTimeTextBox)
 
-                ' Add return button in the last column
-                Dim returnButton As New Button With {
-                    .Text = "Return",
-                    .Size = New Size(columnWidth, rowHeight - 8),
-                    .BackColor = Color.Green,
-                    .ForeColor = Color.White,
-                    .FlatStyle = FlatStyle.Flat,
-                    .Tag = t("TransactionID"),
-                    .Location = New Point(columnWidth * 17, 4)
-                }
-                AddHandler returnButton.Click, AddressOf ReturnCar_Click
-                If statusText = "Returned" Then
-                    returnButton.Enabled = False
-                    returnButton.BackColor = Color.Gray
-                End If
+                ' Return button (refactored)
+                Dim returnButton = CreateReturnButton(transactionId, statusText, columnWidth)
+                returnButton.Location = New Point(columnWidth * 16, 4)
                 rowPanel.Controls.Add(returnButton)
 
                 FlowLayoutPanel1.Controls.Add(rowPanel)
             Next
         End If
     End Sub
+
+    Private Function CreateSetTimeTextBox(transactionId As Integer, statusText As String, t As Dictionary(Of String, Object), columnWidth As Integer, detailFont As Font) As TextBox
+        Dim editTimeTextBox As New TextBox With {
+            .TextAlign = HorizontalAlignment.Center,
+            .Size = New Size(columnWidth, 30),
+            .Font = detailFont,
+            .ForeColor = Color.White,
+            .BorderStyle = BorderStyle.FixedSingle,
+            .TabStop = True
+        }
+        If transactionId > 0 Then
+            editTimeTextBoxes(transactionId) = editTimeTextBox
+        End If
+
+        If statusText.ToLower() = "returned" Then
+            editTimeTextBox.Text = "00:00:00"
+            editTimeTextBox.ReadOnly = True
+            editTimeTextBox.BackColor = Color.Gray
+        Else
+            editTimeTextBox.Text = GetTimeLeftString(t, statusText)
+            editTimeTextBox.ReadOnly = False
+            editTimeTextBox.BackColor = Color.DarkSlateBlue
+            AddHandler editTimeTextBox.Leave, Sub(sender2, e2) SaveTimerEdit(transactionId, editTimeTextBox.Text)
+            AddHandler editTimeTextBox.KeyDown, Sub(sender2, e2)
+                                                    Dim tb = DirectCast(sender2, TextBox)
+                                                    Dim ke = DirectCast(e2, KeyEventArgs)
+                                                    If ke.KeyCode = Keys.Enter Then
+                                                        SaveTimerEdit(transactionId, tb.Text)
+                                                        ke.SuppressKeyPress = True
+                                                    End If
+                                                End Sub
+        End If
+        Return editTimeTextBox
+    End Function
+
+    Private Function CreateReturnButton(transactionId As Integer, statusText As String, columnWidth As Integer) As Button
+        Dim returnButton As New Button With {
+            .Text = "Return",
+            .Size = New Size(columnWidth, 22),
+            .BackColor = If(statusText.ToLower() = "returned", Color.Gray, Color.Green),
+            .ForeColor = Color.White,
+            .FlatStyle = FlatStyle.Flat,
+            .Tag = transactionId,
+            .Location = New Point(0, 4),
+            .Enabled = Not (statusText.ToLower() = "returned")
+        }
+        If Not returnButton.Enabled Then
+            returnButton.BackColor = Color.Gray
+        End If
+        AddHandler returnButton.Click, AddressOf ReturnCar_Click
+        Return returnButton
+    End Function
 
     ' Timer tick: update all countdowns (labels only)
     Private Sub countdownTimer_Tick(sender As Object, e As EventArgs) Handles countdownTimer.Tick
@@ -235,7 +249,6 @@
         Return "00:00:00"
     End Function
 
-
     ' Save admin-edited timer (from the editTimeTextBox)
     Private Sub SaveTimerEdit(transactionId As Integer, newTime As String)
         If Not editTimeTextBoxes.ContainsKey(transactionId) Then Return
@@ -246,13 +259,27 @@
         Dim ts As TimeSpan
         If TimeSpan.TryParse(newTime, ts) Then
             ' Set EndDate to Now + newTime
-            t("EndDate") = DateTime.Now.Add(ts)
+            Dim newEndDate = DateTime.Now.Add(ts)
+            t("EndDate") = newEndDate
+
+            ' Also update in user's SavedBillingPanels
+            Dim user = GlobalData.GetLoggedInUser()
+            If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
+                Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
+                For Each panel In panels
+                    If panel.ContainsKey("TransactionID") AndAlso panel("TransactionID").ToString() = transactionId.ToString() Then
+                        panel("ReturnDeadline") = newEndDate
+                    End If
+                Next
+            End If
+
             GlobalData.NotifyDataChanged()
         Else
             MessageBox.Show("Invalid time format. Use hh:mm:ss.", "Invalid Input")
             editTimeTextBoxes(transactionId).Text = GetTimeLeftString(t, SafeStr(t, "Status"))
         End If
     End Sub
+
 
     Private Sub ReturnCar_Click(sender As Object, e As EventArgs)
         Try
@@ -270,9 +297,25 @@
             End If
 
             If MessageBox.Show("Are you sure you want to mark this car as returned?", "Confirm Return",
-                              MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
 
+                ' Mark as returned in TransactionsDict
                 If GlobalData.ReturnCar(transactionID) Then
+                    ' Remove from user's SavedBillingPanels
+                    Dim user = GlobalData.GetLoggedInUser()
+                    If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
+                        Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
+                        panels.RemoveAll(Function(panel)
+                                             Return panel.ContainsKey("TransactionID") AndAlso panel("TransactionID").ToString() = transactionID.ToString()
+                                         End Function)
+
+                    End If
+
+
+                    Billing.DeleteSelectedPanel()
+                    Billing.UpdateBillingDetails()
+
+                    GlobalData.NotifyDataChanged()
                     MessageBox.Show("Car marked as returned successfully.", "Success")
                     LoadTransactions()
                 Else
@@ -283,6 +326,7 @@
             MessageBox.Show("Error processing return: " & ex.Message, "Error")
         End Try
     End Sub
+
 
     Private Function SafeStr(dict As Dictionary(Of String, Object), key As String) As String
         If dict.ContainsKey(key) AndAlso dict(key) IsNot Nothing Then
