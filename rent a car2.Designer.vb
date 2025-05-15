@@ -51,6 +51,9 @@ Partial Class rent_a_car2
         Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton2 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
+        Me.minimize = New System.Windows.Forms.Button()
+        Me.closeForm = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -396,6 +399,38 @@ Partial Class rent_a_car2
         Me.RoundedButton1.Text = "Background"
         Me.RoundedButton1.UseVisualStyleBackColor = False
         '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(0, 0)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(1203, 26)
+        Me.DraggablePanel1.TabIndex = 54
+        '
+        'minimize
+        '
+        Me.minimize.BackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatAppearance.BorderSize = 0
+        Me.minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.minimize.Location = New System.Drawing.Point(1218, 1)
+        Me.minimize.Name = "minimize"
+        Me.minimize.Size = New System.Drawing.Size(22, 27)
+        Me.minimize.TabIndex = 58
+        Me.minimize.UseVisualStyleBackColor = False
+        '
+        'closeForm
+        '
+        Me.closeForm.BackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatAppearance.BorderSize = 0
+        Me.closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.closeForm.Location = New System.Drawing.Point(1238, 1)
+        Me.closeForm.Name = "closeForm"
+        Me.closeForm.Size = New System.Drawing.Size(22, 27)
+        Me.closeForm.TabIndex = 57
+        Me.closeForm.UseVisualStyleBackColor = False
+        '
         'rent_a_car2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -403,6 +438,10 @@ Partial Class rent_a_car2
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Rent_a_Car2
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.minimize)
+        Me.Controls.Add(Me.closeForm)
+        Me.Controls.Add(Me.DraggablePanel1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
@@ -423,6 +462,9 @@ Partial Class rent_a_car2
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox2)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "rent_a_car2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "rent_a_car2"
@@ -468,4 +510,7 @@ Partial Class rent_a_car2
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label8 As Label
+    Friend WithEvents DraggablePanel1 As DraggablePanel
+    Friend WithEvents minimize As Button
+    Friend WithEvents closeForm As Button
 End Class

@@ -37,7 +37,9 @@ Partial Class homeForm
         Me.Label2 = New System.Windows.Forms.Label()
         Me.RoundedPanel1 = New VBNET_Car_Rental_System.RoundedPanel()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.minimize = New System.Windows.Forms.Button()
+        Me.closeForm = New System.Windows.Forms.Button()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
         Me.SuspendLayout()
         '
         'Button1
@@ -208,13 +210,37 @@ Partial Class homeForm
         Me.Button4.TabIndex = 16
         Me.Button4.UseVisualStyleBackColor = False
         '
-        'Panel2
+        'minimize
         '
-        Me.Panel2.BackColor = System.Drawing.Color.Transparent
-        Me.Panel2.Location = New System.Drawing.Point(-23, -46)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1233, 83)
-        Me.Panel2.TabIndex = 17
+        Me.minimize.BackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatAppearance.BorderSize = 0
+        Me.minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.minimize.Location = New System.Drawing.Point(1218, 5)
+        Me.minimize.Name = "minimize"
+        Me.minimize.Size = New System.Drawing.Size(22, 27)
+        Me.minimize.TabIndex = 58
+        Me.minimize.UseVisualStyleBackColor = False
+        '
+        'closeForm
+        '
+        Me.closeForm.BackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatAppearance.BorderSize = 0
+        Me.closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.closeForm.Location = New System.Drawing.Point(1238, 5)
+        Me.closeForm.Name = "closeForm"
+        Me.closeForm.Size = New System.Drawing.Size(22, 27)
+        Me.closeForm.TabIndex = 57
+        Me.closeForm.UseVisualStyleBackColor = False
+        '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(-5, -69)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(1217, 98)
+        Me.DraggablePanel1.TabIndex = 59
         '
         'homeForm
         '
@@ -223,7 +249,10 @@ Partial Class homeForm
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWHomePage
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
-        Me.Controls.Add(Me.Panel2)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.DraggablePanel1)
+        Me.Controls.Add(Me.minimize)
+        Me.Controls.Add(Me.closeForm)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.RoundedPanel1)
         Me.Controls.Add(Me.Button3)
@@ -239,6 +268,9 @@ Partial Class homeForm
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "homeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.ResumeLayout(False)
@@ -261,5 +293,7 @@ Partial Class homeForm
     Friend WithEvents Label2 As Label
     Friend WithEvents RoundedPanel1 As RoundedPanel
     Friend WithEvents Button4 As Button
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents minimize As Button
+    Friend WithEvents closeForm As Button
+    Friend WithEvents DraggablePanel1 As DraggablePanel
 End Class

@@ -159,4 +159,12 @@
         CloseCurrentForm()
         homeForm.Show()
     End Sub
+
+    Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
+        Close()
+    End Sub
+
+    Private Sub closeForm_Click(sender As Object, e As EventArgs) Handles closeForm.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
 End Class

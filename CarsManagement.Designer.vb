@@ -26,6 +26,9 @@ Partial Class CarsManagement
         Me.Button1 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
+        Me.minimize = New System.Windows.Forms.Button()
+        Me.closeForm = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button2
@@ -57,9 +60,9 @@ Partial Class CarsManagement
         Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
         Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(1, 99)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(2, 99)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1262, 555)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1261, 555)
         Me.FlowLayoutPanel1.TabIndex = 49
         Me.FlowLayoutPanel1.WrapContents = False
         '
@@ -75,6 +78,38 @@ Partial Class CarsManagement
         Me.Button3.TabIndex = 50
         Me.Button3.UseVisualStyleBackColor = False
         '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(2, 2)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(1203, 26)
+        Me.DraggablePanel1.TabIndex = 51
+        '
+        'minimize
+        '
+        Me.minimize.BackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatAppearance.BorderSize = 0
+        Me.minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.minimize.Location = New System.Drawing.Point(1216, 4)
+        Me.minimize.Name = "minimize"
+        Me.minimize.Size = New System.Drawing.Size(22, 23)
+        Me.minimize.TabIndex = 47
+        Me.minimize.UseVisualStyleBackColor = False
+        '
+        'closeForm
+        '
+        Me.closeForm.BackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatAppearance.BorderSize = 0
+        Me.closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.closeForm.Location = New System.Drawing.Point(1233, 5)
+        Me.closeForm.Name = "closeForm"
+        Me.closeForm.Size = New System.Drawing.Size(22, 23)
+        Me.closeForm.TabIndex = 46
+        Me.closeForm.UseVisualStyleBackColor = False
+        '
         'CarsManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -82,13 +117,20 @@ Partial Class CarsManagement
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management_Cars2
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.minimize)
+        Me.Controls.Add(Me.DraggablePanel1)
+        Me.Controls.Add(Me.closeForm)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button2)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "CarsManagement"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CarsManagement"
         Me.ResumeLayout(False)
 
@@ -97,4 +139,7 @@ Partial Class CarsManagement
     Friend WithEvents Button1 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents Button3 As Button
+    Friend WithEvents DraggablePanel1 As DraggablePanel
+    Friend WithEvents minimize As Button
+    Friend WithEvents closeForm As Button
 End Class

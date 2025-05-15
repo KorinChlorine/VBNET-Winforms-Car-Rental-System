@@ -142,17 +142,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Car.vb" />
     <Compile Include="CarsManagement.Designer.vb">
       <DependentUpon>CarsManagement.vb</DependentUpon>
     </Compile>
     <Compile Include="CarsManagement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfirmationRent.Designer.vb">
-      <DependentUpon>ConfirmationRent.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ConfirmationRent.vb" />
     <Compile Include="Custom MessageBox.Designer.vb">
       <DependentUpon>Custom MessageBox.vb</DependentUpon>
     </Compile>
@@ -165,11 +160,8 @@
     <Compile Include="customerDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="customerDetailsCredentials.Designer.vb">
-      <DependentUpon>customerDetailsCredentials.vb</DependentUpon>
-    </Compile>
-    <Compile Include="customerDetailsCredentials.vb">
-      <SubType>Form</SubType>
+    <Compile Include="DraggablePanel.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="LogOutButt.vb">
       <SubType>Component</SubType>
@@ -199,12 +191,6 @@
       <DependentUpon>UserManagement.vb</DependentUpon>
     </Compile>
     <Compile Include="UserManagement.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ViewCars.Designer.vb">
-      <DependentUpon>ViewCars.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ViewCars.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="History.Designer.vb">
@@ -279,17 +265,11 @@
     <EmbeddedResource Include="CarsManagement.resx">
       <DependentUpon>CarsManagement.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmationRent.resx">
-      <DependentUpon>ConfirmationRent.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Custom MessageBox.resx">
       <DependentUpon>Custom MessageBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="customerDetails.resx">
       <DependentUpon>customerDetails.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="customerDetailsCredentials.resx">
-      <DependentUpon>customerDetailsCredentials.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.vb</DependentUpon>
@@ -326,9 +306,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagement.resx">
       <DependentUpon>UserManagement.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewCars.resx">
-      <DependentUpon>ViewCars.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WalletAdd.resx">
       <DependentUpon>WalletAdd.vb</DependentUpon>

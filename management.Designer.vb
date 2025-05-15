@@ -63,6 +63,9 @@ Partial Class Management
         Me.RoundedButton4 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton3 = New VBNET_Car_Rental_System.RoundedButton()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
+        Me.minimize = New System.Windows.Forms.Button()
+        Me.closeForm = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -75,9 +78,8 @@ Partial Class Management
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackColor = System.Drawing.Color.White
+        Me.PictureBox1.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PictureBox1.Location = New System.Drawing.Point(363, 197)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(213, 117)
@@ -95,7 +97,8 @@ Partial Class Management
         '
         'RichTextBox2
         '
-        Me.RichTextBox2.BackColor = System.Drawing.Color.White
+        Me.RichTextBox2.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox2.Location = New System.Drawing.Point(363, 487)
         Me.RichTextBox2.Name = "RichTextBox2"
         Me.RichTextBox2.Size = New System.Drawing.Size(442, 131)
@@ -104,7 +107,8 @@ Partial Class Management
         '
         'RichTextBox3
         '
-        Me.RichTextBox3.BackColor = System.Drawing.Color.White
+        Me.RichTextBox3.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox3.Location = New System.Drawing.Point(363, 133)
         Me.RichTextBox3.Name = "RichTextBox3"
@@ -174,7 +178,8 @@ Partial Class Management
         '
         'RichTextBox1
         '
-        Me.RichTextBox1.BackColor = System.Drawing.Color.White
+        Me.RichTextBox1.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox1.Location = New System.Drawing.Point(363, 407)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.Size = New System.Drawing.Size(442, 58)
@@ -195,9 +200,8 @@ Partial Class Management
         '
         'PictureBox2
         '
-        Me.PictureBox2.BackColor = System.Drawing.Color.White
+        Me.PictureBox2.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.PictureBox2.Location = New System.Drawing.Point(592, 197)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(213, 117)
@@ -218,7 +222,8 @@ Partial Class Management
         '
         'RichTextBox6
         '
-        Me.RichTextBox6.BackColor = System.Drawing.Color.White
+        Me.RichTextBox6.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox6.Location = New System.Drawing.Point(362, 342)
         Me.RichTextBox6.Name = "RichTextBox6"
@@ -252,7 +257,8 @@ Partial Class Management
         '
         'RichTextBox7
         '
-        Me.RichTextBox7.BackColor = System.Drawing.Color.White
+        Me.RichTextBox7.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox7.Location = New System.Drawing.Point(824, 310)
         Me.RichTextBox7.Name = "RichTextBox7"
@@ -274,7 +280,8 @@ Partial Class Management
         '
         'RichTextBox4
         '
-        Me.RichTextBox4.BackColor = System.Drawing.Color.White
+        Me.RichTextBox4.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox4.Location = New System.Drawing.Point(824, 252)
         Me.RichTextBox4.Name = "RichTextBox4"
@@ -284,7 +291,8 @@ Partial Class Management
         '
         'RichTextBox8
         '
-        Me.RichTextBox8.BackColor = System.Drawing.Color.White
+        Me.RichTextBox8.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox8.Location = New System.Drawing.Point(824, 429)
         Me.RichTextBox8.Name = "RichTextBox8"
@@ -306,7 +314,8 @@ Partial Class Management
         '
         'RichTextBox9
         '
-        Me.RichTextBox9.BackColor = System.Drawing.Color.White
+        Me.RichTextBox9.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox9.Location = New System.Drawing.Point(824, 371)
         Me.RichTextBox9.Name = "RichTextBox9"
@@ -376,7 +385,8 @@ Partial Class Management
         '
         'RichTextBox5
         '
-        Me.RichTextBox5.BackColor = System.Drawing.Color.White
+        Me.RichTextBox5.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox5.Location = New System.Drawing.Point(512, 342)
         Me.RichTextBox5.Name = "RichTextBox5"
@@ -386,7 +396,8 @@ Partial Class Management
         '
         'RichTextBox10
         '
-        Me.RichTextBox10.BackColor = System.Drawing.Color.White
+        Me.RichTextBox10.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.RichTextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox10.Location = New System.Drawing.Point(663, 342)
         Me.RichTextBox10.Name = "RichTextBox10"
@@ -444,7 +455,7 @@ Partial Class Management
         '
         'RoundedPanel1
         '
-        Me.RoundedPanel1.BackColor = System.Drawing.Color.White
+        Me.RoundedPanel1.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RoundedPanel1.Controls.Add(Me.Label11)
         Me.RoundedPanel1.CornerRadius = 20
         Me.RoundedPanel1.Location = New System.Drawing.Point(824, 133)
@@ -459,7 +470,7 @@ Partial Class Management
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.DarkSlateBlue
+        Me.Label11.ForeColor = System.Drawing.Color.White
         Me.Label11.Location = New System.Drawing.Point(65, 10)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(244, 38)
@@ -469,7 +480,7 @@ Partial Class Management
         '
         'RoundedButton2
         '
-        Me.RoundedButton2.BackColor = System.Drawing.Color.DarkSlateBlue
+        Me.RoundedButton2.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RoundedButton2.FlatAppearance.BorderSize = 0
         Me.RoundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RoundedButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -483,7 +494,7 @@ Partial Class Management
         '
         'RoundedButton5
         '
-        Me.RoundedButton5.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.RoundedButton5.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RoundedButton5.FlatAppearance.BorderSize = 0
         Me.RoundedButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RoundedButton5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -497,7 +508,7 @@ Partial Class Management
         '
         'RoundedButton4
         '
-        Me.RoundedButton4.BackColor = System.Drawing.Color.Crimson
+        Me.RoundedButton4.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RoundedButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.RoundedButton4.FlatAppearance.BorderSize = 0
         Me.RoundedButton4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -512,7 +523,7 @@ Partial Class Management
         '
         'RoundedButton3
         '
-        Me.RoundedButton3.BackColor = System.Drawing.Color.MediumSeaGreen
+        Me.RoundedButton3.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RoundedButton3.FlatAppearance.BorderSize = 0
         Me.RoundedButton3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.RoundedButton3.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -526,7 +537,7 @@ Partial Class Management
         '
         'RoundedButton1
         '
-        Me.RoundedButton1.BackColor = System.Drawing.Color.RoyalBlue
+        Me.RoundedButton1.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RoundedButton1.FlatAppearance.BorderSize = 0
         Me.RoundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RoundedButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -538,6 +549,38 @@ Partial Class Management
         Me.RoundedButton1.Text = "Edit"
         Me.RoundedButton1.UseVisualStyleBackColor = False
         '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(0, 1)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(1203, 26)
+        Me.DraggablePanel1.TabIndex = 54
+        '
+        'minimize
+        '
+        Me.minimize.BackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatAppearance.BorderSize = 0
+        Me.minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.minimize.Location = New System.Drawing.Point(1218, 2)
+        Me.minimize.Name = "minimize"
+        Me.minimize.Size = New System.Drawing.Size(22, 27)
+        Me.minimize.TabIndex = 58
+        Me.minimize.UseVisualStyleBackColor = False
+        '
+        'closeForm
+        '
+        Me.closeForm.BackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatAppearance.BorderSize = 0
+        Me.closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.closeForm.Location = New System.Drawing.Point(1238, 2)
+        Me.closeForm.Name = "closeForm"
+        Me.closeForm.Size = New System.Drawing.Size(22, 27)
+        Me.closeForm.TabIndex = 57
+        Me.closeForm.UseVisualStyleBackColor = False
+        '
         'Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -545,6 +588,10 @@ Partial Class Management
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management11
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.minimize)
+        Me.Controls.Add(Me.closeForm)
+        Me.Controls.Add(Me.DraggablePanel1)
         Me.Controls.Add(Me.RoundedPanel1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
@@ -582,6 +629,9 @@ Partial Class Management
         Me.Controls.Add(Me.RoundedButton1)
         Me.Controls.Add(Me.PictureBox1)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Management"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "management"
@@ -635,4 +685,7 @@ Partial Class Management
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents RoundedPanel1 As RoundedPanel
+    Friend WithEvents DraggablePanel1 As DraggablePanel
+    Friend WithEvents minimize As Button
+    Friend WithEvents closeForm As Button
 End Class

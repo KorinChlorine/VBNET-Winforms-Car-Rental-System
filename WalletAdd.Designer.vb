@@ -27,6 +27,7 @@ Partial Class WalletAdd
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
         Me.SuspendLayout()
         '
         'TextBox1
@@ -82,6 +83,14 @@ Partial Class WalletAdd
         Me.Button2.TabIndex = 4
         Me.Button2.UseVisualStyleBackColor = False
         '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(2, 3)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(323, 22)
+        Me.DraggablePanel1.TabIndex = 13
+        '
         'WalletAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -90,6 +99,7 @@ Partial Class WalletAdd
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(385, 225)
         Me.ControlBox = False
+        Me.Controls.Add(Me.DraggablePanel1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label1)
@@ -112,4 +122,5 @@ Partial Class WalletAdd
     Friend WithEvents Label1 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents DraggablePanel1 As DraggablePanel
 End Class

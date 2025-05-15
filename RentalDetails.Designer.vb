@@ -31,23 +31,29 @@ Partial Class RentalDetail
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.lblRentStart = New System.Windows.Forms.Label()
-        Me.lblRentEnd = New System.Windows.Forms.Label()
-        Me.lblPaymentPerDay = New System.Windows.Forms.Label()
-        Me.lblRentStatus = New System.Windows.Forms.Label()
-        Me.lblPaymentTotal = New System.Windows.Forms.Label()
-        Me.lblCustomerName = New System.Windows.Forms.Label()
-        Me.lblCustomerEmail = New System.Windows.Forms.Label()
-        Me.lblCarDescription = New System.Windows.Forms.Label()
-        Me.lblCarID = New System.Windows.Forms.Label()
-        Me.lblBodyNumber = New System.Windows.Forms.Label()
-        Me.lblPlateNumber = New System.Windows.Forms.Label()
         Me.lblCarCapacity = New System.Windows.Forms.Label()
         Me.lblCarType = New System.Windows.Forms.Label()
         Me.lblCarColor = New System.Windows.Forms.Label()
+        Me.lblPlateNumber = New System.Windows.Forms.Label()
+        Me.lblBodyNumber = New System.Windows.Forms.Label()
+        Me.lblCarID = New System.Windows.Forms.Label()
+        Me.lblPaymentTotal = New System.Windows.Forms.Label()
+        Me.lblRentStatus = New System.Windows.Forms.Label()
+        Me.lblPaymentPerDay = New System.Windows.Forms.Label()
+        Me.lblRentEnd = New System.Windows.Forms.Label()
+        Me.lblRentStart = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.lblCustomerEmail = New System.Windows.Forms.Label()
+        Me.lblCustomerName = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.lblCarDescription = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblTimeLeft = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.lblReturnedStatus = New System.Windows.Forms.Label()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
+        Me.minimize = New System.Windows.Forms.Button()
+        Me.closeForm = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -69,10 +75,13 @@ Partial Class RentalDetail
         '
         'FlowLayoutPanel1
         '
+        Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(119, 103)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(127, 165)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(219, 547)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(204, 485)
         Me.FlowLayoutPanel1.TabIndex = 13
         '
         'PictureBox1
@@ -158,6 +167,138 @@ Partial Class RentalDetail
         Me.Panel2.Size = New System.Drawing.Size(226, 302)
         Me.Panel2.TabIndex = 18
         '
+        'lblCarCapacity
+        '
+        Me.lblCarCapacity.AutoSize = True
+        Me.lblCarCapacity.BackColor = System.Drawing.Color.Transparent
+        Me.lblCarCapacity.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarCapacity.ForeColor = System.Drawing.Color.White
+        Me.lblCarCapacity.Location = New System.Drawing.Point(3, 132)
+        Me.lblCarCapacity.Name = "lblCarCapacity"
+        Me.lblCarCapacity.Size = New System.Drawing.Size(10, 44)
+        Me.lblCarCapacity.TabIndex = 31
+        Me.lblCarCapacity.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblCarType
+        '
+        Me.lblCarType.AutoSize = True
+        Me.lblCarType.BackColor = System.Drawing.Color.Transparent
+        Me.lblCarType.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarType.ForeColor = System.Drawing.Color.White
+        Me.lblCarType.Location = New System.Drawing.Point(3, 106)
+        Me.lblCarType.Name = "lblCarType"
+        Me.lblCarType.Size = New System.Drawing.Size(10, 44)
+        Me.lblCarType.TabIndex = 30
+        Me.lblCarType.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblCarColor
+        '
+        Me.lblCarColor.AutoSize = True
+        Me.lblCarColor.BackColor = System.Drawing.Color.Transparent
+        Me.lblCarColor.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarColor.ForeColor = System.Drawing.Color.White
+        Me.lblCarColor.Location = New System.Drawing.Point(3, 78)
+        Me.lblCarColor.Name = "lblCarColor"
+        Me.lblCarColor.Size = New System.Drawing.Size(10, 44)
+        Me.lblCarColor.TabIndex = 29
+        Me.lblCarColor.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblPlateNumber
+        '
+        Me.lblPlateNumber.AutoSize = True
+        Me.lblPlateNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblPlateNumber.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlateNumber.ForeColor = System.Drawing.Color.White
+        Me.lblPlateNumber.Location = New System.Drawing.Point(3, 54)
+        Me.lblPlateNumber.Name = "lblPlateNumber"
+        Me.lblPlateNumber.Size = New System.Drawing.Size(10, 44)
+        Me.lblPlateNumber.TabIndex = 28
+        Me.lblPlateNumber.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblBodyNumber
+        '
+        Me.lblBodyNumber.AutoSize = True
+        Me.lblBodyNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblBodyNumber.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBodyNumber.ForeColor = System.Drawing.Color.White
+        Me.lblBodyNumber.Location = New System.Drawing.Point(3, 28)
+        Me.lblBodyNumber.Name = "lblBodyNumber"
+        Me.lblBodyNumber.Size = New System.Drawing.Size(10, 44)
+        Me.lblBodyNumber.TabIndex = 27
+        Me.lblBodyNumber.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblCarID
+        '
+        Me.lblCarID.AutoSize = True
+        Me.lblCarID.BackColor = System.Drawing.Color.Transparent
+        Me.lblCarID.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarID.ForeColor = System.Drawing.Color.White
+        Me.lblCarID.Location = New System.Drawing.Point(3, 0)
+        Me.lblCarID.Name = "lblCarID"
+        Me.lblCarID.Size = New System.Drawing.Size(10, 44)
+        Me.lblCarID.TabIndex = 26
+        Me.lblCarID.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblPaymentTotal
+        '
+        Me.lblPaymentTotal.AutoSize = True
+        Me.lblPaymentTotal.BackColor = System.Drawing.Color.Transparent
+        Me.lblPaymentTotal.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPaymentTotal.ForeColor = System.Drawing.Color.White
+        Me.lblPaymentTotal.Location = New System.Drawing.Point(3, 239)
+        Me.lblPaymentTotal.Name = "lblPaymentTotal"
+        Me.lblPaymentTotal.Size = New System.Drawing.Size(10, 44)
+        Me.lblPaymentTotal.TabIndex = 25
+        Me.lblPaymentTotal.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblRentStatus
+        '
+        Me.lblRentStatus.AutoSize = True
+        Me.lblRentStatus.BackColor = System.Drawing.Color.Transparent
+        Me.lblRentStatus.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRentStatus.ForeColor = System.Drawing.Color.White
+        Me.lblRentStatus.Location = New System.Drawing.Point(3, 267)
+        Me.lblRentStatus.Name = "lblRentStatus"
+        Me.lblRentStatus.Size = New System.Drawing.Size(10, 44)
+        Me.lblRentStatus.TabIndex = 24
+        Me.lblRentStatus.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblPaymentPerDay
+        '
+        Me.lblPaymentPerDay.AutoSize = True
+        Me.lblPaymentPerDay.BackColor = System.Drawing.Color.Transparent
+        Me.lblPaymentPerDay.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPaymentPerDay.ForeColor = System.Drawing.Color.White
+        Me.lblPaymentPerDay.Location = New System.Drawing.Point(3, 211)
+        Me.lblPaymentPerDay.Name = "lblPaymentPerDay"
+        Me.lblPaymentPerDay.Size = New System.Drawing.Size(10, 44)
+        Me.lblPaymentPerDay.TabIndex = 23
+        Me.lblPaymentPerDay.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblRentEnd
+        '
+        Me.lblRentEnd.AutoSize = True
+        Me.lblRentEnd.BackColor = System.Drawing.Color.Transparent
+        Me.lblRentEnd.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRentEnd.ForeColor = System.Drawing.Color.White
+        Me.lblRentEnd.Location = New System.Drawing.Point(3, 183)
+        Me.lblRentEnd.Name = "lblRentEnd"
+        Me.lblRentEnd.Size = New System.Drawing.Size(10, 44)
+        Me.lblRentEnd.TabIndex = 22
+        Me.lblRentEnd.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
+        'lblRentStart
+        '
+        Me.lblRentStart.AutoSize = True
+        Me.lblRentStart.BackColor = System.Drawing.Color.Transparent
+        Me.lblRentStart.Font = New System.Drawing.Font("League Spartan", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRentStart.ForeColor = System.Drawing.Color.White
+        Me.lblRentStart.Location = New System.Drawing.Point(3, 155)
+        Me.lblRentStart.Name = "lblRentStart"
+        Me.lblRentStart.Size = New System.Drawing.Size(10, 44)
+        Me.lblRentStart.TabIndex = 21
+        Me.lblRentStart.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.Transparent
@@ -168,183 +309,54 @@ Partial Class RentalDetail
         Me.Panel3.Size = New System.Drawing.Size(226, 99)
         Me.Panel3.TabIndex = 19
         '
-        'Panel4
+        'lblCustomerEmail
         '
-        Me.Panel4.AutoScroll = True
-        Me.Panel4.BackColor = System.Drawing.Color.Transparent
-        Me.Panel4.Controls.Add(Me.lblCarDescription)
-        Me.Panel4.Location = New System.Drawing.Point(916, 333)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(314, 302)
-        Me.Panel4.TabIndex = 20
-        '
-        'lblRentStart
-        '
-        Me.lblRentStart.AutoSize = True
-        Me.lblRentStart.BackColor = System.Drawing.Color.Transparent
-        Me.lblRentStart.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRentStart.ForeColor = System.Drawing.Color.White
-        Me.lblRentStart.Location = New System.Drawing.Point(3, 155)
-        Me.lblRentStart.Name = "lblRentStart"
-        Me.lblRentStart.Size = New System.Drawing.Size(12, 56)
-        Me.lblRentStart.TabIndex = 21
-        Me.lblRentStart.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblRentEnd
-        '
-        Me.lblRentEnd.AutoSize = True
-        Me.lblRentEnd.BackColor = System.Drawing.Color.Transparent
-        Me.lblRentEnd.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRentEnd.ForeColor = System.Drawing.Color.White
-        Me.lblRentEnd.Location = New System.Drawing.Point(3, 183)
-        Me.lblRentEnd.Name = "lblRentEnd"
-        Me.lblRentEnd.Size = New System.Drawing.Size(12, 56)
-        Me.lblRentEnd.TabIndex = 22
-        Me.lblRentEnd.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblPaymentPerDay
-        '
-        Me.lblPaymentPerDay.AutoSize = True
-        Me.lblPaymentPerDay.BackColor = System.Drawing.Color.Transparent
-        Me.lblPaymentPerDay.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPaymentPerDay.ForeColor = System.Drawing.Color.White
-        Me.lblPaymentPerDay.Location = New System.Drawing.Point(3, 211)
-        Me.lblPaymentPerDay.Name = "lblPaymentPerDay"
-        Me.lblPaymentPerDay.Size = New System.Drawing.Size(12, 56)
-        Me.lblPaymentPerDay.TabIndex = 23
-        Me.lblPaymentPerDay.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblRentStatus
-        '
-        Me.lblRentStatus.AutoSize = True
-        Me.lblRentStatus.BackColor = System.Drawing.Color.Transparent
-        Me.lblRentStatus.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRentStatus.ForeColor = System.Drawing.Color.White
-        Me.lblRentStatus.Location = New System.Drawing.Point(3, 267)
-        Me.lblRentStatus.Name = "lblRentStatus"
-        Me.lblRentStatus.Size = New System.Drawing.Size(12, 56)
-        Me.lblRentStatus.TabIndex = 24
-        Me.lblRentStatus.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblPaymentTotal
-        '
-        Me.lblPaymentTotal.AutoSize = True
-        Me.lblPaymentTotal.BackColor = System.Drawing.Color.Transparent
-        Me.lblPaymentTotal.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPaymentTotal.ForeColor = System.Drawing.Color.White
-        Me.lblPaymentTotal.Location = New System.Drawing.Point(3, 239)
-        Me.lblPaymentTotal.Name = "lblPaymentTotal"
-        Me.lblPaymentTotal.Size = New System.Drawing.Size(12, 56)
-        Me.lblPaymentTotal.TabIndex = 25
-        Me.lblPaymentTotal.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.lblCustomerEmail.AutoSize = True
+        Me.lblCustomerEmail.BackColor = System.Drawing.Color.Transparent
+        Me.lblCustomerEmail.Font = New System.Drawing.Font("League Spartan ExtraBold", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCustomerEmail.ForeColor = System.Drawing.Color.White
+        Me.lblCustomerEmail.Location = New System.Drawing.Point(14, 41)
+        Me.lblCustomerEmail.Name = "lblCustomerEmail"
+        Me.lblCustomerEmail.Size = New System.Drawing.Size(10, 44)
+        Me.lblCustomerEmail.TabIndex = 27
+        Me.lblCustomerEmail.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'lblCustomerName
         '
         Me.lblCustomerName.AutoSize = True
         Me.lblCustomerName.BackColor = System.Drawing.Color.Transparent
-        Me.lblCustomerName.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCustomerName.Font = New System.Drawing.Font("League Spartan ExtraBold", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCustomerName.ForeColor = System.Drawing.Color.White
         Me.lblCustomerName.Location = New System.Drawing.Point(14, 8)
         Me.lblCustomerName.Name = "lblCustomerName"
-        Me.lblCustomerName.Size = New System.Drawing.Size(12, 56)
+        Me.lblCustomerName.Size = New System.Drawing.Size(10, 44)
         Me.lblCustomerName.TabIndex = 26
         Me.lblCustomerName.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
-        'lblCustomerEmail
+        'Panel4
         '
-        Me.lblCustomerEmail.AutoSize = True
-        Me.lblCustomerEmail.BackColor = System.Drawing.Color.Transparent
-        Me.lblCustomerEmail.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCustomerEmail.ForeColor = System.Drawing.Color.White
-        Me.lblCustomerEmail.Location = New System.Drawing.Point(14, 50)
-        Me.lblCustomerEmail.Name = "lblCustomerEmail"
-        Me.lblCustomerEmail.Size = New System.Drawing.Size(12, 56)
-        Me.lblCustomerEmail.TabIndex = 27
-        Me.lblCustomerEmail.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Panel4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel4.AutoScroll = True
+        Me.Panel4.BackColor = System.Drawing.Color.Transparent
+        Me.Panel4.Controls.Add(Me.lblCarDescription)
+        Me.Panel4.Location = New System.Drawing.Point(916, 333)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(314, 317)
+        Me.Panel4.TabIndex = 20
         '
         'lblCarDescription
         '
         Me.lblCarDescription.AutoSize = True
         Me.lblCarDescription.BackColor = System.Drawing.Color.Transparent
-        Me.lblCarDescription.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCarDescription.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblCarDescription.Font = New System.Drawing.Font("League Spartan Medium", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCarDescription.ForeColor = System.Drawing.Color.White
-        Me.lblCarDescription.Location = New System.Drawing.Point(12, 9)
+        Me.lblCarDescription.Location = New System.Drawing.Point(0, 0)
         Me.lblCarDescription.Name = "lblCarDescription"
-        Me.lblCarDescription.Size = New System.Drawing.Size(12, 56)
+        Me.lblCarDescription.Size = New System.Drawing.Size(10, 44)
         Me.lblCarDescription.TabIndex = 28
         Me.lblCarDescription.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblCarID
-        '
-        Me.lblCarID.AutoSize = True
-        Me.lblCarID.BackColor = System.Drawing.Color.Transparent
-        Me.lblCarID.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCarID.ForeColor = System.Drawing.Color.White
-        Me.lblCarID.Location = New System.Drawing.Point(3, 0)
-        Me.lblCarID.Name = "lblCarID"
-        Me.lblCarID.Size = New System.Drawing.Size(12, 56)
-        Me.lblCarID.TabIndex = 26
-        Me.lblCarID.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblBodyNumber
-        '
-        Me.lblBodyNumber.AutoSize = True
-        Me.lblBodyNumber.BackColor = System.Drawing.Color.Transparent
-        Me.lblBodyNumber.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblBodyNumber.ForeColor = System.Drawing.Color.White
-        Me.lblBodyNumber.Location = New System.Drawing.Point(3, 28)
-        Me.lblBodyNumber.Name = "lblBodyNumber"
-        Me.lblBodyNumber.Size = New System.Drawing.Size(12, 56)
-        Me.lblBodyNumber.TabIndex = 27
-        Me.lblBodyNumber.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblPlateNumber
-        '
-        Me.lblPlateNumber.AutoSize = True
-        Me.lblPlateNumber.BackColor = System.Drawing.Color.Transparent
-        Me.lblPlateNumber.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPlateNumber.ForeColor = System.Drawing.Color.White
-        Me.lblPlateNumber.Location = New System.Drawing.Point(3, 54)
-        Me.lblPlateNumber.Name = "lblPlateNumber"
-        Me.lblPlateNumber.Size = New System.Drawing.Size(12, 56)
-        Me.lblPlateNumber.TabIndex = 28
-        Me.lblPlateNumber.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblCarCapacity
-        '
-        Me.lblCarCapacity.AutoSize = True
-        Me.lblCarCapacity.BackColor = System.Drawing.Color.Transparent
-        Me.lblCarCapacity.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCarCapacity.ForeColor = System.Drawing.Color.White
-        Me.lblCarCapacity.Location = New System.Drawing.Point(3, 132)
-        Me.lblCarCapacity.Name = "lblCarCapacity"
-        Me.lblCarCapacity.Size = New System.Drawing.Size(12, 56)
-        Me.lblCarCapacity.TabIndex = 31
-        Me.lblCarCapacity.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblCarType
-        '
-        Me.lblCarType.AutoSize = True
-        Me.lblCarType.BackColor = System.Drawing.Color.Transparent
-        Me.lblCarType.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCarType.ForeColor = System.Drawing.Color.White
-        Me.lblCarType.Location = New System.Drawing.Point(3, 106)
-        Me.lblCarType.Name = "lblCarType"
-        Me.lblCarType.Size = New System.Drawing.Size(12, 56)
-        Me.lblCarType.TabIndex = 30
-        Me.lblCarType.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'lblCarColor
-        '
-        Me.lblCarColor.AutoSize = True
-        Me.lblCarColor.BackColor = System.Drawing.Color.Transparent
-        Me.lblCarColor.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCarColor.ForeColor = System.Drawing.Color.White
-        Me.lblCarColor.Location = New System.Drawing.Point(3, 78)
-        Me.lblCarColor.Name = "lblCarColor"
-        Me.lblCarColor.Size = New System.Drawing.Size(12, 56)
-        Me.lblCarColor.TabIndex = 29
-        Me.lblCarColor.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'Button1
         '
@@ -356,6 +368,75 @@ Partial Class RentalDetail
         Me.Button1.TabIndex = 21
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'lblTimeLeft
+        '
+        Me.lblTimeLeft.BackColor = System.Drawing.Color.Transparent
+        Me.lblTimeLeft.Font = New System.Drawing.Font("League Spartan Black", 26.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTimeLeft.ForeColor = System.Drawing.Color.White
+        Me.lblTimeLeft.Location = New System.Drawing.Point(617, 516)
+        Me.lblTimeLeft.Name = "lblTimeLeft"
+        Me.lblTimeLeft.Size = New System.Drawing.Size(288, 74)
+        Me.lblTimeLeft.TabIndex = 22
+        Me.lblTimeLeft.Text = "00:00:00:00"
+        Me.lblTimeLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("League Spartan ExtraBold", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.White
+        Me.Label6.Location = New System.Drawing.Point(162, 125)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(134, 32)
+        Me.Label6.TabIndex = 23
+        Me.Label6.Text = "Rented Cars"
+        '
+        'lblReturnedStatus
+        '
+        Me.lblReturnedStatus.AutoSize = True
+        Me.lblReturnedStatus.BackColor = System.Drawing.Color.Transparent
+        Me.lblReturnedStatus.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblReturnedStatus.ForeColor = System.Drawing.Color.White
+        Me.lblReturnedStatus.Location = New System.Drawing.Point(679, 590)
+        Me.lblReturnedStatus.Name = "lblReturnedStatus"
+        Me.lblReturnedStatus.Size = New System.Drawing.Size(156, 28)
+        Me.lblReturnedStatus.TabIndex = 24
+        Me.lblReturnedStatus.Text = "Not returned yet"
+        Me.lblReturnedStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(1, 3)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(1203, 26)
+        Me.DraggablePanel1.TabIndex = 53
+        '
+        'minimize
+        '
+        Me.minimize.BackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatAppearance.BorderSize = 0
+        Me.minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.minimize.Location = New System.Drawing.Point(1219, 3)
+        Me.minimize.Name = "minimize"
+        Me.minimize.Size = New System.Drawing.Size(22, 27)
+        Me.minimize.TabIndex = 58
+        Me.minimize.UseVisualStyleBackColor = False
+        '
+        'closeForm
+        '
+        Me.closeForm.BackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatAppearance.BorderSize = 0
+        Me.closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.closeForm.Location = New System.Drawing.Point(1239, 3)
+        Me.closeForm.Name = "closeForm"
+        Me.closeForm.Size = New System.Drawing.Size(22, 27)
+        Me.closeForm.TabIndex = 57
+        Me.closeForm.UseVisualStyleBackColor = False
+        '
         'RentalDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -363,6 +444,13 @@ Partial Class RentalDetail
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Rental_Details1
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.minimize)
+        Me.Controls.Add(Me.closeForm)
+        Me.Controls.Add(Me.DraggablePanel1)
+        Me.Controls.Add(Me.lblReturnedStatus)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.lblTimeLeft)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel3)
@@ -375,6 +463,9 @@ Partial Class RentalDetail
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "RentalDetail"
         Me.Text = "RentalDetails"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -417,4 +508,10 @@ Partial Class RentalDetail
     Friend WithEvents lblPlateNumber As Label
     Friend WithEvents lblBodyNumber As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents lblTimeLeft As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents lblReturnedStatus As Label
+    Friend WithEvents DraggablePanel1 As DraggablePanel
+    Friend WithEvents minimize As Button
+    Friend WithEvents closeForm As Button
 End Class

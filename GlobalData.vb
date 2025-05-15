@@ -20,6 +20,8 @@
     ' Events
     Public Event DataChanged()
     Public HasReturnedCarThisSession As Boolean = False
+    ' Stores all active billing panel data, keyed by CarID
+    Public BillingPanelsDict As New Dictionary(Of String, Dictionary(Of String, Object))()
 
 
     ' Properties for user session management
@@ -331,6 +333,21 @@
         NotifyDataChanged()
     End Sub
 
+    ' Stores a timer value (as string or TimeSpan) in the transaction's dictionary.
+    Public Sub SetTransactionTimer(transactionID As Integer, timerValue As String)
+        If TransactionsDict.ContainsKey(transactionID) Then
+            TransactionsDict(transactionID)("Timer") = timerValue
+            NotifyDataChanged()
+        End If
+    End Sub
+
+    ' Optionally, a getter for convenience
+    Public Function GetTransactionTimer(transactionID As Integer) As String
+        If TransactionsDict.ContainsKey(transactionID) AndAlso TransactionsDict(transactionID).ContainsKey("Timer") Then
+            Return TransactionsDict(transactionID)("Timer").ToString()
+        End If
+        Return "00:00:00:00"
+    End Function
 
 
 End Module

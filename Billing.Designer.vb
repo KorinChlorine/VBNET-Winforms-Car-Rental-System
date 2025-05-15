@@ -63,6 +63,9 @@ Partial Class Billing
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.RoundedButton1 = New VBNET_Car_Rental_System.RoundedButton()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
+        Me.closeForm = New System.Windows.Forms.Button()
+        Me.minimize = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.RoundedPanel1.SuspendLayout()
@@ -555,6 +558,38 @@ Partial Class Billing
         Me.RoundedButton1.Text = "Confirm"
         Me.RoundedButton1.UseVisualStyleBackColor = False
         '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(5, 2)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(1203, 26)
+        Me.DraggablePanel1.TabIndex = 43
+        '
+        'closeForm
+        '
+        Me.closeForm.BackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatAppearance.BorderSize = 0
+        Me.closeForm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.closeForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.closeForm.Location = New System.Drawing.Point(1237, 6)
+        Me.closeForm.Name = "closeForm"
+        Me.closeForm.Size = New System.Drawing.Size(22, 23)
+        Me.closeForm.TabIndex = 44
+        Me.closeForm.UseVisualStyleBackColor = False
+        '
+        'minimize
+        '
+        Me.minimize.BackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatAppearance.BorderSize = 0
+        Me.minimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.minimize.Location = New System.Drawing.Point(1219, 6)
+        Me.minimize.Name = "minimize"
+        Me.minimize.Size = New System.Drawing.Size(22, 23)
+        Me.minimize.TabIndex = 45
+        Me.minimize.UseVisualStyleBackColor = False
+        '
         'Billing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -563,6 +598,10 @@ Partial Class Billing
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Billing4
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.minimize)
+        Me.Controls.Add(Me.closeForm)
+        Me.Controls.Add(Me.DraggablePanel1)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
@@ -598,7 +637,11 @@ Partial Class Billing
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button9)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Billing"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Billing"
         Me.Panel2.ResumeLayout(False)
@@ -657,4 +700,7 @@ Partial Class Billing
     Friend WithEvents Button7 As Button
     Friend WithEvents Button8 As Button
     Friend WithEvents Button10 As Button
+    Friend WithEvents DraggablePanel1 As DraggablePanel
+    Friend WithEvents closeForm As Button
+    Friend WithEvents minimize As Button
 End Class

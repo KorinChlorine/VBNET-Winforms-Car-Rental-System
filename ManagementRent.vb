@@ -275,7 +275,7 @@
 
             GlobalData.NotifyDataChanged()
         Else
-            MessageBox.Show("Invalid time format. Use hh:mm:ss.", "Invalid Input")
+            MessageBox.Show("Invalid time format. Use dd:hh:mm:ss.", "Invalid Input")
             editTimeTextBoxes(transactionId).Text = GetTimeLeftString(t, SafeStr(t, "Status"))
         End If
     End Sub
@@ -297,10 +297,25 @@
             End If
 
             If MessageBox.Show("Are you sure you want to mark this car as returned?", "Confirm Return",
-                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
 
                 ' Mark as returned in TransactionsDict
                 If GlobalData.ReturnCar(transactionID) Then
+                    ' Update transaction status and return date
+                    If GlobalData.TransactionsDict.ContainsKey(transactionID) Then
+                        Dim t = GlobalData.TransactionsDict(transactionID)
+                        t("Status") = "Returned"
+                        t("DateReturned") = DateTime.Now
+
+                        ' Make the car available again
+                        If t.ContainsKey("CarID") Then
+                            Dim carId = t("CarID").ToString()
+                            If GlobalData.CarsDict.ContainsKey(carId) Then
+                                GlobalData.CarsDict(carId)("IsAvailable") = True
+                            End If
+                        End If
+                    End If
+
                     ' Remove from user's SavedBillingPanels
                     Dim user = GlobalData.GetLoggedInUser()
                     If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
@@ -308,12 +323,18 @@
                         panels.RemoveAll(Function(panel)
                                              Return panel.ContainsKey("TransactionID") AndAlso panel("TransactionID").ToString() = transactionID.ToString()
                                          End Function)
-
                     End If
 
-
-                    Billing.DeleteSelectedPanel()
-                    Billing.UpdateBillingDetails()
+                    ' Update Billing form if open
+                    If Application.OpenForms().OfType(Of Billing).Any() Then
+                        Dim billingForm = Application.OpenForms().OfType(Of Billing).First()
+                        Dim t = GlobalData.TransactionsDict.Values.FirstOrDefault(Function(x) SafeStr(x, "TransactionID") = transactionID.ToString())
+                        If t IsNot Nothing AndAlso t.ContainsKey("CarID") Then
+                            Dim carId = t("CarID").ToString()
+                            billingForm.DeletePanelByCarID(carId)
+                        End If
+                        billingForm.UpdateBillingDetails()
+                    End If
 
                     GlobalData.NotifyDataChanged()
                     MessageBox.Show("Car marked as returned successfully.", "Success")
@@ -326,6 +347,7 @@
             MessageBox.Show("Error processing return: " & ex.Message, "Error")
         End Try
     End Sub
+
 
 
     Private Function SafeStr(dict As Dictionary(Of String, Object), key As String) As String
@@ -373,5 +395,13 @@
 
     Private Sub FlowLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles FlowLayoutPanel1.Paint
 
+    End Sub
+
+    Private Sub closeForm_Click(sender As Object, e As EventArgs) Handles closeForm.Click
+        Close()
+    End Sub
+
+    Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
+        Me.WindowState = FormWindowState.Minimized
     End Sub
 End Class

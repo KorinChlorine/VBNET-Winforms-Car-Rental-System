@@ -54,6 +54,7 @@ Partial Class Survey
         Me.surveyQ5btn1 = New System.Windows.Forms.RadioButton()
         Me.ButtonSubmit = New System.Windows.Forms.Button()
         Me.ButtonBack = New System.Windows.Forms.Button()
+        Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
         Me.surveyQ1.SuspendLayout()
         Me.surveyQ2.SuspendLayout()
         Me.surveyQ3.SuspendLayout()
@@ -458,6 +459,14 @@ Partial Class Survey
         Me.ButtonBack.TabIndex = 3
         Me.ButtonBack.UseVisualStyleBackColor = False
         '
+        'DraggablePanel1
+        '
+        Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
+        Me.DraggablePanel1.Location = New System.Drawing.Point(1, 2)
+        Me.DraggablePanel1.Name = "DraggablePanel1"
+        Me.DraggablePanel1.Size = New System.Drawing.Size(675, 36)
+        Me.DraggablePanel1.TabIndex = 13
+        '
         'Survey
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -465,6 +474,8 @@ Partial Class Survey
         Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Survey
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(678, 862)
+        Me.ControlBox = False
+        Me.Controls.Add(Me.DraggablePanel1)
         Me.Controls.Add(Me.ButtonBack)
         Me.Controls.Add(Me.ButtonSubmit)
         Me.Controls.Add(Me.surveyQ5)
@@ -473,6 +484,9 @@ Partial Class Survey
         Me.Controls.Add(Me.surveyQ2)
         Me.Controls.Add(Me.surveyQ1)
         Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Survey"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Survey"
@@ -522,4 +536,5 @@ Partial Class Survey
     Friend WithEvents surveyQ5btn1 As RadioButton
     Friend WithEvents ButtonSubmit As Button
     Friend WithEvents ButtonBack As Button
+    Friend WithEvents DraggablePanel1 As DraggablePanel
 End Class

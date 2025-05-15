@@ -332,7 +332,6 @@ Public Class rent_a_car2
             billingForm.Duration = numberOfDays
             billingForm.TotalPrice = totalPrice
             billingForm.Show()
-            billingForm.StoreCarTransaction("BOOK", numberOfDays, totalPrice, selectedStartDate, selectedEndDate)
             Me.Close()
 
         ElseIf RadioButton2.Checked Then ' RENT
@@ -356,7 +355,6 @@ Public Class rent_a_car2
             billingForm.Duration = numberOfDays
             billingForm.TotalPrice = totalPrice
             billingForm.Show()
-            billingForm.StoreCarTransaction("RENT", numberOfDays, totalPrice, billingForm.StartDate, billingForm.EndDate)
             Me.Close()
 
         Else
@@ -364,4 +362,11 @@ Public Class rent_a_car2
         End If
     End Sub
 
+    Private Sub closeForm_Click(sender As Object, e As EventArgs) Handles closeForm.Click
+        Close()
+    End Sub
+
+    Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
 End Class
