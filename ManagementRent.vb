@@ -1,28 +1,28 @@
 ﻿Public Class ManagementRent
-    ' Timer for updating countdowns
-    Private WithEvents countdownTimer As New Timer() With {.Interval = 1000}
-    ' Maps TransactionID to its timer Label
-    Private timerLabels As New Dictionary(Of Integer, Label)
-    ' Maps TransactionID to its editable TextBox
-    Private editTimeTextBoxes As New Dictionary(Of Integer, TextBox)
 
+    Private WithEvents countdownTimer As New Timer() With {.Interval = 1000}
+
+    Private timerLabels As New Dictionary(Of Integer, Label)
+
+    Private editTimeTextBoxes As New Dictionary(Of Integer, TextBox)
+    Dim values As String() = New String(17) {}
     Private Sub ManagementRent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTransactions()
         AddHandler GlobalData.DataChanged, AddressOf LoadTransactions
         countdownTimer.Start()
+        AddHandler TextBox1.KeyDown, AddressOf TextBox1_KeyDown
     End Sub
 
-    Private Sub LoadTransactions()
+    Private Sub LoadTransactions(Optional search As String = "")
         FlowLayoutPanel1.Controls.Clear()
         timerLabels.Clear()
         editTimeTextBoxes.Clear()
 
-        ' Header row (Customer Name removed)
         Dim titles As String() = {
-            "Rent ID", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price",
-            "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Email",
-            "Time Left", "Set Time", "Return"
-        }
+        "Rent ID", "Car ID", "Plate Number", "Body Number", "Color", "Type", "Capacity", "Daily Price",
+        "Total Price", "Status", "Rent Start", "Rent End", "Date Returned", "Customer Email",
+        "Time Left", "Set Time", "Return"
+    }
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
@@ -31,51 +31,73 @@
         Dim columnWidth As Integer = totalWidth \ titles.Length
 
         Dim headerPanel As New Panel With {
-            .Height = rowHeight,
-            .Width = totalWidth,
-            .BackColor = Color.White,
-            .Margin = New Padding(0),
-            .ForeColor = Color.Black
-        }
+        .Height = rowHeight,
+        .Width = totalWidth,
+        .BackColor = Color.White,
+        .Margin = New Padding(0),
+        .ForeColor = Color.Black
+    }
         For i As Integer = 0 To titles.Length - 1
             Dim label As New Label With {
-                .Text = titles(i),
-                .Font = titleFont,
-                .ForeColor = Color.Black,
-                .Size = New Size(columnWidth, rowHeight),
-                .TextAlign = ContentAlignment.MiddleCenter,
-                .BorderStyle = BorderStyle.FixedSingle,
-                .BackColor = Color.White,
-                .Location = New Point(i * columnWidth, 0),
-                .Margin = New Padding(0)
-            }
+            .Text = titles(i),
+            .Font = titleFont,
+            .ForeColor = Color.Black,
+            .Size = New Size(columnWidth, rowHeight),
+            .TextAlign = ContentAlignment.MiddleCenter,
+            .BorderStyle = BorderStyle.FixedSingle,
+            .BackColor = Color.White,
+            .Location = New Point(i * columnWidth, 0),
+            .Margin = New Padding(0)
+        }
             headerPanel.Controls.Add(label)
         Next
         FlowLayoutPanel1.Controls.Add(headerPanel)
 
-        ' Data rows
-        If GlobalData.TransactionsDict.Count = 0 Then
+        ' --- Filter transactions ---
+        Dim filteredTransactions = GlobalData.TransactionsDict.Values.AsEnumerable()
+        If Not String.IsNullOrEmpty(search) Then
+            Dim searchLower = search.ToLower()
+            filteredTransactions = filteredTransactions.Where(Function(t) _
+        (If(t.ContainsKey("TransactionID"), t("TransactionID")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("CarID"), t("CarID")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("PlateNumber"), t("PlateNumber")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("BodyNumber"), t("BodyNumber")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("Color"), t("Color")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("Type"), t("Type")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("Capacity"), t("Capacity")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("DailyPrice"), t("DailyPrice")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("TotalPrice"), t("TotalPrice")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("Status"), t("Status")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("StartDate"), SafeDate(t, "StartDate").ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("EndDate"), SafeDate(t, "EndDate").ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("DateReturned"), SafeDate(t, "DateReturned").ToLower(), "")).Contains(searchLower) OrElse
+        (If(t.ContainsKey("CustomerEmail"), t("CustomerEmail")?.ToString().ToLower(), "")).Contains(searchLower)
+    )
+        End If
+
+
+        If Not filteredTransactions.Any() Then
             Dim noDataLabel As New Label With {
-                .Text = "No rental transactions found.",
-                .Size = New Size(totalWidth, rowHeight),
-                .Font = detailFont,
-                .BackColor = Color.LightYellow,
-                .ForeColor = Color.Black,
-                .TextAlign = ContentAlignment.MiddleCenter,
-                .BorderStyle = BorderStyle.FixedSingle
-            }
+            .Text = "No rental transactions found.",
+            .Size = New Size(totalWidth, rowHeight),
+            .Font = detailFont,
+            .BackColor = Color.LightYellow,
+            .ForeColor = Color.Black,
+            .TextAlign = ContentAlignment.MiddleCenter,
+            .BorderStyle = BorderStyle.FixedSingle
+        }
             FlowLayoutPanel1.Controls.Add(noDataLabel)
         Else
-            For Each t As Dictionary(Of String, Object) In GlobalData.TransactionsDict.Values
+            For Each t As Dictionary(Of String, Object) In filteredTransactions
                 Dim rowPanel As New Panel With {
-                    .Height = rowHeight,
-                    .Width = totalWidth,
-                    .BackColor = Color.Transparent,
-                    .ForeColor = Color.White,
-                    .Margin = New Padding(0, 0, 0, 0)
-                }
+                .Height = rowHeight,
+                .Width = totalWidth,
+                .BackColor = Color.Transparent,
+                .ForeColor = Color.White,
+                .Margin = New Padding(0, 0, 0, 0)
+            }
 
-                ' Determine status text
+
                 Dim statusText As String = "Rented"
                 If t.ContainsKey("Status") AndAlso t("Status") IsNot Nothing Then
                     statusText = t("Status").ToString()
@@ -85,7 +107,6 @@
                     End If
                 End If
 
-                Dim values As String() = New String(17) {} ' 17 columns now
                 Try
                     values(0) = SafeStr(t, "TransactionID")
                     values(1) = SafeStr(t, "CarID")
@@ -108,31 +129,31 @@
                     Next
                 End Try
 
-                For i As Integer = 0 To 13 ' up to Customer Email
+                For i As Integer = 0 To 13
                     Dim label As New Label With {
-                        .Text = values(i),
-                        .Font = detailFont,
-                        .ForeColor = Color.White,
-                        .Size = New Size(columnWidth, rowHeight),
-                        .TextAlign = ContentAlignment.MiddleCenter,
-                        .BorderStyle = BorderStyle.FixedSingle,
-                        .BackColor = Color.Transparent,
-                        .Location = New Point(i * columnWidth, 0),
-                        .Margin = New Padding(0)
-                    }
+                    .Text = values(i),
+                    .Font = detailFont,
+                    .ForeColor = Color.White,
+                    .Size = New Size(columnWidth, rowHeight),
+                    .TextAlign = ContentAlignment.MiddleCenter,
+                    .BorderStyle = BorderStyle.FixedSingle,
+                    .BackColor = Color.Transparent,
+                    .Location = New Point(i * columnWidth, 0),
+                    .Margin = New Padding(0)
+                }
                     rowPanel.Controls.Add(label)
                 Next
 
                 ' Timer label
                 Dim timerLabel As New Label With {
-                    .TextAlign = ContentAlignment.MiddleCenter,
-                    .Size = New Size(columnWidth, rowHeight),
-                    .Location = New Point(columnWidth * 14, 0),
-                    .Font = detailFont,
-                    .BackColor = Color.Transparent,
-                    .ForeColor = Color.White,
-                    .BorderStyle = BorderStyle.FixedSingle
-                }
+                .TextAlign = ContentAlignment.MiddleCenter,
+                .Size = New Size(columnWidth, rowHeight),
+                .Location = New Point(columnWidth * 14, 0),
+                .Font = detailFont,
+                .BackColor = Color.Transparent,
+                .ForeColor = Color.White,
+                .BorderStyle = BorderStyle.FixedSingle
+            }
                 Dim transactionId As Integer = 0
                 Integer.TryParse(SafeStr(t, "TransactionID"), transactionId)
                 If transactionId > 0 Then
@@ -141,12 +162,12 @@
                 timerLabel.Text = GetTimeLeftString(t, statusText)
                 rowPanel.Controls.Add(timerLabel)
 
-                ' Set Time textbox (refactored)
+
                 Dim editTimeTextBox = CreateSetTimeTextBox(transactionId, statusText, t, columnWidth, detailFont)
                 editTimeTextBox.Location = New Point(columnWidth * 15, 0)
                 rowPanel.Controls.Add(editTimeTextBox)
 
-                ' Return button (refactored)
+
                 Dim returnButton = CreateReturnButton(transactionId, statusText, columnWidth)
                 returnButton.Location = New Point(columnWidth * 16, 4)
                 rowPanel.Controls.Add(returnButton)
@@ -155,6 +176,7 @@
             Next
         End If
     End Sub
+
 
     Private Function CreateSetTimeTextBox(transactionId As Integer, statusText As String, t As Dictionary(Of String, Object), columnWidth As Integer, detailFont As Font) As TextBox
         Dim editTimeTextBox As New TextBox With {
@@ -190,6 +212,13 @@
         Return editTimeTextBox
     End Function
 
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs)
+        If e.KeyCode = Keys.Enter Then
+            LoadTransactions(TextBox1.Text.Trim())
+            e.SuppressKeyPress = True
+        End If
+    End Sub
+
     Private Function CreateReturnButton(transactionId As Integer, statusText As String, columnWidth As Integer) As Button
         Dim returnButton As New Button With {
             .Text = "Return",
@@ -208,7 +237,7 @@
         Return returnButton
     End Function
 
-    ' Timer tick: update all countdowns (labels only)
+
     Private Sub countdownTimer_Tick(sender As Object, e As EventArgs) Handles countdownTimer.Tick
         For Each t As Dictionary(Of String, Object) In GlobalData.TransactionsDict.Values
             Dim statusText As String = "Rented"
@@ -228,17 +257,23 @@
         Next
     End Sub
 
-    ' Returns the countdown string for a transaction, including days
+
     Private Function GetTimeLeftString(t As Dictionary(Of String, Object), statusText As String) As String
         If statusText.ToLower() = "returned" Then
             Return "00:00:00"
         End If
 
+        Dim startDate As DateTime
+        If t.ContainsKey("StartDate") AndAlso DateTime.TryParse(t("StartDate")?.ToString(), startDate) Then
+            If GlobalData.Now().Date < startDate.Date Then
+                Return "Booking not started"
+            End If
+        End If
+
         Dim endDate As DateTime
         If t.ContainsKey("EndDate") AndAlso DateTime.TryParse(t("EndDate")?.ToString(), endDate) Then
-            Dim remaining As TimeSpan = endDate - DateTime.Now
+            Dim remaining As TimeSpan = endDate - GlobalData.Now()
             If remaining.TotalSeconds > 0 Then
-                ' Format as d:hh:mm:ss, always show at least 2 digits for hours/minutes/seconds
                 Return String.Format("{0}:{1:D2}:{2:D2}:{3:D2}",
                                  Math.Floor(remaining.TotalDays),
                                  remaining.Hours,
@@ -249,20 +284,20 @@
         Return "00:00:00"
     End Function
 
-    ' Save admin-edited timer (from the editTimeTextBox)
+
+
     Private Sub SaveTimerEdit(transactionId As Integer, newTime As String)
         If Not editTimeTextBoxes.ContainsKey(transactionId) Then Return
         Dim t = GlobalData.TransactionsDict.Values.FirstOrDefault(Function(x) SafeStr(x, "TransactionID") = transactionId.ToString())
         If t Is Nothing Then Return
 
-        ' Parse newTime as hh:mm:ss
         Dim ts As TimeSpan
         If TimeSpan.TryParse(newTime, ts) Then
-            ' Set EndDate to Now + newTime
-            Dim newEndDate = DateTime.Now.Add(ts)
+
+            Dim newEndDate = GlobalData.Now().Add(ts)
             t("EndDate") = newEndDate
 
-            ' Also update in user's SavedBillingPanels
+
             Dim user = GlobalData.GetLoggedInUser()
             If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
                 Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
@@ -299,38 +334,43 @@
             If MessageBox.Show("Are you sure you want to mark this car as returned?", "Confirm Return",
                   MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
 
-                ' Mark as returned in TransactionsDict
+
                 If GlobalData.ReturnCar(transactionID) Then
-                    ' Update transaction status and return date
+
+                    Dim carID As String = values(1)
+                    Billing.RemovePanelAndStopTimerByCarID(carId)
                     If GlobalData.TransactionsDict.ContainsKey(transactionID) Then
                         Dim t = GlobalData.TransactionsDict(transactionID)
                         t("Status") = "Returned"
-                        t("DateReturned") = DateTime.Now
+                        t("DateReturned") = GlobalData.Now()
 
-                        ' Make the car available again
                         If t.ContainsKey("CarID") Then
-                            Dim carId = t("CarID").ToString()
+                            carID = t("CarID").ToString()
                             If GlobalData.CarsDict.ContainsKey(carId) Then
                                 GlobalData.CarsDict(carId)("IsAvailable") = True
                             End If
                         End If
                     End If
 
-                    ' Remove from user's SavedBillingPanels
+
+
                     Dim user = GlobalData.GetLoggedInUser()
                     If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
                         Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
-                        panels.RemoveAll(Function(panel)
-                                             Return panel.ContainsKey("TransactionID") AndAlso panel("TransactionID").ToString() = transactionID.ToString()
-                                         End Function)
+                        For Each panel In panels
+                            If panel.ContainsKey("CarID") AndAlso panel("CarID").ToString() = carID Then
+                                panel("Status") = "Returned"
+                            End If
+                        Next
                     End If
 
-                    ' Update Billing form if open
+
+
                     If Application.OpenForms().OfType(Of Billing).Any() Then
                         Dim billingForm = Application.OpenForms().OfType(Of Billing).First()
                         Dim t = GlobalData.TransactionsDict.Values.FirstOrDefault(Function(x) SafeStr(x, "TransactionID") = transactionID.ToString())
                         If t IsNot Nothing AndAlso t.ContainsKey("CarID") Then
-                            Dim carId = t("CarID").ToString()
+                            carID = t("CarID").ToString()
                             billingForm.DeletePanelByCarID(carId)
                         End If
                         billingForm.UpdateBillingDetails()
@@ -404,4 +444,7 @@
     Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
         Me.WindowState = FormWindowState.Minimized
     End Sub
+
+
+
 End Class

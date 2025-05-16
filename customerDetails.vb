@@ -26,7 +26,7 @@
             Return
         End If
 
-        ' Name should not be a number
+
         If IsNumeric(TextBox1.Text.Trim()) Then
             MessageBox.Show("Name cannot be a number.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -38,7 +38,7 @@
             Return
         End If
 
-        ' Decline if age is 18 or lower
+
         If age <= 18 Then
             MessageBox.Show("You must be older than 18 to proceed.", "Age Restriction", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -81,7 +81,7 @@
             Return
         End If
 
-        ' Prepare user dictionary
+
         Dim userDict As New Dictionary(Of String, Object) From {
             {"Email", email},
             {"FullName", TextBox1.Text.Trim()},
@@ -96,7 +96,6 @@
             {"UserRole", "user"}
         }
 
-        ' Save or update in UsersDict
         GlobalData.UsersDict(email) = userDict
         GlobalData.UserFullName = userDict("FullName").ToString()
         GlobalData.Age = CInt(userDict("Age"))
@@ -111,6 +110,46 @@
         Survey.Show()
         MessageBox.Show("Customer details saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+        Dim age As Integer
+        If Integer.TryParse(TextBox2.Text, age) AndAlso age > 0 Then
+            Dim today As Date = Date.Today
+            Dim newYear As Integer = today.Year - age
+
+            Dim newDate As Date
+            Try
+                newDate = New Date(newYear, today.Month, today.Day)
+            Catch ex As ArgumentOutOfRangeException
+
+                newDate = New Date(newYear, today.Month, Date.DaysInMonth(newYear, today.Month))
+            End Try
+            DateTimePicker1.Value = newDate
+        End If
+    End Sub
+
+    Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+        Dim age As Integer
+        If Integer.TryParse(TextBox2.Text, age) AndAlso age > 0 Then
+            Dim today As Date = Date.Today
+            Dim birthDate As Date = DateTimePicker1.Value
+            Dim calculatedAge As Integer = today.Year - birthDate.Year
+            If today < birthDate.AddYears(calculatedAge) Then
+                calculatedAge -= 1
+            End If
+            If calculatedAge > age Then
+                MessageBox.Show("The selected birth year does not match the entered age.", "Age Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                Dim newYear As Integer = today.Year - age
+                Try
+                    DateTimePicker1.Value = New Date(newYear, today.Month, today.Day)
+                Catch ex As ArgumentOutOfRangeException
+                    DateTimePicker1.Value = New Date(newYear, today.Month, Date.DaysInMonth(newYear, today.Month))
+                End Try
+            End If
+        End If
+    End Sub
+
 
     Private Sub Button3_Click(sender As Object, e As EventArgs)
         If GlobalData.var = "!Allowed" Then

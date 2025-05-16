@@ -9,9 +9,7 @@
     Private Sub LoadUserRentedPanels()
         FlowLayoutPanel1.Controls.Clear()
         Dim transactions = GlobalData.GetCustomerTransactions(GlobalData.CurrentUserEmail)
-        ' Only show active (not returned) rentals/bookings
-        Dim activeTransactions = transactions.Where(Function(t) Not t.ContainsKey("Status") OrElse t("Status").ToString() <> "Returned")
-        For Each trans In activeTransactions
+        For Each trans In transactions
             AddRentalPanelToUI(trans)
         Next
     End Sub
@@ -34,7 +32,7 @@
         Dim lbl As New Label With {
             .Text = carName,
             .AutoSize = True,
-            .Font = New Font("Arial", 13, FontStyle.Bold)
+            .Font = New Font("Arial", 10, FontStyle.Bold)
         }
         lbl.Location = New Point((panel1.Width - lbl.PreferredWidth) \ 2, (panel1.Height - lbl.PreferredHeight) \ 2)
 
@@ -78,7 +76,7 @@
             userDict = GlobalData.UsersDict(details("CustomerEmail").ToString())
         End If
 
-        ' Set Label1 - Car Name
+
         If carDict IsNot Nothing AndAlso carDict.ContainsKey("CarName") Then
             Label1.Text = carDict("CarName").ToString()
         ElseIf details.ContainsKey("CarName") Then
@@ -87,7 +85,7 @@
             Label1.Text = "Unknown Car"
         End If
 
-        ' Set PictureBox1 - Primary Image
+      
         If carDict IsNot Nothing AndAlso carDict.ContainsKey("PrimaryImage") AndAlso carDict("PrimaryImage") IsNot Nothing Then
             PictureBox1.Image = TryCast(carDict("PrimaryImage"), Image)
             PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
@@ -121,7 +119,7 @@
         lblCarType.Text = "Type: " & If(carDict IsNot Nothing AndAlso carDict.ContainsKey("Type"), carDict("Type").ToString(), "N/A")
         lblCarCapacity.Text = "Capacity: " & If(carDict IsNot Nothing AndAlso carDict.ContainsKey("Capacity"), carDict("Capacity").ToString(), "N/A")
 
-        ' --- Get the latest transaction from GlobalData using TransactionID ---
+
         If details.ContainsKey("TransactionID") Then
             Dim transactionIdStr As String = details("TransactionID").ToString()
             Dim transactionId As Integer
@@ -130,29 +128,47 @@
 
                 If details.ContainsKey("TransactionID") Then
                     Integer.TryParse(details("TransactionID").ToString(), selectedTransactionId)
-                    countdownTimer.Start()
+
+                    Dim startDate1 As DateTime
+                    If details.ContainsKey("StartDate") AndAlso DateTime.TryParse(details("StartDate").ToString(), startDate1) Then
+                        If GlobalData.Now().Date < startDate1.Date Then
+                            countdownTimer.Stop()
+                            lblTimeLeft.Text = "Booking not started"
+                        Else
+                            countdownTimer.Start()
+                        End If
+                    Else
+                        countdownTimer.Start()
+                    End If
                 Else
                     selectedTransactionId = 0
                     countdownTimer.Stop()
                     lblTimeLeft.Text = "Time Left: N/A"
                 End If
 
-                ' --- Returned Status ---
                 Dim statusText As String = If(latestTrans.ContainsKey("Status"), latestTrans("Status").ToString(), "Unknown")
                 lblReturnedStatus.Text = "Returned Status: " & statusText
 
-                ' --- Timer (Time Left) ---
+
+                Dim startDate As DateTime
                 Dim endDate As DateTime
-                If latestTrans.ContainsKey("EndDate") AndAlso DateTime.TryParse(latestTrans("EndDate")?.ToString(), endDate) Then
-                    Dim remaining As TimeSpan = endDate - DateTime.Now
-                    If statusText.ToLower() = "returned" OrElse remaining.TotalSeconds <= 0 Then
-                        lblTimeLeft.Text = "Time Left: 00:00:00"
+                If latestTrans.ContainsKey("StartDate") AndAlso DateTime.TryParse(latestTrans("StartDate")?.ToString(), startDate) AndAlso
+                   latestTrans.ContainsKey("EndDate") AndAlso DateTime.TryParse(latestTrans("EndDate")?.ToString(), endDate) Then
+
+                    If GlobalData.Now().Date < startDate.Date Then
+                        lblTimeLeft.Text = "Booking not started"
                     Else
-                        lblTimeLeft.Text = String.Format("Time Left: {0}:{1:D2}:{2:D2}:{3:D2}", Math.Floor(remaining.TotalDays), remaining.Hours, remaining.Minutes, remaining.Seconds)
+                        Dim remaining As TimeSpan = endDate - GlobalData.Now()
+                        If statusText.ToLower() = "returned" OrElse remaining.TotalSeconds <= 0 Then
+                            lblTimeLeft.Text = "Time Left: 00:00:00"
+                        Else
+                            lblTimeLeft.Text = String.Format("Time Left: {0}:{1:D2}:{2:D2}:{3:D2}", Math.Floor(remaining.TotalDays), remaining.Hours, remaining.Minutes, remaining.Seconds)
+                        End If
                     End If
                 Else
                     lblTimeLeft.Text = "Time Left: N/A"
                 End If
+
             Else
                 lblReturnedStatus.Text = "Returned Status: Unknown"
                 lblTimeLeft.Text = "Time Left: N/A"
@@ -174,17 +190,35 @@
 
         Dim t = GlobalData.TransactionsDict(selectedTransactionId)
         Dim statusText As String = If(t.ContainsKey("Status") AndAlso t("Status") IsNot Nothing, t("Status").ToString(), "Rented")
+
+        Dim startDate As DateTime
+        If t.ContainsKey("StartDate") AndAlso DateTime.TryParse(t("StartDate").ToString(), startDate) Then
+            If GlobalData.Now().Date < startDate.Date Then
+                lblTimeLeft.Text = "Booking not started"
+                countdownTimer.Stop()
+                Return
+            End If
+        End If
+
         lblTimeLeft.Text = "Time Left: " & GetTimeLeftString(t, statusText)
     End Sub
+
 
     Private Function GetTimeLeftString(t As Dictionary(Of String, Object), statusText As String) As String
         If statusText.ToLower() = "returned" Then
             Return "00:00:00"
         End If
 
+        Dim startDate As DateTime
+        If t.ContainsKey("StartDate") AndAlso DateTime.TryParse(t("StartDate")?.ToString(), startDate) Then
+            If GlobalData.Now().Date < startDate.Date Then
+                Return "Booking not started"
+            End If
+        End If
+
         Dim endDate As DateTime
         If t.ContainsKey("EndDate") AndAlso DateTime.TryParse(t("EndDate")?.ToString(), endDate) Then
-            Dim remaining As TimeSpan = endDate - DateTime.Now
+            Dim remaining As TimeSpan = endDate - GlobalData.Now()
             If remaining.TotalSeconds > 0 Then
                 Return String.Format("{0}:{1:D2}:{2:D2}:{3:D2}",
                                  Math.Floor(remaining.TotalDays),
@@ -195,6 +229,7 @@
         End If
         Return "00:00:00"
     End Function
+
 
     Private Sub ApplyRoundedCornersToPanel(panel As Panel, cornerRadius As Integer)
         Dim rect As New Rectangle(0, 0, panel.Width, panel.Height)
@@ -268,5 +303,36 @@
 
     Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles history.Click
+        Me.Close()
+        history.Show()
+    End Sub
+
+    Private Sub home_Click(sender As Object, e As EventArgs) Handles home.Click
+        Me.Close()
+        homeForm.Show()
+    End Sub
+
+    Private Sub rent_Click(sender As Object, e As EventArgs) Handles rent.Click
+        Me.Close()
+        rent_a_car.Show()
+    End Sub
+
+    Private Sub setting_Click(sender As Object, e As EventArgs) Handles setting.Click
+        Me.Close()
+        TheDevs.Show()
+    End Sub
+
+    Private Sub logout_Click(sender As Object, e As EventArgs) Handles logout.Click
+        Me.Close()
+        LoginForm.Show()
+    End Sub
+
+    Private Sub bills_Click(sender As Object, e As EventArgs) Handles bills.Click
+        Me.Close()
+        bills.Show()
     End Sub
 End Class

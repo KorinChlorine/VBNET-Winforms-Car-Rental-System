@@ -22,7 +22,6 @@ Partial Class RentalDetail
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -54,24 +53,19 @@ Partial Class RentalDetail
         Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
         Me.minimize = New System.Windows.Forms.Button()
         Me.closeForm = New System.Windows.Forms.Button()
+        Me.setting = New System.Windows.Forms.Button()
+        Me.bills = New System.Windows.Forms.Button()
+        Me.history = New System.Windows.Forms.Button()
+        Me.details = New System.Windows.Forms.Button()
+        Me.rent = New System.Windows.Forms.Button()
+        Me.home = New System.Windows.Forms.Button()
+        Me.logout = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Button9
-        '
-        Me.Button9.BackColor = System.Drawing.Color.Transparent
-        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(12, 567)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(75, 47)
-        Me.Button9.TabIndex = 12
-        Me.Button9.UseVisualStyleBackColor = False
         '
         'FlowLayoutPanel1
         '
@@ -106,7 +100,7 @@ Partial Class RentalDetail
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("League Spartan ExtraBold", 30.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(16, 38)
+        Me.Label1.Location = New System.Drawing.Point(15, 53)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(25, 120)
         Me.Label1.TabIndex = 0
@@ -342,19 +336,19 @@ Partial Class RentalDetail
         Me.Panel4.Controls.Add(Me.lblCarDescription)
         Me.Panel4.Location = New System.Drawing.Point(916, 333)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(314, 317)
+        Me.Panel4.Size = New System.Drawing.Size(320, 317)
         Me.Panel4.TabIndex = 20
         '
         'lblCarDescription
         '
-        Me.lblCarDescription.AutoSize = True
+        Me.lblCarDescription.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblCarDescription.BackColor = System.Drawing.Color.Transparent
-        Me.lblCarDescription.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lblCarDescription.Font = New System.Drawing.Font("League Spartan Medium", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCarDescription.ForeColor = System.Drawing.Color.White
         Me.lblCarDescription.Location = New System.Drawing.Point(0, 0)
         Me.lblCarDescription.Name = "lblCarDescription"
-        Me.lblCarDescription.Size = New System.Drawing.Size(10, 44)
+        Me.lblCarDescription.Size = New System.Drawing.Size(317, 317)
         Me.lblCarDescription.TabIndex = 28
         Me.lblCarDescription.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
@@ -394,13 +388,12 @@ Partial Class RentalDetail
         '
         'lblReturnedStatus
         '
-        Me.lblReturnedStatus.AutoSize = True
         Me.lblReturnedStatus.BackColor = System.Drawing.Color.Transparent
         Me.lblReturnedStatus.Font = New System.Drawing.Font("League Spartan ExtraBold", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblReturnedStatus.ForeColor = System.Drawing.Color.White
-        Me.lblReturnedStatus.Location = New System.Drawing.Point(679, 590)
+        Me.lblReturnedStatus.Location = New System.Drawing.Point(638, 590)
         Me.lblReturnedStatus.Name = "lblReturnedStatus"
-        Me.lblReturnedStatus.Size = New System.Drawing.Size(156, 28)
+        Me.lblReturnedStatus.Size = New System.Drawing.Size(241, 28)
         Me.lblReturnedStatus.TabIndex = 24
         Me.lblReturnedStatus.Text = "Not returned yet"
         Me.lblReturnedStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -437,6 +430,106 @@ Partial Class RentalDetail
         Me.closeForm.TabIndex = 57
         Me.closeForm.UseVisualStyleBackColor = False
         '
+        'setting
+        '
+        Me.setting.BackColor = System.Drawing.Color.Transparent
+        Me.setting.FlatAppearance.BorderSize = 0
+        Me.setting.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.setting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.setting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.setting.Location = New System.Drawing.Point(22, 529)
+        Me.setting.Name = "setting"
+        Me.setting.Size = New System.Drawing.Size(64, 40)
+        Me.setting.TabIndex = 65
+        Me.setting.UseVisualStyleBackColor = False
+        '
+        'bills
+        '
+        Me.bills.BackColor = System.Drawing.Color.Transparent
+        Me.bills.FlatAppearance.BorderSize = 0
+        Me.bills.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.bills.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.bills.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.bills.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bills.Location = New System.Drawing.Point(20, 294)
+        Me.bills.Name = "bills"
+        Me.bills.Size = New System.Drawing.Size(64, 40)
+        Me.bills.TabIndex = 64
+        Me.bills.UseVisualStyleBackColor = False
+        '
+        'history
+        '
+        Me.history.BackColor = System.Drawing.Color.Transparent
+        Me.history.FlatAppearance.BorderSize = 0
+        Me.history.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.history.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.history.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.history.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.history.Location = New System.Drawing.Point(21, 238)
+        Me.history.Name = "history"
+        Me.history.Size = New System.Drawing.Size(64, 40)
+        Me.history.TabIndex = 63
+        Me.history.UseVisualStyleBackColor = False
+        '
+        'details
+        '
+        Me.details.BackColor = System.Drawing.Color.Transparent
+        Me.details.FlatAppearance.BorderSize = 0
+        Me.details.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.details.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.details.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.details.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.details.Location = New System.Drawing.Point(20, 177)
+        Me.details.Name = "details"
+        Me.details.Size = New System.Drawing.Size(64, 41)
+        Me.details.TabIndex = 62
+        Me.details.UseVisualStyleBackColor = False
+        '
+        'rent
+        '
+        Me.rent.BackColor = System.Drawing.Color.Transparent
+        Me.rent.FlatAppearance.BorderSize = 0
+        Me.rent.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.rent.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.rent.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.rent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.rent.Location = New System.Drawing.Point(19, 113)
+        Me.rent.Name = "rent"
+        Me.rent.Size = New System.Drawing.Size(64, 52)
+        Me.rent.TabIndex = 61
+        Me.rent.UseVisualStyleBackColor = False
+        '
+        'home
+        '
+        Me.home.BackColor = System.Drawing.Color.Transparent
+        Me.home.FlatAppearance.BorderSize = 0
+        Me.home.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.home.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.home.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.home.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.home.ForeColor = System.Drawing.Color.Transparent
+        Me.home.Location = New System.Drawing.Point(22, 59)
+        Me.home.Name = "home"
+        Me.home.Size = New System.Drawing.Size(64, 39)
+        Me.home.TabIndex = 60
+        Me.home.UseVisualStyleBackColor = False
+        '
+        'logout
+        '
+        Me.logout.BackColor = System.Drawing.Color.Transparent
+        Me.logout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.logout.FlatAppearance.BorderSize = 0
+        Me.logout.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.logout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.logout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.logout.Location = New System.Drawing.Point(21, 583)
+        Me.logout.Name = "logout"
+        Me.logout.Size = New System.Drawing.Size(64, 47)
+        Me.logout.TabIndex = 59
+        Me.logout.UseVisualStyleBackColor = False
+        '
         'RentalDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -445,6 +538,13 @@ Partial Class RentalDetail
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.ControlBox = False
+        Me.Controls.Add(Me.setting)
+        Me.Controls.Add(Me.bills)
+        Me.Controls.Add(Me.history)
+        Me.Controls.Add(Me.details)
+        Me.Controls.Add(Me.rent)
+        Me.Controls.Add(Me.home)
+        Me.Controls.Add(Me.logout)
         Me.Controls.Add(Me.minimize)
         Me.Controls.Add(Me.closeForm)
         Me.Controls.Add(Me.DraggablePanel1)
@@ -460,7 +560,6 @@ Partial Class RentalDetail
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Panel1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -476,13 +575,10 @@ Partial Class RentalDetail
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents Button9 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel1 As Panel
@@ -514,4 +610,11 @@ Partial Class RentalDetail
     Friend WithEvents DraggablePanel1 As DraggablePanel
     Friend WithEvents minimize As Button
     Friend WithEvents closeForm As Button
+    Friend WithEvents setting As Button
+    Friend WithEvents bills As Button
+    Friend WithEvents history As Button
+    Friend WithEvents details As Button
+    Friend WithEvents rent As Button
+    Friend WithEvents home As Button
+    Friend WithEvents logout As Button
 End Class

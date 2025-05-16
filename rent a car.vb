@@ -23,7 +23,7 @@
         FlowLayoutPanel1.Controls.Clear()
 
         For Each carDict As Dictionary(Of String, Object) In GlobalData.CarsDict.Values
-            ' Defensive: check for required fields
+
             If carDict Is Nothing OrElse Not carDict.ContainsKey("CarID") Then Continue For
 
             Dim carPanel As New Panel With {
@@ -161,10 +161,42 @@
     End Sub
 
     Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
-        Close()
+        Me.WindowState = FormWindowState.Minimized
     End Sub
 
     Private Sub closeForm_Click(sender As Object, e As EventArgs) Handles closeForm.Click
-        Me.WindowState = FormWindowState.Minimized
+        Close()
     End Sub
+
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles history.Click
+        Me.Close()
+        history.Show()
+    End Sub
+
+    Private Sub home_Click(sender As Object, e As EventArgs) Handles home.Click
+        Me.Close()
+        homeForm.Show()
+    End Sub
+
+    Private Sub details_Click(sender As Object, e As EventArgs) Handles details.Click
+        Me.Close()
+        RentalDetail.Show()
+    End Sub
+
+    Private Sub setting_Click(sender As Object, e As EventArgs) Handles setting.Click
+        Me.Close()
+        TheDevs.Show()
+    End Sub
+
+    Private Sub logout_Click(sender As Object, e As EventArgs) Handles logout.Click
+        Me.Close()
+        LoginForm.Show()
+    End Sub
+
+    Private Sub bills_Click(sender As Object, e As EventArgs) Handles bills.Click
+        Me.Close()
+        bills.Show()
+    End Sub
+
 End Class

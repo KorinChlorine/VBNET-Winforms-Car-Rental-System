@@ -158,10 +158,23 @@ Public Class Management
         End Try
 
         Dim carID As String = RichTextBox4.Text.Trim()
+        Dim bodyNumber As String = RichTextBox7.Text.Trim()
+        Dim plateNumber As String = RichTextBox9.Text.Trim()
+
         If String.IsNullOrEmpty(carID) Then
             MessageBox.Show("Car ID is required.")
             Return
         End If
+
+        For Each car In GlobalData.CarsDict.Values
+            If car("CarID").ToString().Equals(carID, StringComparison.OrdinalIgnoreCase) _
+            OrElse car("BodyNumber").ToString().Equals(bodyNumber, StringComparison.OrdinalIgnoreCase) _
+            OrElse car("PlateNumber").ToString().Equals(plateNumber, StringComparison.OrdinalIgnoreCase) Then
+
+                MessageBox.Show("A car with the same Car ID, Body Number, or Plate Number already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+        Next
 
         Dim carDict As New Dictionary(Of String, Object) From {
         {"CarID", carID},
@@ -173,17 +186,18 @@ Public Class Management
         {"Color", RichTextBox10.Text},
         {"BriefDetails", RichTextBox1.Text},
         {"Details", RichTextBox2.Text},
-        {"BodyNumber", RichTextBox7.Text},
-        {"PlateNumber", RichTextBox9.Text},
+        {"BodyNumber", bodyNumber},
+        {"PlateNumber", plateNumber},
         {"DailyPrice", RichTextBox8.Text},
         {"IsAvailable", RadioButton1.Checked}
     }
 
         GlobalData.CarsDict(carID) = carDict
         GlobalData.NotifyDataChanged()
-        AddCarPanelToUI(carDict)
+        LoadAllCarsToUI()
         MessageBox.Show("Car added/updated successfully!")
     End Sub
+
 
 
     Private Sub Panel_Click(sender As Object, e As EventArgs)
@@ -362,14 +376,14 @@ Public Class Management
             Return
         End If
 
-        ' If CarID changed, update the dictionary key
+
         If oldCarID <> newCarID Then
             If GlobalData.CarsDict.ContainsKey(newCarID) Then
                 MessageBox.Show("A car with this new Car ID already exists.")
                 Return
             End If
 
-            ' Copy the old dictionary and update CarID
+
             Dim carDict = GlobalData.CarsDict(oldCarID)
             carDict("CarID") = newCarID
             carDict("CarName") = RichTextBox3.Text
@@ -385,14 +399,12 @@ Public Class Management
             carDict("DailyPrice") = RichTextBox8.Text
             carDict("IsAvailable") = RadioButton1.Checked
 
-            ' Remove old key, add new key
             GlobalData.CarsDict.Remove(oldCarID)
             GlobalData.CarsDict.Add(newCarID, carDict)
 
-            ' Update the panel's tag to the new CarID
             selectedPanel.Tag = newCarID
         Else
-            ' Just update the existing dictionary
+
             Dim carDict = GlobalData.CarsDict(oldCarID)
             carDict("CarName") = RichTextBox3.Text
             carDict("PrimaryImage") = PictureBox1.Image
@@ -409,7 +421,7 @@ Public Class Management
             carDict("IsAvailable") = RadioButton1.Checked
         End If
 
-        ' Update UI
+
         Dim nameLabel = selectedPanel.Controls.OfType(Of Label).FirstOrDefault(Function(lbl) lbl.Tag?.ToString() = "MainLabel")
         If nameLabel IsNot Nothing Then
             nameLabel.Text = RichTextBox3.Text
@@ -427,7 +439,7 @@ Public Class Management
 
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Update PremiumCarsArray with CarIDs of premium cars
+
         GlobalData.PremiumCarsArray = GlobalData.CarsDict.Values.
             Where(Function(car)
                       Dim price As Int64

@@ -99,6 +99,7 @@ Partial Class Management
         '
         Me.RichTextBox2.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RichTextBox2.ForeColor = System.Drawing.Color.White
         Me.RichTextBox2.Location = New System.Drawing.Point(363, 487)
         Me.RichTextBox2.Name = "RichTextBox2"
         Me.RichTextBox2.Size = New System.Drawing.Size(442, 131)
@@ -110,6 +111,7 @@ Partial Class Management
         Me.RichTextBox3.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox3.ForeColor = System.Drawing.Color.White
         Me.RichTextBox3.Location = New System.Drawing.Point(363, 133)
         Me.RichTextBox3.Name = "RichTextBox3"
         Me.RichTextBox3.Size = New System.Drawing.Size(442, 36)
@@ -180,6 +182,7 @@ Partial Class Management
         '
         Me.RichTextBox1.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RichTextBox1.ForeColor = System.Drawing.Color.White
         Me.RichTextBox1.Location = New System.Drawing.Point(363, 407)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.Size = New System.Drawing.Size(442, 58)
@@ -225,6 +228,7 @@ Partial Class Management
         Me.RichTextBox6.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox6.ForeColor = System.Drawing.Color.White
         Me.RichTextBox6.Location = New System.Drawing.Point(362, 342)
         Me.RichTextBox6.Name = "RichTextBox6"
         Me.RichTextBox6.Size = New System.Drawing.Size(143, 36)
@@ -260,6 +264,7 @@ Partial Class Management
         Me.RichTextBox7.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox7.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox7.ForeColor = System.Drawing.Color.White
         Me.RichTextBox7.Location = New System.Drawing.Point(824, 310)
         Me.RichTextBox7.Name = "RichTextBox7"
         Me.RichTextBox7.Size = New System.Drawing.Size(373, 36)
@@ -283,6 +288,7 @@ Partial Class Management
         Me.RichTextBox4.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox4.ForeColor = System.Drawing.Color.White
         Me.RichTextBox4.Location = New System.Drawing.Point(824, 252)
         Me.RichTextBox4.Name = "RichTextBox4"
         Me.RichTextBox4.Size = New System.Drawing.Size(373, 36)
@@ -294,6 +300,7 @@ Partial Class Management
         Me.RichTextBox8.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox8.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox8.ForeColor = System.Drawing.Color.White
         Me.RichTextBox8.Location = New System.Drawing.Point(824, 429)
         Me.RichTextBox8.Name = "RichTextBox8"
         Me.RichTextBox8.Size = New System.Drawing.Size(373, 36)
@@ -317,6 +324,7 @@ Partial Class Management
         Me.RichTextBox9.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox9.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox9.ForeColor = System.Drawing.Color.White
         Me.RichTextBox9.Location = New System.Drawing.Point(824, 371)
         Me.RichTextBox9.Name = "RichTextBox9"
         Me.RichTextBox9.Size = New System.Drawing.Size(373, 36)
@@ -388,6 +396,7 @@ Partial Class Management
         Me.RichTextBox5.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox5.ForeColor = System.Drawing.Color.White
         Me.RichTextBox5.Location = New System.Drawing.Point(512, 342)
         Me.RichTextBox5.Name = "RichTextBox5"
         Me.RichTextBox5.Size = New System.Drawing.Size(145, 36)
@@ -399,6 +408,7 @@ Partial Class Management
         Me.RichTextBox10.BackColor = System.Drawing.Color.MediumSlateBlue
         Me.RichTextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RichTextBox10.ForeColor = System.Drawing.Color.White
         Me.RichTextBox10.Location = New System.Drawing.Point(663, 342)
         Me.RichTextBox10.Name = "RichTextBox10"
         Me.RichTextBox10.Size = New System.Drawing.Size(143, 36)
@@ -585,7 +595,7 @@ Partial Class Management
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management11
+        Me.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Management3
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.ControlBox = False

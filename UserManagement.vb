@@ -1,13 +1,50 @@
 ﻿Public Class UserManagement
     Private Sub UserManagement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FlowLayoutPanel1.FlowDirection = FlowDirection.TopDown
+        FlowLayoutPanel1.WrapContents = False
+        FlowLayoutPanel1.AutoScroll = True
+
         LoadUsers()
+        AddHandler TextBox1.KeyDown, AddressOf TextBox1_KeyDown
         AddHandler GlobalData.DataChanged, AddressOf LoadUsers
     End Sub
 
-    Private Sub LoadUsers()
+    Private Sub LoadUsers(Optional search As String = "")
         FlowLayoutPanel1.Controls.Clear()
 
-        Dim titles As String() = {"Index", "Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Status", "Current Wallet"}
+        If GlobalData.UsersDict Is Nothing OrElse GlobalData.UsersDict.Count = 0 Then
+            MessageBox.Show("No user data available to display.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim searchLower = search.ToLower()
+        Dim filteredUsers = GlobalData.UsersDict.Values.AsEnumerable()
+
+        If Not String.IsNullOrEmpty(search) Then
+            filteredUsers = filteredUsers.Where(Function(user) _
+        (If(user.ContainsKey("FullName"), user("FullName")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("Age"), user("Age")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("Address"), user("Address")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("Birthday") AndAlso user("Birthday") IsNot Nothing AndAlso TypeOf user("Birthday") Is Date, CType(user("Birthday"), Date).ToShortDateString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("Gender"), user("Gender")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("Email"), user("Email")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("Password"), user("Password")?.ToString().ToLower(), "")).Contains(searchLower) OrElse
+        (If(user.ContainsKey("IsGoodRecord"), If(Convert.ToBoolean(user("IsGoodRecord")), "good", "bad"), "").ToLower().Contains(searchLower)) OrElse
+        (If(user.ContainsKey("IsBooked"), If(Convert.ToBoolean(user("IsBooked")), "rented", "free"), "").ToLower().Contains(searchLower)) OrElse
+        (If(user.ContainsKey("Wallet"), user("Wallet")?.ToString().ToLower(), "").Contains(searchLower))
+    )
+        End If
+
+
+
+        For Each userDict As Dictionary(Of String, Object) In filteredUsers
+
+            Dim rowPanel As New Panel()
+            FlowLayoutPanel1.Controls.Add(rowPanel)
+        Next
+
+
+        Dim titles As String() = {"Index", "Name", "Age", "Address", "Birthday", "Gender", "Email", "Password", "Good Record", "Current Wallet"}
         Dim titleFont As New Font("Arial", 10, FontStyle.Bold)
         Dim detailFont As New Font("Arial", 9, FontStyle.Regular)
 
@@ -64,7 +101,7 @@
                     .ForeColor = Color.White
                 }
 
-                ' Add index column
+
                 Dim indexLabel As New Label With {
                     .Text = index.ToString(),
                     .Font = detailFont,
@@ -78,7 +115,7 @@
                 }
                 rowPanel.Controls.Add(indexLabel)
 
-                ' Add other user details
+
                 Dim userDetails As String() = GetUserDetails(userDict)
                 For i As Integer = 0 To userDetails.Length - 1
                     Dim label As New Label With {
@@ -102,8 +139,7 @@
     End Sub
 
     Private Function GetUserDetails(userDict As Dictionary(Of String, Object)) As String()
-        ' Order: Name, Age, Address, Birthday, Gender, Email, Password, Good Record, Status, Current Wallet
-        Dim details(10) As String
+        Dim details(8) As String
         details(0) = If(userDict.ContainsKey("FullName"), userDict("FullName")?.ToString(), "")
         details(1) = If(userDict.ContainsKey("Age"), userDict("Age")?.ToString(), "")
         details(2) = If(userDict.ContainsKey("Address"), userDict("Address")?.ToString(), "")
@@ -112,10 +148,18 @@
         details(5) = If(userDict.ContainsKey("Email"), userDict("Email")?.ToString(), "")
         details(6) = If(userDict.ContainsKey("Password"), "•••••", "")
         details(7) = If(userDict.ContainsKey("IsGoodRecord") AndAlso Convert.ToBoolean(userDict("IsGoodRecord")), "✓", "✗")
-        details(8) = If(userDict.ContainsKey("IsBooked") AndAlso Convert.ToBoolean(userDict("IsBooked")), "Rented", "Free")
-        details(9) = If(userDict.ContainsKey("Wallet"), userDict("Wallet")?.ToString(), "0")
+        details(8) = If(userDict.ContainsKey("Wallet"), userDict("Wallet")?.ToString(), "0")
         Return details
     End Function
+
+
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs)
+        If e.KeyCode = Keys.Enter Then
+            LoadUsers(TextBox1.Text.Trim())
+            e.SuppressKeyPress = True
+        End If
+    End Sub
+
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Me.Close()
@@ -127,7 +171,7 @@
         CarsManagement.Show()
     End Sub
 
-    ' Add new user to UsersDict
+
     Public Sub AddNewUser(userDict As Dictionary(Of String, Object))
         If userDict.ContainsKey("Email") Then
             GlobalData.UsersDict(userDict("Email").ToString()) = userDict
@@ -151,5 +195,9 @@
 
     Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub FlowLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles FlowLayoutPanel1.Paint
+
     End Sub
 End Class

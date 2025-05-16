@@ -29,6 +29,7 @@ Partial Class CarsManagement
         Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
         Me.minimize = New System.Windows.Forms.Button()
         Me.closeForm = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Button2
@@ -110,6 +111,15 @@ Partial Class CarsManagement
         Me.closeForm.TabIndex = 46
         Me.closeForm.UseVisualStyleBackColor = False
         '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(632, 49)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(188, 16)
+        Me.TextBox1.TabIndex = 0
+        '
         'CarsManagement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -118,6 +128,7 @@ Partial Class CarsManagement
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.ControlBox = False
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.minimize)
         Me.Controls.Add(Me.DraggablePanel1)
         Me.Controls.Add(Me.closeForm)
@@ -133,6 +144,7 @@ Partial Class CarsManagement
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CarsManagement"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Button2 As Button
@@ -142,4 +154,5 @@ Partial Class CarsManagement
     Friend WithEvents DraggablePanel1 As DraggablePanel
     Friend WithEvents minimize As Button
     Friend WithEvents closeForm As Button
+    Friend WithEvents TextBox1 As TextBox
 End Class

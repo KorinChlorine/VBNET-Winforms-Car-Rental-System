@@ -2,29 +2,29 @@
 
     Public Property var As String
 
-    ' Users: Key = Email, Value = Dictionary of user details
     Public UsersDict As New Dictionary(Of String, Dictionary(Of String, Object))()
 
-    ' Cars: Key = CarID, Value = Dictionary of car details
+
     Public CarsDict As New Dictionary(Of String, Dictionary(Of String, Object))()
 
-    ' Transactions: Key = TransactionID (Integer), Value = Dictionary of transaction details
+
     Public TransactionsDict As New Dictionary(Of Integer, Dictionary(Of String, Object))()
 
-    ' Registered users for quick login check (email, password)
     Public RegisteredUsers As New List(Of Tuple(Of String, String))()
 
-    ' Premium cars (for display, can be a list of CarIDs or car dictionaries)
+
     Public PremiumCarsArray As New List(Of String)() ' List of CarIDs
 
-    ' Events
+
     Public Event DataChanged()
     Public HasReturnedCarThisSession As Boolean = False
-    ' Stores all active billing panel data, keyed by CarID
+
     Public BillingPanelsDict As New Dictionary(Of String, Dictionary(Of String, Object))()
 
+    Public InternalSystemDate As DateTime = DateTime.Now
 
-    ' Properties for user session management
+
+
     Public UserFullName As String = ""
     Public CurrentUserEmail As String = ""
     Public CurrentUserPassword As String = ""
@@ -47,7 +47,7 @@
         RaiseEvent DataChanged()
     End Sub
 
-    ' Get the currently logged-in user's dictionary
+
     Public Function GetLoggedInUser() As Dictionary(Of String, Object)
         If String.IsNullOrEmpty(CurrentUserEmail) Then Return Nothing
         If UsersDict.ContainsKey(CurrentUserEmail) Then
@@ -56,7 +56,6 @@
         Return Nothing
     End Function
 
-    ' Add a new user
     Public Function RegisterUser(email As String, password As String, fullName As String,
                                 Optional age As Integer = 0, Optional address As String = "",
                                 Optional birthday As Date = Nothing, Optional gender As String = "",
@@ -86,7 +85,7 @@
         End If
     End Function
 
-    ' Check if a user is registered
+
     Public Function IsUserRegistered(email As String) As Boolean
         Return UsersDict.ContainsKey(email)
     End Function
@@ -99,7 +98,6 @@
         End If
     End Sub
 
-    ' User login
     Public Function LoginUser(email As String, password As String) As Boolean
         Dim user = RegisteredUsers.FirstOrDefault(Function(u) u.Item1 = email AndAlso u.Item2 = password)
         If user IsNot Nothing AndAlso UsersDict.ContainsKey(email) Then
@@ -127,7 +125,7 @@
                 GlobalData.RentedCars = 0
             End If
 
-            ' Ensure SavedBillingPanels exists for old users
+
             If Not userDict.ContainsKey("SavedBillingPanels") Then
                 userDict("SavedBillingPanels") = New List(Of Dictionary(Of String, Object))()
             End If
@@ -139,7 +137,7 @@
         End If
     End Function
 
-    ' User logout
+
     Public Sub LogoutUser()
         CurrentUserEmail = ""
         CurrentUserPassword = ""
@@ -160,7 +158,6 @@
         var = Nothing
     End Sub
 
-    ' Add a new car
     Public Function AddCar(carID As String, carName As String, plateNumber As String, bodyNumber As String,
                            color As String, type As String, capacity As Integer, dailyPrice As Double,
                            Optional isAvailable As Boolean = True) As Boolean
@@ -184,7 +181,6 @@
         End If
     End Function
 
-    ' Get car details by CarID
     Public Function GetCar(carID As String) As Dictionary(Of String, Object)
         If CarsDict.ContainsKey(carID) Then
             Return CarsDict(carID)
@@ -192,18 +188,16 @@
         Return Nothing
     End Function
 
-    ' Add a new transaction
     Public Function AddTransaction(carID As String, customerEmail As String, startDate As Date, endDate As Date,
                               totalPrice As Double, Optional status As String = "Booked") As Integer
         Dim transactionID As Integer = If(TransactionsDict.Count = 0, 1, TransactionsDict.Keys.Max() + 1)
 
-        ' Get car details
+
         Dim carDict As Dictionary(Of String, Object) = Nothing
         If CarsDict.ContainsKey(carID) Then
             carDict = CarsDict(carID)
         End If
 
-        ' Get user details
         Dim userDict As Dictionary(Of String, Object) = Nothing
         If UsersDict.ContainsKey(customerEmail) Then
             userDict = UsersDict(customerEmail)
@@ -219,7 +213,6 @@
         {"Status", status}
     }
 
-        ' Add car details if available
         If carDict IsNot Nothing Then
             If carDict.ContainsKey("PlateNumber") Then transactionDict("PlateNumber") = carDict("PlateNumber")
             If carDict.ContainsKey("BodyNumber") Then transactionDict("BodyNumber") = carDict("BodyNumber")
@@ -229,7 +222,7 @@
             If carDict.ContainsKey("DailyPrice") Then transactionDict("DailyPrice") = carDict("DailyPrice")
         End If
 
-        ' Add user details if available
+
         If userDict IsNot Nothing Then
             If userDict.ContainsKey("FullName") Then transactionDict("CustomerName") = userDict("FullName")
             If userDict.ContainsKey("Address") Then transactionDict("CustomerAddress") = userDict("Address")
@@ -240,7 +233,7 @@
         Return transactionID
     End Function
 
-    ' Get transaction by ID
+
     Public Function GetTransaction(transactionID As Integer) As Dictionary(Of String, Object)
         If TransactionsDict.ContainsKey(transactionID) Then
             Return TransactionsDict(transactionID)
@@ -248,23 +241,22 @@
         Return Nothing
     End Function
 
-    ' Get all transactions for a specific customer
     Public Function GetCustomerTransactions(customerEmail As String) As List(Of Dictionary(Of String, Object))
         Return TransactionsDict.Values.Where(Function(t) t("CustomerEmail").ToString() = customerEmail).ToList()
     End Function
 
-    ' Get all transactions for a specific car
+
     Public Function GetCarTransactions(carID As String) As List(Of Dictionary(Of String, Object))
         Return TransactionsDict.Values.Where(Function(t) t("CarID").ToString() = carID).ToList()
     End Function
 
-    ' Mark a car as returned
+
     Public Function ReturnCar(transactionID As Integer) As Boolean
         If TransactionsDict.ContainsKey(transactionID) Then
             Dim transaction = TransactionsDict(transactionID)
             transaction("Status") = "Returned"
-            transaction("DateReturned") = DateTime.Now
-            ' Set car as available
+            transaction("DateReturned") = GlobalData.Now()
+
             Dim carID = transaction("CarID").ToString()
             If CarsDict.ContainsKey(carID) Then
                 CarsDict(carID)("IsAvailable") = True
@@ -275,15 +267,19 @@
         Return False
     End Function
 
-    ' Call this to ensure the "test" user is fully set up and 10 cars are generated
-    ' Call this to ensure the "test" user is fully set up and 10 cars are generated
     Public Sub SetupTestUserAndCars()
-        ' --- Complete test user profile ---
+
         Dim email As String = "test"
         Dim password As String = "test"
         If Not UsersDict.ContainsKey(email) Then
             RegisterUser(email, password, "Test User", 25, "123 Test St", #1/1/2000#, "Other", True, 10000, "user")
         End If
+
+
+        If Not RegisteredUsers.Any(Function(u) u.Item1 = email AndAlso u.Item2 = password) Then
+            RegisteredUsers.Add(Tuple.Create(email, password))
+        End If
+
         Dim user = UsersDict(email)
         user("FullName") = "Test User"
         user("Age") = 25
@@ -300,28 +296,27 @@
         If Not user.ContainsKey("RentedCarsList") Then user("RentedCarsList") = New List(Of Dictionary(Of String, Object))()
         If Not user.ContainsKey("SavedBillingPanels") Then user("SavedBillingPanels") = New List(Of Dictionary(Of String, Object))()
 
-        ' --- Generate 10 cars if not already present ---
         For i As Integer = 1 To 10
             Dim carId As String = $"CAR{i:000}"
             If Not CarsDict.ContainsKey(carId) Then
                 Dim carDict As New Dictionary(Of String, Object) From {
-                    {"CarID", carId},
-                    {"CarName", $"Test Car {i}"},
-                    {"PlateNumber", $"PLT{i:000}"},
-                    {"BodyNumber", $"BDY{i:000}"},
-                    {"Color", "Red"},
-                    {"Type", "Sedan"},
-                    {"Capacity", 5},
-                    {"DailyPrice", 1000 + i * 100},
-                    {"IsAvailable", True},
-                    {"PrimaryImage", My.Resources.PLACEHOLDER_Car},
-                    {"SecondaryImage", My.Resources.PLACEHOLDER_Car},
-                    {"BriefDetails", $"This is a test car number {i}."},
-                    {"Details", $"Test Car {i} is a demo vehicle for testing purposes."}
-                }
+                {"CarID", carId},
+                {"CarName", $"Test Car {i}"},
+                {"PlateNumber", $"PLT{i:000}"},
+                {"BodyNumber", $"BDY{i:000}"},
+                {"Color", "Red"},
+                {"Type", "Sedan"},
+                {"Capacity", 5},
+                {"DailyPrice", 1000 + i * 100},
+                {"IsAvailable", True},
+                {"PrimaryImage", My.Resources.PLACEHOLDER_Car},
+                {"SecondaryImage", My.Resources.PLACEHOLDER_Car},
+                {"BriefDetails", $"This is a test car number {i}."},
+                {"Details", $"Test Car {i} is a demo vehicle for testing purposes."}
+            }
                 CarsDict.Add(carId, carDict)
             Else
-                ' If car already exists, ensure it has the image keys
+
                 Dim carDict = CarsDict(carId)
                 If Not carDict.ContainsKey("PrimaryImage") Then carDict("PrimaryImage") = My.Resources.PLACEHOLDER_Car
                 If Not carDict.ContainsKey("SecondaryImage") Then carDict("SecondaryImage") = My.Resources.PLACEHOLDER_Car
@@ -333,7 +328,8 @@
         NotifyDataChanged()
     End Sub
 
-    ' Stores a timer value (as string or TimeSpan) in the transaction's dictionary.
+
+
     Public Sub SetTransactionTimer(transactionID As Integer, timerValue As String)
         If TransactionsDict.ContainsKey(transactionID) Then
             TransactionsDict(transactionID)("Timer") = timerValue
@@ -341,12 +337,33 @@
         End If
     End Sub
 
-    ' Optionally, a getter for convenience
     Public Function GetTransactionTimer(transactionID As Integer) As String
         If TransactionsDict.ContainsKey(transactionID) AndAlso TransactionsDict(transactionID).ContainsKey("Timer") Then
             Return TransactionsDict(transactionID)("Timer").ToString()
         End If
         Return "00:00:00:00"
+    End Function
+
+
+    Public Function GetCarAvailability(carID As String) As Boolean
+        If CarsDict.ContainsKey(carID) AndAlso CarsDict(carID).ContainsKey("IsAvailable") Then
+            Return CBool(CarsDict(carID)("IsAvailable"))
+        End If
+        Return False
+    End Function
+
+
+    Public Function ToggleCarAvailability(carID As String) As Boolean
+        If CarsDict.ContainsKey(carID) AndAlso CarsDict(carID).ContainsKey("IsAvailable") Then
+            Dim current As Boolean = CBool(CarsDict(carID)("IsAvailable"))
+            CarsDict(carID)("IsAvailable") = Not current
+            NotifyDataChanged()
+            Return Not current
+        End If
+        Return False
+    End Function
+    Public Function Now() As DateTime
+        Return DateTime.Now
     End Function
 
 

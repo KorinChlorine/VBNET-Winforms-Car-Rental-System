@@ -28,6 +28,7 @@ Partial Class ManagementRent
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.minimize = New System.Windows.Forms.Button()
         Me.closeForm = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.DraggablePanel1 = New VBNET_Car_Rental_System.DraggablePanel()
         Me.SuspendLayout()
         '
@@ -101,6 +102,15 @@ Partial Class ManagementRent
         Me.closeForm.TabIndex = 57
         Me.closeForm.UseVisualStyleBackColor = False
         '
+        'TextBox1
+        '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(628, 49)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(188, 16)
+        Me.TextBox1.TabIndex = 60
+        '
         'DraggablePanel1
         '
         Me.DraggablePanel1.BackColor = System.Drawing.Color.Transparent
@@ -117,6 +127,7 @@ Partial Class ManagementRent
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1264, 681)
         Me.ControlBox = False
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.minimize)
         Me.Controls.Add(Me.closeForm)
         Me.Controls.Add(Me.DraggablePanel1)
@@ -132,6 +143,7 @@ Partial Class ManagementRent
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ManagementRent"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -142,4 +154,5 @@ Partial Class ManagementRent
     Friend WithEvents DraggablePanel1 As DraggablePanel
     Friend WithEvents minimize As Button
     Friend WithEvents closeForm As Button
+    Friend WithEvents TextBox1 As TextBox
 End Class

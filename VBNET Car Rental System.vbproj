@@ -148,12 +148,6 @@
     <Compile Include="CarsManagement.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Custom MessageBox.Designer.vb">
-      <DependentUpon>Custom MessageBox.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Custom MessageBox.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="customerDetails.Designer.vb">
       <DependentUpon>customerDetails.vb</DependentUpon>
     </Compile>
@@ -185,6 +179,12 @@
       <DependentUpon>Survey.vb</DependentUpon>
     </Compile>
     <Compile Include="Survey.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TheDevs.Designer.vb">
+      <DependentUpon>TheDevs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TheDevs.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserManagement.Designer.vb">
@@ -265,9 +265,6 @@
     <EmbeddedResource Include="CarsManagement.resx">
       <DependentUpon>CarsManagement.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom MessageBox.resx">
-      <DependentUpon>Custom MessageBox.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="customerDetails.resx">
       <DependentUpon>customerDetails.vb</DependentUpon>
     </EmbeddedResource>
@@ -303,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Survey.resx">
       <DependentUpon>Survey.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TheDevs.resx">
+      <DependentUpon>TheDevs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserManagement.resx">
       <DependentUpon>UserManagement.vb</DependentUpon>
@@ -343,7 +343,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\Login.png" />
     <None Include="Resources\Main Menu.png" />
     <None Include="Resources\Management.png" />
     <None Include="Resources\undo 1.png" />
@@ -354,9 +353,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Rent a Car.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Register.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Register1.png" />
@@ -452,9 +448,6 @@
     <None Include="Resources\Confirm Rent.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\confirm.mp4" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Billing3.png" />
   </ItemGroup>
   <ItemGroup>
@@ -495,6 +488,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Management Users1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental HIstory2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental HIstory3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Menu2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\The Devs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car View1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Management Users2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rental HIstory4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RentalHis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main Menu4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rent a Car4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

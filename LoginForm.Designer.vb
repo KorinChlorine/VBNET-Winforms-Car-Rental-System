@@ -27,7 +27,9 @@ Partial Class LoginForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
@@ -39,13 +41,10 @@ Partial Class LoginForm
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
-        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -65,9 +64,19 @@ Partial Class LoginForm
         Me.Panel4.Size = New System.Drawing.Size(577, 48)
         Me.Panel4.TabIndex = 4
         '
+        'AxWindowsMediaPlayer1
+        '
+        Me.AxWindowsMediaPlayer1.CausesValidation = False
+        Me.AxWindowsMediaPlayer1.Enabled = True
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(-417, -248)
+        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
+        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(1693, 1300)
+        Me.AxWindowsMediaPlayer1.TabIndex = 0
+        '
         'Panel1
         '
-        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.NEWRegister
+        Me.Panel1.BackgroundImage = Global.VBNET_Car_Rental_System.My.Resources.Resources.Login
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel1.Controls.Add(Me.Panel5)
         Me.Panel1.Controls.Add(Me.Button7)
@@ -81,18 +90,27 @@ Partial Class LoginForm
         Me.Panel1.Controls.Add(Me.CheckBox1)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.TextBox1)
         Me.Panel1.Location = New System.Drawing.Point(864, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(612, 747)
+        Me.Panel1.Size = New System.Drawing.Size(612, 726)
         Me.Panel1.TabIndex = 1
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.Transparent
+        Me.Panel5.Location = New System.Drawing.Point(-872, 0)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(1419, 28)
+        Me.Panel5.TabIndex = 13
         '
         'Button7
         '
         Me.Button7.BackColor = System.Drawing.Color.Transparent
         Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button7.FlatAppearance.BorderSize = 0
+        Me.Button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.ForeColor = System.Drawing.Color.Transparent
         Me.Button7.Location = New System.Drawing.Point(588, 3)
@@ -106,6 +124,8 @@ Partial Class LoginForm
         Me.Button6.BackColor = System.Drawing.Color.Transparent
         Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.ForeColor = System.Drawing.Color.Transparent
         Me.Button6.Location = New System.Drawing.Point(564, 3)
@@ -120,7 +140,7 @@ Partial Class LoginForm
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox4.ForeColor = System.Drawing.Color.Black
-        Me.TextBox4.Location = New System.Drawing.Point(125, 340)
+        Me.TextBox4.Location = New System.Drawing.Point(120, 328)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(400, 40)
         Me.TextBox4.TabIndex = 12
@@ -132,7 +152,7 @@ Partial Class LoginForm
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.Black
-        Me.TextBox2.Location = New System.Drawing.Point(126, 349)
+        Me.TextBox2.Location = New System.Drawing.Point(123, 338)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(400, 40)
         Me.TextBox2.TabIndex = 1
@@ -143,9 +163,12 @@ Partial Class LoginForm
         Me.Button5.BackColor = System.Drawing.Color.Transparent
         Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.Button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.ForeColor = System.Drawing.Color.Transparent
-        Me.Button5.Location = New System.Drawing.Point(422, 562)
+        Me.Button5.Location = New System.Drawing.Point(418, 549)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(125, 37)
         Me.Button5.TabIndex = 11
@@ -156,9 +179,12 @@ Partial Class LoginForm
         Me.Button4.BackColor = System.Drawing.Color.Transparent
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.Transparent
-        Me.Button4.Location = New System.Drawing.Point(62, 484)
+        Me.Button4.Location = New System.Drawing.Point(66, 471)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(496, 50)
         Me.Button4.TabIndex = 10
@@ -170,7 +196,7 @@ Partial Class LoginForm
         Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox5.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.TextBox5.Location = New System.Drawing.Point(123, 411)
+        Me.TextBox5.Location = New System.Drawing.Point(119, 398)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(400, 40)
         Me.TextBox5.TabIndex = 9
@@ -182,7 +208,7 @@ Partial Class LoginForm
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.TextBox3.Location = New System.Drawing.Point(126, 268)
+        Me.TextBox3.Location = New System.Drawing.Point(121, 257)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(400, 40)
         Me.TextBox3.TabIndex = 7
@@ -194,7 +220,7 @@ Partial Class LoginForm
         Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
         Me.CheckBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.CheckBox1.FlatAppearance.BorderSize = 0
-        Me.CheckBox1.Location = New System.Drawing.Point(213, 432)
+        Me.CheckBox1.Location = New System.Drawing.Point(217, 425)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox1.TabIndex = 6
@@ -205,9 +231,11 @@ Partial Class LoginForm
         Me.Button3.BackColor = System.Drawing.Color.Transparent
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.Transparent
-        Me.Button3.Location = New System.Drawing.Point(62, 475)
+        Me.Button3.Location = New System.Drawing.Point(57, 471)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(496, 50)
         Me.Button3.TabIndex = 4
@@ -218,26 +246,15 @@ Partial Class LoginForm
         Me.Button2.BackColor = System.Drawing.Color.Transparent
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.Button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ForeColor = System.Drawing.Color.Transparent
-        Me.Button2.Location = New System.Drawing.Point(422, 551)
+        Me.Button2.Location = New System.Drawing.Point(418, 549)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(125, 37)
         Me.Button2.TabIndex = 3
         Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.Transparent
-        Me.Button1.Location = New System.Drawing.Point(392, 418)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(166, 37)
-        Me.Button1.TabIndex = 2
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'TextBox1
         '
@@ -245,36 +262,18 @@ Partial Class LoginForm
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Font = New System.Drawing.Font("Sans Serif Collection", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.TextBox1.Location = New System.Drawing.Point(126, 271)
+        Me.TextBox1.Location = New System.Drawing.Point(121, 261)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(400, 40)
         Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Email"
-        '
-        'AxWindowsMediaPlayer1
-        '
-        Me.AxWindowsMediaPlayer1.CausesValidation = False
-        Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(-307, -80)
-        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
-        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(1479, 921)
-        Me.AxWindowsMediaPlayer1.TabIndex = 0
-        '
-        'Panel5
-        '
-        Me.Panel5.BackColor = System.Drawing.Color.Transparent
-        Me.Panel5.Location = New System.Drawing.Point(-872, 0)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1419, 28)
-        Me.Panel5.TabIndex = 13
         '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1476, 743)
+        Me.ClientSize = New System.Drawing.Size(1476, 726)
         Me.ControlBox = False
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -288,9 +287,9 @@ Partial Class LoginForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         Me.Panel2.ResumeLayout(False)
+        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -301,7 +300,6 @@ Partial Class LoginForm
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Button4 As Button

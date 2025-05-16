@@ -6,10 +6,18 @@
     Public Property Duration As Integer
     Public Property TotalPrice As Decimal
     Private SelectedPanel As Panel = Nothing
-    ' Dictionary to keep a timer for each panel
+
     Private panelTimers As New Dictionary(Of Panel, Timer)()
+    Public Shared BillingInstance As Billing
+
+    Private WithEvents globalPanelCheckTimer As New Timer() With {.Interval = 1000}
+
 
     Private Sub Billing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        BillingInstance = Me
+        globalPanelCheckTimer.Start()
+
+
         LoadSavedPanels()
         UpdateBillingDetails()
         lblCustomer.Text = "Customer Name: " & GlobalData.UserFullName
@@ -20,9 +28,13 @@
         lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
         lblAge.Text = "Age: " & GlobalData.Age.ToString()
         lblAge.ForeColor = Color.White
-        updateBalance()
+        UpdateBalance()
     End Sub
-
+    Public Shared Sub RemovePanelAndStopTimerByCarID(carId As String)
+        If BillingInstance IsNot Nothing Then
+            BillingInstance.DeletePanelByCarID(carId)
+        End If
+    End Sub
     Protected Overrides Sub OnActivated(e As EventArgs)
         MyBase.OnActivated(e)
     End Sub
@@ -60,7 +72,7 @@
             lblCarName.Text = "No car selected"
         End If
 
-        ' Always enable the confirm button, disable return by default
+
         RoundedButton1.Enabled = True
         RoundedButton1.BackColor = Color.DarkSlateBlue
         RoundedButton1.ForeColor = Color.White
@@ -112,7 +124,7 @@
         End If
         If panel Is Nothing Then Return
 
-        ' Revert all panels' labels to default colors
+
         For Each ctrl As Control In FlowLayoutPanel1.Controls
             If TypeOf ctrl Is Panel Then
                 ctrl.BackColor = Color.DarkSlateBlue
@@ -133,7 +145,7 @@
         If details Is Nothing Then Return
 
         lblCarName.Text = details("CarName")
-        lblPaymentPerDay.Text = details("PaymentPerDay")
+        lblPaymentPerDay.Text = If(details.ContainsKey("PaymentPerDay"), details("PaymentPerDay").ToString(), "N/A")
         lblCarID.Text = details("CarID")
         lblBodyNumber.Text = details("BodyNumber")
         lblPlateNumber.Text = details("PlateNumber")
@@ -149,7 +161,6 @@
         lblEmail.Text = details("Email")
         lblAge.Text = details("Age")
 
-        ' Optionally, handle button states based on status
         Dim isReturned As Boolean = False
         If details.ContainsKey("Status") AndAlso details("Status") IsNot Nothing Then
             isReturned = details("Status").ToString().ToLower() = "returned"
@@ -165,26 +176,46 @@
     End Sub
 
     Private Sub CreateTransactionPanel(transactionDetails As Dictionary(Of String, Object))
+
         If Not transactionDetails.ContainsKey("Status") Then
             transactionDetails("Status") = "Active"
         End If
+        If Not transactionDetails.ContainsKey("CarName") Then
+            transactionDetails("CarName") = "N/A"
+        End If
+
         Dim transPanel As New Panel With {
-            .Width = 240,
-            .Height = 40,
-            .BackColor = Color.DarkSlateBlue,
-            .ForeColor = Color.White,
-            .Cursor = Cursors.Hand,
-            .Margin = New Padding(5)
-        }
+        .Width = 240,
+        .Height = 40,
+        .BackColor = Color.DarkSlateBlue,
+        .ForeColor = Color.White,
+        .Cursor = Cursors.Hand,
+        .Margin = New Padding(5)
+    }
         Dim lbl As New Label With {
-            .AutoSize = False,
-            .Font = New Font("Segoe UI", 12, FontStyle.Bold),
-            .Size = New Size(transPanel.Width, transPanel.Height),
-            .TextAlign = ContentAlignment.MiddleCenter
-        }
+        .AutoSize = False,
+        .Font = New Font("Segoe UI", 12, FontStyle.Bold),
+        .Size = New Size(transPanel.Width, transPanel.Height),
+        .TextAlign = ContentAlignment.MiddleCenter
+    }
         lbl.Location = New Point(0, 0)
 
-        Dim timerText As String = If(transactionDetails.ContainsKey("Timer"), transactionDetails("Timer").ToString(), "00:00:00:00")
+        Dim timerText As String = "00:00:00:00"
+        If transactionDetails.ContainsKey("ReturnDeadline") Then
+            Dim deadline As DateTime
+            If DateTime.TryParse(transactionDetails("ReturnDeadline").ToString(), deadline) Then
+                Dim now As DateTime = GlobalData.Now()
+                Dim remaining As TimeSpan = deadline - now
+                If remaining.TotalSeconds > 0 Then
+                    timerText = String.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}",
+                    CInt(Math.Floor(remaining.TotalDays)),
+                    remaining.Hours,
+                    remaining.Minutes,
+                    remaining.Seconds)
+                End If
+            End If
+        End If
+
         lbl.Text = transactionDetails("CarName") & vbCrLf & timerText
 
         transPanel.Controls.Add(lbl)
@@ -194,48 +225,68 @@
 
         transPanel.PerformLayout()
         ApplyRoundedCornersToPanel(transPanel, 20)
+        FlowLayoutPanel1.Controls.Add(transPanel)
 
+        ' Timer logic
         If transactionDetails.ContainsKey("ReturnDeadline") Then
             Dim deadline As DateTime
             If DateTime.TryParse(transactionDetails("ReturnDeadline").ToString(), deadline) Then
+                Dim hasStartDate As Boolean = transactionDetails.ContainsKey("StartDate") AndAlso DateTime.TryParse(transactionDetails("StartDate").ToString(), Nothing)
+                Dim startDate As DateTime = DateTime.MinValue
+                If hasStartDate Then DateTime.TryParse(transactionDetails("StartDate").ToString(), startDate)
+
                 Dim tmr As New Timer()
                 tmr.Interval = 1000
 
                 Dim updateLabel As Action = Sub()
-                                                Dim remaining As TimeSpan = deadline - DateTime.Now
-                                                If remaining.TotalSeconds > 0 Then
-                                                    timerText = String.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}",
-                                                        CInt(Math.Floor(remaining.TotalDays)),
-                                                        remaining.Hours,
-                                                        remaining.Minutes,
-                                                        remaining.Seconds)
-                                                Else
-                                                    timerText = "00:00:00:00"
-                                                    tmr.Stop()
-                                                    tmr.Dispose()
-                                                    panelTimers.Remove(transPanel)
-                                                    MessageBox.Show($"Rental period for {transactionDetails("CarName")} has ended! Please return the car.", "Time's Up", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                                                    GlobalData.IsGoodRecord = False
-                                                    Dim user = GlobalData.GetLoggedInUser()
-                                                    If user IsNot Nothing Then user("IsGoodRecord") = False
-                                                    GlobalData.NotifyDataChanged()
+                                                Dim now As DateTime = GlobalData.Now()
+                                                Dim remaining As TimeSpan = deadline - now
+
+                                                If hasStartDate AndAlso startDate.Date > now.Date Then
+                                                    lbl.Text = transactionDetails("CarName") & vbCrLf & "Booking not started"
+
+                                                    If panelTimers.ContainsKey(transPanel) Then
+                                                        panelTimers(transPanel).Stop()
+                                                        panelTimers(transPanel).Dispose()
+                                                        panelTimers.Remove(transPanel)
+                                                    End If
+                                                    Return
                                                 End If
-                                                lbl.Text = transactionDetails("CarName") & vbCrLf & timerText
+
+                                                If transactionDetails.ContainsKey("Status") AndAlso
+                                                   transactionDetails("Status").ToString().ToLower() = "returned" Then
+
+                                                    DeletePanelByCarID(transactionDetails("CarID").ToString())
+                                                    Return
+                                                End If
+
+
+                                                If remaining.TotalSeconds > 0 Then
+                                                    lbl.Text = transactionDetails("CarName") & vbCrLf &
+                                                        String.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}",
+                                                            CInt(Math.Floor(remaining.TotalDays)),
+                                                            remaining.Hours,
+                                                            remaining.Minutes,
+                                                            remaining.Seconds)
+                                                Else
+                                                    lbl.Text = transactionDetails("CarName") & vbCrLf & "Time's up!"
+
+                                                    DeletePanelByCarID(transactionDetails("CarID").ToString())
+                                                End If
                                             End Sub
 
-                AddHandler tmr.Tick, Sub(sender As Object, e As EventArgs)
-                                         updateLabel()
-                                     End Sub
 
-                tmr.Start()
-                panelTimers(transPanel) = tmr
-
+                If Not (hasStartDate AndAlso startDate.Date > GlobalData.Now().Date) Then
+                    tmr.Start()
+                    panelTimers(transPanel) = tmr
+                End If
                 updateLabel()
             End If
         End If
 
-        FlowLayoutPanel1.Controls.Add(transPanel)
+
     End Sub
+
     Private Function SafeGet(dict As Dictionary(Of String, Object), key As String) As Object
         If dict IsNot Nothing AndAlso dict.ContainsKey(key) AndAlso dict(key) IsNot Nothing Then
             Return dict(key)
@@ -244,6 +295,7 @@
     End Function
 
     Private Sub RoundedButton1_Click(sender As Object, e As EventArgs) Handles RoundedButton1.Click
+
         If Not GlobalData.IsLoggedIn Then
             MessageBox.Show("You must be logged in to confirm the transaction.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
@@ -260,6 +312,7 @@
 
                 Dim loggedInUser = GlobalData.GetLoggedInUser()
                 If loggedInUser IsNot Nothing Then
+
                     If Not loggedInUser.ContainsKey("RentedCarsList") OrElse loggedInUser("RentedCarsList") Is Nothing Then
                         loggedInUser("RentedCarsList") = New List(Of Dictionary(Of String, Object))()
                     End If
@@ -268,44 +321,51 @@
                         Dim rentedCarInfo As New Dictionary(Of String, Object)(SelectedCar)
                         Dim returnEndTime As DateTime
                         If TransactionType = "RENT" Then
-                            returnEndTime = DateTime.Now.AddDays(Duration)
+                            returnEndTime = GlobalData.Now().AddDays(Duration)
                         ElseIf TransactionType = "BOOK" AndAlso EndDate.HasValue Then
                             returnEndTime = EndDate.Value
                         Else
-                            returnEndTime = DateTime.Now
+                            returnEndTime = GlobalData.Now()
                         End If
                         rentedCarInfo("ReturnDeadline") = returnEndTime
                         rentedCars.Add(rentedCarInfo)
                     End If
 
-                    Dim transactionDetails As New Dictionary(Of String, Object) From {
-                        {"CarName", lblCarName.Text},
-                        {"PaymentPerDay", lblPaymentPerDay.Text},
-                        {"CarID", lblCarID.Text},
-                        {"BodyNumber", lblBodyNumber.Text},
-                        {"PlateNumber", lblPlateNumber.Text},
-                        {"Color", lblColor.Text},
-                        {"Capacity", lblCapacity.Text},
-                        {"Type", lblType.Text},
-                        {"TotalPayment", lblTotalPayment.Text},
-                        {"RentedStarted", lblRentedStarted.Text},
-                        {"RentedEnded", lblRentedEnded.Text},
-                        {"DaysToBeRented", lblDaysToBeRented.Text},
-                        {"Customer", lblCustomer.Text},
-                        {"Address", lblAddress.Text},
-                        {"Email", lblEmail.Text},
-                        {"Age", paneling.Text}
-                    }
-
                     Dim panelReturnEndTime As DateTime
+                    Dim panelStartDate As DateTime = If(StartDate.HasValue, StartDate.Value, GlobalData.Now())
                     If TransactionType = "RENT" Then
-                        panelReturnEndTime = DateTime.Now.AddDays(Duration)
+                        panelReturnEndTime = GlobalData.Now().AddDays(Duration)
                     ElseIf TransactionType = "BOOK" AndAlso EndDate.HasValue Then
                         panelReturnEndTime = EndDate.Value
                     Else
-                        panelReturnEndTime = DateTime.Now
+                        panelReturnEndTime = GlobalData.Now()
                     End If
-                    transactionDetails("ReturnDeadline") = panelReturnEndTime
+                    GlobalData.RentalStartDate = panelStartDate
+                    GlobalData.RentalEndDate = panelReturnEndTime
+
+
+                    Dim transactionDetails As New Dictionary(Of String, Object) From {
+                    {"CarName", If(SelectedCar.ContainsKey("CarName"), SelectedCar("CarName").ToString(), "N/A")},
+                    {"CarID", If(SelectedCar.ContainsKey("CarID"), SelectedCar("CarID").ToString(), "N/A")},
+                    {"BodyNumber", If(SelectedCar.ContainsKey("BodyNumber"), SelectedCar("BodyNumber").ToString(), "N/A")},
+                    {"PlateNumber", If(SelectedCar.ContainsKey("PlateNumber"), SelectedCar("PlateNumber").ToString(), "N/A")},
+                    {"Color", If(SelectedCar.ContainsKey("Color"), SelectedCar("Color").ToString(), "N/A")},
+                    {"Type", If(SelectedCar.ContainsKey("CarType"), SelectedCar("CarType").ToString(), "N/A")},
+                    {"Capacity", If(SelectedCar.ContainsKey("Capacity"), SelectedCar("Capacity").ToString(), "N/A")},
+                    {"ReturnDeadline", panelReturnEndTime},
+                    {"StartDate", panelStartDate},
+                    {"Status", If(TransactionType = "BOOK", "Booked", "Rented")},
+                    {"TotalPayment", lblTotalPayment.Text},
+                    {"PaymentPerDay", lblPaymentPerDay.Text},
+                    {"RentedStarted", lblRentedStarted.Text},
+                    {"RentedEnded", lblRentedEnded.Text},
+                    {"DaysToBeRented", lblDaysToBeRented.Text},
+                    {"Customer", lblCustomer.Text},
+                    {"Address", lblAddress.Text},
+                    {"Email", lblEmail.Text},
+                    {"Age", paneling.Text}
+                }
+
 
                     If Not loggedInUser.ContainsKey("SavedBillingPanels") OrElse loggedInUser("SavedBillingPanels") Is Nothing Then
                         loggedInUser("SavedBillingPanels") = New List(Of Dictionary(Of String, Object))()
@@ -313,9 +373,11 @@
                     Dim savedPanels = CType(loggedInUser("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
                     savedPanels.Add(transactionDetails)
 
-                    ' Store in GlobalData.BillingPanelsDict
-                    Dim carIdKey As String = lblCarID.Text.Replace("Car ID: ", "").Trim()
+
+                    Dim carIdKey As String = If(SelectedCar.ContainsKey("CarID"), SelectedCar("CarID").ToString(), "").Trim()
                     GlobalData.BillingPanelsDict(carIdKey) = transactionDetails
+                    GlobalData.ToggleCarAvailability(carIdKey)
+
 
                     For Each tmr In panelTimers.Values
                         tmr.Stop()
@@ -328,42 +390,35 @@
                     RoundedButton1.Enabled = False
                     RoundedButton1.ForeColor = Color.Black
                     RoundedButton1.BackColor = Color.Gray
-
                 End If
 
                 MessageBox.Show("Payment successful and car data saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                ' Generate a new TransactionID (incremental or GUID)
+
                 Dim newTransactionId As Integer = 1
                 If GlobalData.TransactionsDict.Count > 0 Then
                     newTransactionId = GlobalData.TransactionsDict.Keys.Max() + 1
                 End If
 
-                ' Build the transaction dictionary
                 Dim transactionDict As New Dictionary(Of String, Object) From {
-    {"TransactionID", newTransactionId},
-    {"CarID", SafeGet(SelectedCar, "CarID")},
-    {"PlateNumber", SafeGet(SelectedCar, "PlateNumber")},
-    {"BodyNumber", SafeGet(SelectedCar, "BodyNumber")},
-    {"Color", SafeGet(SelectedCar, "Color")},
-    {"Type", SafeGet(SelectedCar, "CarType")},
-    {"Capacity", SafeGet(SelectedCar, "Capacity")},
-    {"DailyPrice", SafeGet(SelectedCar, "DailyPrice")},
-    {"TotalPrice", lblTotalPayment.Text.Replace("Total Payment: ₱", "").Replace(",", "").Trim()},
-    {"Status", If(TransactionType = "BOOK", "Booked", "Rented")},
-    {"StartDate", If(TransactionType = "BOOK", StartDate, DateTime.Now)},
-    {"EndDate", If(TransactionType = "BOOK", EndDate, DateTime.Now.AddDays(Duration))},
-    {"DateReturned", Nothing},
-    {"CustomerEmail", GlobalData.CurrentUserEmail}
-}
+                {"TransactionID", newTransactionId},
+                {"CarID", If(SelectedCar.ContainsKey("CarID"), SelectedCar("CarID").ToString(), "N/A")},
+                {"PlateNumber", If(SelectedCar.ContainsKey("PlateNumber"), SelectedCar("PlateNumber").ToString(), "N/A")},
+                {"BodyNumber", If(SelectedCar.ContainsKey("BodyNumber"), SelectedCar("BodyNumber").ToString(), "N/A")},
+                {"Color", If(SelectedCar.ContainsKey("Color"), SelectedCar("Color").ToString(), "N/A")},
+                {"Type", If(SelectedCar.ContainsKey("CarType"), SelectedCar("CarType").ToString(), "N/A")},
+                {"Capacity", If(SelectedCar.ContainsKey("Capacity"), SelectedCar("Capacity").ToString(), "N/A")},
+                {"DailyPrice", If(SelectedCar.ContainsKey("DailyPrice"), SelectedCar("DailyPrice").ToString(), "N/A")},
+                {"TotalPrice", lblTotalPayment.Text.Replace("Total Payment: ₱", "").Replace(",", "").Trim()},
+                {"Status", If(TransactionType = "BOOK", "Booked", "Rented")},
+                {"StartDate", If(TransactionType = "BOOK" AndAlso StartDate.HasValue, StartDate.Value, GlobalData.Now())},
+                {"EndDate", If(TransactionType = "BOOK" AndAlso EndDate.HasValue, EndDate.Value, GlobalData.Now().AddDays(Duration))},
+                {"DateReturned", Nothing},
+                {"CustomerEmail", GlobalData.CurrentUserEmail}
+            }
 
-
-                ' Add to TransactionsDict
                 GlobalData.TransactionsDict(newTransactionId) = transactionDict
-
-                ' Notify all forms to update
                 GlobalData.NotifyDataChanged()
-
 
                 GlobalData.RentedCars += 1
                 Dim user = GlobalData.GetLoggedInUser()
@@ -371,7 +426,6 @@
                     user("RentedCars") = GlobalData.RentedCars
                 End If
                 GlobalData.NotifyDataChanged()
-
             Else
                 MessageBox.Show("Insufficient balance in wallet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
@@ -380,8 +434,9 @@
         End If
     End Sub
 
+
     Public Sub DeletePanelByCarID(carId As String)
-        ' Remove from UI
+
         Dim panelToRemove As Panel = Nothing
         For Each ctrl As Control In FlowLayoutPanel1.Controls
             If TypeOf ctrl Is Panel Then
@@ -405,7 +460,7 @@
         End If
 
 
-        ' Remove from SavedBillingPanels if possible
+
         Dim user = GlobalData.GetLoggedInUser()
         If user IsNot Nothing AndAlso user.ContainsKey("SavedBillingPanels") Then
             Dim panels = CType(user("SavedBillingPanels"), List(Of Dictionary(Of String, Object)))
@@ -414,20 +469,13 @@
                              End Function)
         End If
 
-        ' Remove from global BillingPanelsDict
+
         If GlobalData.BillingPanelsDict.ContainsKey(carId) Then
             GlobalData.BillingPanelsDict.Remove(carId)
         End If
 
         GlobalData.NotifyDataChanged()
     End Sub
-
-    ' ... (rest of your methods remain unchanged, such as TransactionPanel_Click, MarkCarAsReturned, etc.)
-
-    Sub updateBalance()
-        lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
-    End Sub
-
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         WalletAdd.Show()
@@ -456,5 +504,53 @@
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles minimize.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Public Sub UpdateBalance()
+        lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles history.Click
+        Me.Close()
+        history.Show()
+    End Sub
+
+    Private Sub home_Click(sender As Object, e As EventArgs) Handles home.Click
+        Me.Close()
+        homeForm.Show()
+    End Sub
+
+    Private Sub rent_Click(sender As Object, e As EventArgs) Handles rent.Click
+        Me.Close()
+        rent_a_car.Show()
+    End Sub
+
+    Private Sub details_Click(sender As Object, e As EventArgs) Handles details.Click
+        Me.Close()
+        RentalDetail.Show()
+    End Sub
+
+    Private Sub setting_Click(sender As Object, e As EventArgs)
+        Me.Close()
+        TheDevs.Show()
+    End Sub
+
+    Private Sub logout_Click(sender As Object, e As EventArgs) Handles logout.Click
+        Me.Close()
+        LoginForm.Show()
+    End Sub
+
+    Private Sub bills_Click(sender As Object, e As EventArgs) Handles bills.Click
+        Me.Close()
+        bills.Show()
+    End Sub
+
+    Private Sub RoundedButton2_Click(sender As Object, e As EventArgs) Handles RoundedButton2.Click
+        lblBalance.Text = $"Balance: ₱{GlobalData.Wallet:N2}"
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
+        TheDevs.Show()
     End Sub
 End Class

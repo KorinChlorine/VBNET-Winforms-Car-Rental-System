@@ -15,7 +15,7 @@ Public Class rent_a_car2
     Public Property DailyPrice As Decimal
     Public Property Customer As String
 
-    ' Now expects a car dictionary, not an array
+
     Public Property SelectedCar As Dictionary(Of String, Object)
     Private SelectedPanel As Panel
     Private WithEvents Timer1 As New Timer()
@@ -37,13 +37,13 @@ Public Class rent_a_car2
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        LabelTime.Text = DateTime.Now.ToString("hh:mm:ss tt")
-        LabelDate.Text = DateTime.Now.ToString("MMMM dd, yyyy")
+        LabelTime.Text = GlobalData.Now().ToString("hh:mm:ss tt")
+        LabelDate.Text = GlobalData.Now().ToString("MMMM dd, yyyy")
     End Sub
 
     Private Sub PopulateForm()
         If SelectedCar IsNot Nothing Then
-            ' Determine if the car is PREMIUM
+
             Dim dailyPrice As Decimal
             Dim isPremium As Boolean = Decimal.TryParse(SelectedCar("DailyPrice")?.ToString(), dailyPrice) AndAlso dailyPrice >= 10000
 
@@ -292,12 +292,12 @@ Public Class rent_a_car2
         End If
 
         If RadioButton1.Checked Then ' BOOK
-            ' Date validation
-            If selectedStartDate.Date < DateTime.Now.Date Then
+
+            If selectedStartDate.Date < GlobalData.Now().Date Then
                 MessageBox.Show("Start date cannot be before today.", "Invalid Start Date")
                 Return
             End If
-            If selectedStartDate.Date = DateTime.Now.Date Then
+            If selectedStartDate.Date = GlobalData.Now().Date Then
                 MessageBox.Show("Start date cannot be today. Please select a future date.", "Invalid Start Date")
                 Return
             End If
@@ -323,7 +323,7 @@ Public Class rent_a_car2
             End If
 
             totalPrice = dailyPrice * numberOfDays
-            ' Pass all evaluated values to Billing
+
             Dim billingForm As New Billing()
             billingForm.SelectedCar = SelectedCar
             billingForm.TransactionType = "BOOK"
@@ -350,8 +350,8 @@ Public Class rent_a_car2
             Dim billingForm As New Billing()
             billingForm.SelectedCar = SelectedCar
             billingForm.TransactionType = "RENT"
-            billingForm.StartDate = DateTime.Now
-            billingForm.EndDate = DateTime.Now.AddDays(numberOfDays)
+            billingForm.StartDate = GlobalData.Now()
+            billingForm.EndDate = GlobalData.Now().AddDays(numberOfDays)
             billingForm.Duration = numberOfDays
             billingForm.TotalPrice = totalPrice
             billingForm.Show()
@@ -368,5 +368,40 @@ Public Class rent_a_car2
 
     Private Sub minimize_Click(sender As Object, e As EventArgs) Handles minimize.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles history.Click
+        Me.Close()
+        history.Show()
+    End Sub
+
+    Private Sub home_Click(sender As Object, e As EventArgs) Handles home.Click
+        Me.Close()
+        homeForm.Show()
+    End Sub
+
+    Private Sub rent_Click(sender As Object, e As EventArgs) Handles rent.Click
+        Me.Close()
+        rent_a_car.Show()
+    End Sub
+
+    Private Sub details_Click(sender As Object, e As EventArgs) Handles details.Click
+        Me.Close()
+        RentalDetail.Show()
+    End Sub
+
+    Private Sub setting_Click(sender As Object, e As EventArgs) Handles setting.Click
+        Me.Close()
+        TheDevs.Show()
+    End Sub
+
+    Private Sub logout_Click(sender As Object, e As EventArgs) Handles logout.Click
+        Me.Close()
+        LoginForm.Show()
+    End Sub
+
+    Private Sub bills_Click(sender As Object, e As EventArgs) Handles bills.Click
+        Me.Close()
+        bills.Show()
     End Sub
 End Class
